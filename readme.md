@@ -21,24 +21,24 @@ QuarkPhysics is a 2D physics engine designed for games. Its goal is to provide a
 
 ## Features
 * General Features
-  * Privimitive shape types (circle, polygon, rectangle...etc) 
+  * Primitive shape types (circle, polygon, rectangle...etc) 
   * Physical properties (mass, area, restitution etc.)
-  * The API designed specifically for 2D video games. 
+  * The API is designed specifically for 2D video games. 
   * Raycasting
-  * Collision layer masks
+  * Collision layer masks for advanced collision filtering
   * SAP for broadphase
-  * Supports sleeping islands to reduce the CPU performance.
+  * Supports sleeping islands to improve CPU performance.
   * Flexible and advanced event system.
-  * It uses pixels directly as a unit, no abstraction.
+  * It uses pixels directly as a unit without any abstractions.
   * Unlimited shape-mesh support for bodies.
   * Simple and consistent API
-  * QMesh Editor app for the editing mesh features of the bodies(Coming soon) 
+  * QMesh Editor app for editing mesh features of the bodies (coming soon) 
    
 * Rigid bodies
   * Joints to connect bodies
-  * Reasonable stability in stacked objects.
-  * Kinematic bodies for controllable physics objects. 
-  * Area bodies for dedecting and reporting collisions.
+  * Reasonable stability for stacked objects.
+  * Kinematic bodies for creating controllable physics objects. 
+  * Area bodies for detecting and reporting collisions.
 
 * Soft Bodies
   * Springs to connect particles.
@@ -47,9 +47,9 @@ QuarkPhysics is a 2D physics engine designed for games. Its goal is to provide a
   * Shape matching features.
   * Self particle collisions.
   * PBD dynamics.
-  * Internal springs and particles.
-  * Customizable constraints
-  * Advanced particle methods 
+  * Internal springs and internal particles for adding more complexity to soft body simulations.
+  * Customizable constraints for adding more control to simulations.
+  * Advanced particle methods. 
   
 ## Building Examples
 You need to install [SFML](https://www.sfml-dev.org/) and [CMake](https://cmake.org/) on your system before. 
