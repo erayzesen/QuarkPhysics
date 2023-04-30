@@ -1,0 +1,7 @@
+build/
+releases/
+QuarkPhysics.config
+QuarkPhysics.creator
+QuarkPhysics.cxxflags
+QuarkPhysics.files
+QuarkPhysics.includes

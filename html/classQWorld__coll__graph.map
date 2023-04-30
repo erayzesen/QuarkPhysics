@@ -1,0 +1,5 @@
+<map id="QWorld" name="QWorld">
+<area shape="rect" id="node1" title="A QWorld object is required to create a physics simulation. The QWorld class manages the entire physi..." alt="" coords="29,184,98,211"/>
+<area shape="rect" id="node2" href="$classQBroadPhase.html" title=" " alt="" coords="95,95,205,121"/>
+<area shape="rect" id="node3" href="$structQVector.html" title=" " alt="" coords="5,5,79,32"/>
+</map>
