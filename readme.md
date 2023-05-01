@@ -2,21 +2,18 @@
 
 QuarkPhysics is a 2D physics engine designed for games. Its goal is to provide a reasonable approach to simulate rigid bodies, soft bodies, and different physics models together.
 
-[Examples](http://www.github.com/quarkphysics/examples) | [API Documentation](http://) | wiki(coming soon)
+[Examples](https://github.com/erayzesen/QuarkPhysics/tree/master/examples) | [API Documentation]([http://](https://erayzesen.github.io/QuarkPhysics/html/)) | wiki(coming soon)
 
 **Note:** The project is in the development phase until v1.0.  
 
  ---
  ![Example 01](images/example_01.gif)
- <details>
- <summary>Show Example Scenes</summary>
-
  ![Example 02](images/example_02.gif)
  ![Example 02](images/example_04.gif)
  ![Example 02](images/example_05.gif)
  ![Example 03](images/example_03.gif)
  ![Example 02](images/example_06.gif)
- </details>
+
 
 
 ## Features
