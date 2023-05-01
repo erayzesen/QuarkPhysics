@@ -64,6 +64,10 @@ Another way is that compiling the project directly via gcc if you're on linux ca
 ## Using
 Copy the "QuarkPhysics" named subfolder in the main folder to your project and use it. 
 
+## Third Party 
+- [nlohmann's json](https://github.com/nlohmann/json) for the json parsing. (Importing meshes via *.qmesh files)
+- [SFML](https://www.sfml-dev.org/) library for window,input,opengl. 
+
 ## Roadmap
 * 1.0
   * API revisions 
@@ -80,6 +84,7 @@ Copy the "QuarkPhysics" named subfolder in the main folder to your project and u
    * Continuous collision dedection (CCD)
 * 1.3
     * Fluid dynamics
+
 
 
 
