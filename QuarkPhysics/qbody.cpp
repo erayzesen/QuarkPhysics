@@ -80,13 +80,11 @@ bool QBody::CanCollide(QBody *bodyA, QBody *bodyB)
 {
 	if(bodyA->world!=bodyB->world)return false;
 	QWorld *world=bodyA->world;
-	//Check Modes
-	if(bodyA->mode==QBody::Modes::STATIC && bodyB->mode==QBody::Modes::STATIC)
+	//Check Static and Sleeping Modes
+	if((bodyA->isSleeping || bodyA->mode==QBody::Modes::STATIC) && (bodyB->isSleeping || bodyB->mode==QBody::Modes::STATIC ))
 		return false;
 	//Check Layers Bits
 	if( ( ((bodyA->layersBit & bodyB->collidableLayersBit)==0 ) && (bodyB->layersBit & bodyA->collidableLayersBit)==0 ) )
-		return false;
-	if(bodyA->isSleeping && bodyB->isSleeping)
 		return false;
 
 	if( world->CheckCollisionException(bodyA,bodyB)==true ){

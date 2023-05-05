@@ -27,6 +27,8 @@
 
 #include "qspring.h"
 #include <iostream>
+#include "qmesh.h"
+#include "qbody.h"
 
 QSpring::QSpring(QParticle *particleA, QParticle *particleB, bool internal)
 {
@@ -47,6 +49,14 @@ QSpring::QSpring(QParticle *particleA, QParticle *particleB, float length, bool 
 
 void QSpring::Update(float rigidity,bool internalsException)
 {
+	bool isBodiesIsSleeping=false;
+	if(pA->GetOwnerMesh()!=nullptr and pB->GetOwnerMesh()!=nullptr){
+		if(pA->GetOwnerMesh()->GetOwnerBody()!=nullptr and pB->GetOwnerMesh()->GetOwnerBody()!=nullptr){
+			if (pA->GetOwnerMesh()->GetOwnerBody()->GetIsSleeping() && pB->GetOwnerMesh()->GetOwnerBody()->GetIsSleeping() ){
+				return;
+			}
+		}
+	}
 	if(enabled==false)
 		return;
 	QVector sv=pB->GetGlobalPosition()-pA->GetGlobalPosition(); //spring vec

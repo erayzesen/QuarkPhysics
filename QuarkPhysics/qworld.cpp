@@ -28,6 +28,7 @@
 #include "qworld.h"
 #include "qareabody.h"
 #include "qmanifold.h"
+#include "qrigidbody.h"
 #include "qsoftbody.h"
 #include <algorithm>
 #include <array>
@@ -232,7 +233,6 @@ void QWorld::Update(){
 	if(enableSleeping){
 		sleepingIslands.clear();
 		GenerateIslands(bodies,sleepingIslands);
-		float oneDegree2Radian=M_PI/180;
 		for(int i=0;i<sleepingIslands.size();i++){
 			vector<QBody*> island=sleepingIslands[i];
 			float velX=0.0f;
@@ -240,26 +240,68 @@ void QWorld::Update(){
 			float angularVel=0.0f;
 			bool islandNeedsAwake=false;
 			for(auto body:island){
+				if ( typeid(*body)==typeid(QRigidBody) ){
 
-				velX=body->GetPosition().x-body->GetPreviousPosition().x;
-				velY=body->GetPosition().y-body->GetPreviousPosition().y;
-				angularVel=body->GetRotation()-body->GetPreviousRotation();
+					velX=abs( body->GetPosition().x-body->GetPreviousPosition().x );
+					velY=abs( body->GetPosition().y-body->GetPreviousPosition().y );
+					angularVel=abs(body->GetRotation()-body->GetPreviousRotation());
 
-				if(velX>0.05f || velY>0.05f || angularVel>oneDegree2Radian ){
-					islandNeedsAwake=true;
-					break;
+					if(velX>sleepingPositionTolerance || velY>sleepingPositionTolerance || angularVel>sleepingRotationTolerance ){
+						islandNeedsAwake=true;
+						cout<<"velX: "<<velX<<" velY" << velY<<endl;
+						break;
+					}
+				}else{
+					bool hasMovingParticles=false;
+					for (int m=0;m<body->GetMeshCount();m++){
+						QMesh *mesh=body->GetMeshAt(m);
+						for(int p=0;p<mesh->GetParticleCount();p++){
+							QParticle * particle=mesh->GetParticle(p);
+							velX=abs(particle->GetGlobalPosition().x-particle->GetPreviousGlobalPosition().x);
+							velY=abs(particle->GetGlobalPosition().y-particle->GetPreviousGlobalPosition().y);
+
+							if(velX>sleepingPositionTolerance || velY>sleepingPositionTolerance){
+								hasMovingParticles=true;
+								break;
+							}
+						}
+						if(hasMovingParticles==true){
+							break;
+						}
+					}
+					if (hasMovingParticles==true) {
+						islandNeedsAwake=true;
+						break;
+					}
+
 				}
-//				cout<<"velX:"<<velX;
-//				cout<<" velY:"<<velY;
-//				cout<<" angularVel:"<<angularVel<<endl;
 
 
 			}
 			if(islandNeedsAwake==false){
+				bool bodiesCanSleep=true;
 				for(auto body:island){
 					body->fixedVelocityTick+=1;
 					body->fixedAngularTick+=1;
-
+					if(body->fixedVelocityTick<120){
+						bodiesCanSleep=false;
+					}
+				}
+				if (bodiesCanSleep) {
+					for(auto body:island){
+						body->isSleeping=true;
+						if(typeid(*body)==typeid(QRigidBody) ){
+							body->prevPosition=body->position;
+							body->prevRotation=body->rotation;
+						}else{
+							for(int m=0;m<body->GetMeshCount();m++){
+								for(int p=0;p<body->GetMeshAt(m)->GetParticleCount();p++){
+									QParticle *particle=body->GetMeshAt(m)->GetParticle(p);
+									particle->SetPreviousGlobalPosition(particle->GetGlobalPosition());
+								}
+							}
+						}
+					}
 				}
 			}else{
 				for(auto body:island){

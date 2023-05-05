@@ -88,7 +88,12 @@ protected:
 	bool enableBroadphase=true;
 	int iteration=4;
 
-	//Infographic Features
+
+	//Sleeping
+	float sleepingPositionTolerance=0.1f;
+	float sleepingRotationTolerance=M_PI/180.0f;
+
+	//Debug Features
 	int debugAABBTestCount=0; //aabb test method call count
 	int debugCollisionTestCount=0; // any collision method call count
 

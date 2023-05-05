@@ -29,6 +29,7 @@
 
 ExampleSceneBenchmarkBoxes::ExampleSceneBenchmarkBoxes(QVector sceneSize):QExampleScene(sceneSize)
 {
+	//world->SetEnableSleeping(false);
 	//BOXES EXAMPLE
 	QBody *floor=new QBody();
 	floor->AddMesh(QMesh::CreateWithRect(QVector(960,64),QVector(0.0f,0.0f) ) )->SetPosition(QVector(512.0f,550.0f));
@@ -47,8 +48,10 @@ ExampleSceneBenchmarkBoxes::ExampleSceneBenchmarkBoxes(QVector sceneSize):QExamp
 	world->AddBody(wallRight);
 
 
-	int boxGroupCount=20;
-	int boxHeapCount=10;
+	//int boxGroupCount=20;
+	//int boxHeapCount=10;
+	int boxGroupCount=7;
+	int boxHeapCount=7;
 	float boxSize=32.0f;
 
 	auto startPos=floor->GetPosition()+QVector((boxGroupCount*boxSize)*-0.5f,-(32.0f+boxSize*0.5f));

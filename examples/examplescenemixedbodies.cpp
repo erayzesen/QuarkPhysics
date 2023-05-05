@@ -33,7 +33,7 @@
 
 ExampleSceneMixedBodies::ExampleSceneMixedBodies(QVector sceneSize):QExampleScene(sceneSize)
 {
-	world->SetEnableSleeping(false);
+	//world->SetEnableSleeping(false);
 
 	// Floor and walls
 	QBody *floor=new QBody();

@@ -83,8 +83,10 @@ void QRigidBody::Update(){
 	}
 
 
-	if (isSleeping)
+
+	if(isSleeping){
 		return;
+	}
 
 
 	QVector vel=position-prevPosition;
@@ -103,22 +105,6 @@ void QRigidBody::Update(){
 	float rotVel=rotation-prevRotation;
 	prevRotation=rotation;
 
-	//Sleep Feature
-	if(canSleep && isKinematic==false){
-		if(fixedVelocityTick>sleepTick && fixedAngularTick>sleepTick){
-			isSleeping=true;
-			prevPosition=position;
-			vel=QVector::Zero();
-		}else{
-			isSleeping=false;
-		}
-	}else{
-		isSleeping=false;
-	}
-
-	if(isSleeping){
-		return;
-	}
 
 	//Verlet Integration
 	if(isKinematic==false){

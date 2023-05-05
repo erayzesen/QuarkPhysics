@@ -45,6 +45,16 @@ QSoftBody::QSoftBody()
 
 void QSoftBody::Update()
 {
+	if (mode==QBody::STATIC){
+		return;
+	}
+
+	//Sleep Feature
+
+	if(isSleeping){
+		return;
+	}
+
 	//Integrate Velocities
 	for(int i=0;i<_meshes.size();i++){
 		QMesh *mesh=_meshes[i];

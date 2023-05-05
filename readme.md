@@ -8,11 +8,16 @@ QuarkPhysics is a 2D physics engine designed for games. Its goal is to provide a
 
  ---
  ![Example 01](images/example_01.gif)
+ <details>
+ <summary> Show Examples</summary>
+
  ![Example 02](images/example_02.gif)
  ![Example 02](images/example_04.gif)
  ![Example 02](images/example_05.gif)
  ![Example 03](images/example_03.gif)
  ![Example 02](images/example_06.gif)
+
+ </details>
 
 
 
@@ -53,7 +58,7 @@ You need to install [SFML](https://www.sfml-dev.org/) and [CMake](https://cmake.
 
 Download project, enter the main folder and call this;
 
-        ./build.sh
+        ./build.sh -r
 Another way is that compiling the project directly via gcc if you're on linux call; 
 
         ./run_linux_fast.sh -r
@@ -71,14 +76,15 @@ Copy the "QuarkPhysics" named subfolder in the main folder to your project and u
   * Optimizations
   * Bug fixes 
 * 1.1
-  * Auto converting a concave polygon to convex polygons 
-  * Static-dynamic particles 
+  * Automatic conversion of concave polygons to convex polygons
+  * Add Static-dynamic feature to the particles 
   * Breakable spring connections.
-  * UV features to QMesh
+  * UV mapping features to QMesh
 * 1.2
    * Determinism (with fixed point method)
    * Destructable rigid bodies.
    * Continuous collision dedection (CCD)
+   * Multithreading
 * 1.3
     * Fluid dynamics
 
