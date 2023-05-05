@@ -6,3 +6,6 @@ QuarkPhysics.cxxflags
 QuarkPhysics.files
 QuarkPhysics.includes
 QuarkPhysics/json/json.hpp.gch
+.qtc_clangd/
+.cache/
+.vscode/
