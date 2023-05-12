@@ -56,8 +56,10 @@ sf::Font *font;
 QExampleScene *scene;
 
 //FPS calculating helpers
+int frameRateLimit=-1;
 float fps=0.0f;
 sf::Clock sfClock;
+sf::Clock dtClock;
 int frameCount=0;
 float timeSinceLastUpdate=0.0f;
 //Measuring physics world step variables
@@ -264,6 +266,7 @@ int main()
 		sf::Vector2<float> mouseGlobalPosition=window->mapPixelToCoords(mouseWindowPosition);
 		QVector mousePosition(mouseGlobalPosition.x,mouseGlobalPosition.y);
 		CalculateFPS();
+
 		FrameLoop();
 
 		sf::Event event;

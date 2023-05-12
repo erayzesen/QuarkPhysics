@@ -88,6 +88,7 @@ ExampleSceneMixedBodies::ExampleSceneMixedBodies(QVector sceneSize):QExampleScen
 	wordBody->SetPosition(positionPointer);
 	wordBody->AddMeshesFromFile("../resources/mesh_files/word_q.qmesh");
 	wordBody->SetRigidity(rigidity)->SetShapeMatchingEnabled(true)->SetShapeMatchingRate(matchingRate);
+	wordBody->SetSelfCollisionsEnabled(true);
 	world->AddBody(wordBody);
 
 	positionPointer+=diff;
@@ -96,6 +97,7 @@ ExampleSceneMixedBodies::ExampleSceneMixedBodies(QVector sceneSize):QExampleScen
 	wordBody->SetPosition(positionPointer );
 	wordBody->AddMeshesFromFile("../resources/mesh_files/word_u.qmesh");
 	wordBody->SetRigidity(rigidity)->SetShapeMatchingEnabled(true)->SetShapeMatchingRate(matchingRate);
+	wordBody->SetSelfCollisionsEnabled(true);
 	world->AddBody(wordBody);
 
 
@@ -105,6 +107,7 @@ ExampleSceneMixedBodies::ExampleSceneMixedBodies(QVector sceneSize):QExampleScen
 	wordBody->SetPosition(positionPointer);
 	wordBody->AddMeshesFromFile("../resources/mesh_files/word_a.qmesh");
 	wordBody->SetRigidity(rigidity)->SetShapeMatchingEnabled(true)->SetShapeMatchingRate(matchingRate);
+	wordBody->SetSelfCollisionsEnabled(true);
 	world->AddBody(wordBody);
 
 
@@ -114,6 +117,7 @@ ExampleSceneMixedBodies::ExampleSceneMixedBodies(QVector sceneSize):QExampleScen
 	wordBody->SetPosition(positionPointer);
 	wordBody->AddMeshesFromFile("../resources/mesh_files/word_r.qmesh");
 	wordBody->SetRigidity(rigidity)->SetShapeMatchingEnabled(true)->SetShapeMatchingRate(matchingRate);
+	wordBody->SetSelfCollisionsEnabled(true);
 	world->AddBody(wordBody);
 
 
@@ -123,6 +127,7 @@ ExampleSceneMixedBodies::ExampleSceneMixedBodies(QVector sceneSize):QExampleScen
 	wordBody->SetPosition(positionPointer);
 	wordBody->AddMeshesFromFile("../resources/mesh_files/word_k.qmesh");
 	wordBody->SetRigidity(rigidity)->SetShapeMatchingEnabled(true)->SetShapeMatchingRate(matchingRate);
+	wordBody->SetSelfCollisionsEnabled(true);
 	world->AddBody(wordBody);
 
 

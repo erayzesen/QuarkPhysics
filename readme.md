@@ -7,7 +7,7 @@ QuarkPhysics is a 2D physics engine designed for games. Its goal is to provide a
 **Note:** The project is in the development phase until v1.0.  
 
  ---
- ![Example 01](images/example_01.gif)
+ ![Example 01](images/example_01_a.gif)
  <details>
  <summary> Show Examples</summary>
 

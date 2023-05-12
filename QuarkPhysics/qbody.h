@@ -74,6 +74,8 @@ protected:
 	bool circumferenceNeedsUpdate=true;
 	QVector force=QVector::Zero();
 	float angularForce=0.0f;
+	bool enableBodySpecificTimeScale=false;
+	float bodySpecificTimeScale=1.0f;
 
 	//Material Properties;
 
@@ -308,6 +310,15 @@ protected:
 		float GetAngularForce(){
 			return angularForce;
 		}
+		/** Returns whether the body spesific time scale is enabled. */
+		bool GetBodySpecificTimeScaleEnabled(){
+			return enableBodySpecificTimeScale;
+		}
+		/** Returns the body spesific time scale */
+
+		float GetBodySpesificTimeScale(){
+			return bodySpecificTimeScale;
+		}
 
 
 
@@ -504,6 +515,24 @@ protected:
 		 */
 		QBody *SetRestitution(float value){
 			restitution=value;
+			return this;
+		}
+
+		/** Sets whether the body-specific time scale is enabled. The world has a time scale, but this allows you to assign a specific time scale to the body object as an exception. 
+		 * @param value A value to set.
+		 * @return A pointer to the body itself.
+		 */
+		QBody *SetBodySpecificTimeScaleEnabled(bool value){
+			enableBodySpecificTimeScale=value;
+			return this;
+		}
+
+		/** Sets the time scale specific to the body. The world has a time scale, but this allows you to assign a specific time scale to the body object as an exception.  
+		 * @param value A value to set.
+		 * @return A pointer to the body itself.
+		 */
+		QBody *SetBodySpecificTimeScale(float value){
+			bodySpecificTimeScale=value;
 			return this;
 		}
 

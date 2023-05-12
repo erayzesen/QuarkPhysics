@@ -31,6 +31,7 @@
 ExampleSceneSoftBodies::ExampleSceneSoftBodies(QVector sceneSize) :QExampleScene(sceneSize)
 {
 	world->SetEnableSleeping(false);
+	//world->SetTimeScale(0.1f);
 	//Adding Floor
 	QRigidBody *floor=new QRigidBody();
 	floor->AddMesh(QMesh::CreateWithRect(QVector(3000,64),QVector(0.0f,0.0f) ) )->SetPosition(QVector(512.0f,550.0f));
@@ -65,7 +66,7 @@ ExampleSceneSoftBodies::ExampleSceneSoftBodies(QVector sceneSize) :QExampleScene
 	QSoftBody *pbdBody=new QSoftBody();
 	pbdBody->AddMesh( QMesh::CreateWithRect( QVector(128,128),QVector::Zero(),QVector(6,6),true,false,8.0f ) );
 	pbdBody->SetRigidity(0.3f)->SetPosition(QVector(150,100))->SetMass(1.0f);
-	pbdBody->SetSelfParticleCollisionsEnabled(true)->SetParticleSpesificMassEnabled(true)->SetParticleSpesificMass(0.1f);
+	pbdBody->SetSelfCollisionsEnabled(true)->SetParticleSpesificMassEnabled(true)->SetParticleSpesificMass(0.1f);
 	pbdBody->SetShapeMatchingEnabled(true);
 	world->AddBody(pbdBody);
 
@@ -95,6 +96,24 @@ ExampleSceneSoftBodies::ExampleSceneSoftBodies(QVector sceneSize) :QExampleScene
 	griddedPressuredBody->SetRigidity(0.5f)->SetPosition(QVector(900,150))->SetMass(0.5f);
 	griddedPressuredBody->SetAreaPreservingEnabled(true)->SetPassivationOfInternalSpringsEnabled(true);
 	world->AddBody(griddedPressuredBody);
+
+
+	//It's about self collision tests.
+	/* QSoftBody *wordBody=new QSoftBody();
+	wordBody->SetPosition(QVector(400,200) );
+	wordBody->AddMeshesFromFile("../resources/mesh_files/soft_test.qmesh");
+	wordBody->SetRigidity(0.3f)->SetShapeMatchingEnabled(true)->SetShapeMatchingRate(0.35f);
+	wordBody->SetSelfCollisionsEnabled(true);
+	world->AddBody(wordBody);
+
+	wordBody=new QSoftBody();
+	wordBody->SetPosition(QVector(700,200) );
+	wordBody->AddMeshesFromFile("../resources/mesh_files/word_q.qmesh");
+	wordBody->SetRigidity(0.3f)->SetShapeMatchingEnabled(true)->SetShapeMatchingRate(0.35f);
+	wordBody->SetSelfCollisionsEnabled(true);
+	world->AddBody(wordBody); */
+
+
 
 
 }

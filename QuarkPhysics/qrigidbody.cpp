@@ -88,6 +88,16 @@ void QRigidBody::Update(){
 		return;
 	}
 
+	float ts=1.0f;
+
+	if(enableBodySpecificTimeScale==true){
+		ts=bodySpecificTimeScale;
+	}else{
+		if(world!=nullptr){
+			ts=world->GetTimeScale();
+		}
+	}
+
 
 	QVector vel=position-prevPosition;
 	prevPosition=position;
@@ -108,8 +118,8 @@ void QRigidBody::Update(){
 
 	//Verlet Integration
 	if(isKinematic==false){
-		position=position+vel;
-		position+=(world->GetGravity()*mass);
+		position+=vel;
+		position+=(world->GetGravity()*mass*ts);
 		rotation+=rotVel;
 	}
 	//Position Forces

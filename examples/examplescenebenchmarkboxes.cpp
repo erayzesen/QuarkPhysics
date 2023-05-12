@@ -26,6 +26,8 @@
 **************************************************************************************/
 
 #include "examplescenebenchmarkboxes.h"
+#include <SFML/Window/Keyboard.hpp>
+#include <functional>
 
 ExampleSceneBenchmarkBoxes::ExampleSceneBenchmarkBoxes(QVector sceneSize):QExampleScene(sceneSize)
 {
@@ -48,10 +50,8 @@ ExampleSceneBenchmarkBoxes::ExampleSceneBenchmarkBoxes(QVector sceneSize):QExamp
 	world->AddBody(wallRight);
 
 
-	//int boxGroupCount=20;
-	//int boxHeapCount=10;
-	int boxGroupCount=7;
-	int boxHeapCount=7;
+	int boxGroupCount=20;
+	int boxHeapCount=10;
 	float boxSize=32.0f;
 
 	auto startPos=floor->GetPosition()+QVector((boxGroupCount*boxSize)*-0.5f,-(32.0f+boxSize*0.5f));

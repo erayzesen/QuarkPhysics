@@ -47,7 +47,7 @@ class QSoftBody : public QBody
 	float circumference=0.0f;
 	bool enableAreaStability=false;
 	bool enablePassivationOfInternalSprings=false;
-	bool enableSelfParticleCollisions=false;
+	bool enableSelfCollisions=false;
 
 	bool enableShapeMatching=false;
 	float shapeMatchingRate=0.4f;
@@ -117,12 +117,12 @@ public:
 		targetPreservationArea=value;
 		return this;
 	}
-	/** Sets whether self particle collisions are enabled for the body. If set to true, all particles within the body will collide with each other.
+	/** Sets whether self particle collisions are enabled for the body. If set to true, all mesh parts within the body will collide with each other.
 	 * @param value A value to set. 
 	 *  @return A pointer to the body itself.
 	 */
-	QSoftBody *SetSelfParticleCollisionsEnabled(bool value){
-		enableSelfParticleCollisions=value;
+	QSoftBody *SetSelfCollisionsEnabled(bool value){
+		enableSelfCollisions=value;
 		return this;
 	}
 
@@ -199,9 +199,9 @@ public:
 	float GetTargetPreservationArea(){
 		return targetPreservationArea;
 	}
-	/** Sets whether self particle collisions are enabled for the body. If set to true, all particles within the body will collide with each other. */
-	bool GetSelfParticleCollisionsEnabled(){
-		return enableSelfParticleCollisions;
+	/** Gets whether self collisions are enabled for the body. If set to true, all mesh parts within the body will collide with each other. */
+	bool GetSelfCollisionsEnabled(){
+		return enableSelfCollisions;
 	}
 	/** Returns whether to passivate the internal spring connections of the soft body. If this option is enabled, the internal springs are more passive in the simulation, which can be useful for soft bodies where the internal springs and particle connections only provide UV and other data based on the movement of the soft body. */
 	bool GetPassivationOfInternalSpringsEnabled(){

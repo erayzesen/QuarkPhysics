@@ -55,6 +55,18 @@ void QSoftBody::Update()
 		return;
 	}
 
+	//Time scale feature
+	
+	float ts=1.0f;
+
+	if(enableBodySpecificTimeScale==true){
+		ts=bodySpecificTimeScale;
+	}else{
+		if(world!=nullptr){
+			ts=world->GetTimeScale();
+		}
+	}
+
 	//Integrate Velocities
 	for(int i=0;i<_meshes.size();i++){
 		QMesh *mesh=_meshes[i];
@@ -65,7 +77,7 @@ void QSoftBody::Update()
 			auto vel=particle->GetGlobalPosition()-particle->GetPreviousGlobalPosition();
 			particle->SetPreviousGlobalPosition(particle->GetGlobalPosition() );
 			particle->ApplyForce(vel);
-			particle->ApplyForce(mass*world->GetGravity());
+			particle->ApplyForce(mass*world->GetGravity()*ts);
 			particle->ApplyForce(particle->GetForce());
 			particle->SetForce(QVector::Zero());
 		}
@@ -89,6 +101,16 @@ void QSoftBody::Update()
 
 void QSoftBody::PreserveAreas()
 {
+	//Time scale feature
+	float ts=1.0f;
+
+	if(enableBodySpecificTimeScale==true){
+		ts=bodySpecificTimeScale;
+	}else{
+		if(world!=nullptr){
+			ts=world->GetTimeScale();
+		}
+	}
 
 	for(auto mesh:_meshes){
 		if(mesh->GetSpringCount()==0)continue;
@@ -113,7 +135,7 @@ void QSoftBody::PreserveAreas()
 			if(spring->GetIsInternal()==true)continue;
 			QVector vec=spring->GetParticleB()->GetGlobalPosition()-spring->GetParticleA()->GetGlobalPosition();
 
-			volumeForces[i]=pressure*vec.Normalized().Perpendicular();
+			volumeForces[i]=pressure*vec.Normalized().Perpendicular()*ts;
 		}
 		for(int i=0;i<mesh->GetSpringCount();i++){
 			QSpring *spring=mesh->GetSpringAt(i);
@@ -174,6 +196,16 @@ pair<QVector, float> QSoftBody::GetAveragePositionAndRotation(int meshIndex){
 
 void QSoftBody::ApplyShapeMatching()
 {
+	//Time scale feature
+	float ts=1.0f;
+
+	if(enableBodySpecificTimeScale==true){
+		ts=bodySpecificTimeScale;
+	}else{
+		if(world!=nullptr){
+			ts=world->GetTimeScale();
+		}
+	}
 	for(int i=0;i<_meshes.size();i++){
 		QMesh *mesh=_meshes[i];
 		if(mesh->GetParticleCount()<2)
@@ -199,7 +231,7 @@ void QSoftBody::ApplyShapeMatching()
 			QVector distance=targetPos-particle->GetGlobalPosition();
 			QVector distanceUnit=distance.Normalized();
 			float distanceLen=distance.Length();
-			QVector force=(distanceLen*distanceLen*distanceUnit)*shapeMatchingRate*0.01f;
+			QVector force=(distanceLen*distanceLen*distanceUnit)*shapeMatchingRate*0.01f*ts;
 			particle->ApplyForce(force);
 		}
 

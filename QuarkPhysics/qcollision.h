@@ -132,6 +132,8 @@ public:
 	 */
 	static void PolylineAndCircle(vector<QParticle*> &polylineParticles,vector<QParticle*> &circleParticles,vector<QCollision::Contact> &contacts);
 
+	static void PolyLineSelfCollision(vector<QParticle*> polylineParticles,vector<QCollision::Contact> &contacts);
+
 
 	//Geometry Helper Methods
 	/** Checks intersection between lines.

@@ -176,27 +176,59 @@ void QWorld::Update(){
 			manifold.SolveFrictionAndVelocities();
 		}
 
-		//Self particle collisions of soft bodies
+		
+
+		//The Self Collision Feature of Soft Bodies
 		for(auto body:bodies){
 			if(body->simulationModel!=QBody::SimulationModels::RIGID_BODY){
 				QSoftBody *sBody=static_cast<QSoftBody*>(body);
-				if(sBody!=nullptr){
-					if(sBody->GetSelfParticleCollisionsEnabled()==true){
-						for(int j=0;j<sBody->GetMeshCount();j++){
-							QMesh *mesh=sBody->GetMeshAt(j);
-							vector<QCollision::Contact> contacts;
-							QCollision::CircleAndCircle(mesh->particles,mesh->particles,contacts);
-							if(contacts.size()>0){
-								QManifold manifold(sBody,sBody);
-								manifold.contacts=contacts;
-								manifold.Solve();
-							}
+				if(sBody==nullptr)continue;
+				if(sBody->GetSelfCollisionsEnabled()==false)continue;
+				for(int ma=0;ma<sBody->GetMeshCount();ma++){
+					QMesh *meshA=sBody->GetMeshAt(ma);
+					for(int mb=0;mb<sBody->GetMeshCount();mb++){
+						QMesh *meshB=sBody->GetMeshAt(mb);
+						vector<QCollision::Contact> contacts;
+						//Self Particle Collisions
+						QCollision::CircleAndCircle(meshA->particles,meshB->particles,contacts);
+						if(contacts.size()>0){
+							QManifold manifold(sBody,sBody);
+							manifold.contacts=contacts;
+							manifold.Solve();
 						}
+						contacts.clear();
+						//Polyline Collisions
+						if(QMesh::CheckCollisionBehaviors(meshA,meshB,QMesh::CollisionBehaviors::POLYLINE,QMesh::CollisionBehaviors::POLYLINE)){ //Self Polyline Collisions
+							for (int pA=0;pA<meshA->GetClosedPolygonCount();pA++){
+								for(int pB=0;pB<meshA->GetClosedPolygonCount();pB++){
+									QCollision::PolylineAndPolygon(meshA->closedPolygons[pA],meshB->closedPolygons[pB],contacts);
+								}
+								
+							}
+							
+						}else if(QMesh::CheckCollisionBehaviors(meshA,meshB,QMesh::CollisionBehaviors::CIRCLES,QMesh::CollisionBehaviors::POLYLINE) ){ //Self Polyline-Particle Collisions
+							QMesh * circleMesh=meshA->GetCollisionBehavior()==QMesh::CollisionBehaviors::CIRCLES ? meshA:meshB;
+							QMesh * polylineMesh=circleMesh==meshA ? meshB:meshA;
+							for(int p=0;p<polylineMesh->GetClosedPolygonCount();p++){
+								QCollision::PolylineAndCircle( polylineMesh->GetClosedPolygon(p),circleMesh->particles,contacts);
+							}
+
+						}
+
+						if(contacts.size()>0){
+							QManifold manifold(sBody,sBody);
+							manifold.contacts=contacts;
+							manifold.Solve();
+						}
+						
 					}
+					
+					
 				}
+				
+				
 			}
 		}
-
 
 
 
@@ -246,9 +278,8 @@ void QWorld::Update(){
 					velY=abs( body->GetPosition().y-body->GetPreviousPosition().y );
 					angularVel=abs(body->GetRotation()-body->GetPreviousRotation());
 
-					if(velX>sleepingPositionTolerance || velY>sleepingPositionTolerance || angularVel>sleepingRotationTolerance ){
+					if(velX>sleepingPositionTolerance || velY>sleepingPositionTolerance || angularVel>sleepingRotationTolerance){
 						islandNeedsAwake=true;
-						cout<<"velX: "<<velX<<" velY" << velY<<endl;
 						break;
 					}
 				}else{
@@ -751,10 +782,7 @@ bool QWorld::CheckCollisionException(QBody *bodyA, QBody *bodyB)
 
 //Collision Constraints and Response Between Bodies
 vector<QCollision::Contact> QWorld::GetCollisions(QBody *bodyA, QBody *bodyB){
-	vector<QCollision::Contact> contactList{};
-
-	if(bodyA->GetIsSleeping() && bodyB->GetIsSleeping())
-		return contactList;
+	vector<QCollision::Contact> contactList;
 
 
 
@@ -933,12 +961,20 @@ bool QWorld::SortBodiesVertical(const QBody *bodyA, const QBody *bodyB)
  {
 	 //Soft Body Constraints
 	 for(auto body:bodies){
+		//Time scale feature
+		float ts=1.0f;
+
+		if(body->enableBodySpecificTimeScale==true){
+			ts=body->bodySpecificTimeScale;
+		}else{
+			ts=GetTimeScale();
+		}
 		 if(body->GetMode()!=QBody::STATIC && body->GetSimulationModel()!=QBody::RIGID_BODY){
 			 QSoftBody *sBody=static_cast<QSoftBody*>(body);
 			 for(int i=0;i<sBody->GetMeshCount();i++){
 				 QMesh * mesh=sBody->GetMeshAt(i);
 				 for(auto spring:mesh->springs){
-					 spring->Update(sBody->GetRigidity(),sBody->GetPassivationOfInternalSpringsEnabled());
+					 spring->Update(sBody->GetRigidity()*ts,sBody->GetPassivationOfInternalSpringsEnabled());
 				 }
 			 }
 		 }

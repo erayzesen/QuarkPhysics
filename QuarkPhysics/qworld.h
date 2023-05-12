@@ -87,6 +87,7 @@ protected:
 	bool enableSleeping=true;
 	bool enableBroadphase=true;
 	int iteration=4;
+	float timeScale=1.0f;
 
 
 	//Sleeping
@@ -174,8 +175,21 @@ public:
 		return this;
 	}
 
+
+	/** Sets the time scale for the physics simulation. The default value is 1.0. If you give a value lower than 1.0, the simulation will slow down, and if you give a value higher than 1.0, the simulation will speed up. 
+	 * @param value A value to set.
+	 */
+	QWorld *SetTimeScale(float value=1.0f){
+		timeScale=value;
+		return this;
+	}
+	/** Returns the time scale for the physics simulation.  */
+	float GetTimeScale(){
+		return timeScale;	
+	}
+
 	//Methods
-	/** Updates the physics simulation of the world as a step. 
+	/** Updates the physics simulation of the world as a step.
 	 */
 	void Update();
 
