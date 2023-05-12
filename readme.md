@@ -47,7 +47,7 @@ QuarkPhysics is a 2D physics engine designed for games. Its goal is to provide a
   * Mass-spring model.
   * Area-volume preserving model.
   * Shape matching features.
-  * Self particle collisions.
+  * Self collisions.
   * PBD dynamics.
   * Internal springs and internal particles for adding more complexity to soft body simulations.
   * Customizable constraints for adding more control to simulations.
