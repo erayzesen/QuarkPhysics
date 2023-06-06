@@ -31,6 +31,7 @@
 
 QAreaBody::QAreaBody(){
 	simulationModel=QBody::SimulationModels::RIGID_BODY;
+	bodyType=QBody::BodyTypes::AREA;
 }
 void QAreaBody::AddCollidedBody(QBody* body){
 	bool isBodyNew=bodies.insert(body).second;

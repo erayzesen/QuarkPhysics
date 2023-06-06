@@ -48,7 +48,7 @@ QBroadPhase *QBroadPhase::Add(QBody* body)
 
 
 	float fatFactor=5.0f;
-	if(body->GetSimulationModel()==QBody::RIGID_BODY){
+	if(body->GetSimulationModel()==QBody::SimulationModels::RIGID_BODY){
 		fatFactor+=(body->GetPosition()-body->GetPreviousPosition()).Length();
 	}
 	body->GetFattedAABB()=body->GetAABB().Fatted(fatFactor );
@@ -94,7 +94,7 @@ std::unordered_set<std::pair<QBody*,QBody*>,QBroadPhase::pairHash,QBroadPhase::p
 
 	pairList.clear();
 
-	for(auto const &[key, value] : collisionGroups) {
+	/* for(auto const &[key, value] : collisionGroups) {
 		for(auto ita=value.begin();ita!=value.end();++ita) {
 			auto bodyA=*ita;
 			for(auto itb=next(ita);itb!=value.end();++itb) {
@@ -104,9 +104,10 @@ std::unordered_set<std::pair<QBody*,QBody*>,QBroadPhase::pairHash,QBroadPhase::p
 
 			}
 		}
-	}
+	} */
 	isBodyAdded=false;
 	return &pairList;
+	
 }
 
 void QBroadPhase::RemoveBodyFromCells(QAABB referenceAABB, QBody *body)

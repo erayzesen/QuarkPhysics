@@ -112,7 +112,7 @@ QVector QManifold::GetRelativeVelocity(QParticle *contactParticle,vector<QPartic
 
 	}
 
-	if( bodyInc->GetSimulationModel()==QBody::RIGID_BODY  ){
+	if( bodyInc->GetSimulationModel()==QBody::SimulationModels::RIGID_BODY  ){
 		//For RigidBodies
 		angVelInc=bodyInc->GetRotation()-bodyInc->GetPreviousRotation();
 		velInc=bodyInc->GetPosition()-bodyInc->GetPreviousPosition();
@@ -170,10 +170,10 @@ void QManifold::Solve()
 		QRigidBody *refRigidBody=nullptr;
 		QRigidBody *incRigidBody=nullptr;
 
-		if(typeid(*referenceBody)==typeid(QRigidBody))
-			refRigidBody=dynamic_cast<QRigidBody*>(referenceBody);
-		if(typeid(*incidentBody)==typeid(QRigidBody))
-			incRigidBody=dynamic_cast<QRigidBody*>(incidentBody);
+		if(referenceBody->GetBodyType()==QBody::BodyTypes::RIGID)
+			refRigidBody=static_cast<QRigidBody*>(referenceBody);
+		if(incidentBody->GetBodyType()==QBody::BodyTypes::RIGID)
+			incRigidBody=static_cast<QRigidBody*>(incidentBody);
 
 		QVector rRef=contact->position-referenceBody->GetPosition();
 		QVector rInc=contact->position-incidentBody->GetPosition();
@@ -192,14 +192,14 @@ void QManifold::Solve()
 
 		//Checking Area Bodies
 
-		if(typeid(*referenceBody)==typeid(QAreaBody)){
-			QAreaBody *refAreaBody=dynamic_cast<QAreaBody*>(referenceBody);
+		if(referenceBody->GetBodyType()==QBody::BodyTypes::AREA){
+			QAreaBody *refAreaBody=static_cast<QAreaBody*>(referenceBody);
 			refAreaBody->AddCollidedBody(incidentBody);
 			cancelSolving=true;
 		}
-
-		if(typeid(*incidentBody)==typeid(QAreaBody)){
-			QAreaBody *incAreaBody=dynamic_cast<QAreaBody*>(incidentBody);
+	
+		if(incidentBody->GetBodyType()==QBody::BodyTypes::AREA){
+			QAreaBody *incAreaBody=static_cast<QAreaBody*>(incidentBody);
 			incAreaBody->AddCollidedBody(referenceBody);
 			cancelSolving=true;
 		}
@@ -303,10 +303,10 @@ void QManifold::SolveFrictionAndVelocities()
 		QRigidBody *refRigidBody=nullptr;
 		QRigidBody *incRigidBody=nullptr;
 
-		if(typeid(*referenceBody)==typeid(QRigidBody))
-			refRigidBody=dynamic_cast<QRigidBody*>(referenceBody);
-		if(typeid(*incidentBody)==typeid(QRigidBody))
-			incRigidBody=dynamic_cast<QRigidBody*>(incidentBody);
+		if(referenceBody->GetBodyType()==QBody::BodyTypes::RIGID)
+			refRigidBody=static_cast<QRigidBody*>(referenceBody);
+		if(incidentBody->GetBodyType()==QBody::BodyTypes::RIGID)
+			incRigidBody=static_cast<QRigidBody*>(incidentBody);
 
 		QVector rRef=contact->position-referenceBody->GetPosition();
 		QVector rInc=contact->position-incidentBody->GetPosition();

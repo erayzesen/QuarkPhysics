@@ -36,6 +36,7 @@
 QSoftBody::QSoftBody()
 {
 	simulationModel=SimulationModels::MASS_SPRING;
+	bodyType=QBody::BodyTypes::SOFT;
 }
 
 

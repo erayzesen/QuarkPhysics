@@ -46,7 +46,7 @@ void QMesh::UpdateCollisionBehavior()
 	if(ownerBody==nullptr)
 		return;
 	if(closedPolygons.size()>0){
-		if(ownerBody->simulationModel==QBody::RIGID_BODY){
+		if(ownerBody->simulationModel==QBody::SimulationModels::RIGID_BODY){
 			collisionBehavior=CollisionBehaviors::POLYGONS;
 		}else{
 			collisionBehavior=CollisionBehaviors::POLYLINE;
@@ -188,8 +188,7 @@ QMesh *QMesh::RemoveMatchingSprings(QParticle *particle)
 
 QMesh *QMesh::CreateWithCircle(float radius, QVector centerPosition){
 	QMesh * res=new QMesh();
-	QParticle *particle=new QParticle(0,0,radius);
-	particle->SetPosition(centerPosition);
+	QParticle *particle=new QParticle(centerPosition.x,centerPosition.y,radius);
 	res->AddParticle(particle);
 
 	return res;
@@ -331,10 +330,10 @@ QMesh::MeshData QMesh::GenerateRectangleMeshData(QVector size,QVector centerPosi
 	QMesh::MeshData res;
 	QVector halfSize=size*0.5f;
 	if(grid.x<=1 && grid.y<=1){
-		res.particlePositions.push_back(QVector(-halfSize.x ,-halfSize.y ) );
-		res.particlePositions.push_back(QVector(halfSize.x ,-halfSize.y ) );
-		res.particlePositions.push_back(QVector(halfSize.x ,halfSize.y ) );
-		res.particlePositions.push_back(QVector(-halfSize.x ,halfSize.y ) );
+		res.particlePositions.push_back(QVector(-halfSize.x ,-halfSize.y )+centerPosition );
+		res.particlePositions.push_back(QVector(halfSize.x ,-halfSize.y )+centerPosition );
+		res.particlePositions.push_back(QVector(halfSize.x ,halfSize.y )+centerPosition );
+		res.particlePositions.push_back(QVector(-halfSize.x ,halfSize.y )+centerPosition );
 
 
 		res.particleRadValues={particleRadius,particleRadius,particleRadius,particleRadius};
@@ -362,7 +361,7 @@ QMesh::MeshData QMesh::GenerateRectangleMeshData(QVector size,QVector centerPosi
 			for(int ix=0;ix<(int)grid.x+1;ix++){
 				QVector nPos=QVector(ix*cellSize.x,iy*cellSize.y);
 
-				res.particlePositions.push_back(-halfSize+nPos);
+				res.particlePositions.push_back((centerPosition-halfSize)+nPos);
 				res.particleRadValues.push_back(particleRadius);
 
 				if(ix==0 || ix==grid.x || iy==0 || iy==grid.y){
@@ -462,7 +461,7 @@ QMesh::MeshData QMesh::GeneratePolygonMeshData(float radius, int sideCount, QVec
 	for(int i=0;i<sideCount;i++){
 		float curAng=anglePart*i;
 		QVector curNorm(cos(curAng),sin(curAng) );
-		QVector nPos=curNorm*radius;
+		QVector nPos=centerPosition+curNorm*radius;
 		res.particlePositions.push_back(nPos);
 		res.particleRadValues.push_back(particleRadius);
 		res.particleInternalValues.push_back(false);
@@ -499,7 +498,7 @@ QMesh::MeshData QMesh::GeneratePolygonMeshData(float radius, int sideCount, QVec
 		for(int n=0;n<sideCount;n++){
 			float curAng=anglePart*n;
 			QVector curNorm(cos(curAng),sin(curAng) );
-			QVector nPos=curNorm*curRadius;
+			QVector nPos=centerPosition+curNorm*curRadius;
 			res.particlePositions.push_back(nPos);
 			res.particleRadValues.push_back(particleRadius);
 			res.particleInternalValues.push_back(true);
@@ -525,7 +524,7 @@ QMesh::MeshData QMesh::GeneratePolygonMeshData(float radius, int sideCount, QVec
 
 	//Adding a Center Particle
 	if(polarGrid>0){
-		res.particlePositions.push_back(QVector(0,0) );
+		res.particlePositions.push_back(centerPosition );
 		res.particleRadValues.push_back(particleRadius);
 		res.particleInternalValues.push_back(true);
 		for(int i=res.particlePositions.size()-sideCount-1;i<res.particlePositions.size()-1;i++){

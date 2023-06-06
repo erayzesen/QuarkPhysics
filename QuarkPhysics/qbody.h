@@ -50,6 +50,12 @@ public:
 		DYNAMIC,
 		STATIC
 	};
+
+	enum BodyTypes{
+		RIGID,
+		AREA,
+		SOFT
+	};
 	/**
 	 * Determines which approach will be used to simulate a body object.
 	 */
@@ -76,6 +82,7 @@ protected:
 	float angularForce=0.0f;
 	bool enableBodySpecificTimeScale=false;
 	float bodySpecificTimeScale=1.0f;
+	BodyTypes bodyType=BodyTypes::RIGID;
 
 	//Material Properties;
 
@@ -155,8 +162,10 @@ protected:
 
 
 
-
-
+		/** Returns the type of the body. */
+		BodyTypes GetBodyType(){
+			return bodyType;
+		}
 		//General Get Methods
 		/** Returns the world. */
 		QWorld *GetWorld(){

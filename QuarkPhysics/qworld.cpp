@@ -247,7 +247,7 @@ void QWorld::Update(){
 
 	//Update QAreBody-bodies
 	for(auto body: bodies){
-		if(typeid(*body)==typeid(QAreaBody)){
+		if(body->GetBodyType()==QBody::BodyTypes::AREA){
 			QAreaBody *abody=static_cast<QAreaBody*>(body);
 			if(abody!=nullptr){
 				abody->CheckBodies();
@@ -272,7 +272,7 @@ void QWorld::Update(){
 			float angularVel=0.0f;
 			bool islandNeedsAwake=false;
 			for(auto body:island){
-				if ( typeid(*body)==typeid(QRigidBody) ){
+				if ( body->GetBodyType()==QBody::BodyTypes::RIGID ){
 
 					velX=abs( body->GetPosition().x-body->GetPreviousPosition().x );
 					velY=abs( body->GetPosition().y-body->GetPreviousPosition().y );
@@ -321,7 +321,7 @@ void QWorld::Update(){
 				if (bodiesCanSleep) {
 					for(auto body:island){
 						body->isSleeping=true;
-						if(typeid(*body)==typeid(QRigidBody) ){
+						if(body->GetBodyType()==QBody::BodyTypes::RIGID){
 							body->prevPosition=body->position;
 							body->prevRotation=body->rotation;
 						}else{
@@ -410,7 +410,7 @@ vector<QBody *> QWorld::GetBodiesHitByPoint(QVector point, int maxBodyCount, boo
 	QAABB pointAABB(point,point);
 	for(int i=0;i<bodies.size();i++){
 		auto body=bodies[i];
-		if(onlyRigidBodies==true && body->simulationModel!=QBody::RIGID_BODY){
+		if(onlyRigidBodies==true && body->simulationModel!=QBody::SimulationModels::RIGID_BODY){
 			continue;
 		}
 		if(enableBroadphase==true && body->GetPosition().x<point.x && body->GetPosition().x>point.x){
@@ -969,7 +969,7 @@ bool QWorld::SortBodiesVertical(const QBody *bodyA, const QBody *bodyB)
 		}else{
 			ts=GetTimeScale();
 		}
-		 if(body->GetMode()!=QBody::STATIC && body->GetSimulationModel()!=QBody::RIGID_BODY){
+		 if(body->GetMode()!=QBody::STATIC && body->GetSimulationModel()!=QBody::SimulationModels::RIGID_BODY){
 			 QSoftBody *sBody=static_cast<QSoftBody*>(body);
 			 for(int i=0;i<sBody->GetMeshCount();i++){
 				 QMesh * mesh=sBody->GetMeshAt(i);

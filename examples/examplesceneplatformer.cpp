@@ -214,7 +214,7 @@ void ExampleScenePlatformer::OnPlayerCollision(QBody *body, QBody::CollisionInfo
 	//Floor properties
 	auto side=QVector::GetVectorSide(-info.normal,QVector::Up());
 
-	if(typeid(*info.body)==typeid(QAreaBody)){
+	if(info.body->GetBodyType()==QBody::BodyTypes::AREA){
 		return;
 	}
 	//cout<<side<<endl;

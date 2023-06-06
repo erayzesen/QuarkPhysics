@@ -31,12 +31,23 @@
 
 class QGizmo
 {
-
+	public :
+		enum GizmoTypes{
+			Circle,
+			Line
+		};
+	protected:
+		GizmoTypes gizmoType=GizmoTypes::Circle;
 	public:
+		
 		QGizmo(){
 
 		};
 		virtual ~QGizmo(){}
+		
+		GizmoTypes GetGizmoType(){
+			return gizmoType;
+		}
 };
 class QGizmoCircle:public QGizmo{
 	public:
@@ -45,6 +56,7 @@ class QGizmoCircle:public QGizmo{
 		QGizmoCircle(QVector pos,float rad ){
 			position=pos;
 			radius=rad;
+			gizmoType=GizmoTypes::Circle;
 		}
 };
 
@@ -57,6 +69,7 @@ class QGizmoLine:public QGizmo{
 			pointA=from;
 			pointB=to;
 			isArrow=arrow;
+			gizmoType=GizmoTypes::Line;
 		}
 };
 

@@ -34,6 +34,7 @@
 QRigidBody::QRigidBody()
 {
 	simulationModel=SimulationModels::RIGID_BODY;
+	bodyType=QBody::BodyTypes::RIGID;
 }
 
 

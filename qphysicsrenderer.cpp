@@ -80,12 +80,16 @@ void QPhysicsRenderer::RenderColliders(QWorld *world, sf::RenderWindow *window)
 		}
 		col=body->GetMode()==QBody::STATIC ? QPhysicsRenderer::COLOR_BODY_STATIC:col;
 
-		QRigidBody *rbody=dynamic_cast<QRigidBody*>(body);
-		if(rbody!=nullptr)
+		
+		if(body->GetBodyType()==QBody::BodyTypes::RIGID){
+			QRigidBody *rbody=static_cast<QRigidBody*>(body);
 			col=rbody->GetKinematicEnabled()==true ? QPhysicsRenderer::COLOR_BODY_DYNAMIC_KINEMATIC:col;
-		QAreaBody *abody=dynamic_cast<QAreaBody*>(body);
-		if(abody!=nullptr)
+		}
+		
+		if(body->GetBodyType()==QBody::BodyTypes::AREA){
 			col=QPhysicsRenderer::COLOR_AREA;
+		}
+			
 
 		for(int i=0;i<body->GetMeshCount();i++){
 			QMesh *mesh=body->GetMeshAt(i);
@@ -109,7 +113,7 @@ void QPhysicsRenderer::RenderColliders(QWorld *world, sf::RenderWindow *window)
 
 			}else{
 				int particleSize=mesh->GetParticleCount();
-				if(body->GetSimulationModel()!=QBody::RIGID_BODY){
+				if(body->GetSimulationModel()!=QBody::SimulationModels::RIGID_BODY){
 					//Draw Particles
 					for(int p=0;p<particleSize;p++){
 						QParticle *particle=mesh->GetParticle(p);
@@ -252,16 +256,16 @@ void QPhysicsRenderer::RenderPhysicsGizmos(QWorld *world, sf::RenderWindow *wind
 
 		QGizmo *gizmo=world->GetGizmos()->at(i);
 		auto col=COLOR_CONTACT;
-		if(dynamic_cast<QGizmoCircle*>(gizmo)!=nullptr){
-			QGizmoCircle *gizmoCircle=dynamic_cast<QGizmoCircle*>(gizmo);
+		if(gizmo->GetGizmoType()==QGizmo::Circle){
+			QGizmoCircle *gizmoCircle=static_cast<QGizmoCircle*>(gizmo);
 			float r=gizmoCircle->radius;
 			sf::CircleShape renderShape(r);
 			renderShape.setFillColor(col );
 			renderShape.setPosition(sf::Vector2f(gizmoCircle->position.x-r,gizmoCircle->position.y-r) );
 			window->draw(renderShape);
 
-		}else if(dynamic_cast<QGizmoLine*>(gizmo)!=nullptr){
-			QGizmoLine *gizmoLine=dynamic_cast<QGizmoLine*>(gizmo);
+		}else if(gizmo->GetGizmoType()==QGizmo::Line){
+			QGizmoLine *gizmoLine=static_cast<QGizmoLine*>(gizmo);
 			sf::Vertex line[]{
 				sf::Vertex(sf::Vector2f(gizmoLine->pointA.x,gizmoLine->pointA.y) ),
 				sf::Vertex(sf::Vector2f(gizmoLine->pointB.x,gizmoLine->pointB.y) )
