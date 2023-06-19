@@ -185,8 +185,8 @@ void QCollision::PolylineAndPolygon(vector<QParticle*> &polylineParticles, vecto
 
 		//We don't want to check from concave corners
 		if(bridgeVec.Dot(prevToNextPerpVec)<0){
-			bisectorList.push_back(QVector::Zero() );
-			continue;
+			//bisectorList.push_back(QVector::Zero() );
+			//continue;
 		}
 
 		QVector bisectorUnit=prevToNextPerpVec.Normalized();
