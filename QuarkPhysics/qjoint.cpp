@@ -31,7 +31,7 @@
 
 QJoint::QJoint(QRigidBody *bodyA,QVector anchorWorldPositionA,QVector anchorWorldPositionB,QRigidBody* bodyB)
 {
-	distance=(anchorWorldPositionA-anchorWorldPositionB).Length();
+	length=(anchorWorldPositionA-anchorWorldPositionB).Length();
 	//Initialize A
 	this->bodyA=bodyA;
 
@@ -73,17 +73,30 @@ QJoint::~QJoint()
 
 void QJoint::Update()
 {
+	if(enabled==false){
+		return;
+	}
 
-
+	
+	if(bodyA==nullptr && bodyB==nullptr)
+		return;
 
 	if(bodyA!=nullptr){
-		if(bodyA->GetMode()==QBody::STATIC && bodyB==nullptr){
+
+		if(bodyA->GetEnabled()==false )
+			return;
+		
+		if( bodyA->GetMode()==QBody::STATIC && bodyB==nullptr ){
 			return;
 		}
 	}
 
 	if(bodyB!=nullptr){
-		if(bodyB->GetMode()==QBody::STATIC && bodyA==nullptr){
+
+		if(bodyB->GetEnabled()==false )
+			return;
+
+		if( bodyB->GetMode()==QBody::STATIC  && bodyA==nullptr){
 			return;
 		}
 	}
@@ -91,6 +104,7 @@ void QJoint::Update()
 	float k=0.5f;
 
 	if(bodyA!=nullptr && bodyB!=nullptr){
+		
 		if(bodyA->GetMode()==QBody::STATIC && bodyB->GetMode()==QBody::STATIC){
 			return;
 		}
@@ -138,8 +152,8 @@ void QJoint::Update()
 	diff=anchorGlobalB-anchorGlobalA;
 	float currentDistance=diff.Length();
 	QVector unit=diff.Normalized();
-	float distanceDelta=(distance-currentDistance);
-	if(grooveEnabled==true && currentDistance<distance)
+	float distanceDelta=(length-currentDistance);
+	if(grooveEnabled==true && currentDistance<length)
 		return;
 	QVector distanceDeltaVec=distanceDelta*unit;
 

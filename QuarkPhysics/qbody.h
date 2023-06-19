@@ -83,6 +83,7 @@ protected:
 	bool enableBodySpecificTimeScale=false;
 	float bodySpecificTimeScale=1.0f;
 	BodyTypes bodyType=BodyTypes::RIGID;
+	bool enabled=true;
 
 	//Material Properties;
 
@@ -156,7 +157,7 @@ protected:
 		 * @param body The body object that triggers the event. 
 		 * @param CollisionInfo Contains collision informations.
 		 * */
-		std::function<void(QBody *body,CollisionInfo)> CollisionEventListener;
+		std::function<bool(QBody *body,CollisionInfo)> CollisionEventListener;
 
 
 
@@ -327,6 +328,11 @@ protected:
 
 		float GetBodySpesificTimeScale(){
 			return bodySpecificTimeScale;
+		}
+
+		/** Returns whether the body is enabled.  */
+		bool GetEnabled(){
+			return enabled;
 		}
 
 
@@ -543,6 +549,13 @@ protected:
 		QBody *SetBodySpecificTimeScale(float value){
 			bodySpecificTimeScale=value;
 			return this;
+		}
+		/** Sets whether the body is enabled.  
+		 * @param value A value to set
+		 * @return A pointer to the body itself.
+		 */
+		QBody *SetEnabled(bool value){
+			enabled=true;
 		}
 
 		

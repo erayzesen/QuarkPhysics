@@ -72,7 +72,7 @@ void QSoftBody::Update()
 	for(int i=0;i<_meshes.size();i++){
 		QMesh *mesh=_meshes[i];
 		for(int n=0;n<mesh->GetParticleCount();n++){
-			QParticle *particle=mesh->GetParticle(n);
+			QParticle *particle=mesh->GetParticleAt(n);
 			if(GetPassivationOfInternalSpringsEnabled() && particle->GetIsInternal())
 				continue;
 			auto vel=particle->GetGlobalPosition()-particle->GetPreviousGlobalPosition();
@@ -155,7 +155,7 @@ void QSoftBody::PreserveAreas()
 pair<QVector, float> QSoftBody::GetAveragePositionAndRotation(int meshIndex){
 	QMesh * mesh=GetMeshAt(meshIndex);
 	if(mesh->GetParticleCount()==1)
-		return pair<QVector, float>(mesh->GetParticle(0)->GetGlobalPosition(),0.0f);
+		return pair<QVector, float>(mesh->GetParticleAt(0)->GetGlobalPosition(),0.0f);
 	auto particles=mesh->particles;
 	//Finding Actual Position
 	QVector averagePosition=QVector::Zero();

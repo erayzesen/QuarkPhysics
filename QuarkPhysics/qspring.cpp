@@ -47,9 +47,43 @@ QSpring::QSpring(QParticle *particleA, QParticle *particleB, float length, bool 
 	isInternal=internal;
 }
 
-void QSpring::Update(float rigidity,bool internalsException)
+void QSpring::Update(float rigidity,bool internalsException, bool isWorldSpring)
 {
-	bool isBodiesIsSleeping=false;
+	if(enabled==false)
+		return;
+
+	if( pA==nullptr || pB==nullptr){
+		return;
+	}
+	bool particleACanGetResponse=true;
+	bool particleBCanGetResponse=true;
+
+	//Check body modes and simulation models 
+	if(isWorldSpring==true){
+		if(pA->GetOwnerMesh()!=nullptr ){
+			QBody *bA=pA->GetOwnerMesh()->GetOwnerBody();
+			if(bA!=nullptr){
+				if( bA->GetSimulationModel()==QBody::SimulationModels::RIGID_BODY ||  bA->GetMode()==QBody::Modes::STATIC ){
+					particleACanGetResponse=false;
+				}
+			}
+		}
+
+		if(pB->GetOwnerMesh()!=nullptr ){
+			QBody *bB=pB->GetOwnerMesh()->GetOwnerBody();
+			if(bB!=nullptr){
+				if( bB->GetSimulationModel()==QBody::SimulationModels::RIGID_BODY ||  bB->GetMode()==QBody::Modes::STATIC ){
+					particleBCanGetResponse=false;
+				}
+			}
+		}
+
+	}
+
+
+
+	
+	
 	if(pA->GetOwnerMesh()!=nullptr and pB->GetOwnerMesh()!=nullptr){
 		if(pA->GetOwnerMesh()->GetOwnerBody()!=nullptr and pB->GetOwnerMesh()->GetOwnerBody()!=nullptr){
 			if (pA->GetOwnerMesh()->GetOwnerBody()->GetIsSleeping() && pB->GetOwnerMesh()->GetOwnerBody()->GetIsSleeping() ){
@@ -57,8 +91,6 @@ void QSpring::Update(float rigidity,bool internalsException)
 			}
 		}
 	}
-	if(enabled==false)
-		return;
 	QVector sv=pB->GetGlobalPosition()-pA->GetGlobalPosition(); //spring vec
 	float sl=sv.Length(); //spring distance
 	QVector svu=sv.Normalized(); //spring vector unit
@@ -81,15 +113,17 @@ void QSpring::Update(float rigidity,bool internalsException)
 			forceB*=sl<length ? 0:0.25f;
 		}
 	}else{
-		forceA*=0.5f*rigidity;
-		forceB*=0.5f*rigidity;
+		float k=0.5f;
+		if(particleACanGetResponse==false || particleBCanGetResponse==false)
+			k=1.0f;
+		forceA*=k*rigidity;
+		forceB*=k*rigidity;
 	}
 
-
-
-
-	pA->ApplyForce(forceA);
-	pB->ApplyForce(forceB);
+	if(particleACanGetResponse)
+		pA->ApplyForce(forceA);
+	if(particleBCanGetResponse)
+		pB->ApplyForce(forceB);
 
 }
 

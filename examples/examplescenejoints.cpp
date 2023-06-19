@@ -130,7 +130,7 @@ void ExampleSceneJoints::GrooveJointSample(QVector pos)
 
 	QJoint *jointBoxA2BoxB=new QJoint(boxA,boxA->GetPosition()+QVector(0,spawnRectSize*0.5f),boxB->GetPosition()-QVector(0,spawnRectSize*0.5f),boxB);
 	jointBoxA2BoxB->SetGrooveEnabled(true);
-	jointBoxA2BoxB->SetDistance(spawnRectSize*3.0f);
+	jointBoxA2BoxB->SetLength(spawnRectSize*3.0f);
 	world->AddJoint(jointBoxA2BoxB);
 
 

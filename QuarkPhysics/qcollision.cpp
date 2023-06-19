@@ -182,7 +182,6 @@ void QCollision::PolylineAndPolygon(vector<QParticle*> &polylineParticles, vecto
 		QVector bridgeVec=p->GetGlobalPosition()-pp->GetGlobalPosition();
 		QVector prevToNextPerpVec=prevToNextVec.Perpendicular();
 
-		
 
 		//We don't want to check from concave corners
 		if(bridgeVec.Dot(prevToNextPerpVec)<0){
@@ -193,6 +192,8 @@ void QCollision::PolylineAndPolygon(vector<QParticle*> &polylineParticles, vecto
 		QVector bisectorUnit=prevToNextPerpVec.Normalized();
 		
 		QVector bisectorRay=-bisectorUnit*QWorld::MAX_WORLD_SIZE;
+
+		
 
 		int sia=ni; // segment index a
 		QVector bisectorVector=QVector::Zero();
@@ -268,8 +269,6 @@ void QCollision::PolylineAndPolygon(vector<QParticle*> &polylineParticles, vecto
 			QVector intersection=LineIntersectionLine(pPos,pPos+bisectorList[n],s1Pos,s2Pos);
 			if( intersection.isNaN() )continue;
 
-
-			cout<<"polyline test"<<endl;
 
 			//p->GetOwnerMesh()->GetOwnerBody()->GetWorld()->gizmos.push_back( new QGizmoLine(pPos,pPos+bisectorList[n],true) );
 

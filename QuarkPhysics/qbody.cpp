@@ -96,14 +96,7 @@ bool QBody::CanCollide(QBody *bodyA, QBody *bodyB)
 }
 
 
-//########### GENERAL METHODS		###########
-
-
-
-
-
-
-
+//GENERAL METHODS
 
 
 QBody * QBody::AddMesh(QMesh *mesh){
@@ -188,7 +181,7 @@ void QBody::UpdateMeshTransforms(){
 		QVector rotVecUnit=QVector::AngleToUnitVector(mesh->globalRotation);
 		mesh->globalPosition=position+mesh->position.Rotated(rotation);
 		for(int i=0;i<mesh->GetParticleCount();i++){
-			QParticle * particle=mesh->GetParticle(i);
+			QParticle * particle=mesh->GetParticleAt(i);
 			QVector originVec=particle->GetPosition();
 			float nx=originVec.x*rotVecUnit.x-originVec.y*rotVecUnit.y;
 			float ny=originVec.y*rotVecUnit.x+originVec.x*rotVecUnit.y;

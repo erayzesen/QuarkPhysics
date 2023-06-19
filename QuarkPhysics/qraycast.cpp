@@ -49,6 +49,8 @@ vector<QBody *> QRaycast::GetPotentialBodies(QWorld *whichWorld, QVector rayPosi
 
 	for(int i=0;i<whichWorld->GetBodyCount();i++){
 		QBody* body=whichWorld->GetBodyAt(i);
+		if(body->GetEnabled()==false )
+			continue;
 		if(isRayToNegativeX){
 			if(body->GetAABB().GetMin().x>rayPosition.x || body->GetAABB().GetMax().x<rayEndPosition.x){
 				continue;
@@ -96,7 +98,7 @@ vector<QRaycast::Contact> QRaycast::RaycastTo(QWorld *world, QVector rayPosition
 			QMesh *mesh=body->GetMeshAt(i);
 			if(mesh->GetCollisionBehavior()==QMesh::CollisionBehaviors::CIRCLES){
 				RaycastToParticles(body,mesh,rayPosition,rayVector,rayUnit,rayNormal,enableContainingBodies,&result);
-			}else if(mesh->GetCollisionBehavior()==QMesh::CollisionBehaviors::POLYGONS){
+			}else if(mesh->GetCollisionBehavior()==QMesh::CollisionBehaviors::POLYGONS || mesh->GetCollisionBehavior()==QMesh::CollisionBehaviors::POLYLINE){
 				RaycastToPolygon(body,mesh,rayPosition,rayVector,rayUnit,rayNormal,enableContainingBodies,&result);
 			}
 		}
@@ -168,7 +170,7 @@ void QRaycast::RaycastToParticles(QBody *body, QMesh *mesh, QVector rayPosition,
 	QVector nearContactNormal=QVector::Zero();
 
 	for(int i=0;i<mesh->GetParticleCount();i++){
-		QParticle * p=mesh->GetParticle(i);
+		QParticle * p=mesh->GetParticleAt(i);
 		QVector bridge=p->GetGlobalPosition()-rayPosition;
 		float proj=bridge.Dot(rayUnit);
 		if((proj-p->GetRadius())>nearDistance)continue;
@@ -216,7 +218,7 @@ void QRaycast::RaycastToPolygon(QBody *body, QMesh *mesh, QVector rayPosition, Q
 
 
 	for(int n=0;n<mesh->GetClosedPolygonCount();n++){
-		vector<QParticle*> &polygon=mesh->GetClosedPolygon(n);
+		vector<QParticle*> &polygon=mesh->GetClosedPolygonAt(n);
 		for(int i=0;i<polygon.size();i++){
 
 			QParticle *p=polygon[i];

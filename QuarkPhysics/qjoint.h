@@ -53,7 +53,7 @@ class QJoint
 	float rigidity=1.0f;
 
 	//Addinational Properties
-	float distance=0.0f; //it makes distance joint
+	float length=0.0f; //it makes distance joint
 	bool grooveEnabled=false; // it makes groove
 
 	QWorld *world;
@@ -110,13 +110,18 @@ public:
 	inline float GetRigidity(){
 		return rigidity;
 	}
-	/** Returns the distance value of the joint. */
-	inline float GetDistance(){
-		return distance;
+	/** Returns the length value of the joint. */
+	inline float GetLength(){
+		return length;
 	}
 	/** Returns whether the groove mode of the joint enabled or not. */
 	inline bool GetGrooveEnabled(){
 		return grooveEnabled;
+	}
+
+	/** Returns whether the joint is enabled. */
+	bool GetEnabled(){
+		return enabled;
 	}
 
 	//Set Methods (It returns joint)
@@ -169,12 +174,12 @@ public:
 		rigidity=value;
 		return this;
 	}
-	/** Sets the distance value of the joint.
-	 * @param value The distance value to set.  
+	/** Sets the length value of the joint.
+	 * @param value The length value to set.  
 	 * @return A pointer to the joint itself.
 	 */
-	inline QJoint* SetDistance(float value){
-		distance=value;
+	inline QJoint* SetLength(float value){
+		length=value;
 		return this;
 	}
 
@@ -192,6 +197,16 @@ public:
 	 * @return A pointer to the joint itself.
 	 */
 	QJoint* SetCollisionEnabled(bool value);
+
+
+	/** Sets whether the joint is enabled. 
+	 * @param value True or false.
+	 * @return A pointer to the joint itself.
+	 */
+	QJoint *SetEnabled(bool value){
+		enabled=value;
+		return this;
+	}
 
 
 

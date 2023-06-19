@@ -65,6 +65,8 @@ protected:
 	QBody *ownerBody=nullptr;
 	CollisionBehaviors collisionBehavior=CollisionBehaviors::CIRCLES;
 
+	bool collisionBehaviorNeedsUpdate=false;
+
 	//Helper Methods
 	void UpdateCollisionBehavior();
 
@@ -200,6 +202,10 @@ public:
 	 * The behaviors feature is important to determine collision methods for the mesh in the runtime.
 	 * */
 	CollisionBehaviors GetCollisionBehavior(){
+		if(collisionBehaviorNeedsUpdate){
+			UpdateCollisionBehavior();
+			collisionBehaviorNeedsUpdate=false;
+		}
 		return collisionBehavior;
 	}
 
@@ -258,7 +264,7 @@ public:
 	/** Returns a particle at the specified index
 	 * @param particle The index of particle to get.
 	 */
-	QParticle *GetParticle(int index);
+	QParticle *GetParticleAt(int index);
 
 	//Closed Polygons Operations
 
@@ -280,7 +286,7 @@ public:
 	/** Returns polygon at the specified index
 	 * @param index The index of the polygon to get.
 	 */
-	vector<QParticle*> &GetClosedPolygon(int index){
+	vector<QParticle*> &GetClosedPolygonAt(int index){
 		return closedPolygons[index];
 	}
 	/** Removes the polygons that contain the specified particle.
@@ -383,6 +389,13 @@ public:
 	 * @return vector<QMesh::MeshData> A Mesh data list. 
 	 */
 	static vector<QMesh::MeshData> GetMeshDatasFromFile(string filePath);
+
+
+	/**Returns mesh data list from a json based data.You can use the returned mesh data of the collection with the QWorld::CreateWithMeshData method. 
+	 * @param jsonBasedData The json data to parse.
+	 * @return vector<QMesh::MeshData> A Mesh data list. 
+	 */
+	static vector<QMesh::MeshData> GetMeshDatasFromJsonData(std::string &jsonBasedData);
 
 
 

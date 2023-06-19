@@ -45,7 +45,10 @@ void QAreaBody::AddCollidedBody(QBody* body){
 void QAreaBody::CheckBodies(){
 	vector<QBody*> blackList;
 	for(auto body:bodies){
-		if(world->GetCollisions(this,body).size()==0 ){
+		if(body->GetEnabled()==false){
+			blackList.push_back(body);
+		}
+		if(body->GetEnabled()==false || world->GetCollisions(this,body).size()==0 ){
 			blackList.push_back(body);
 		}
 	}

@@ -40,6 +40,7 @@
 #include "Examples/examplescenesoftbodies.h"
 #include "Examples/examplesceneplatformer.h"
 #include "Examples/examplescenefrictions.h"
+#include "Examples/examplesceneblobs.h""
 
 
 //Font Resource Binary Header
@@ -106,7 +107,7 @@ void LoadExampleScene(int sceneIndex){
 		scene=new ExampleSceneBenchmarkBoxes2(windowSize);
 		break;
 	case 9:
-		scene=new ExampleSceneBenchmarkBoxes2(windowSize);
+		scene=new ExampleSceneBlobs(windowSize);
 		break;
 	default:
 		break;

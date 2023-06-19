@@ -209,13 +209,13 @@ void ExampleScenePlatformer::OnPlayerStep(QBody *body){
 }
 
 
-void ExampleScenePlatformer::OnPlayerCollision(QBody *body, QBody::CollisionInfo info)
+bool ExampleScenePlatformer::OnPlayerCollision(QBody *body, QBody::CollisionInfo info)
 {
 	//Floor properties
 	auto side=QVector::GetVectorSide(-info.normal,QVector::Up());
 
 	if(info.body->GetBodyType()==QBody::BodyTypes::AREA){
-		return;
+		return false;
 	}
 	//cout<<side<<endl;
 	if(side==QSides::DOWN){
@@ -232,6 +232,7 @@ void ExampleScenePlatformer::OnPlayerCollision(QBody *body, QBody::CollisionInfo
 
 //	string sideArr[5]={"UP","RIGHT","DOWN","LEFT","NONE"};
 //	cout<<" - side:"<<sideArr[side]<<endl;
+	return true;
 
 }
 

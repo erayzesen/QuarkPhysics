@@ -37,7 +37,7 @@ public:
 	ExampleScenePlatformer(QVector sceneSize);
 	void OnPlayerPreStep(QBody *body);
 	void OnPlayerStep(QBody *body);
-	void OnPlayerCollision(QBody *body,QBody::CollisionInfo info);
+	bool OnPlayerCollision(QBody *body,QBody::CollisionInfo info);
 	void OnPlatformPreStep(QBody *body);
 	void OnCointCollisionEnter(QAreaBody *body,QBody *collidedBody);
 

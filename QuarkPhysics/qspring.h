@@ -68,7 +68,7 @@ public:
 	 * @param internalsException It is usually set to false. However, if set to true, it pays attention to internal particle connections and applies the constraints accordingly. This setting is important for soft body objects with the volume preserving option enabled.
 	 * \Note This method is virtual and users can implement custom spring update methods in an interited class of QSpring. 
 	 */
-	virtual void Update(float rigidity,bool internalsException);
+	virtual void Update(float rigidity,bool internalsException,bool isWorldSpring=false);
 
 	//Get Methods
 	/** Returns particleA of the spring. */

@@ -30,6 +30,10 @@
 #include "qvector.h"
 #include <cmath>
 #include <iostream>
+#include <fstream>
+#include <sstream>
+#include <string>
+
 
 QMesh::QMesh(){
 }
@@ -68,6 +72,7 @@ QMesh *QMesh::AddParticle(QParticle *particle){
 		ownerBody->inertiaNeedsUpdate=true;
 		ownerBody->circumferenceNeedsUpdate=true;
 	}
+	collisionBehaviorNeedsUpdate=true;
 	return this;
 }
 
@@ -80,6 +85,7 @@ QMesh *QMesh::RemoveParticleAt(int index){
 		ownerBody->inertiaNeedsUpdate=true;
 		ownerBody->circumferenceNeedsUpdate=true;
 	}
+	collisionBehaviorNeedsUpdate=true;
 	return this;
 }
 
@@ -99,7 +105,7 @@ int QMesh::GetParticleCount(){
 	return particles.size();
 }
 
-QParticle *QMesh::GetParticle(int index){
+QParticle *QMesh::GetParticleAt(int index){
 	return particles[index];
 }
 
@@ -110,6 +116,7 @@ QMesh *QMesh::AddClosedPolygon(vector<QParticle *> polygon)
 		ownerBody->inertiaNeedsUpdate=true;
 		ownerBody->circumferenceNeedsUpdate=true;
 	}
+	collisionBehaviorNeedsUpdate=true;
 	return this;
 }
 
@@ -120,6 +127,7 @@ QMesh *QMesh::RemoveClosedPolygonAt(int index)
 		ownerBody->inertiaNeedsUpdate=true;
 		ownerBody->circumferenceNeedsUpdate=true;
 	}
+	collisionBehaviorNeedsUpdate=true;
 	return this;
 
 }
@@ -128,7 +136,7 @@ QMesh *QMesh::RemoveMatchingClosedPolygons(QParticle *particle)
 {
 	int i=0;
 	while(i<closedPolygons.size()){
-		vector<QParticle*> polygon=closedPolygons[i];
+		vector<QParticle*> &polygon=closedPolygons[i];
 		bool matched=false;
 		int n=0;
 		while(n<polygon.size()){
@@ -152,7 +160,7 @@ QMesh *QMesh::RemoveMatchingClosedPolygons(QParticle *particle)
 QMesh *QMesh::AddSpring(QSpring *spring)
 {
 	springs.push_back(spring);
-
+	collisionBehaviorNeedsUpdate=true;
 	return this;
 }
 
@@ -168,6 +176,7 @@ QMesh *QMesh::RemoveSpring(QSpring *spring)
 QMesh *QMesh::RemoveSpringAt(int index)
 {
 	springs.erase(springs.begin()+index);
+	collisionBehaviorNeedsUpdate=true;
 	return this;
 }
 
@@ -254,8 +263,22 @@ QMesh *QMesh::CreateWithMeshData(MeshData &data,bool enableSprings, bool enableP
 
 
 vector<QMesh::MeshData> QMesh::GetMeshDatasFromFile(string filePath) {
-	std::fstream f(filePath);
-	json jsonData=json::parse(f);
+	std::ifstream file;
+	file.open(filePath);
+	if(file.fail()){
+		cout<< "QuarkPhysics Error: The file doesn't exist! | QMesh::GetMeshDatasFromFile";
+		return vector<QMesh::MeshData>();
+	}
+	stringstream buffer;
+	buffer<<file.rdbuf();
+	string dataStr=buffer.str();
+
+	return GetMeshDatasFromJsonData(dataStr);
+
+}
+
+vector<QMesh::MeshData> QMesh::GetMeshDatasFromJsonData(std::string &jsonBasedData) {
+	json jsonData=json::parse(jsonBasedData);
 
 	vector<QMesh::MeshData> result;
 
@@ -318,9 +341,9 @@ float QMesh::GetPolygonArea(vector<QParticle *> &polygonPoints,bool withLocalPos
 }
 
 bool QMesh::CheckCollisionBehaviors(QMesh *meshA, QMesh *meshB, CollisionBehaviors firstBehavior, CollisionBehaviors secondBehavior){
-	if(meshA->collisionBehavior==firstBehavior && meshB->collisionBehavior==secondBehavior)
+	if(meshA->GetCollisionBehavior()==firstBehavior && meshB->GetCollisionBehavior()==secondBehavior)
 		return true;
-	if(meshB->collisionBehavior==firstBehavior && meshA->collisionBehavior==secondBehavior)
+	if(meshB->GetCollisionBehavior()==firstBehavior && meshA->GetCollisionBehavior()==secondBehavior)
 		return true;
 	return false;
 }

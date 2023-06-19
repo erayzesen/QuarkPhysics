@@ -65,11 +65,15 @@ void QWorld::Update(){
 
 
 	for(auto body:bodies){
+		if (body->GetEnabled()==false )
+			continue;
 		body->Update();
 	}
 
 	//OnPreStep() PreStep Event of bodies
 	for(auto body:bodies){
+		if (body->GetEnabled()==false )
+			continue;
 		if(body->PreStepEventListener!=nullptr){
 			body->PreStepEventListener(body);
 		}
@@ -111,9 +115,16 @@ void QWorld::Update(){
 			for(unsigned int i=0;i<bodiesSize;++i){
 				QBody* body=bodies[i];
 
+				if(body->GetEnabled()==false )
+					continue;
+
 				bool seperated=false;
 				for(unsigned int q=i+1;q<bodiesSize;q++){
 					QBody * otherBody=bodies[q];
+
+					if(otherBody->GetEnabled()==false )
+						continue;
+
 					if( QBody::CanCollide(body,otherBody)==false){
 						continue;
 					}
@@ -210,7 +221,7 @@ void QWorld::Update(){
 							QMesh * circleMesh=meshA->GetCollisionBehavior()==QMesh::CollisionBehaviors::CIRCLES ? meshA:meshB;
 							QMesh * polylineMesh=circleMesh==meshA ? meshB:meshA;
 							for(int p=0;p<polylineMesh->GetClosedPolygonCount();p++){
-								QCollision::PolylineAndCircle( polylineMesh->GetClosedPolygon(p),circleMesh->particles,contacts);
+								QCollision::PolylineAndCircle( polylineMesh->GetClosedPolygonAt(p),circleMesh->particles,contacts);
 							}
 
 						}
@@ -287,7 +298,7 @@ void QWorld::Update(){
 					for (int m=0;m<body->GetMeshCount();m++){
 						QMesh *mesh=body->GetMeshAt(m);
 						for(int p=0;p<mesh->GetParticleCount();p++){
-							QParticle * particle=mesh->GetParticle(p);
+							QParticle * particle=mesh->GetParticleAt(p);
 							velX=abs(particle->GetGlobalPosition().x-particle->GetPreviousGlobalPosition().x);
 							velY=abs(particle->GetGlobalPosition().y-particle->GetPreviousGlobalPosition().y);
 
@@ -327,7 +338,7 @@ void QWorld::Update(){
 						}else{
 							for(int m=0;m<body->GetMeshCount();m++){
 								for(int p=0;p<body->GetMeshAt(m)->GetParticleCount();p++){
-									QParticle *particle=body->GetMeshAt(m)->GetParticle(p);
+									QParticle *particle=body->GetMeshAt(m)->GetParticleAt(p);
 									particle->SetPreviousGlobalPosition(particle->GetGlobalPosition());
 								}
 							}
@@ -429,7 +440,7 @@ vector<QBody *> QWorld::GetBodiesHitByPoint(QVector point, int maxBodyCount, boo
 		for(auto mesh:*body->GetMeshes()){
 			if(mesh->collisionBehavior==QMesh::CIRCLES || mesh->collisionBehavior==QMesh::POLYLINE){
 				for(int i=0;i<mesh->GetParticleCount();i++){
-					QParticle *p=mesh->GetParticle(i);
+					QParticle *p=mesh->GetParticleAt(i);
 					QVector diff=point-p->GetGlobalPosition();
 					if(diff.Length()<p->GetRadius()){
 						res.push_back(body);
@@ -440,7 +451,7 @@ vector<QBody *> QWorld::GetBodiesHitByPoint(QVector point, int maxBodyCount, boo
 			}
 			if(mesh->collisionBehavior==QMesh::POLYGONS || mesh->collisionBehavior==QMesh::POLYLINE){
 				for(int i=0;i<mesh->GetClosedPolygonCount();i++){
-					vector<QParticle*> polygon=mesh->GetClosedPolygon(i);
+					vector<QParticle*> polygon=mesh->GetClosedPolygonAt(i);
 					if( QCollision::PointInPolygon(point,polygon) ){
 						res.push_back(body);
 						break;
@@ -480,7 +491,7 @@ vector<QParticle *> QWorld::GetParticlesCloseToPoint(QVector point, float distan
 		}
 		for(auto mesh:*body->GetMeshes()){
 			for(int i=0;i<mesh->GetParticleCount();i++){
-				QParticle *p=mesh->GetParticle(i);
+				QParticle *p=mesh->GetParticleAt(i);
 				QVector diff=point-p->GetGlobalPosition();
 				if(diff.Length()<distance){
 					res.push_back(p);
@@ -506,6 +517,8 @@ bool QWorld::CollideWithWorld(QBody *body){
 	vector<QManifold> manifoldList;
 	for(unsigned int q=0;q<bodies.size();q++){
 		QBody * otherBody=bodies[q];
+		if(otherBody->GetEnabled()==false )
+			continue;
 		if(body==otherBody)continue;
 		if( QBody::CanCollide(body,otherBody)==false){
 			continue;
@@ -590,6 +603,7 @@ QWorld* QWorld::ClearWorld(){
 QWorld *QWorld::AddJoint(QJoint *joint)
 {
 	joints.push_back(joint);
+	joint->world=this;
 	return this;
 }
 
@@ -784,8 +798,6 @@ bool QWorld::CheckCollisionException(QBody *bodyA, QBody *bodyB)
 vector<QCollision::Contact> QWorld::GetCollisions(QBody *bodyA, QBody *bodyB){
 	vector<QCollision::Contact> contactList;
 
-
-
 	vector<QMesh*>* meshesA=bodyA->GetMeshes();
 	vector<QMesh*>* meshesB=bodyB->GetMeshes();
 
@@ -809,7 +821,7 @@ vector<QCollision::Contact> QWorld::GetCollisions(QBody *bodyA, QBody *bodyB){
 				QMesh *circleMesh=meshA->collisionBehavior==QMesh::CIRCLES ? meshA:meshB;
 				QMesh *polygonMesh=&circleMesh->particles==&meshA->particles ? meshB :meshA;
 				for(int j=0;j<polygonMesh->GetClosedPolygonCount();j++){
-					QCollision::CircleAndPolygon(circleMesh->particles,polygonMesh->GetClosedPolygon(j),contactList);
+					QCollision::CircleAndPolygon(circleMesh->particles,polygonMesh->GetClosedPolygonAt(j),contactList);
 				}
 
 			}else if(QMesh::CheckCollisionBehaviors(meshA,meshB,QMesh::CIRCLES, QMesh::CIRCLES )){
@@ -820,16 +832,16 @@ vector<QCollision::Contact> QWorld::GetCollisions(QBody *bodyA, QBody *bodyB){
 				QMesh *polygonMesh=meshA->collisionBehavior==QMesh::POLYGONS ? meshA:meshB;
 				for(int a=0;a<polylineMesh->closedPolygons.size();a++){
 					for(int b=0;b<polygonMesh->closedPolygons.size();b++){
-						QCollision::CircleAndPolygon(polylineMesh->GetClosedPolygon(a),polygonMesh->GetClosedPolygon(b),contactList);
-						QCollision::PolylineAndPolygon(polylineMesh->GetClosedPolygon(a),polygonMesh->GetClosedPolygon(b),contactList);
+						QCollision::CircleAndPolygon(polylineMesh->GetClosedPolygonAt(a),polygonMesh->GetClosedPolygonAt(b),contactList);
+						QCollision::PolylineAndPolygon(polylineMesh->GetClosedPolygonAt(a),polygonMesh->GetClosedPolygonAt(b),contactList);
 					}
 				}
 
 			}else if(QMesh::CheckCollisionBehaviors(meshA,meshB,QMesh::POLYLINE, QMesh::POLYLINE )){
 				for(int a=0;a<meshA->closedPolygons.size();a++){
 					for(int b=0;b<meshB->closedPolygons.size();b++){
-						QCollision::PolylineAndPolygon(meshA->GetClosedPolygon(a),meshB->GetClosedPolygon(b),contactList);
-						QCollision::PolylineAndPolygon(meshB->GetClosedPolygon(b),meshA->GetClosedPolygon(a),contactList);
+						QCollision::PolylineAndPolygon(meshA->GetClosedPolygonAt(a),meshB->GetClosedPolygonAt(b),contactList);
+						QCollision::PolylineAndPolygon(meshB->GetClosedPolygonAt(b),meshA->GetClosedPolygonAt(a),contactList);
 					}
 				}
 
@@ -838,7 +850,7 @@ vector<QCollision::Contact> QWorld::GetCollisions(QBody *bodyA, QBody *bodyB){
 				QMesh *circleMesh=meshA->collisionBehavior==QMesh::CIRCLES ? meshA:meshB;
 				QMesh *polylineMesh=meshA->collisionBehavior==QMesh::POLYLINE ? meshA:meshB;
 				for(int j=0;j<polylineMesh->closedPolygons.size();j++){
-					QCollision::PolylineAndCircle(polylineMesh->GetClosedPolygon(j),circleMesh->particles,contactList);
+					QCollision::PolylineAndCircle(polylineMesh->GetClosedPolygonAt(j),circleMesh->particles,contactList);
 				}
 
 			}
@@ -863,6 +875,7 @@ vector<QCollision::Contact> QWorld::GetCollisions(QBody *bodyA, QBody *bodyB){
 void QWorld::CreateIslands(QBody *body, vector<QBody*> &bodyList, vector<QBody *> &island)
 {
 	if(body->visited)return;
+	if(body->GetEnabled()==false)return;
 	if(body->GetMode()==QBody::Modes::STATIC)return;
 
 	//We visited this body
@@ -898,6 +911,8 @@ void QWorld::GenerateIslands(vector<QBody *> &bodyList, vector<vector<QBody *>> 
 	for (int i = 0; i < bodyList.size(); i++)
 	{
 		QBody* body = bodyList[i];
+		if(body->GetEnabled()==false )
+			continue;
 		if(body->GetMode()==QBody::Modes::STATIC)
 			continue;
 		if (!body->visited)
@@ -979,8 +994,9 @@ bool QWorld::SortBodiesVertical(const QBody *bodyA, const QBody *bodyB)
 			 }
 		 }
 	 }
+	 
 	 for(auto spring:springs){
-		 spring->Update(spring->GetRigidity(),false);
+		 spring->Update(spring->GetRigidity(),false,true);
 	 }
 	 //Joint Constraints
 	 for(auto joint:joints){

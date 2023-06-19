@@ -95,7 +95,7 @@ void QPhysicsRenderer::RenderColliders(QWorld *world, sf::RenderWindow *window)
 			QMesh *mesh=body->GetMeshAt(i);
 			if(mesh->GetCollisionBehavior()==QMesh::CIRCLES){
 				for(int n=0;n<mesh->GetParticleCount();n++){
-					QParticle *particle=mesh->GetParticle(n);
+					QParticle *particle=mesh->GetParticleAt(n);
 					float r=particle->GetRadius();
 					sf::CircleShape renderShape(r);
 					renderShape.setOutlineColor(col );
@@ -116,7 +116,7 @@ void QPhysicsRenderer::RenderColliders(QWorld *world, sf::RenderWindow *window)
 				if(body->GetSimulationModel()!=QBody::SimulationModels::RIGID_BODY){
 					//Draw Particles
 					for(int p=0;p<particleSize;p++){
-						QParticle *particle=mesh->GetParticle(p);
+						QParticle *particle=mesh->GetParticleAt(p);
 						if(particle->GetRadius()>0.5f){
 							float radius=particle->GetRadius();
 							sf::CircleShape particleShape(radius );
@@ -148,7 +148,7 @@ void QPhysicsRenderer::RenderColliders(QWorld *world, sf::RenderWindow *window)
 				}
 				//Draw Polygons
 				for(int p=0;p<mesh->GetClosedPolygonCount();p++){
-					vector<QParticle*> *polygon=&mesh->GetClosedPolygon(p);
+					vector<QParticle*> *polygon=&mesh->GetClosedPolygonAt(p);
 					sf::ConvexShape polygonShape(polygon->size());
 
 					vector<sf::Vertex> vertices;

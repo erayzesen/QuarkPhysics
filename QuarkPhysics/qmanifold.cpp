@@ -134,8 +134,11 @@ void QManifold::Solve()
 
 
 	bool betweenRigidbodies=false;
+	bool betweenSoftbodies=false;
 	if(bodyA->GetSimulationModel()==QBody::SimulationModels::RIGID_BODY && bodyB->GetSimulationModel()==QBody::SimulationModels::RIGID_BODY)
 		betweenRigidbodies=true;
+	if(bodyA->GetSimulationModel()==QBody::SimulationModels::MASS_SPRING && bodyB->GetSimulationModel()==QBody::SimulationModels::MASS_SPRING)
+		betweenSoftbodies=true;
 
 	
 
@@ -145,6 +148,8 @@ void QManifold::Solve()
 
 		if(betweenRigidbodies){
 			contact->penetration*=0.75f;
+		}else if(betweenSoftbodies){
+			contact->penetration*=0.5f;
 		}
 
 		contact->penetration=max(contact->penetration,0.0f);
@@ -209,7 +214,9 @@ void QManifold::Solve()
 		QBody::CollisionInfo colInfoRef(contact->position,incidentBody,-contact->normal,contact->penetration);
 		bool collisionEnabledByRef=referenceBody->OnCollision(colInfoRef);
 		if(referenceBody->CollisionEventListener!=nullptr){
-			referenceBody->CollisionEventListener(referenceBody,colInfoRef);
+			bool listenerResult=referenceBody->CollisionEventListener(referenceBody,colInfoRef);
+			if(collisionEnabledByRef==true)
+				collisionEnabledByRef=listenerResult;
 		}
 
 
@@ -217,7 +224,9 @@ void QManifold::Solve()
 		QBody::CollisionInfo colInfoInc(contact->position,referenceBody,contact->normal,contact->penetration);
 		bool collisionEnabledByInc=incidentBody->OnCollision(colInfoInc);
 		if(incidentBody->CollisionEventListener!=nullptr){
-			incidentBody->CollisionEventListener(incidentBody,colInfoInc);
+			bool listenerResult=incidentBody->CollisionEventListener(incidentBody,colInfoInc);
+			if(collisionEnabledByInc==true)
+				collisionEnabledByInc=listenerResult;
 		}
 
 		
