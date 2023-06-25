@@ -32,15 +32,15 @@
 #include "qphysicsrenderer.h"
 
 //Example Scenes
-#include "Examples/examplescenebenchmarkboxes.h"
-#include "Examples/examplescenebenchmarkboxes2.h"
-#include "Examples/examplescenejoints.h"
-#include "Examples/examplescenemixedbodies.h"
-#include "Examples/examplesceneraycasts.h"
-#include "Examples/examplescenesoftbodies.h"
-#include "Examples/examplesceneplatformer.h"
-#include "Examples/examplescenefrictions.h"
-#include "Examples/examplesceneblobs.h""
+#include "examples/examplescenebenchmarkboxes.h"
+#include "examples/examplescenebenchmarkboxes2.h"
+#include "examples/examplescenejoints.h"
+#include "examples/examplescenemixedbodies.h"
+#include "examples/examplesceneraycasts.h"
+#include "examples/examplescenesoftbodies.h"
+#include "examples/examplesceneplatformer.h"
+#include "examples/examplescenefrictions.h"
+#include "examples/examplesceneblobs.h""
 
 
 //Font Resource Binary Header

@@ -28,7 +28,7 @@
 #ifndef EXAMPLESCENEBENCHMARKBOXES_H
 #define EXAMPLESCENEBENCHMARKBOXES_H
 
-#include "../QExampleScene.h"
+#include "../qexamplescene.h"
 
 class ExampleSceneBenchmarkBoxes : public QExampleScene
 {
