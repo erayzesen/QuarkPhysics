@@ -89,9 +89,10 @@ void QSoftBody::Update()
 		PreserveAreas();
 	}
 
-	if(enableShapeMatching){
+	//It's added world contraints operations
+	/* if(enableShapeMatching){
 		ApplyShapeMatching();
-	}
+	} */
 
 
 
@@ -213,14 +214,25 @@ void QSoftBody::ApplyShapeMatching()
 			continue;
 
 		QVector localCenterPosition;
-		for(auto particle:mesh->particles){
-			localCenterPosition+=particle->GetPosition();
-		}
-		localCenterPosition/=mesh->particles.size();
+		QVector averagePosition;
+		float averageRotation;
+		if(enableShapeMatchingFixedTransform){
+			localCenterPosition=QVector::Zero();
+			averagePosition=shapeMatchingFixedPosition;
+			averageRotation=shapeMatchingFixedRotation;
+		}else{
+			for(auto particle:mesh->particles){
+				localCenterPosition+=particle->GetPosition();
+			}
+			localCenterPosition/=mesh->particles.size();
 
-		auto averagePositionAndRotation=GetAveragePositionAndRotation(i);
-		QVector averagePosition=averagePositionAndRotation.first;
-		float averageRotation=averagePositionAndRotation.second;
+			auto averagePositionAndRotation=GetAveragePositionAndRotation(i);
+			averagePosition=averagePositionAndRotation.first;
+			averageRotation=averagePositionAndRotation.second;
+
+		}	
+
+		
 		//world->GetGizmos()->push_back(new QGizmoCircle(averagePosition,3.0f) );
 
 

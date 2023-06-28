@@ -132,11 +132,12 @@ QVector QManifold::GetRelativeVelocity(QParticle *contactParticle,vector<QPartic
 void QManifold::Solve()
 {
 
-
 	bool betweenRigidbodies=false;
 	bool betweenPressuredSoftbodies=false;
 	if(bodyA->GetSimulationModel()==QBody::SimulationModels::RIGID_BODY && bodyB->GetSimulationModel()==QBody::SimulationModels::RIGID_BODY)
 		betweenRigidbodies=true;
+
+	//We apply half response to collisions between pressured soft bodies. 
 	if(bodyA->GetSimulationModel()==QBody::SimulationModels::MASS_SPRING && bodyB->GetSimulationModel()==QBody::SimulationModels::MASS_SPRING ){
 		QSoftBody *sbA=static_cast<QSoftBody*>(bodyA);
 		QSoftBody *sbB=static_cast<QSoftBody*>(bodyB);

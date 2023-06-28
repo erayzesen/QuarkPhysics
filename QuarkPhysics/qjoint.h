@@ -27,7 +27,7 @@
 
 #ifndef QJOINT_H
 #define QJOINT_H
-#include "QRigidBody.h"
+#include "qrigidbody.h"
 
 
 /**

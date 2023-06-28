@@ -42,7 +42,6 @@ using namespace std;
 QWorld::QWorld(){
 
 
-
 }
 
 
@@ -984,14 +983,24 @@ bool QWorld::SortBodiesVertical(const QBody *bodyA, const QBody *bodyB)
 		}else{
 			ts=GetTimeScale();
 		}
+		
+
 		 if(body->GetMode()!=QBody::STATIC && body->GetSimulationModel()!=QBody::SimulationModels::RIGID_BODY){
 			 QSoftBody *sBody=static_cast<QSoftBody*>(body);
+
+			 if(sBody->GetShapeMatchingEnabled()){
+				sBody->ApplyShapeMatching();	
+			 }
+
+
+
 			 for(int i=0;i<sBody->GetMeshCount();i++){
 				 QMesh * mesh=sBody->GetMeshAt(i);
 				 for(auto spring:mesh->springs){
 					 spring->Update(sBody->GetRigidity()*ts,sBody->GetPassivationOfInternalSpringsEnabled());
 				 }
 			 }
+			 
 		 }
 	 }
 	 

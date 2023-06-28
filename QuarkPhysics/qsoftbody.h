@@ -52,6 +52,9 @@ class QSoftBody : public QBody
 	bool enableShapeMatching=false;
 	float shapeMatchingRate=0.4f;
 	bool ApplyShapeMatchingInternals=false;
+	bool enableShapeMatchingFixedTransform=false;
+	QVector shapeMatchingFixedPosition=QVector::Zero();
+	float shapeMatchingFixedRotation=0.0f;
 
 
 	//Helper methods

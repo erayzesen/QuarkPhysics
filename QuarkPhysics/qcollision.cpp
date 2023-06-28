@@ -113,43 +113,7 @@ void QCollision::PolylineAndCircle(vector<QParticle*> &polylineParticles, vector
 
 }
 
-void QCollision::PolyLineSelfCollision(vector<QParticle *> polylineParticles, vector<QCollision::Contact> &contacts)
-{
-	for(int i=0;i<polylineParticles.size();i++){
-		QParticle * particle=polylineParticles[i];
-		QVector p=particle->GetGlobalPosition();
-		if (PointInPolygon2(p,polylineParticles)==false)
-			continue;
 
-		//Get nearest particle
-		float minDist=QWorld::MAX_WORLD_SIZE;
-		int nearestParticleIndex=-1;
-		for(int n=0;n<polylineParticles.size();n++ ){
-			int ppi= (n-1+polylineParticles.size())%polylineParticles.size();
-			int pi=n;
-			int npi= (n+1)%polylineParticles.size();
-			if(ppi==i || pi==i || npi==i){
-				continue;
-			}
-			QParticle *p=polylineParticles[pi];
-			float dist=(p->GetGlobalPosition()-particle->GetGlobalPosition()).Length();
-			if(dist<minDist){
-				minDist=dist;
-				nearestParticleIndex=pi;
-			}
-		}
-		if(nearestParticleIndex==-1)
-			continue;
-		QParticle* segmentA[2]={ polylineParticles[(nearestParticleIndex-1+polylineParticles.size())%polylineParticles.size() ], polylineParticles[nearestParticleIndex] };
-		QParticle* segmentB[2]={ polylineParticles[nearestParticleIndex], polylineParticles[(nearestParticleIndex+1)%polylineParticles.size() ] };
-
-
-
-		
-
-		
-	}
-}
 
 void QCollision::PolylineAndPolygon(vector<QParticle*> &polylineParticles, vector<QParticle*> &polygonParticles, vector<Contact> &contacts)
 {
@@ -163,7 +127,7 @@ void QCollision::PolylineAndPolygon(vector<QParticle*> &polylineParticles, vecto
    C. Check an intersection between the segment of polyline and the virtual vector between the polygon particle and the polygon center
    D. If the intersection is exist, calculate the distance between the particle of polygon and the segment of polyline
    */
-	//A. Start the loop for all segments of the polyline
+
 
 
 	//Get angle bisector list of the polygon
@@ -184,10 +148,10 @@ void QCollision::PolylineAndPolygon(vector<QParticle*> &polylineParticles, vecto
 
 
 		//We don't want to check from concave corners
-		if(bridgeVec.Dot(prevToNextPerpVec)<0){
-			//bisectorList.push_back(QVector::Zero() );
-			//continue;
-		}
+		/*if(bridgeVec.Dot(prevToNextPerpVec)<0){
+			bisectorList.push_back(QVector::Zero() );
+			continue;
+		}*/
 
 		QVector bisectorUnit=prevToNextPerpVec.Normalized();
 		
@@ -219,16 +183,19 @@ void QCollision::PolylineAndPolygon(vector<QParticle*> &polylineParticles, vecto
 			}
 		}
 
-		
 
 		bisectorList.push_back(bisectorVector );
-		//p->GetOwnerMesh()->GetOwnerBody()->GetWorld()->gizmos.push_back(new QGizmoLine(p->GetGlobalPosition(),p->GetGlobalPosition()+bisectorVector,true) );
+		p->GetOwnerMesh()->GetOwnerBody()->GetWorld()->gizmos.push_back(new QGizmoLine(p->GetGlobalPosition(),p->GetGlobalPosition()+bisectorVector,true) );
+
+		/*
+		Notes: Bisector vector is working well now but it doesn't looks true. A different method is followed here.  
+		*/
 
 
 
 	}
 
-
+	//A. Start the loop for all segments of the polyline
 
 
 	for(int i=0;i<polylineParticles.size();i++){
