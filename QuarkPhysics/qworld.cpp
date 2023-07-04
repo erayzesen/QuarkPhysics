@@ -93,6 +93,9 @@ void QWorld::Update(){
 	for(unsigned int n=0;n<iteration;++n){
 
 		UpdateConstraints();
+		for(auto body:bodies){
+			body->UpdateAABB();
+		}
 		manifolds.clear();
 		if(enableBroadphase){
 //			for(unsigned int i=0;i<bodies.size();i++){
@@ -242,11 +245,11 @@ void QWorld::Update(){
 
 
 
-		for(auto body:bodies){
-			body->UpdateAABB();
-		}
+	}
 
 
+	for(auto body:bodies){
+		body->UpdateAABB();
 	}
 
 
@@ -973,8 +976,25 @@ bool QWorld::SortBodiesVertical(const QBody *bodyA, const QBody *bodyB)
 
  void QWorld::UpdateConstraints()
  {
-	 //Soft Body Constraints
+
+	float iterationFactor=1/iteration;
+	//Apply The Shape Matching Feature to Soft Bodies
+	for(auto body:bodies){
+		if(body->isSleeping)
+			continue;
+		if(body->GetMode()!=QBody::STATIC && body->GetSimulationModel()!=QBody::SimulationModels::RIGID_BODY){
+			QSoftBody *sBody=static_cast<QSoftBody*>(body);
+			if(sBody->GetShapeMatchingEnabled()){
+				sBody->ApplyShapeMatching();	
+			 }
+		}
+	}
+	 //Other Soft Body Constraints
 	 for(auto body:bodies){
+
+		if(body->isSleeping)
+			continue;
+
 		//Time scale feature
 		float ts=1.0f;
 
@@ -988,11 +1008,6 @@ bool QWorld::SortBodiesVertical(const QBody *bodyA, const QBody *bodyB)
 		 if(body->GetMode()!=QBody::STATIC && body->GetSimulationModel()!=QBody::SimulationModels::RIGID_BODY){
 			 QSoftBody *sBody=static_cast<QSoftBody*>(body);
 
-			 if(sBody->GetShapeMatchingEnabled()){
-				sBody->ApplyShapeMatching();	
-			 }
-
-
 
 			 for(int i=0;i<sBody->GetMeshCount();i++){
 				 QMesh * mesh=sBody->GetMeshAt(i);
@@ -1000,6 +1015,8 @@ bool QWorld::SortBodiesVertical(const QBody *bodyA, const QBody *bodyB)
 					 spring->Update(sBody->GetRigidity()*ts,sBody->GetPassivationOfInternalSpringsEnabled());
 				 }
 			 }
+
+
 			 
 		 }
 	 }

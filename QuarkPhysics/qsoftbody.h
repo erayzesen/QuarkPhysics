@@ -156,6 +156,33 @@ public:
 		shapeMatchingRate=value;
 		return this;
 	}
+
+	/** Sets whether you will be able to determine the position and rotation of the target shape when the shape matching feature is active. If set to true, you will be able to adjust the position and rotation values of the target shape yourself. 
+	 * @param value A value to set. 
+	 *  @return A pointer to the body itself.
+	 */
+	QSoftBody *SetShapeMatchingFixedTransformEnabled(bool value){
+		enableShapeMatchingFixedTransform=value;
+		return this;
+	}
+
+	/** Sets the position of the target shape during shape matching if the fixed transform feature is active. 
+	 * @param value A value to set. 
+	 *  @return A pointer to the body itself.
+	 */
+	QSoftBody *SetShapeMatchingFixedPosition(QVector value){
+		shapeMatchingFixedPosition=value;
+		return this;
+	}
+
+	/** Sets the rotation value of the target shape during shape matching if the fixed transform feature is active. 
+	 * @param value A value to set. 
+	 *  @return A pointer to the body itself.
+	 */
+	QSoftBody *SetShapeMatchingFixedRotation(float value){
+		shapeMatchingFixedRotation=value;
+		return this;
+	}
 	/** Sets the particle-specific mass value of the body. This value is used if the particle-specific mass option is enabled.
 	 * @param value A value to set.
 	 *  @return A pointer to the body itself.
@@ -220,6 +247,21 @@ public:
 		return shapeMatchingRate;
 	}
 
+	/** Returns whether you will be able to determine the position and rotation of the target shape when the shape matching feature is active. If set to true, you will be able to adjust the position and rotation values of the target shape yourself.  */
+	bool GetShapeMatchingFixedTransformEnabled(){
+		return enableShapeMatchingFixedTransform;
+	}
+
+	/** Sets the position of the target shape during shape matching if the fixed transform feature is active. */
+	QVector GetShapeMatchingFixedPosition(){
+		return shapeMatchingFixedPosition;
+	}
+
+	/** Sets the rotation of the target shape during shape matching if the fixed transform feature is active.  */
+	float GetShapeMatchingFixedRotation(){
+		return shapeMatchingFixedRotation;
+	}
+
 	/** Returns the particle-specific mass value of the body. This value is used if the particle-specific mass option is enabled. */
 	float GetParticleSpesificMass(){
 		return particleSpesificMass;
@@ -234,7 +276,8 @@ public:
 	 * @param A mesh index to calculate
 	 * @return Returns a position-rotation pair.
 	 */
-	pair<QVector, float> GetAveragePositionAndRotation(int meshIndex);
+	pair<QVector, float> GetAveragePositionAndRotation(vector<QParticle*> particles);
+	
 
 
 	//
@@ -244,6 +287,7 @@ public:
 	void PreserveAreas();
 	/** Applies the shape matching operation to the body. */ 
 	void ApplyShapeMatching();
+	
 
 };
 

@@ -60,7 +60,7 @@ void ExampleSceneBlobs::OnMousePressed(QVector mousePosition)
 	QSoftBody *griddedPressuredBody=new QSoftBody();
 	griddedPressuredBody->AddMesh( QMesh::CreateWithPolygon(64,12,QVector::Zero(),-1 ) );
 	griddedPressuredBody->SetRigidity(0.5f)->SetPosition(mousePosition)->SetMass(0.5f);
-	griddedPressuredBody->SetAreaPreservingEnabled(true)->SetPassivationOfInternalSpringsEnabled(true)->SetAreaPreservingRigidity(0.8f);
-	
+	griddedPressuredBody->SetAreaPreservingEnabled(true)->SetPassivationOfInternalSpringsEnabled(true)->SetAreaPreservingRigidity(0.8f); 
+	world->AddBody(griddedPressuredBody);
 
 }

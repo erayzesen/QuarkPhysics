@@ -66,8 +66,8 @@ ExampleSceneSoftBodies::ExampleSceneSoftBodies(QVector sceneSize) :QExampleScene
 	QSoftBody *pbdBody=new QSoftBody();
 	pbdBody->AddMesh( QMesh::CreateWithRect( QVector(128,128),QVector::Zero(),QVector(6,6),true,false,8.0f ) );
 	pbdBody->SetRigidity(0.3f)->SetPosition(QVector(150,100))->SetMass(1.0f);
-	pbdBody->SetSelfCollisionsEnabled(true)->SetParticleSpesificMassEnabled(true)->SetParticleSpesificMass(0.1f);
-	pbdBody->SetShapeMatchingEnabled(true);
+	pbdBody->SetParticleSpesificMassEnabled(true)->SetParticleSpesificMass(0.1f);
+	pbdBody->SetShapeMatchingEnabled(true)->SetShapeMatchingRate(0.8);
 	world->AddBody(pbdBody);
 
 	//Adding mass-spring model soft body via gridded rectangle mesh
@@ -85,8 +85,8 @@ ExampleSceneSoftBodies::ExampleSceneSoftBodies(QVector sceneSize) :QExampleScene
 
 	//Adding mass-spring model soft body via gridded polygon mesh
 	QSoftBody *griddedPolyBody=new QSoftBody();
-	griddedPolyBody->AddMesh( QMesh::CreateWithPolygon(64,10,QVector::Zero(),2 ) );
-	griddedPolyBody->SetRigidity(0.05f)->SetPosition(QVector(700,100))->SetMass(1.0f);
+	griddedPolyBody->AddMesh( QMesh::CreateWithPolygon(64,11,QVector::Zero(),2 ) );
+	griddedPolyBody->SetRigidity(0.08f)->SetPosition(QVector(700,100))->SetMass(1.0f);
 	griddedPolyBody->SetShapeMatchingEnabled(true);
 	world->AddBody(griddedPolyBody);
 
