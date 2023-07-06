@@ -77,7 +77,7 @@ void QSoftBody::Update()
 				continue;
 			auto vel=particle->GetGlobalPosition()-particle->GetPreviousGlobalPosition();
 			particle->SetPreviousGlobalPosition(particle->GetGlobalPosition() );
-			particle->ApplyForce(vel);
+			particle->ApplyForce(vel-(vel*airFriction) );
 			particle->ApplyForce(mass*world->GetGravity()*ts);
 			particle->ApplyForce(particle->GetForce());
 			particle->SetForce(QVector::Zero());
@@ -89,7 +89,7 @@ void QSoftBody::Update()
 		PreserveAreas();
 	}
 
-	//It's added world contraints operations
+	//It's added to world contraints operations
 	/* if(enableShapeMatching){
 		ApplyShapeMatching();
 	} */
@@ -115,6 +115,7 @@ void QSoftBody::PreserveAreas()
 	}
 
 	for(auto mesh:_meshes){
+
 		if(mesh->GetSpringCount()==0)continue;
 		float currentMeshesArea=mesh->GetPolygonsArea();
 		float circumference=GetCircumference();
@@ -130,21 +131,26 @@ void QSoftBody::PreserveAreas()
 
 
 		float pressure=(deltaArea/circumference)*areaPreservingRigidity;
-		QVector volumeForces[mesh->GetSpringCount()];
 
-		for(int i=0;i<mesh->GetSpringCount();i++){
-			QSpring *spring=mesh->GetSpringAt(i);
-			if(spring->GetIsInternal()==true)continue;
-			QVector vec=spring->GetParticleB()->GetGlobalPosition()-spring->GetParticleA()->GetGlobalPosition();
+		for(int i=0;i<mesh->GetClosedPolygonCount();i++){
+			vector<QParticle*> &polygon=mesh->GetClosedPolygonAt(i);
+			QVector volumeForces[polygon.size()];
+			for(int n=0;n<polygon.size();n++){
+				QSpring *spring=mesh->GetSpringAt(i);
+				QParticle *pp=polygon[ (n-1+polygon.size())%polygon.size() ];
+				QParticle *np=polygon[ (n+1)%polygon.size() ];
+				QVector vec=np->GetGlobalPosition()-pp->GetGlobalPosition();
+				volumeForces[n]=pressure*(vec.Perpendicular().Normalized())*ts;	
+			}
 
-			volumeForces[i]=pressure*vec.Normalized().Perpendicular()*ts;
-		}
-		for(int i=0;i<mesh->GetSpringCount();i++){
-			QSpring *spring=mesh->GetSpringAt(i);
-			if(spring->GetIsInternal()==true)continue;
-			QVector centerPos=(spring->GetParticleB()->GetGlobalPosition()+spring->GetParticleA()->GetGlobalPosition())*0.5f;
-			QParticle::ApplyForceToParticleSegment(spring->GetParticleA(),spring->GetParticleB(),volumeForces[i],centerPos);
+			for(int n=0;n<polygon.size();n++){
+				QParticle *pp=polygon[ (n-1+polygon.size())%polygon.size() ];
+				QParticle *np=polygon[ (n+1)%polygon.size() ];
+				QVector centerPos=(np->GetGlobalPosition()+pp->GetGlobalPosition())*0.5f;
+				QParticle::ApplyForceToParticleSegment(pp,np,volumeForces[n],centerPos);
+				//GetWorld()->GetGizmos()->push_back( new QGizmoLine( centerPos,centerPos+volumeForces[n]*30,true ) );
 
+			}
 		}
 
 

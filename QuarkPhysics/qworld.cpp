@@ -977,7 +977,8 @@ bool QWorld::SortBodiesVertical(const QBody *bodyA, const QBody *bodyB)
  void QWorld::UpdateConstraints()
  {
 
-	float iterationFactor=1/iteration;
+
+	
 	//Apply The Shape Matching Feature to Soft Bodies
 	for(auto body:bodies){
 		if(body->isSleeping)

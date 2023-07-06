@@ -89,6 +89,7 @@ protected:
 
 	float friction=0.2f;
 	float staticFriction=0.5f;
+	float airFriction=0.01f;
 	float mass=1.0f;
 	float restitution=0.0f;
 
@@ -291,6 +292,12 @@ protected:
 		float GetStaticFriction(){
 			return staticFriction;
 		}
+
+		/** Returns the air friction value of the body. */
+		float GetAirFriction(){
+			return airFriction;
+		}
+
 		/** Returns the mass value of the body. */
 		virtual float GetMass(){
 			return mass;
@@ -515,6 +522,16 @@ protected:
 			staticFriction=value;
 			return this;
 		}
+
+		/** Sets the air friction value of the body. 
+		 * @param value A value to set.
+		 * @return A pointer to the body itself.
+		 */
+		QBody *SetAirFriction(float value){
+			airFriction=value;
+			return this;
+		}
+
 		/** Sets the mass value of the body. 
 		 * @param value A value to set.
 		 * @return A pointer to the body itself.

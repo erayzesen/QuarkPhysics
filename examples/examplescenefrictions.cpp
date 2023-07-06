@@ -56,7 +56,7 @@ ExampleSceneFrictions::ExampleSceneFrictions(QVector sceneSize):QExampleScene(sc
 	box=new QRigidBody();
 	box->AddMesh(QMesh::CreateWithRect(QVector(32,32) ));
 	box->SetPosition(platform->GetPosition()-QVector(0.0f,41) )->SetRotationDegree(6.2f);
-	box->SetFriction(0.01f);
+	box->SetFriction(0.01f)->SetAirFriction(0.0f);
 	world->AddBody(box);
 
 	ball=new QRigidBody();
