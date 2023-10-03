@@ -52,6 +52,8 @@ class QJoint
 
 	float rigidity=1.0f;
 
+	float balance=0.5f;
+
 	//Addinational Properties
 	float length=0.0f; //it makes distance joint
 	bool grooveEnabled=false; // it makes groove
@@ -113,6 +115,10 @@ public:
 	/** Returns the length value of the joint. */
 	inline float GetLength(){
 		return length;
+	}
+	/** Returns the balance value of the joint. 0.0 is the a-side, 1.0 is the b-side */
+	inline float GetBalance(){
+		return balance;
 	}
 	/** Returns whether the groove mode of the joint enabled or not. */
 	inline bool GetGrooveEnabled(){
@@ -182,6 +188,14 @@ public:
 		length=value;
 		return this;
 	}
+	/** Sets the force balance value of the joint, it's 0.5 as a default. 0.0 is the a-side, 1.0 is the b-side. 
+	 * @param value The balance value to set. It must be a value between 0.0 and 1.0.
+	 * @return A pointer to the joint itself.
+	 */
+	inline QJoint* SetBalance(float value){
+		balance=value;
+		return this;
+	}
 
 	/** Sets whether the groove mode of the joint enabled or not. When groove mode is enabled in QJoints, distance constraint will only be applied when the set distance is exceeded.
 	 * @param value True or false.  
@@ -196,7 +210,7 @@ public:
 	 * @param value True or false. 
 	 * @return A pointer to the joint itself.
 	 */
-	QJoint* SetCollisionEnabled(bool value);
+	QJoint* SetCollisionEnabled(bool value); //Added to cpp file because of that the function needs world object.
 
 
 	/** Sets whether the joint is enabled. 

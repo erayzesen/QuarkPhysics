@@ -609,6 +609,7 @@ protected:
 		friend class QWorld;
 		friend class QManifold;
 		friend class QParticle;
+		friend class QJoint;
 
 	protected:
 		vector<QMesh*> _meshes=vector<QMesh*>();

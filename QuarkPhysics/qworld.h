@@ -83,6 +83,7 @@ protected:
 
 	//Physics World Properties
 
+	bool enabled=true;
 	QVector gravity=QVector(0.0f,0.2f);
 	bool enableSleeping=true;
 	bool enableBroadphase=true;
@@ -99,7 +100,7 @@ protected:
 	int debugCollisionTestCount=0; // any collision method call count
 
 	void ClearGizmos();
-	void ClearBodies();
+	void ClearBodies(bool deleteAll=false);
 
 
 	//Collisions, Dynamic Colliders Islands and Sleeping Feature
@@ -144,6 +145,16 @@ public:
 		return iteration;
 	}
 
+	/** Returns the time scale for the physics simulation.  */
+	float GetTimeScale(){
+		return timeScale;	
+	}
+
+	/**  Returns whether world is enabled.  */
+	bool GetEnabled(){
+		return enabled;
+	}
+
 	//General Set Methods
 	/** Sets the gravity force of the world.
 	 * The gravity force applies to dynamic bodies in every step of physics.
@@ -183,10 +194,15 @@ public:
 		timeScale=value;
 		return this;
 	}
-	/** Returns the time scale for the physics simulation.  */
-	float GetTimeScale(){
-		return timeScale;	
+
+	/** Sets whether world is enabled.  
+	 * @param value A value to set
+	 */
+	QWorld *SetEnabled(bool value){
+		enabled=value;
+		return this;
 	}
+	
 
 	//Methods
 	/** Updates the physics simulation of the world as a step.
@@ -235,9 +251,12 @@ public:
 	 * @param body A body pointer
 	 */
 	int GetBodyIndex(QBody *body){
-		for(int i=0;i<bodies.size();i++)
+		if(body==nullptr)
+			return -1;
+		for(int i=0;i<bodies.size();i++){
 			if(bodies[i]==body)
 				return i;
+		}
 		return -1;
 	}
 	/** Returns a list of bodies that collide with the point given.
@@ -412,16 +431,16 @@ public:
 	~QWorld();
 	/** Removes all joints from the world. 
 	 */
-	QWorld *ClearJoints();
+	QWorld *ClearJoints(bool deleteAll=false);
 	/** Removes all springs from the world.
 	 */
-	QWorld *ClearSprings();
+	QWorld *ClearSprings(bool deleteAll=false);
 	/** It removes all raycasts from the world.
 	 */
-	QWorld *ClearRaycasts();
+	QWorld *ClearRaycasts(bool deleteAll=false);
 	/** It removes all objects from the world. 
 	 */
-	QWorld *ClearWorld();
+	QWorld *ClearWorld(bool deleteAll=false);
 
 	friend class QCollision;
 	friend class QManifold;

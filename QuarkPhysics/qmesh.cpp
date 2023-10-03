@@ -69,6 +69,8 @@ QMesh *QMesh::AddParticle(QParticle *particle){
 	particles.push_back(particle);
 	particles.back()->SetOwnerMesh(this);
 	if(ownerBody!=nullptr){
+		if (ownerBody->mode==QBody::Modes::STATIC)
+			ownerBody->UpdateMeshTransforms();
 		ownerBody->inertiaNeedsUpdate=true;
 		ownerBody->circumferenceNeedsUpdate=true;
 	}
@@ -82,6 +84,8 @@ QMesh *QMesh::RemoveParticleAt(int index){
 	RemoveMatchingSprings(particle);
 	particles.erase(particles.begin()+index);
 	if(ownerBody!=nullptr){
+		if (ownerBody->mode==QBody::Modes::STATIC)
+			ownerBody->UpdateMeshTransforms();
 		ownerBody->inertiaNeedsUpdate=true;
 		ownerBody->circumferenceNeedsUpdate=true;
 	}
@@ -113,6 +117,8 @@ QMesh *QMesh::AddClosedPolygon(vector<QParticle *> polygon)
 {
 	closedPolygons.push_back(polygon);
 	if(ownerBody!=nullptr){
+		if (ownerBody->mode==QBody::Modes::STATIC)
+			ownerBody->UpdateMeshTransforms();
 		ownerBody->inertiaNeedsUpdate=true;
 		ownerBody->circumferenceNeedsUpdate=true;
 	}
@@ -124,6 +130,8 @@ QMesh *QMesh::RemoveClosedPolygonAt(int index)
 {
 	closedPolygons.erase(closedPolygons.begin()+index);
 	if(ownerBody!=nullptr){
+		if (ownerBody->mode==QBody::Modes::STATIC)
+			ownerBody->UpdateMeshTransforms();
 		ownerBody->inertiaNeedsUpdate=true;
 		ownerBody->circumferenceNeedsUpdate=true;
 	}

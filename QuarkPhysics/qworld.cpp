@@ -45,9 +45,7 @@ QWorld::QWorld(){
 }
 
 
-QWorld::~QWorld(){
-	ClearWorld();
-}
+QWorld::~QWorld(){}
 
 
 void QWorld::ClearGizmos(){
@@ -60,6 +58,10 @@ void QWorld::ClearGizmos(){
 // ## WORLD STEP
 
 void QWorld::Update(){
+
+	if (enabled==false)
+		return;
+	
 	ClearGizmos();
 
 
@@ -390,6 +392,7 @@ QWorld * QWorld::AddBodyGroup(const vector<QBody*> &bodyGroup){
 
 QWorld *QWorld::RemoveBody(QBody *body)
 {
+
 	int index=GetBodyIndex(body);
 	if(index!=-1){
 		RemoveBodyAt(index);
@@ -565,40 +568,50 @@ bool QWorld::CollideWithWorld(QBody *body){
 
 
 
-void QWorld::ClearBodies(){
-	for(int i=0;i<bodies.size();i++){
-		delete bodies[i];
-	}
+void QWorld::ClearBodies(bool deleteAll){
+	if (deleteAll)
+		for(int i=0;i<bodies.size();i++){
+			delete bodies[i];
+		}
+	
+	bodies.clear();
 }
-QWorld* QWorld::ClearJoints(){
-	for(int i=0;i<joints.size();i++){
-		delete joints[i];
-	}
+QWorld* QWorld::ClearJoints(bool deleteAll){
+	if (deleteAll)
+		for(int i=0;i<joints.size();i++){
+			delete joints[i];
+		}
+	joints.clear();
 	return this;
 }
 
-QWorld* QWorld::ClearSprings()
+QWorld* QWorld::ClearSprings(bool deleteAll)
 {
-	for(int i=0;i<springs.size();i++){
-		delete springs[i];
-	}
+	if (deleteAll)
+		for(int i=0;i<springs.size();i++){
+			delete springs[i];
+		}
+	springs.clear();
 	return this;
 }
 
-QWorld* QWorld::ClearRaycasts()
+QWorld* QWorld::ClearRaycasts(bool deleteAll)
 {
-	for(int i=0;i<raycasts.size();i++){
-		delete raycasts[i];
-	}
+	if (deleteAll)
+		for(int i=0;i<raycasts.size();i++){
+			delete raycasts[i];
+		}
+	raycasts.clear();
 	return this;
 }
 
-QWorld* QWorld::ClearWorld(){
-	ClearBodies();
-	ClearJoints();
-	ClearSprings();
-	ClearRaycasts();
+QWorld* QWorld::ClearWorld(bool deleteAll){
+	ClearBodies(deleteAll);
+	ClearJoints(deleteAll);
+	ClearSprings(deleteAll);
+	ClearRaycasts(deleteAll);
 	ClearGizmos();
+
 	return this;
 }
 
@@ -763,6 +776,7 @@ QWorld *QWorld::RemoveCollisionException(QBody *bodyA, QBody *bodyB)
 
 QWorld *QWorld::RemoveMatchingCollisionException(QBody *body)
 {
+	if(body==nullptr) return this;
 	if(collisionExceptions.empty()==true)return this;
 	auto it=collisionExceptions.begin();
 	while(it!=collisionExceptions.end()){

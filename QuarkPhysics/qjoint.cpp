@@ -69,10 +69,19 @@ QJoint::~QJoint()
 		world->RemoveCollisionException(bodyA,bodyB);
 }
 
+QJoint *QJoint::SetCollisionEnabled(bool value) {
+	collisionsEnabled=value;
+	if(world!=nullptr && bodyA!=nullptr && bodyB!=nullptr){
+		if(value==true){
+			world->RemoveCollisionException(bodyA,bodyB);
+		}else{
+			world->AddCollisionException(bodyA,bodyB);
+		}
+	}
+	return this;
+}
 
-
-void QJoint::Update()
-{
+void QJoint::Update() {
 	if(enabled==false){
 		return;
 	}
@@ -101,20 +110,32 @@ void QJoint::Update()
 		}
 	}
 
-	float k=0.5f;
+	float forceRatioA=balance;
+	float forceRatioB=1.0f-balance;
 
 	if(bodyA!=nullptr && bodyB!=nullptr){
 		
 		if(bodyA->GetMode()==QBody::STATIC && bodyB->GetMode()==QBody::STATIC){
 			return;
 		}
-		if(bodyA->GetMode()==QBody::STATIC || bodyB->GetMode()==QBody::STATIC){
-			k=1.0f;
+		if(bodyA->GetMode()==QBody::STATIC){
+			forceRatioA=0.0f;
+			forceRatioB=1.0f;
+		}
+		if(bodyB->GetMode()==QBody::STATIC){
+			forceRatioA=1.0f;
+			forceRatioB=0.0f;
 		}
 	}else{
-		if(bodyA!=nullptr || bodyB!=nullptr){
-			k=1.0f;
+		if(bodyA==nullptr){
+			forceRatioA=0.0f;
+			forceRatioB=1.0f;
 		}
+		if(bodyB==nullptr){
+			forceRatioA=1.0f;
+			forceRatioB=0.0f;
+		}
+		
 	}
 
 	QVector anchorTransformedA=anchorA;
@@ -153,14 +174,16 @@ void QJoint::Update()
 	float currentDistance=diff.Length();
 	QVector unit=diff.Normalized();
 	float distanceDelta=(length-currentDistance);
+	if (distanceDelta==0.0)
+		return;
 	if(grooveEnabled==true && currentDistance<length)
 		return;
 	QVector distanceDeltaVec=distanceDelta*unit;
 
 
-	jointForce=distanceDeltaVec*rigidity*k;
-	jointForceA=-jointForce;
-	jointForceB=jointForce;
+	jointForce=distanceDeltaVec*rigidity;
+	jointForceA=-jointForce*forceRatioA;
+	jointForceB=jointForce*forceRatioB;
 
 
 	if(bodyA!=nullptr){
@@ -175,17 +198,4 @@ void QJoint::Update()
 
 		}
 	}
-}
-
-
-QJoint *QJoint::SetCollisionEnabled(bool value){
-	collisionsEnabled=value;
-	if(world!=nullptr && bodyA!=nullptr && bodyB!=nullptr){
-		if(value==true){
-			world->RemoveCollisionException(bodyA,bodyB);
-		}else{
-			world->AddCollisionException(bodyA,bodyB);
-		}
-	}
-	return this;
 }
