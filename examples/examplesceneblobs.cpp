@@ -35,6 +35,8 @@ ExampleSceneBlobs::ExampleSceneBlobs(QVector sceneSize):QExampleScene(sceneSize)
 {
 	//world->SetEnableSleeping(false);
 
+	world->SetIterationCount(10);
+
 	// Floor and walls
 	QBody *floor=new QBody();
 	floor->AddMesh(QMesh::CreateWithRect(QVector(960,64),QVector(0.0f,0.0f) ) )->SetPosition(QVector(512.0f,550.0f));
@@ -58,9 +60,9 @@ void ExampleSceneBlobs::OnMousePressed(QVector mousePosition)
 	//QExampleScene::OnMousePressed(mousePosition);
 	//Adding pressure volume model soft body via gridded polygon mesh
 	QSoftBody *griddedPressuredBody=new QSoftBody();
-	griddedPressuredBody->AddMesh( QMesh::CreateWithPolygon(64,32,QVector::Zero(),-1 ) );
+	griddedPressuredBody->AddMesh( QMesh::CreateWithPolygon(64,16,QVector::Zero(),-1 ,true,true) );
 	griddedPressuredBody->SetRigidity(0.5f)->SetPosition(mousePosition)->SetMass(0.5f);
-	griddedPressuredBody->SetAreaPreservingEnabled(true); 
+	griddedPressuredBody->SetAreaPreservingEnabled(true)->SetAreaPreservingRate(0.5)->SetSelfCollisionsEnabled(true)->SetSelfCollisionsSpecifiedRadius(10.0f);
 	world->AddBody(griddedPressuredBody);
 
 }

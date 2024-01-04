@@ -136,16 +136,15 @@ void CalculateFPS(){
 void RenderFPS(QWorld *world){
 
 
-
-
 	//Draw FPS
 	sf::Text text;
 	text.setFont(*font);
 	int fpsInt=floor(fps);
 	string str="Press 1...9 key to navigate between example scenes.";
-	str+="\n FPS:"+to_string(fpsInt)+"(World Step "+ to_string(worldStepMs)+" ms)" + " | object count:"+ to_string(world->GetBodyCount());
-	str+="\n Broadphase:" + to_string(scene->world->GetEnableBroadphase())+" | Sleeping Mode:"+to_string(scene->world->GetEnableSleeping());
+	str+="\n FPS:"+to_string(fpsInt)+"(World Step "+ to_string(worldStepMs/1000)+" ms)" + " | object count:"+ to_string(world->GetBodyCount());
+	str+="\n Broadphase:" + to_string(scene->world->GetBroadphaseEnabled())+" | Sleeping Mode:"+to_string(scene->world->GetSleepingEnabled());
 	str+="\n Iteration Count:"+to_string(scene->world->GetIterationCount());
+	str+="\n Spatial Hashing Enabled:"+to_string(scene->world->GetSpatialHashingEnabled());
 
 	text.setString( str);
 	text.setCharacterSize(12);
@@ -259,7 +258,7 @@ int main()
 	window->setFramerateLimit(60);
 	window->setKeyRepeatEnabled(false);
 
-	LoadExampleScene(1);
+	LoadExampleScene(8);
 
 	while (window->isOpen())
 	{
@@ -310,6 +309,10 @@ int main()
 				}
 				scene->OnKeyReleased(event.key.code);
 
+				if(event.key.code==sf::Keyboard::S){
+					scene->world->SetSpatialHashingEnabled(scene->world->GetSpatialHashingEnabled()==true ? false:true );
+				}
+
 //				if(event.key.code==sf::Keyboard::H){
 //					showColliders=showColliders==true ? false:true;
 //				}else if(event.key.code==sf::Keyboard::Left){
@@ -325,12 +328,12 @@ int main()
 //					scene->world->SetEnableBroadphase(enableBroadphase);
 //				}else if(event.key.code==sf::Keyboard::S){
 //					bool enableSleeping=scene->world->GetEnableSleeping()==false ? true:false;
+//				}
 //					scene->world->SetEnableSleeping(enableSleeping);
 //				}else if(event.key.code==sf::Keyboard::C){
 //					showCollisions=showCollisions==false ? true:false;
 //				}else if(event.key.code==sf::Keyboard::F){
 //					showSpatialBoundingBox=showSpatialBoundingBox==true ? false:true;
-//				}
 
 
 			}

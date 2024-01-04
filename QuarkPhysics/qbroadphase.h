@@ -31,59 +31,64 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
+#include "qaabb.h"
 #include "qbody.h"
-#include "qvector.h"
-
-class QBroadPhase
-{
-
-	int hashFunction(int x, int y){
-		return x+31*y;
-	}
-	QVector inverseCellSize;
-
-	struct pairHash {
-		size_t operator()(const std::pair<QBody*, QBody*> &p) const {
-			 return std::hash<QBody*>()(p.first) + std::hash<QBody*>()(p.second);
-		}
-	};
-
-	struct pairEqual {
-		bool operator()(const std::pair<QBody*, QBody*> &p1, const std::pair<QBody*, QBody*> &p2) const {
-			return ( (p1.first == p2.first && p1.second == p2.second) ) ;
-
-		}
-	};
-
-	void RemoveBodyFromCells(QAABB referenceAABB,QBody *body);
-
-	bool isBodyAdded=false;
+#include "qmanifold.h"
+#include "qcollision.h"
 
 
+
+
+class QBroadPhase {   
 public:
-	QVector cellSize;
+    QBroadPhase(){};
+    QBroadPhase(float cellSize);
 
-	unordered_map<int,unordered_set<QBody*>> collisionGroups;
-	QBroadPhase(QVector cellSize): cellSize(cellSize) {
-		inverseCellSize=QVector(1/cellSize.x,1/cellSize.y);
+    struct bodyPairHash {
+		size_t operator()(const std::pair<QBody*, QBody*>& p) const {
+			std::size_t h1 = std::hash<QBody*>{}(p.first);
+			std::size_t h2 = std::hash<QBody*>{}(p.second);
+			return h1 ^ (h2 + 0x9e3779b9 + (h1 << 6) + (h1 >> 2));
+		}
 	};
-	~QBroadPhase();
 
-	QBroadPhase* Add(QBody *body);
-
-	QBroadPhase* Clear();
-
-	std::unordered_set<std::pair<QBody*,QBody*>,pairHash,pairEqual> pairList;
-
-	std::unordered_set<std::pair<QBody*,QBody*>,pairHash,pairEqual>* GetPairs();
+	struct bodyPairEqual {
+		bool operator()(const std::pair<QBody*, QBody*>& p1, const std::pair<QBody*, QBody*>& p2) const {
+			return (p1.first == p2.first && p1.second == p2.second) ||
+				(p1.first == p2.second && p1.second == p2.first);
+		}
+	};
 
 
 
-	//Methods
+    
+    void insert(QBody *body, const QAABB& aabb);
+    void update(QBody *body, const QAABB& newAABB);
+    void remove(QBody *body, const QAABB& aabb);
+
+    vector<vector<QBody*> > GetBodiesFromCells();
+
+    void GetAllPairs(unordered_set<pair<QBody*,QBody*>,QBroadPhase::bodyPairHash,bodyPairEqual > &pairs);
+
+    void ApplySweepAndPruneToCells();
+
+    void GetPotentialCollisions(QBody *body,unordered_set<QBody*> &collection);
+
+    
 
 
 
 
+private:
+    float cellSize;
+    std::unordered_map<int, std::vector<QBody*>> hashTable;
+    std::vector<int> getCellKeys(QAABB aabb);
+    
+
+    
+
+	 
 };
+
 
 #endif // QBROADPHASE_H

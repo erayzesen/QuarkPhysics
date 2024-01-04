@@ -28,13 +28,15 @@
 #ifndef QGIZMOS_H
 #define QGIZMOS_H
 #include "qvector.h"
+#include "qaabb.h"
 
 class QGizmo
 {
 	public :
 		enum GizmoTypes{
 			Circle,
-			Line
+			Line,
+			Rectangle
 		};
 	protected:
 		GizmoTypes gizmoType=GizmoTypes::Circle;
@@ -70,6 +72,16 @@ class QGizmoLine:public QGizmo{
 			pointB=to;
 			isArrow=arrow;
 			gizmoType=GizmoTypes::Line;
+		}
+};
+
+class QGizmoRect:public QGizmo{
+	public:
+		QAABB rect;
+		
+		QGizmoRect( QAABB rectangle ){
+			rect=rectangle;
+			gizmoType=GizmoTypes::Rectangle;
 		}
 };
 

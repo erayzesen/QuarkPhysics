@@ -29,7 +29,7 @@
 
 
 ExampleSceneFrictions::ExampleSceneFrictions(QVector sceneSize):QExampleScene(sceneSize){
-	world->SetEnableSleeping(false);
+	world->SetSleepingEnabled(false);
 	//Adding Floor
 	QRigidBody *floor=new QRigidBody();
 	floor->AddMesh(QMesh::CreateWithRect(QVector(3000,64),QVector(0.0f,0.0f) ) )->SetPosition(QVector(512.0f,550.0f));

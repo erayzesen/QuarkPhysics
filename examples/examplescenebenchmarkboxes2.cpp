@@ -32,7 +32,7 @@ ExampleSceneBenchmarkBoxes2::ExampleSceneBenchmarkBoxes2(QVector sceneSize):QExa
 	world->SetGravity(QVector(0.0f,0.1f));
 	spawnRectSize=16.0f;
 	spawnCircleRadius=8.0f;
-	world->SetEnableSleeping(true);
+	world->SetSleepingEnabled(false);
 	//BOXES EXAMPLE
 	QBody *floor=new QBody();
 	floor->AddMesh(QMesh::CreateWithRect(QVector(5000,64),QVector(0.0f,0.0f) ) )->SetPosition(QVector(512.0f,550.0f));

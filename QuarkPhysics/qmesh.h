@@ -60,7 +60,8 @@ protected:
 	float rotation=0.0f;
 	float globalRotation=0.0f;
 	vector<QSpring*> springs=vector<QSpring*>();
-	vector<vector<QParticle*>> closedPolygons=vector<vector<QParticle*>>();
+	vector <QParticle*> polygon=vector<QParticle*>();
+	vector<vector<QParticle*>> subConvexPolygons=vector<vector<QParticle*>>();
 	float circumference=0.0f;
 	QBody *ownerBody=nullptr;
 	CollisionBehaviors collisionBehavior=CollisionBehaviors::CIRCLES;
@@ -69,6 +70,15 @@ protected:
 
 	//Helper Methods
 	void UpdateCollisionBehavior();
+
+	//Polygon Methods
+	void UpdateSubConvexPolygons();
+	bool CheckIsPolygonConcave(vector<QParticle*> polygonParticles);
+	static bool CheckIsReflex(QVector pA,QVector pB, QVector pC);
+	static bool CheckIsReflex(int indexA,int indexB, int indexC, vector<QParticle*> polygonParticles);
+	static void TriangulatePolygon(vector<QParticle*> &polygonParticles,vector<vector<int>> &triangles);
+	static void DecompositePolygon(vector<QParticle*> &polygonParticles,vector<vector<QParticle*>> &polygons);
+	bool subConvexPolygonsNeedsUpdate=false;
 
 public:
 	/** The data struct of the mesh. 
@@ -90,11 +100,11 @@ public:
 		 * */
 		vector<pair<int,int>> internalSpringList;
 		/** The polygon collection containing the index collection of the polygons.
-		 * Closed polygons are important to define polygon colliders of the mesh.
+		 * Polygons are important to define polygon colliders of the mesh.
 		 * The particle orders should be clockwise.
 		 * The integer values define the indices of particles in the particlePositions collection.  
 		 * */
-		vector <vector<int>> closedPolygonList;
+		vector<int> polygon;
 
 		/** The position of the mesh */
 		QVector position=QVector::Zero();
@@ -108,6 +118,8 @@ public:
 	friend class QBody;
 	friend class QRigidBody;
 	friend class QSoftBody;
+	friend class QRaycast;
+	friend class QCollision;
 
 	/** Creates a mesh. */
 	QMesh();
@@ -134,8 +146,9 @@ public:
 	/** Returns the total area of the mesh with local positions of particles */
 	float GetInitialArea(){
 		float res=0.0f;
-		for(auto poly:closedPolygons){
-			res+=GetPolygonArea(poly,true);
+		for(size_t n=0;n<GetSubConvexPolygonCount();n++){
+
+			res+=GetPolygonArea(GetSubConvexPolygonAt(n),true);
 		}
 		for(auto particle:particles){
 			if(particle->GetRadius()>0.5f){
@@ -147,8 +160,8 @@ public:
 	/** Returns the total polygon area of the mesh with local positions of particles */
 	float GetInitialPolygonsArea(){
 		float res=0.0f;
-		for(auto poly:closedPolygons){
-			res+=GetPolygonArea(poly,true);
+		for(size_t n=0;n<GetSubConvexPolygonCount();n++){
+			res+=GetPolygonArea(GetSubConvexPolygonAt(n),true);
 		}
 		return res;
 	}
@@ -156,8 +169,8 @@ public:
 
 	float GetArea(){
 		float res=0.0f;
-		for(auto poly:closedPolygons){
-			res+=GetPolygonArea(poly);
+		for(size_t n=0;n<GetSubConvexPolygonCount();n++){
+			res+=GetPolygonArea(GetSubConvexPolygonAt(n));
 		}
 		for(auto particle:particles){
 			if(particle->GetRadius()>0.5f){
@@ -169,8 +182,8 @@ public:
 	/** Returns total polygon area of the mesh with global positions of particles */
 	float GetPolygonsArea(){
 		float res=0.0f;
-		for(auto poly:closedPolygons){
-			res+=GetPolygonArea(poly);
+		for(size_t n=0;n<GetSubConvexPolygonCount();n++){
+			res+=GetPolygonArea(GetSubConvexPolygonAt(n));
 		}
 
 		return res;
@@ -179,7 +192,8 @@ public:
 	/** Returns total circumference of all polygons of the mesh (Calculates with local positions of particles) */
 	float GetCircumference(){
 		float res=0.0f;
-		for(auto polygon:closedPolygons){
+		for(size_t n=0;n<GetSubConvexPolygonCount();n++){
+			auto polygon=GetSubConvexPolygonAt(n);
 			for(int i=0;i<polygon.size();i++){
 				QParticle *p=polygon[i];
 				QParticle *np=polygon[(i+1)%polygon.size()];
@@ -266,7 +280,63 @@ public:
 	 */
 	QParticle *GetParticleAt(int index);
 
-	//Closed Polygons Operations
+
+
+
+	//Polygon Operations
+
+	/** Sets a polygon to the mesh
+	 * @param polygonParticles A particle pointers collection of the polygon.
+	 * @return QMesh* A pointer to mesh itself.
+	 */
+	QMesh * SetPolygon(vector<QParticle *> polygonParticles); 
+
+	/** Adds a particle of the mesh to the polygon. If you want to add a particle to the end of the polygon, set the position value as -1. 
+	 * @param particle A pointer to a particle
+	 * @param position A position index. Default value is -1, indicating the end of the polygon.
+	 * @return QMesh* A pointer to mesh itself.
+	 */
+
+	QMesh * AddParticleToPolygon(QParticle * particle, int position=-1);
+
+	/** Removes a particle from to the polygon.  
+	 * @param particle A pointer to a particle
+	 * @return QMesh* A pointer to mesh itself.
+	 * @note A polygon requires at least 3 particles. Please check the number of particles in the polygon before removing any particle from it.
+	 */
+
+	QMesh *RemoveParticleFromPolygon(QParticle * particle);
+
+	/** Removes a particle from to the polygon at the specified index. 
+	 * @param index An index value
+	 * @return QMesh* A pointer to mesh itself.
+	 * @note A polygon requires at least 3 particles. Please check the number of particles in the polygon before removing any particle from it.
+	 */
+
+	QMesh * RemoveParticleFromPolygonAt(int index);
+
+	/** Removes the polygon from the mesh.
+	 * @return QMesh* A pointer to mesh itself.
+	 */
+
+	QMesh * RemovePolygon();
+
+	/** Returns the  total particle count of the polygon  */
+
+	int GetPolygonParticleCount();
+
+	/** Returns a particle of the polygon at the specified index  
+	 * @param index An index value
+	 * @return QParticle* A pointer to the particle.
+	*/
+
+	QParticle *GetParticleFromPolygon(int index);
+
+
+
+
+
+
 
 	/** Adds a polygon to the mesh
 	 * @param polygon A particle pointers collection of the polygon.
@@ -280,14 +350,22 @@ public:
 
 	/** Returns the total polygon count in the mesh.
 	 */
-	int GetClosedPolygonCount(){
-		return closedPolygons.size();
+	int GetSubConvexPolygonCount(){
+		if (subConvexPolygonsNeedsUpdate==true){
+			UpdateSubConvexPolygons();
+			subConvexPolygonsNeedsUpdate=false;
+		}
+		return subConvexPolygons.size();
 	}
 	/** Returns polygon at the specified index
 	 * @param index The index of the polygon to get.
 	 */
-	vector<QParticle*> &GetClosedPolygonAt(int index){
-		return closedPolygons[index];
+	vector<QParticle*> &GetSubConvexPolygonAt(int index){
+		if (subConvexPolygonsNeedsUpdate==true){
+			UpdateSubConvexPolygons();
+			subConvexPolygonsNeedsUpdate=false;
+		}
+		return subConvexPolygons[index];
 	}
 	/** Removes the polygons that contain the specified particle.
 	 * @param particle A particle to be matched.

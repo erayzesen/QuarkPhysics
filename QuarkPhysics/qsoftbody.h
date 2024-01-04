@@ -29,7 +29,7 @@
 #define QSOFTBODY_H
 #include "qbody.h"
 #include <utility>
-/** @brief QSoftBody is a body type that defines deformable, soft objects in the physics world. Mass-spring model is used for simulation dynamics in soft bodies. In the mass-spring model, there are particles with mass that can move individually and interact with the physics world, and these particles can be connected to each other with spring constraints. Additionally, with some user-configurable options specific to the simulation, particles can be subjected to constraints obtained from some calculations. For example, you can add a constraint that ensures particles remain faithful to their initially defined local positions using the "shape matching" option. You can apply a constraint that gives the feeling that the closed polygons are filled with gas and maintains their area using the "area preserving" option. You can use options that allow particles to collide with each other with a specific radius, and create objects called PBD (Position Based Dynamics). QSoftBody objects inherently require a more flexible configuration than other body types and contain many options.
+/** @brief QSoftBody is a body type that defines deformable, soft objects in the physics world. Mass-spring model is used for simulation dynamics in soft bodies. In the mass-spring model, there are particles with mass that can move individually and interact with the physics world, and these particles can be connected to each other with spring constraints. Additionally, with some user-configurable options specific to the simulation, particles can be subjected to constraints obtained from some calculations. For example, you can add a constraint that ensures particles remain faithful to their initially defined local positions using the "shape matching" option. You can apply a constraint that gives the feeling that the polygon are filled with gas and maintains their area using the "area preserving" option. You can use options that allow particles to collide with each other with a specific radius, and create objects called PBD (Position Based Dynamics). QSoftBody objects inherently require a more flexible configuration than other body types and contain many options.
  */
 class QSoftBody : public QBody
 {
@@ -47,7 +47,10 @@ class QSoftBody : public QBody
 	float circumference=0.0f;
 	bool enableAreaStability=false;
 	bool enablePassivationOfInternalSprings=false;
+
+
 	bool enableSelfCollisions=false;
+	float selfCollisionParticleRadius=0.0f;
 
 	bool enableShapeMatching=false;
 	float shapeMatchingRate=0.4f;
@@ -100,7 +103,7 @@ public:
 		areaPreservingRigidity=value;
 		return this;
 	}
-	/** Sets whether the area preserving option is enabled of the body. If the area preserving option is enabled, the total area of closed polygons are calculated at each physics step, and forces are applied to the particles that define the boundaries of the polygon to achieve a total area that can be determined by the user. If the user does not specify, when this option is enabled, the target area is calculated based on the original positions of the closed polygon particles, in other words, the total area of undeformed polygons are set as the target area.
+	/** Sets whether the area preserving option is enabled of the body. If the area preserving option is enabled, the total area of the polygon are calculated at each physics step, and forces are applied to the particles that define the boundaries of the polygon to achieve a total area that can be determined by the user. If the user does not specify, when this option is enabled, the target area is calculated based on the original positions of the polygon particles, in other words, the total area of undeformed polygons are set as the target area.
 	 * @param value A value to set. 
 	 * @return A pointer to the body itself.
 	 */
@@ -126,6 +129,15 @@ public:
 	 */
 	QSoftBody *SetSelfCollisionsEnabled(bool value){
 		enableSelfCollisions=value;
+		return this;
+	}
+
+	/** Sets a specified particle radius value for self particle collisions. If set to 0, particles will collide with their radius. Default value is 0.  
+	 * @param value A value to set. 
+	 *  @return A pointer to the body itself.
+	 */
+	QSoftBody *SetSelfCollisionsSpecifiedRadius(float value){
+		selfCollisionParticleRadius=value;
 		return this;
 	}
 
@@ -221,7 +233,7 @@ public:
 	float  GetAreaPreservingRigidity(){
 		return areaPreservingRigidity;
 	};
-	/** Returns whether the area preserving option is enabled of the body. If the area preserving option is enabled, the total area of closed polygons are calculated at each physics step, and forces are applied to the particles that define the boundaries of the polygon to achieve a total area that can be determined by the user. If the user does not specify, when this option is enabled, the target area is calculated based on the original positions of the closed polygon particles, in other words, the total area of undeformed polygons are set as the target area. */
+	/** Returns whether the area preserving option is enabled of the body. If the area preserving option is enabled, the total area of  the polygon are calculated at each physics step, and forces are applied to the particles that define the boundaries of the polygon to achieve a total area that can be determined by the user. If the user does not specify, when this option is enabled, the target area is calculated based on the original positions of the polygon particles, in other words, the total area of undeformed polygons are set as the target area. */
 	bool GetAreaPreservingEnabled(){
 		return enableAreaPreserving;
 	}
@@ -233,6 +245,10 @@ public:
 	bool GetSelfCollisionsEnabled(){
 		return enableSelfCollisions;
 	}
+	/**  Returns the specified particle radius value for self particle collisions. If the value is 0.0, particles will collide with their radius. Default value is 0.0.  */
+	float GetSelfCollisionsSpecifiedRadius(){
+		return selfCollisionParticleRadius;
+	}
 	/** Returns whether to passivate the internal spring connections of the soft body. If this option is enabled, the internal springs are more passive in the simulation, which can be useful for soft bodies where the internal springs and particle connections only provide UV and other data based on the movement of the soft body. */
 	bool GetPassivationOfInternalSpringsEnabled(){
 		return enablePassivationOfInternalSprings;
@@ -241,6 +257,7 @@ public:
 	bool GetShapeMatchingEnabled(){
 		return enableShapeMatching;
 	}
+	
 
 	/** Returns the rate value to apply the shape matching to the body.  */ 
 	float GetShapeMatchingRate(){

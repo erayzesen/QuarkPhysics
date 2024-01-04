@@ -30,13 +30,15 @@
 
 ExampleSceneSoftBodies::ExampleSceneSoftBodies(QVector sceneSize) :QExampleScene(sceneSize)
 {
-	world->SetEnableSleeping(false);
+	world->SetSleepingEnabled(false);
 	//world->SetTimeScale(0.1f);
 	//Adding Floor
 	QRigidBody *floor=new QRigidBody();
 	floor->AddMesh(QMesh::CreateWithRect(QVector(3000,64),QVector(0.0f,0.0f) ) )->SetPosition(QVector(512.0f,550.0f));
 	floor->SetMode(QBody::Modes::STATIC);
 	world->AddBody(floor);
+	//world->SetGravity(QVector::Zero() );
+	
 
 
 
@@ -96,6 +98,18 @@ ExampleSceneSoftBodies::ExampleSceneSoftBodies(QVector sceneSize) :QExampleScene
 	griddedPressuredBody->SetRigidity(0.5f)->SetPosition(QVector(900,150))->SetMass(0.5f);
 	griddedPressuredBody->SetAreaPreservingEnabled(true)->SetPassivationOfInternalSpringsEnabled(true);
 	world->AddBody(griddedPressuredBody);
+
+
+	//Adding mass-spring model soft body without polar grids
+	QSoftBody *boxA=new QSoftBody();
+	boxA->AddMesh( QMesh::CreateWithRect(QVector(64,64) )  );
+	boxA->SetRigidity(0.1f)->SetPosition(QVector(350,-200))->SetMass(0.5f);
+	world->AddBody(boxA);
+
+	QSoftBody *boxB=new QSoftBody();
+	boxB->AddMesh( QMesh::CreateWithRect(QVector(64,64) )  );
+	boxB->SetRigidity(0.1f)->SetPosition(QVector(100,-200))->SetMass(0.5f);
+	world->AddBody(boxB);
 
 
 	//It's about self collision tests.

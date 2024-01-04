@@ -68,6 +68,8 @@ void QSoftBody::Update()
 		}
 	}
 
+	
+
 	//Integrate Velocities
 	for(int i=0;i<_meshes.size();i++){
 		QMesh *mesh=_meshes[i];
@@ -84,6 +86,8 @@ void QSoftBody::Update()
 		}
 	}
 
+	
+
 
 	if(enableAreaPreserving){
 		PreserveAreas();
@@ -95,7 +99,6 @@ void QSoftBody::Update()
 	} */
 
 
-
 	UpdateAABB();
 
 
@@ -103,6 +106,8 @@ void QSoftBody::Update()
 
 void QSoftBody::PreserveAreas()
 {
+
+
 	//Time scale feature
 	float ts=1.0f;
 
@@ -132,26 +137,25 @@ void QSoftBody::PreserveAreas()
 
 		float pressure=(deltaArea/circumference)*areaPreservingRigidity;
 
-		for(int i=0;i<mesh->GetClosedPolygonCount();i++){
-			vector<QParticle*> &polygon=mesh->GetClosedPolygonAt(i);
-			QVector volumeForces[polygon.size()];
-			for(int n=0;n<polygon.size();n++){
-				QSpring *spring=mesh->GetSpringAt(i);
-				QParticle *pp=polygon[ (n-1+polygon.size())%polygon.size() ];
-				QParticle *np=polygon[ (n+1)%polygon.size() ];
-				QVector vec=np->GetGlobalPosition()-pp->GetGlobalPosition();
-				volumeForces[n]=pressure*(vec.Perpendicular().Normalized())*ts;	
-			}
-
-			for(int n=0;n<polygon.size();n++){
-				QParticle *pp=polygon[ (n-1+polygon.size())%polygon.size() ];
-				QParticle *np=polygon[ (n+1)%polygon.size() ];
-				QVector centerPos=(np->GetGlobalPosition()+pp->GetGlobalPosition())*0.5f;
-				QParticle::ApplyForceToParticleSegment(pp,np,volumeForces[n],centerPos);
-				//GetWorld()->GetGizmos()->push_back( new QGizmoLine( centerPos,centerPos+volumeForces[n]*30,true ) );
-
-			}
+		
+		
+		QVector volumeForces[mesh->polygon.size()];
+		for(int n=0;n<mesh->polygon.size();n++){
+			QParticle *pp=mesh->polygon[ (n-1+mesh->polygon.size())%mesh->polygon.size() ];
+			QParticle *np=mesh->polygon[ (n+1)%mesh->polygon.size() ];
+			QVector vec=np->GetGlobalPosition()-pp->GetGlobalPosition();
+			volumeForces[n]=pressure*(vec.Perpendicular().Normalized())*ts;	
 		}
+
+		for(int n=0;n<mesh->polygon.size();n++){
+			QParticle *pp=mesh->polygon[ (n-1+mesh->polygon.size())%mesh->polygon.size() ];
+			QParticle *np=mesh->polygon[ (n+1)%mesh->polygon.size() ];
+			QVector centerPos=(np->GetGlobalPosition()+pp->GetGlobalPosition())*0.5f;
+			QParticle::ApplyForceToParticleSegment(pp,np,volumeForces[n],centerPos);
+			//GetWorld()->GetGizmos()->push_back( new QGizmoLine( centerPos,centerPos+volumeForces[n]*30,true ) );
+
+		}
+		
 
 
 	}
@@ -222,10 +226,7 @@ void QSoftBody::ApplyShapeMatching()
 
 		vector<QParticle*> particles;
 		if(mesh->GetCollisionBehavior()==QMesh::CollisionBehaviors::POLYLINE ){
-			for(int n=0;n<mesh->closedPolygons.size();n++ ){
-				vector<QParticle*> polygon=mesh->closedPolygons[n];
-				particles.insert(particles.end(),polygon.begin(),polygon.end() );
-			}
+			particles=mesh->polygon;
 		}else{
 			particles=mesh->particles;
 		}

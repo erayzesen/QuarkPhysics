@@ -50,17 +50,20 @@ using namespace std;
 class QWorld{
 
 	struct bodyPairHash {
-		size_t operator()(const std::pair<QBody*, QBody*> &p) const {
-			 return std::hash<QBody*>()(p.first) + std::hash<QBody*>()(p.second);
+		size_t operator()(const std::pair<QBody*, QBody*>& p) const {
+			std::size_t h1 = std::hash<QBody*>{}(p.first);
+			std::size_t h2 = std::hash<QBody*>{}(p.second);
+			return h1 ^ (h2 + 0x9e3779b9 + (h1 << 6) + (h1 >> 2));
 		}
 	};
 
 	struct bodyPairEqual {
-		bool operator()(const std::pair<QBody*, QBody*> &p1, const std::pair<QBody*, QBody*> &p2) const {
-			return ( (p1.first == p2.first && p1.second == p2.second) ) ;
-
+		bool operator()(const std::pair<QBody*, QBody*>& p1, const std::pair<QBody*, QBody*>& p2) const {
+			return (p1.first == p2.first && p1.second == p2.second) ||
+				(p1.first == p2.second && p1.second == p2.first);
 		}
 	};
+
 protected:
 	//Collections
 	vector<QBody*> bodies=vector<QBody*>();
@@ -76,7 +79,7 @@ protected:
 	vector<vector<QBody*> > sleepingIslands=vector<vector<QBody*> >();
 	unordered_set<pair<QBody*, QBody*>, bodyPairHash,bodyPairEqual> collisionExceptions;
 
-	QBroadPhase broadPhase=QBroadPhase(QVector(128.0f,128.0f));
+	QBroadPhase broadPhase;
 
 	vector<QManifold> manifolds;
 
@@ -89,6 +92,8 @@ protected:
 	bool enableBroadphase=true;
 	int iteration=4;
 	float timeScale=1.0f;
+	bool enableSpatialHashing=true;
+	float spatialHashingSize=256.0f;
 
 
 	//Sleeping
@@ -128,16 +133,39 @@ public:
 	QVector GetGravity(){
 		return gravity;
 	}
+
+	
 	/** Returns whether sleep mode will be applied to dynamic objects.
 	 */
-	bool GetEnableSleeping(){
+	bool GetSleepingEnabled(){
 		return enableSleeping;
+	}
+	/** Returns the sleeping position tolerance. If the sleeping option is active, objects will go to sleep as long as they do not exceed this position change limit within a certain step amount.
+	*/
+	float GetSleepingPositionTolerance(){
+		return sleepingPositionTolerance;
+	}
+	/** Returns the sleeping rotation tolerance. If the sleeping option is active, objects will go to sleep as long as they do not exceed this rotation change limit within a certain step amount.
+	*/
+	float GetSleepingRotationTolerance(){
+		return sleepingRotationTolerance;
 	}
 	/** Returns whether broad phase optimization will be applied to the collisions. 
 	 */
-	bool GetEnableBroadphase(){
+	bool GetBroadphaseEnabled(){
 		return enableBroadphase;
 	}
+
+	/** Returns whether  spatial hashing feature is enabled in the broad phase. The Spatial hashing operation can improves performance for big scenes.  */
+	bool GetSpatialHashingEnabled(){
+		return enableSpatialHashing;
+	}
+
+	/** Returns cell size value of the spatial hashing.  */
+	float GetSpatialHashingCellSize(){
+		return spatialHashingSize;
+	}
+
 	/** Returns the iteration count per step of physics in the world. 
 	 * The Iteration count determines the stability level of the simulation.
 	 */
@@ -165,18 +193,49 @@ public:
 		return this;
 	}
 	/** Sets whether sleep mode will be applied to dynamic objects.
-	 * @param value True or false. 
+	 * @param value A value to set 
 	 */
-	QWorld *SetEnableSleeping(bool value){
+	QWorld *SetSleepingEnabled(bool value){
 		enableSleeping=value;
+		return this;
+	}
+	/** Sets the sleeping position tolerance. If the sleeping option is active, objects will go to sleep as long as they do not exceed this position change limit within a certain step amount.
+	 * @param value A value to set
+	*/
+	QWorld *SetSleepingPositionTolerance(float value){
+		sleepingPositionTolerance=value;
+		return this;
+	}
+	/** Sets the sleeping rotation tolerance. If the sleeping option is active, objects will go to sleep as long as they do not exceed this rotation change limit within a certain step amount.
+	 * @param value A value to set
+	*/
+	QWorld *SetSleepingRotationTolerance(float value){
+		sleepingRotationTolerance=value;
 		return this;
 	}
 	/** Sets whether broad phase optimization will be applied to the collisions.  
 	 */
-	QWorld *SetEnableBroadphase(bool value){
+	QWorld *SetBroadphaseEnabled(bool value){
 		enableBroadphase=value;
 		return this;
 	}
+
+	/** Sets whether  spatial hashing feature is enabled in the broad phase. The Spatial hashing operation can improves performance for big scenes. 
+	 * @param value A value to set
+	*/
+	QWorld *SetSpatialHashingEnabled(bool value){
+		enableSpatialHashing=value;
+		return this;
+	}
+
+	/** Sets cell sizes for spatial hashing.  
+	 * @param value A value to set
+	*/
+	QWorld *SetSpatialHashingCellSize(float value){
+		spatialHashingSize=value;
+		return this;
+	}
+
 	/** Sets the iteration count per step of physics in the world. 
 	 * Iteration count determines stability level of the simulation.
 	 * @param value The number of iterations per step.
@@ -202,6 +261,8 @@ public:
 		enabled=value;
 		return this;
 	}
+
+	
 	
 
 	//Methods
@@ -444,6 +505,8 @@ public:
 
 	friend class QCollision;
 	friend class QManifold;
+	friend class QSoftBody;
+	friend class QBroadPhase;
 
 
 

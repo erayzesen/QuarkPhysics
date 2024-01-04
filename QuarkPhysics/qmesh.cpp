@@ -49,7 +49,9 @@ void QMesh::UpdateCollisionBehavior()
 {
 	if(ownerBody==nullptr)
 		return;
-	if(closedPolygons.size()>0){
+	
+
+	if(GetPolygonParticleCount()>0){
 		if(ownerBody->simulationModel==QBody::SimulationModels::RIGID_BODY){
 			collisionBehavior=CollisionBehaviors::POLYGONS;
 		}else{
@@ -60,8 +62,6 @@ void QMesh::UpdateCollisionBehavior()
 		collisionBehavior=CollisionBehaviors::CIRCLES;
 	}
 }
-
-
 
 
 
@@ -113,9 +113,265 @@ QParticle *QMesh::GetParticleAt(int index){
 	return particles[index];
 }
 
+QMesh *QMesh::SetPolygon(vector<QParticle *> polygonParticles)
+{
+	polygon=polygonParticles;
+
+	subConvexPolygonsNeedsUpdate=true;
+
+	collisionBehaviorNeedsUpdate=true;
+
+    return this;
+}
+
+QMesh *QMesh::AddParticleToPolygon(QParticle *particle, int position)
+{
+	if (position==-1) {
+		polygon.push_back(particle);
+	}else{
+		polygon.insert(polygon.begin()+position,particle);
+	}
+	subConvexPolygonsNeedsUpdate=true;
+
+	collisionBehaviorNeedsUpdate=true;
+
+    return this;
+}
+
+QMesh *QMesh::RemoveParticleFromPolygon(QParticle *particle)
+{
+	int index=-1;
+	for (int i=0;i<polygon.size();i++) {
+		if (polygon[i]==particle)
+			index=i;
+			break;
+	}
+	if (index!=-1){
+		RemoveParticleFromPolygonAt(index);
+	}
+    return this;
+}
+
+QMesh *QMesh::RemoveParticleFromPolygonAt(int index)
+{
+	polygon.erase(polygon.begin()+index);
+	subConvexPolygonsNeedsUpdate=true;
+	collisionBehaviorNeedsUpdate=true;
+    return this;
+}
+
+QMesh *QMesh::RemovePolygon()
+{
+	polygon.clear();
+	subConvexPolygons.clear();
+	collisionBehaviorNeedsUpdate=true;
+    return this;
+}
+
+int QMesh::GetPolygonParticleCount()
+{
+    return polygon.size();
+}
+
+QParticle *QMesh::GetParticleFromPolygon(int index)
+{
+    return polygon[index];
+}
+
+void QMesh::UpdateSubConvexPolygons()
+{
+	subConvexPolygons.clear();
+	if (CheckIsPolygonConcave(polygon)==true ){
+		DecompositePolygon(polygon,subConvexPolygons);
+		cout<<"polygon is concave"<<endl;
+	}else{
+		subConvexPolygons.push_back( polygon );
+		cout<<"polygon is convex"<<endl;
+	}
+	
+}
+
+bool QMesh::CheckIsPolygonConcave(vector<QParticle *> polygonParticles)
+{
+	int polygonParticleCount=GetPolygonParticleCount();
+	for (size_t i=0;i<polygonParticleCount;i++ ){
+		QVector p1=GetParticleFromPolygon( (i-1+polygonParticleCount)%polygonParticleCount )->GetGlobalPosition();
+		QVector p2=GetParticleFromPolygon( i )->GetGlobalPosition();
+		QVector p3=GetParticleFromPolygon( (i+1)%polygonParticleCount )->GetGlobalPosition();
+		if (CheckIsReflex(p1,p2,p3) )
+			return true;
+	}
+    return false;
+}
+
+bool QMesh::CheckIsReflex(QVector pA, QVector pB, QVector pC)
+{
+	if ( (pB-pA).Dot( (pC-pA).Perpendicular() )<-1.0f )
+		return true;
+	return false;
+}
+
+bool QMesh::CheckIsReflex(int indexA, int indexB, int indexC, vector<QParticle *> polygonParticles)
+{
+    return CheckIsReflex( polygonParticles[indexA]->GetGlobalPosition(),polygonParticles[indexB]->GetGlobalPosition(),polygonParticles[indexC]->GetGlobalPosition() );
+}
+
+void QMesh::TriangulatePolygon(vector<QParticle *> &polygonParticles, vector<vector<int>> &triangles)
+{
+	vector<int> indexList;
+	for (int i=0;i<polygonParticles.size();i++ ){
+		indexList.push_back(i);
+	}
+
+	
+	while (indexList.size()>3 ){
+		
+		for (int i=0;i<indexList.size();i++ ){
+			int pi=indexList[ (i-1+indexList.size() )%indexList.size() ]; //previous index
+			int ci=indexList[i]; //current index
+			int ni=indexList[ (i+1)%indexList.size() ]; // next index
+
+			QVector pp=polygonParticles[pi]->GetPosition(); // previous particle position
+			QVector cp=polygonParticles[ci]->GetPosition(); // current particle position
+			QVector np=polygonParticles[ni]->GetPosition(); // next particle position
+			
+
+			//Checking whether the vertice is ear  
+			if ( CheckIsReflex(pp,cp,np) )
+				continue;
+
+			QVector cp2npPerp=(np-cp).Perpendicular();
+			QVector np2ppPerp=(pp-np).Perpendicular();
+			QVector pp2cpPerp=(cp-pp).Perpendicular();
+			
+			// Checking other vertices are in the triangle 
+			bool isThereAVertice=false;
+			for (int n=0;n<indexList.size();n++ ){
+				int ti=indexList[n]; // test index
+				if (ti==pi || ti==ci || ti==ni)
+					continue;
+				QVector tp=polygonParticles[ti]->GetPosition(); // test particle position
+
+				float d1=(tp-cp).Dot( cp2npPerp );
+				float d2=(tp-np).Dot( np2ppPerp );
+				float d3=(tp-pp).Dot( pp2cpPerp );
+
+				if ( (d1>0 && d2>0 && d3>0 ) || (d1<0 && d2<0 && d3<0) ){
+					isThereAVertice=true;
+					break;
+				}
+
+			}
+
+			//Adding a new triangle and removing ear from the polygon
+			if (isThereAVertice==false){
+				vector<int> triangle={pi,ci,ni};
+				triangles.push_back ( triangle);
+				indexList.erase(indexList.begin()+i);
+				break;
+			}
+
+		}
+	}
+
+	//Adding the final three points as a triangle to the triangles
+	vector<int> lastTriangle;
+	for (int i=0;i<indexList.size();i++ ){
+		lastTriangle.push_back(indexList[i] );
+	}
+	triangles.push_back(lastTriangle);
+
+
+}
+
+void QMesh::DecompositePolygon(vector<QParticle *> &polygonParticles, vector<vector<QParticle *>> &polygons)
+{
+	
+	vector<vector<int>> subPolygons;
+	TriangulatePolygon(polygonParticles,subPolygons);
+
+	
+	
+	int ia=0;
+
+	//Per all subPolygons
+	while (ia!=subPolygons.size()){
+		cout<<"started subpolygons loop ia is:"<<ia <<endl;
+		auto polyA=subPolygons[ia];
+		bool isDiagonal=false;
+		//Check diagonals
+		for (size_t na=0;na<polyA.size();na++ ){
+			int pA1=polyA[na ];
+			int pA2=polyA[ (na+1)%polyA.size() ];
+
+			for (size_t ib=0;ib<subPolygons.size();ib++ ){
+				if (ia==ib)
+					continue;
+				cout<<"started subpolygons loop ib is:"<<ib <<endl;
+				auto polyB=subPolygons[ib];
+				for (size_t nb=0;nb<polyB.size();nb++ ){
+					int pB1=polyB[nb];
+					int pB2=polyB[ (nb+1)%polyB.size() ];
+					if (pB2==pA1 && pB1==pA2){
+						//Finded a diagonal polygon. checking reflex... 
+						if (CheckIsReflex( polyA[ (na-1+polyA.size() )%polyA.size() ], pA1, polyB[(nb+2) % polyB.size() ],polygonParticles ) )
+							continue;
+						if ( CheckIsReflex(polyB[ (nb-1+polyB.size())%polyB.size() ], pA2, polyA[ (na+2)%polyA.size() ],polygonParticles )  )
+							continue;
+						//There is no exist reflexes. So the new polygon can be convex.
+						int pIndex=(nb+1)%polyB.size();
+						int pos=na+1;
+						//Adding points to first polygon
+						cout<<"adding next polygon to prev polygon"<<endl;
+						while (pIndex!=(nb-1+polyB.size() )%polyB.size() ){
+							pIndex=(pIndex+1)%polyB.size();
+							polyA.insert(polyA.begin()+pos,polyB[pIndex]);
+							pos+=1;
+						}
+						subPolygons[ia]=polyA;
+						cout<<"erased polygon"<<endl;
+						subPolygons.erase(subPolygons.begin()+ib );
+						cout<<"erased polygon finished"<<endl;
+						isDiagonal=true;
+						break;
+					}
+				}
+				if (isDiagonal){
+					cout<<"exiting for polyB  loop"<<endl;
+					break;
+				}
+			}
+			if (isDiagonal){
+				cout<<"exiting for polyA loop"<<endl;
+				break;	
+			}
+		}
+		if (isDiagonal){
+			cout<<"continue subpolygons loop ia is:"<<ia <<endl;
+			continue;
+		}
+		ia+=1;
+	}
+	//Converting particle index polygon collection  to QParticle polygon collection  
+	for (size_t i=0;i<subPolygons.size();i++ ){
+		vector<QParticle*> poly;
+		for(size_t n=0;n<subPolygons[i].size();n++ ){
+			int pIndex=subPolygons[i][n];
+			poly.push_back(polygonParticles[pIndex] );
+			
+		}
+		polygons.push_back(poly);
+	}
+
+	
+
+}
+
+//These  will be removed!! 
+
 QMesh *QMesh::AddClosedPolygon(vector<QParticle *> polygon)
 {
-	closedPolygons.push_back(polygon);
+	subConvexPolygons.push_back(polygon);
 	if(ownerBody!=nullptr){
 		if (ownerBody->mode==QBody::Modes::STATIC)
 			ownerBody->UpdateMeshTransforms();
@@ -128,7 +384,7 @@ QMesh *QMesh::AddClosedPolygon(vector<QParticle *> polygon)
 
 QMesh *QMesh::RemoveClosedPolygonAt(int index)
 {
-	closedPolygons.erase(closedPolygons.begin()+index);
+	subConvexPolygons.erase(subConvexPolygons.begin()+index);
 	if(ownerBody!=nullptr){
 		if (ownerBody->mode==QBody::Modes::STATIC)
 			ownerBody->UpdateMeshTransforms();
@@ -143,8 +399,8 @@ QMesh *QMesh::RemoveClosedPolygonAt(int index)
 QMesh *QMesh::RemoveMatchingClosedPolygons(QParticle *particle)
 {
 	int i=0;
-	while(i<closedPolygons.size()){
-		vector<QParticle*> &polygon=closedPolygons[i];
+	while(i<subConvexPolygons.size()){
+		vector<QParticle*> &polygon=subConvexPolygons[i];
 		bool matched=false;
 		int n=0;
 		while(n<polygon.size()){
@@ -164,6 +420,8 @@ QMesh *QMesh::RemoveMatchingClosedPolygons(QParticle *particle)
 	}
 	return this;
 }
+
+//End Of - These  will be removed!!
 
 QMesh *QMesh::AddSpring(QSpring *spring)
 {
@@ -235,17 +493,16 @@ QMesh *QMesh::CreateWithMeshData(MeshData &data,bool enableSprings, bool enableP
 		res->AddParticle( particle );
 	}
 
-	//Adding closed polygons
+	//Adding polygon
+	vector<QParticle*> polygonFromData;
 	if(enablePolygons){
-		for(int i=0;i<data.closedPolygonList.size();i++){
-			vector<int> polygonIndexes=data.closedPolygonList[i];
-			vector<QParticle *> polygon;
-			for(int n=0;n<polygonIndexes.size();n++){
-				polygon.push_back( res->particles[ polygonIndexes[n] ] );
-			}
-			res->closedPolygons.push_back(polygon);
+		for(int i=0;i<data.polygon.size();i++){
+			polygonFromData.push_back( res->particles[ data.polygon[i] ] );
 		}
 	}
+	if (polygonFromData.size()>0 )
+		res->SetPolygon(polygonFromData);
+	
 
 
 	//Adding springs
@@ -309,10 +566,13 @@ vector<QMesh::MeshData> QMesh::GetMeshDatasFromJsonData(std::string &jsonBasedDa
 		for (auto spring:internalSprings){
 			meshData.internalSpringList.push_back(pair<int,int>(spring[0],spring[1]) );
 		}
-		auto polygons=mesh["polygons"];
-		for (auto polygon:polygons){
-			meshData.closedPolygonList.push_back(polygon);
+
+		vector<int> polygonParticleIndexes=(vector<int>)mesh["polygon"];
+		if (polygonParticleIndexes.size()>0) {
+			meshData.polygon=polygonParticleIndexes;
 		}
+		
+		
 		meshData.position=QVector(mesh["position"][0],mesh["position"][1] );
 		meshData.rotation=mesh["rotation"];
 		//Convert degrees to radians
@@ -370,11 +630,10 @@ QMesh::MeshData QMesh::GenerateRectangleMeshData(QVector size,QVector centerPosi
 		res.particleRadValues={particleRadius,particleRadius,particleRadius,particleRadius};
 		res.particleInternalValues={false,false,false,false};
 
-		vector<int> polygon;
+
 		for(int i=0;i<res.particlePositions.size();i++){
-			polygon.push_back(i);
+			res.polygon.push_back(i);
 		}
-		res.closedPolygonList.push_back(polygon);
 
 
 		res.springList.push_back(pair<int,int>(0,1));
@@ -470,12 +729,11 @@ QMesh::MeshData QMesh::GenerateRectangleMeshData(QVector size,QVector centerPosi
 		   res.springList=orderedSprings;
 		}
 
-		//Creating a closed polygon with boundary springs
+		//Creating a polygon with boundary springs
 		vector<int> polygon;
 		for(int i=0;i<res.springList.size();i++){
-			polygon.push_back(res.springList[i].first);
+			res.polygon.push_back(res.springList[i].first);
 		}
-		res.closedPolygonList.push_back(polygon);
 
 	}
 
@@ -496,11 +754,11 @@ QMesh::MeshData QMesh::GeneratePolygonMeshData(float radius, int sideCount, QVec
 		res.particlePositions.push_back(nPos);
 		res.particleRadValues.push_back(particleRadius);
 		res.particleInternalValues.push_back(false);
-		polygon.push_back(i);
+		res.polygon.push_back(i);
 		res.springList.push_back( pair<int,int>(i,(i+1)%sideCount) );
 
 	}
-	res.closedPolygonList.push_back(polygon);
+	
 
 	if(polarGrid<0)
 		return res;

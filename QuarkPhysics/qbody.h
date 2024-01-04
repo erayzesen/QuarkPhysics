@@ -74,6 +74,7 @@ protected:
 	float rotation=0.0f;
 	float prevRotation=0.0f;
 	QAABB aabb;
+	QAABB spatialContainerAABB;
 	QAABB fattedAABB;
 	Modes mode=QBody::Modes::DYNAMIC;
 	bool inertiaNeedsUpdate=true;
@@ -610,6 +611,7 @@ protected:
 		friend class QManifold;
 		friend class QParticle;
 		friend class QJoint;
+		friend class QBroadPhase;
 
 	protected:
 		vector<QMesh*> _meshes=vector<QMesh*>();

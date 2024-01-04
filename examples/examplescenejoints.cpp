@@ -30,7 +30,7 @@
 ExampleSceneJoints::ExampleSceneJoints(QVector sceneSize):QExampleScene(sceneSize)
 {
 	//world->gravity=QVector::Zero();
-	world->SetEnableSleeping(false);
+	world->SetSleepingEnabled(false);
 	PinJointSample(QVector(200,200) );
 	SpringDistanceJointSample(QVector(400,200) );
 	GrooveJointSample(QVector(600,200) );

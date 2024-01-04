@@ -217,29 +217,24 @@ void QRaycast::RaycastToPolygon(QBody *body, QMesh *mesh, QVector rayPosition, Q
 	QVector nearContactNormal=QVector::Zero();
 
 
-	for(int n=0;n<mesh->GetClosedPolygonCount();n++){
-		vector<QParticle*> &polygon=mesh->GetClosedPolygonAt(n);
-		for(int i=0;i<polygon.size();i++){
+	
+	for(int i=0;i<mesh->polygon.size();i++){
 
-			QParticle *p=polygon[i];
-			QParticle *np=polygon[(i+1)%polygon.size() ];
+		QParticle *p=mesh->polygon[i];
+		QParticle *np=mesh->polygon[(i+1)%mesh->polygon.size() ];
 
-			QVector intersection=QCollision::LineIntersectionLine(p->GetGlobalPosition(),np->GetGlobalPosition(),rayStart,rayEnd);
-			if(intersection.isNaN())continue;
+		QVector intersection=QCollision::LineIntersectionLine(p->GetGlobalPosition(),np->GetGlobalPosition(),rayStart,rayEnd);
+		if(intersection.isNaN())continue;
 
-			float distance=(intersection-rayStart).Length();
-			if(distance>nearDistance)continue;
+		float distance=(intersection-rayStart).Length();
+		if(distance>nearDistance)continue;
 
-			nearDistance=distance;
-			nearContactPosition=intersection;
-			nearContactNormal=(np->GetGlobalPosition()-p->GetGlobalPosition()).Normalized().Perpendicular();
-			contactFound=true;
-
-
-
-
-		}
+		nearDistance=distance;
+		nearContactPosition=intersection;
+		nearContactNormal=(np->GetGlobalPosition()-p->GetGlobalPosition()).Normalized().Perpendicular();
+		contactFound=true;
 	}
+	
 
 	if(contactFound==false)return;
 

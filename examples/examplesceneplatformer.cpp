@@ -33,7 +33,7 @@ ExampleScenePlatformer::ExampleScenePlatformer(QVector sceneSize):QExampleScene(
 {
 	//Creating platforms and player
 	//
-	world->SetEnableSleeping(false);
+	world->SetSleepingEnabled(false);
 	//Adding Floors
 	QRigidBody *floor;
 	floor=new QRigidBody();

@@ -26,120 +26,179 @@
 **************************************************************************************/
 
 #include "qbroadphase.h"
-#include <cmath>
 #include <iostream>
 #include <algorithm>
+#include "qworld.h"
+#include "qaabb.h"
 
 
 
-QBroadPhase::~QBroadPhase()
-{
+QBroadPhase::QBroadPhase(float cellSize) : cellSize(cellSize) {}
 
+void QBroadPhase::insert(QBody *body, const QAABB& aabb) {
+    std::vector<int> cellKeys = getCellKeys(aabb);
+
+    for (int key : cellKeys) {
+        hashTable[key].push_back(body);
+    }
+    
 }
 
-QBroadPhase *QBroadPhase::Add(QBody* body)
-{
-	QAABB aabb=body->GetAABB();
-	if(body->GetFattedAABB().isContain(aabb)){
-		return this;
-	}
+void QBroadPhase::update(QBody *body, const QAABB& newAABB) {
+    
+    //Debug Test Bounding Boxes
 
-	RemoveBodyFromCells(body->GetFattedAABB(),body);
+    /* body->GetWorld()->gizmos.push_back( new QGizmoRect(body->spatialContainerAABB) );
+    body->GetWorld()->gizmos.push_back( new QGizmoRect(newAABB) ); */
 
+    if(body->spatialContainerAABB.isContain(newAABB) ){
+        return;
+    }
 
-	float fatFactor=5.0f;
-	if(body->GetSimulationModel()==QBody::SimulationModels::RIGID_BODY){
-		fatFactor+=(body->GetPosition()-body->GetPreviousPosition()).Length();
-	}
-	body->GetFattedAABB()=body->GetAABB().Fatted(fatFactor );
-	QVector min = body->GetFattedAABB().GetMin();
-	min *= inverseCellSize;
-	int minX = std::floor(min.x);
-	int minY= std::floor(min.y);
+    auto fatAABB=newAABB.FattedWithRate(1.2f);
+    
 
+    remove(body, body->spatialContainerAABB);
 
-	QVector max = body->GetFattedAABB().GetMax();
-	max *= inverseCellSize;
-	int maxX = std::floor(max.x);
-	int maxY= std::floor(max.y);
+    
+    insert(body, fatAABB);
 
-
-	for (int x = minX; x <= maxX; x++){
-		for (int y = minY; y <= maxY; y++)
-		{
-			int cell=hashFunction(x,y);
-
-			collisionGroups[cell].insert(body);
-		}
-	}
-
-	isBodyAdded=true;
-	return this;
+    body->spatialContainerAABB=fatAABB;
 }
 
+void QBroadPhase::remove(QBody *body, const QAABB& aabb) {
+    std::vector<int> cellKeys = getCellKeys(aabb);
 
-
-
-
-QBroadPhase *QBroadPhase::Clear()
-{
-	collisionGroups.clear();
-	return this;
+    for (int key : cellKeys) {
+        auto& cell = hashTable[key];
+        auto it=find(cell.begin(),cell.end(),body);
+        if(it!=cell.end() ){
+            cell.erase(it);
+        }
+    }
 }
 
-std::unordered_set<std::pair<QBody*,QBody*>,QBroadPhase::pairHash,QBroadPhase::pairEqual>* QBroadPhase::GetPairs()
+void QBroadPhase::ApplySweepAndPruneToCells()
 {
-//	if(isBodyAdded==false)
-//		return &pairList;
-
-	pairList.clear();
-
-	/* for(auto const &[key, value] : collisionGroups) {
-		for(auto ita=value.begin();ita!=value.end();++ita) {
-			auto bodyA=*ita;
-			for(auto itb=next(ita);itb!=value.end();++itb) {
-				auto bodyB=*itb;
-				auto pair = minmax(bodyA, bodyB);
-				pairList.insert(pair);
-
-			}
-		}
-	} */
-	isBodyAdded=false;
-	return &pairList;
-	
+    for (auto& cellPair : hashTable) {
+        vector<QBody*> &cell = cellPair.second;
+        sort(cell.begin(),cell.end(),QWorld::SortBodies);
+    }
 }
 
-void QBroadPhase::RemoveBodyFromCells(QAABB referenceAABB, QBody *body)
+void QBroadPhase::GetPotentialCollisions(QBody *body, unordered_set<QBody *> &collection)
 {
-	QVector min = referenceAABB.GetMin();
-	min *= inverseCellSize;
-	int minX = std::floor(min.x);
-	int minY= std::floor(min.y);
+    
+    
+    if(body->GetEnabled()==false )
+        return;
 
+    std::vector<int> cellKeys = getCellKeys(body->spatialContainerAABB);
 
-	QVector max = referenceAABB.GetMax();
-	max *= inverseCellSize;
-	int maxX = std::floor(max.x);
-	int maxY= std::floor(max.y);
+    for (size_t i = 0; i < cellKeys.size(); ++i){
+        auto &cell = hashTable[cellKeys[i]];
 
-	for (int x = minX; x <= maxX; x++){
-		for (int y = minY; y <= maxY; y++)
-		{
-			int cell=hashFunction(x,y);
-			auto groupIt=collisionGroups.find(cell);
-			if(groupIt==collisionGroups.end())
+        auto itA = cell.begin();
+        while (itA != cell.end() && *itA != body) {
+            ++itA;
+        }
+        
+        for (auto itB = std::next(itA); itB != cell.end(); ++itB) {
+            QBody *otherBody=*itB;
+
+            if(otherBody->GetEnabled()==false )
+                continue;
+
+            if( QBody::CanCollide(body,otherBody)==false){
+                continue;
+            }
+            body->GetWorld()->debugAABBTestCount+=1;
+            if(body->GetAABB().GetMax().x >= otherBody->GetAABB().GetMin().x){
+                if( body->GetAABB().GetMin().y <= otherBody->GetAABB().GetMax().y &&
+                    body->GetAABB().GetMax().y >= otherBody->GetAABB().GetMin().y) {
+                    collection.insert(otherBody);
+                }
+
+            }else{
+                break;
+            }
+
+            
+        }
+         
+
+    }
+    
+}
+
+vector< vector<QBody*> > QBroadPhase::GetBodiesFromCells() {
+    vector< vector<QBody*> > result;
+
+    // Hash tablosundaki her hücreyi dolaşıyoruz.
+    for (const auto& cellPair : hashTable) {
+        const vector<QBody*>& cell = cellPair.second;
+        std::vector<QBody*> uniqueBodies(cell.begin(), cell.end());
+        result.push_back(uniqueBodies);
+    }
+
+    return result;
+}
+
+void QBroadPhase::GetAllPairs( unordered_set<pair<QBody*,QBody*>,QBroadPhase::bodyPairHash,bodyPairEqual > &pairs){
+
+    
+    
+
+    for (auto& cellPair : hashTable) {
+        vector<QBody*> &cell = cellPair.second;
+
+         for (auto itA = cell.begin(); itA != cell.end(); ++itA) {
+            QBody *body=*itA;
+            if(body->GetEnabled()==false )
 				continue;
-			unordered_set<QBody*> *group=&groupIt->second;
-			//auto it=std::find(group->begin(),group->end(),body);
-			auto it=group->find(body);
-			if(it!=group->end()){
-				group->erase(it);
-			}
+            for (auto itB = itA+1; itB != cell.end(); ++itB) {
+                QBody *otherBody=*itB;
 
-		}
-	}
+                if(otherBody->GetEnabled()==false )
+                    continue;
+
+                /* if( QBody::CanCollide(body,otherBody)==false){
+                    continue;
+                } */
+
+                body->GetWorld()->debugAABBTestCount+=1;
+                if(body->GetAABB().isCollidingWith(otherBody->GetAABB()) ){
+                    pairs.insert(pair<QBody*,QBody*>{body,otherBody});
+                }
+
+                
+            }
+        }
+
+        
+
+        
+    }
 
 
+} 
+
+std::vector<int> QBroadPhase::getCellKeys(QAABB aabb) {
+    std::vector<int> cellKeys;
+
+    int minCellX = static_cast<int>(aabb.GetMin().x / cellSize);
+    int minCellY = static_cast<int>(aabb.GetMin().y / cellSize);
+    int maxCellX = static_cast<int>(aabb.GetMax().x / cellSize);
+    int maxCellY = static_cast<int>(aabb.GetMax().y / cellSize);
+
+    // AABB'nin kapsadığı hücreleri buluyoruz.
+    for (int cellX = minCellX; cellX <= maxCellX; ++cellX) {
+        for (int cellY = minCellY; cellY <= maxCellY; ++cellY) {
+            int key = cellX | (cellY << 16);
+            cellKeys.push_back(key);
+        }
+    }
+
+    return cellKeys;
 }
 

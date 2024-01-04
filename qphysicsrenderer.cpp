@@ -79,7 +79,8 @@ void QPhysicsRenderer::RenderColliders(QWorld *world, sf::RenderWindow *window)
 			col=QPhysicsRenderer::COLOR_BODY_DYNAMIC_SLEEPING;
 		}
 		col=body->GetMode()==QBody::STATIC ? QPhysicsRenderer::COLOR_BODY_STATIC:col;
-
+		sf::Color colHalf=col;
+		colHalf.a=50;
 		
 		if(body->GetBodyType()==QBody::BodyTypes::RIGID){
 			QRigidBody *rbody=static_cast<QRigidBody*>(body);
@@ -146,21 +147,33 @@ void QPhysicsRenderer::RenderColliders(QWorld *world, sf::RenderWindow *window)
 						window->draw(springLine,2,sf::Lines);
 					}
 				}
-				//Draw Polygons
-				for(int p=0;p<mesh->GetClosedPolygonCount();p++){
-					vector<QParticle*> *polygon=&mesh->GetClosedPolygonAt(p);
-					sf::ConvexShape polygonShape(polygon->size());
+				//Draw Sub Convex Polygons
+				if (mesh->GetSubConvexPolygonCount()>1 ){
+					for(int p=0;p<mesh->GetSubConvexPolygonCount();p++){
+						vector<QParticle*> *polygon=&mesh->GetSubConvexPolygonAt(p);
 
-					vector<sf::Vertex> vertices;
+						vector<sf::Vertex> vertices;
 
-					for(int t=0;t<polygon->size();t++){
-						QParticle *particle=polygon->at(t);
-						QVector particlePos=particle->GetGlobalPosition();
-						vertices.push_back(sf::Vertex(sf::Vector2f(particlePos.x,particlePos.y),col ) );
+						for(int t=0;t<polygon->size();t++){
+							QParticle *particle=polygon->at(t);
+							QVector particlePos=particle->GetGlobalPosition();
+							vertices.push_back(sf::Vertex(sf::Vector2f(particlePos.x,particlePos.y),colHalf ) );
+						}
+						vertices.push_back( vertices[0]);
+						window->draw(&vertices[0],vertices.size(),sf::LineStrip);
 					}
-					vertices.push_back( vertices[0]);
-					window->draw(&vertices[0],vertices.size(),sf::LineStrip);
+
 				}
+				//Draw Polygon
+				vector<sf::Vertex> polygonVertices;
+
+				for(int t=0;t<mesh->GetPolygonParticleCount();t++){
+					QParticle *particle=mesh->GetParticleFromPolygon(t);
+					QVector particlePos=particle->GetGlobalPosition();
+					polygonVertices.push_back(sf::Vertex(sf::Vector2f(particlePos.x,particlePos.y),col ) );
+				}
+				polygonVertices.push_back( polygonVertices[0]);
+				window->draw(&polygonVertices[0],polygonVertices.size(),sf::LineStrip);
 
 
 
@@ -293,6 +306,14 @@ void QPhysicsRenderer::RenderPhysicsGizmos(QWorld *world, sf::RenderWindow *wind
 				window->draw(lineA,2,sf::Lines);
 				window->draw(lineB,2,sf::Lines);
 			}
+		}else if (gizmo->GetGizmoType()==QGizmo::Rectangle ){
+			QGizmoRect *gizmoRect=static_cast<QGizmoRect*>(gizmo);
+			sf::RectangleShape rectShape(sf::Vector2f(gizmoRect->rect.GetSize().x,gizmoRect->rect.GetSize().y ) );
+			rectShape.setFillColor(sf::Color::Transparent);
+			rectShape.setOutlineColor(col);
+			rectShape.setOutlineThickness(1.0);
+			rectShape.setPosition(sf::Vector2f (gizmoRect->rect.GetMin().x,gizmoRect->rect.GetMin().y ) );
+			window->draw(rectShape);
 		}
 	}
 }
