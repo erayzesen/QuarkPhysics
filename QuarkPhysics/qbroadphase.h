@@ -25,6 +25,9 @@
  *
 **************************************************************************************/
 
+
+
+
 #ifndef QBROADPHASE_H
 #define QBROADPHASE_H
 
@@ -44,35 +47,35 @@ public:
     QBroadPhase(){};
     QBroadPhase(float cellSize);
 
-    struct bodyPairHash {
-		size_t operator()(const std::pair<QBody*, QBody*>& p) const {
-			std::size_t h1 = std::hash<QBody*>{}(p.first);
-			std::size_t h2 = std::hash<QBody*>{}(p.second);
-			return h1 ^ (h2 + 0x9e3779b9 + (h1 << 6) + (h1 >> 2));
-		}
-	};
+    struct NumericPairHash {
+        size_t operator()(const std::pair<int, int>& p) const {
+            std::size_t h1 = std::hash<int>{}(p.first);
+            std::size_t h2 = std::hash<int>{}(p.second);
+            return h1 ^ (h2 + 0x9e3779b9 + (h1 << 6) + (h1 >> 2));
+        }
+    };
 
-	struct bodyPairEqual {
-		bool operator()(const std::pair<QBody*, QBody*>& p1, const std::pair<QBody*, QBody*>& p2) const {
-			return (p1.first == p2.first && p1.second == p2.second) ||
-				(p1.first == p2.second && p1.second == p2.first);
-		}
-	};
+    struct NumericPairEqual {
+        bool operator()(const std::pair<int, int>& p1, const std::pair<int, int>& p2) const {
+            return (p1.first == p2.first && p1.second == p2.second) ||
+                (p1.first == p2.second && p1.second == p2.first);
+        }
+    };
 
 
 
     
-    void insert(QBody *body, const QAABB& aabb);
-    void update(QBody *body, const QAABB& newAABB);
-    void remove(QBody *body, const QAABB& aabb);
+    void insert(int id, const QAABB& AABB);
+    void update(int id, const QAABB& aabb, QAABB& prevAABB );
+    void remove(int id, const QAABB& AABB);
 
-    vector<vector<QBody*> > GetBodiesFromCells();
+    void clear();
 
-    void GetAllPairs(unordered_set<pair<QBody*,QBody*>,QBroadPhase::bodyPairHash,bodyPairEqual > &pairs);
+    void GetAllPairs(unordered_set<pair<int,int>,QBroadPhase::NumericPairHash,QBroadPhase::NumericPairEqual > &pairs, vector<QBody*> &originalCollection);
 
-    void ApplySweepAndPruneToCells();
+    vector<int> GetCellItems(QAABB &aabb);
 
-    void GetPotentialCollisions(QBody *body,unordered_set<QBody*> &collection);
+   
 
     
 
@@ -81,8 +84,10 @@ public:
 
 private:
     float cellSize;
-    std::unordered_map<int, std::vector<QBody*>> hashTable;
+    std::unordered_map<int, std::vector<int>> hashTable;
     std::vector<int> getCellKeys(QAABB aabb);
+
+    bool isCleared=false;
     
 
     

@@ -35,153 +35,111 @@
 
 QBroadPhase::QBroadPhase(float cellSize) : cellSize(cellSize) {}
 
-void QBroadPhase::insert(QBody *body, const QAABB& aabb) {
-    std::vector<int> cellKeys = getCellKeys(aabb);
+void QBroadPhase::insert(int id, const QAABB& AABB) {
+    std::vector<int> cellKeys = getCellKeys(AABB);
 
     for (int key : cellKeys) {
-        hashTable[key].push_back(body);
+        hashTable[key].push_back(id);
     }
     
 }
 
-void QBroadPhase::update(QBody *body, const QAABB& newAABB) {
+void QBroadPhase::update(int id, const QAABB& newAABB,QAABB& prevAABB) {
     
     //Debug Test Bounding Boxes
 
     /* body->GetWorld()->gizmos.push_back( new QGizmoRect(body->spatialContainerAABB) );
     body->GetWorld()->gizmos.push_back( new QGizmoRect(newAABB) ); */
 
-    if(body->spatialContainerAABB.isContain(newAABB) ){
-        return;
-    }
+    if(isCleared==false)
+        if(prevAABB.isContain(newAABB) )
+            return;
 
     auto fatAABB=newAABB.FattedWithRate(1.2f);
     
 
-    remove(body, body->spatialContainerAABB);
+    remove(id, prevAABB);
 
     
-    insert(body, fatAABB);
+    insert(id, fatAABB);
 
-    body->spatialContainerAABB=fatAABB;
+    prevAABB=fatAABB;
 }
 
-void QBroadPhase::remove(QBody *body, const QAABB& aabb) {
-    std::vector<int> cellKeys = getCellKeys(aabb);
+void QBroadPhase::remove(int id, const QAABB& AABB) {
+    std::vector<int> cellKeys = getCellKeys(AABB);
 
     for (int key : cellKeys) {
         auto& cell = hashTable[key];
-        auto it=find(cell.begin(),cell.end(),body);
+        auto it=find(cell.begin(),cell.end(),id);
         if(it!=cell.end() ){
             cell.erase(it);
         }
     }
 }
 
-void QBroadPhase::ApplySweepAndPruneToCells()
+void QBroadPhase::clear()
 {
-    for (auto& cellPair : hashTable) {
-        vector<QBody*> &cell = cellPair.second;
-        sort(cell.begin(),cell.end(),QWorld::SortBodies);
-    }
+    hashTable.clear();
+    isCleared=true;
 }
 
-void QBroadPhase::GetPotentialCollisions(QBody *body, unordered_set<QBody *> &collection)
-{
-    
-    
-    if(body->GetEnabled()==false )
-        return;
 
-    std::vector<int> cellKeys = getCellKeys(body->spatialContainerAABB);
 
-    for (size_t i = 0; i < cellKeys.size(); ++i){
-        auto &cell = hashTable[cellKeys[i]];
-
-        auto itA = cell.begin();
-        while (itA != cell.end() && *itA != body) {
-            ++itA;
-        }
-        
-        for (auto itB = std::next(itA); itB != cell.end(); ++itB) {
-            QBody *otherBody=*itB;
-
-            if(otherBody->GetEnabled()==false )
-                continue;
-
-            if( QBody::CanCollide(body,otherBody)==false){
-                continue;
-            }
-            body->GetWorld()->debugAABBTestCount+=1;
-            if(body->GetAABB().GetMax().x >= otherBody->GetAABB().GetMin().x){
-                if( body->GetAABB().GetMin().y <= otherBody->GetAABB().GetMax().y &&
-                    body->GetAABB().GetMax().y >= otherBody->GetAABB().GetMin().y) {
-                    collection.insert(otherBody);
-                }
-
-            }else{
-                break;
-            }
-
-            
-        }
-         
-
-    }
-    
-}
-
-vector< vector<QBody*> > QBroadPhase::GetBodiesFromCells() {
-    vector< vector<QBody*> > result;
-
-    // Hash tablosundaki her hücreyi dolaşıyoruz.
-    for (const auto& cellPair : hashTable) {
-        const vector<QBody*>& cell = cellPair.second;
-        std::vector<QBody*> uniqueBodies(cell.begin(), cell.end());
-        result.push_back(uniqueBodies);
-    }
-
-    return result;
-}
-
-void QBroadPhase::GetAllPairs( unordered_set<pair<QBody*,QBody*>,QBroadPhase::bodyPairHash,bodyPairEqual > &pairs){
+void QBroadPhase::GetAllPairs( unordered_set<pair<int,int>,QBroadPhase::NumericPairHash,QBroadPhase::NumericPairEqual > &pairs,vector<QBody*> &originalCollection){
 
     
     
 
     for (auto& cellPair : hashTable) {
-        vector<QBody*> &cell = cellPair.second;
+        vector<int> &cell = cellPair.second;
+
+        if(cell.size()==1) continue;
 
          for (auto itA = cell.begin(); itA != cell.end(); ++itA) {
-            QBody *body=*itA;
+            int idA=*itA;
+            QBody * body=originalCollection[idA];
             if(body->GetEnabled()==false )
 				continue;
             for (auto itB = itA+1; itB != cell.end(); ++itB) {
-                QBody *otherBody=*itB;
+                int idB=*itB;
+                QBody *otherBody=originalCollection[idB];
 
                 if(otherBody->GetEnabled()==false )
                     continue;
 
-                /* if( QBody::CanCollide(body,otherBody)==false){
+                if( QBody::CanCollide(body,otherBody)==false){
                     continue;
-                } */
+                }
 
                 body->GetWorld()->debugAABBTestCount+=1;
                 if(body->GetAABB().isCollidingWith(otherBody->GetAABB()) ){
-                    pairs.insert(pair<QBody*,QBody*>{body,otherBody});
+                    pairs.insert(pair<int,int>{idA,idB});
                 }
 
                 
             }
         }
-
-        
-
         
     }
 
+    isCleared=false;
 
-} 
+
+}
+
+
+vector<int> QBroadPhase::GetCellItems(QAABB &aabb){
+    vector<int> items;
+    vector<int > cellKeys=getCellKeys(aabb);
+
+    for (int key : cellKeys) {
+        vector<int> &cell=hashTable[key];
+        items.insert(items.end(),cell.begin(),cell.end() );
+    }
+
+    return items;
+}
 
 std::vector<int> QBroadPhase::getCellKeys(QAABB aabb) {
     std::vector<int> cellKeys;

@@ -92,8 +92,8 @@ protected:
 	bool enableBroadphase=true;
 	int iteration=4;
 	float timeScale=1.0f;
-	bool enableSpatialHashing=true;
-	float spatialHashingSize=256.0f;
+	bool enableSpatialHashing=false;
+	float spatialHashingSize=512.0f;
 
 
 	//Sleeping
@@ -111,7 +111,7 @@ protected:
 	//Collisions, Dynamic Colliders Islands and Sleeping Feature
 	void CreateIslands(QBody *body, vector<QBody*> &bodyList, vector<QBody*> &island);
 	void GenerateIslands(vector<QBody*> &bodyList, vector<vector<QBody*>> &islandList);
-	static bool SortBodies(const QBody *bodyA,const QBody *bodyB);
+	static bool SortBodiesHorizontal(const QBody *bodyA,const QBody *bodyB);
 	static bool SortBodiesVertical(const QBody *bodyA,const QBody *bodyB);
 	void GetCollisionPairs(vector<QBody *> &bodyList,vector<pair<QBody *, QBody *> > *resList);
 
@@ -224,6 +224,8 @@ public:
 	 * @param value A value to set
 	*/
 	QWorld *SetSpatialHashingEnabled(bool value){
+		if(value==true)
+			broadPhase.clear();
 		enableSpatialHashing=value;
 		return this;
 	}

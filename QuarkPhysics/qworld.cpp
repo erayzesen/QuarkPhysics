@@ -88,16 +88,17 @@ void QWorld::Update(){
 	debugCollisionTestCount=0;
 	//cout<<broadPhase.collisionGroups.size()<<endl;
 
-	unordered_set<pair<QBody*,QBody*>,QBroadPhase::bodyPairHash,QBroadPhase::bodyPairEqual> pairs;
+	unordered_set<pair<int,int>,QBroadPhase::NumericPairHash,QBroadPhase::NumericPairEqual> pairs;
 	//Preparing Updated Broadphasevariables
 	if (enableBroadphase){
 		if (enableSpatialHashing){
-			for (auto body:bodies){
-				broadPhase.update(body,body->GetAABB());
+			for (int i=0;i<bodies.size();i++){
+				QBody *body=bodies[i];
+				broadPhase.update(i,body->GetAABB(),body->spatialContainerAABB);
 			}
-			broadPhase.GetAllPairs(pairs);
+			broadPhase.GetAllPairs(pairs,bodies);
 		}else{
-			sort(bodies.begin(),bodies.end(),SortBodies);
+			sort(bodies.begin(),bodies.end(),SortBodiesHorizontal);
 		}
 		
 	}
@@ -121,12 +122,15 @@ void QWorld::Update(){
 
 			
 			if(enableSpatialHashing){
-
+				//Spatial Hashing method
 				for (auto pair: pairs){
-					vector<QCollision::Contact> contacts=GetCollisions(pair.first,pair.second);
+					QBody *bodyA=bodies[pair.first];
+					QBody *bodyB=bodies[pair.second];
+
+					vector<QCollision::Contact> contacts=GetCollisions(bodyA,bodyB);
 
 						if(contacts.size()>0){
-							QManifold manifold(pair.first,pair.second);
+							QManifold manifold(bodyA,bodyB);
 							manifold.contacts=contacts;
 							manifolds.push_back(manifold);
 						}
@@ -134,6 +138,8 @@ void QWorld::Update(){
 				
 				
 			}else{
+
+				//Sweep and Prune method
 				
 				size_t bodiesSize=bodies.size();
 
@@ -183,7 +189,7 @@ void QWorld::Update(){
 
 
 		}else{
-			//Brute Force Collision
+			//Brute Force Method
 
 			for (unsigned int ia=0;ia<bodies.size();++ia){
 				QBody * bodyA=bodies[ia];
@@ -439,6 +445,8 @@ QWorld *QWorld::RemoveBodyAt(int index)
 		RemoveMatchingSprings(body);
 
 		bodies.erase(bodies.begin()+index);
+
+		broadPhase.clear();
 	}
 
 	return this;
@@ -543,7 +551,7 @@ vector<QParticle *> QWorld::GetParticlesCloseToPoint(QVector point, float distan
 
 bool QWorld::CollideWithWorld(QBody *body){
 
-	sort(bodies.begin(),bodies.end(),SortBodies);
+	sort(bodies.begin(),bodies.end(),SortBodiesHorizontal);
 	bool seperated=false;
 
 	vector<QManifold> manifoldList;
@@ -975,7 +983,7 @@ void QWorld::GenerateIslands(vector<QBody *> &bodyList, vector<vector<QBody *>> 
 	}
 }
 
-bool QWorld::SortBodies(const QBody *bodyA, const QBody *bodyB)
+bool QWorld::SortBodiesHorizontal(const QBody *bodyA, const QBody *bodyB)
 {
 	if(bodyA->GetAABB().GetMin().x==bodyB->GetAABB().GetMin().x){
 		return bodyA->GetAABB().GetMax().y>bodyB->GetAABB().GetMax().y;
@@ -989,10 +997,12 @@ bool QWorld::SortBodiesVertical(const QBody *bodyA, const QBody *bodyB)
 	return bodyA->GetAABB().GetMin().y>bodyB->GetAABB().GetMin().y;
 }
 
+
+
  void QWorld::GetCollisionPairs(vector<QBody *> &bodyList, vector<pair<QBody *, QBody *> > *resList)
 {
 	//Using Sweep and Purne Algorithm
-	sort(bodies.begin(),bodies.end(),SortBodies);
+	sort(bodies.begin(),bodies.end(),SortBodiesHorizontal);
 
 	int bodiesSize=bodies.size();
 	for(unsigned int i=0;i<bodiesSize;++i){

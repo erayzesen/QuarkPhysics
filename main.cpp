@@ -313,6 +313,10 @@ int main()
 					scene->world->SetSpatialHashingEnabled(scene->world->GetSpatialHashingEnabled()==true ? false:true );
 				}
 
+				if(event.key.code==sf::Keyboard::B){
+					scene->world->SetBroadphaseEnabled(scene->world->GetBroadphaseEnabled()==true ? false:true );
+				}
+
 //				if(event.key.code==sf::Keyboard::H){
 //					showColliders=showColliders==true ? false:true;
 //				}else if(event.key.code==sf::Keyboard::Left){
