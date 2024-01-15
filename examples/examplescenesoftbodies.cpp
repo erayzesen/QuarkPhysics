@@ -69,14 +69,14 @@ ExampleSceneSoftBodies::ExampleSceneSoftBodies(QVector sceneSize) :QExampleScene
 	pbdBody->AddMesh( QMesh::CreateWithRect( QVector(128,128),QVector::Zero(),QVector(6,6),true,false,8.0f ) );
 	pbdBody->SetRigidity(0.3f)->SetPosition(QVector(150,100))->SetMass(1.0f);
 	pbdBody->SetParticleSpesificMassEnabled(true)->SetParticleSpesificMass(0.1f);
-	pbdBody->SetShapeMatchingEnabled(true)->SetShapeMatchingRate(0.8);
+	pbdBody->SetShapeMatchingEnabled(true);
 	world->AddBody(pbdBody);
 
 	//Adding mass-spring model soft body via gridded rectangle mesh
 	QSoftBody *rsBody=new QSoftBody();
 	rsBody->AddMesh( QMesh::CreateWithRect( QVector(128,128),QVector::Zero(),QVector(3,3),true ) );
 	rsBody->SetRigidity(0.1f)->SetPosition(QVector(500,100));
-	rsBody->SetShapeMatchingEnabled(true);
+	rsBody->SetShapeMatchingEnabled(true)->SetShapeMatchingRate(0.1f);
 	world->AddBody(rsBody);
 
 	//Adding mass-spring model soft body without polar grids
@@ -89,7 +89,7 @@ ExampleSceneSoftBodies::ExampleSceneSoftBodies(QVector sceneSize) :QExampleScene
 	QSoftBody *griddedPolyBody=new QSoftBody();
 	griddedPolyBody->AddMesh( QMesh::CreateWithPolygon(64,11,QVector::Zero(),2 ) );
 	griddedPolyBody->SetRigidity(0.08f)->SetPosition(QVector(700,100))->SetMass(1.0f);
-	griddedPolyBody->SetShapeMatchingEnabled(true);
+	griddedPolyBody->SetShapeMatchingEnabled(true)->SetShapeMatchingRate(0.2f);
 	world->AddBody(griddedPolyBody);
 
 	//Adding pressure volume model soft body via gridded polygon mesh
@@ -99,17 +99,7 @@ ExampleSceneSoftBodies::ExampleSceneSoftBodies(QVector sceneSize) :QExampleScene
 	griddedPressuredBody->SetAreaPreservingEnabled(true)->SetPassivationOfInternalSpringsEnabled(true);
 	world->AddBody(griddedPressuredBody);
 
-
-	//Adding mass-spring model soft body without polar grids
-	QSoftBody *boxA=new QSoftBody();
-	boxA->AddMesh( QMesh::CreateWithRect(QVector(64,64) )  );
-	boxA->SetRigidity(0.1f)->SetPosition(QVector(350,-200))->SetMass(0.5f);
-	world->AddBody(boxA);
-
-	QSoftBody *boxB=new QSoftBody();
-	boxB->AddMesh( QMesh::CreateWithRect(QVector(64,64) )  );
-	boxB->SetRigidity(0.1f)->SetPosition(QVector(100,-200))->SetMass(0.5f);
-	world->AddBody(boxB);
+	
 
 
 	//It's about self collision tests.

@@ -93,10 +93,6 @@ void QSoftBody::Update()
 		PreserveAreas();
 	}
 
-	//It's added to world contraints operations
-	/* if(enableShapeMatching){
-		ApplyShapeMatching();
-	} */
 
 
 	UpdateAABB();
@@ -179,26 +175,19 @@ pair<QVector, float> QSoftBody::GetAveragePositionAndRotation(vector<QParticle*>
 	averagePosition/=particles.size();
 	localCenterPosition/=particles.size();
 	float averageRotation=0;
-	float averageCosA=0.0f;
-	float averageSinA=0.0f;
+	float cosAxis=0.0f;
+	float sinAxis=0.0f;
 	for(int i=0;i<particles.size();i++){
 		QParticle *particle=particles[i];
-		QVector originalPos=particle->GetPosition()-localCenterPosition;
-		QVector relativePos=particle->GetGlobalPosition()-averagePosition;
-		float dotLength=relativePos.Length()*originalPos.Length();
-		float dot=relativePos.Dot(originalPos);
-		float perpDot=relativePos.Dot(originalPos.Perpendicular());
-		averageCosA+=dotLength==0.0f ? 0.0f:dot/dotLength;
-		averageSinA+=dotLength==0.0f ? 0.0f:perpDot/dotLength;
+		
+		QVector currentVec=particle->GetGlobalPosition()-averagePosition;
+		cosAxis+=currentVec.Dot(particle->GetPosition() );
+		sinAxis+=currentVec.Dot(particle->GetPosition().Perpendicular() );
 	}
 
-	averageCosA/=particles.size();
-	averageSinA/=particles.size();
-	float aSin=safe_asin(averageSinA);
-	float rad=atan2(aSin,averageCosA);
+	
+	float rad=atan2(sinAxis,cosAxis);
 	averageRotation=rad;
-
-	//averagePosition-localCenterPosition;
 	
 
 	return pair< QVector, float >(averagePosition,averageRotation);
@@ -250,18 +239,18 @@ void QSoftBody::ApplyShapeMatching()
 
 		}	
 
-
-
-
+		
 		for(int n=0;n<particles.size();n++){
 			QParticle * particle=particles[n];
+			
 			QVector targetPos=(particle->GetPosition()-localCenterPosition).Rotated(-averageRotation);
 			targetPos+=averagePosition;
 			//world->GetGizmos()->push_back(new QGizmoCircle(targetPos,3.0f) );
 			QVector distance=targetPos-particle->GetGlobalPosition();
 			QVector distanceUnit=distance.Normalized();
+
 			float distanceLen=distance.Length();
-			float forceLinear=min(distanceLen*distanceLen*0.002f*shapeMatchingRate*ts,distanceLen*ts);
+			float forceLinear=min(distanceLen*distanceLen*(0.02f*(1+rigidity))*shapeMatchingRate*ts,distanceLen*ts);
 			QVector force=forceLinear*distanceUnit;
 			particle->ApplyForce(force);
 		}

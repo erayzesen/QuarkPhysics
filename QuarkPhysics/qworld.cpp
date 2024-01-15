@@ -40,7 +40,7 @@
 
 using namespace std;
 QWorld::QWorld(){
-	broadPhase=QBroadPhase(spatialHashingSize);
+	broadPhase=QBroadPhase(this);
 
 }
 
@@ -88,15 +88,12 @@ void QWorld::Update(){
 	debugCollisionTestCount=0;
 	//cout<<broadPhase.collisionGroups.size()<<endl;
 
-	unordered_set<pair<int,int>,QBroadPhase::NumericPairHash,QBroadPhase::NumericPairEqual> pairs;
+	vector<pair<QBody*,QBody*>> pairs;
+
 	//Preparing Updated Broadphasevariables
 	if (enableBroadphase){
 		if (enableSpatialHashing){
-			for (int i=0;i<bodies.size();i++){
-				QBody *body=bodies[i];
-				broadPhase.update(i,body->GetAABB(),body->spatialContainerAABB);
-			}
-			broadPhase.GetAllPairs(pairs,bodies);
+			broadPhase.GetPairs(pairs);
 		}else{
 			sort(bodies.begin(),bodies.end(),SortBodiesHorizontal);
 		}
@@ -123,17 +120,17 @@ void QWorld::Update(){
 			
 			if(enableSpatialHashing){
 				//Spatial Hashing method
-				for (auto pair: pairs){
-					QBody *bodyA=bodies[pair.first];
-					QBody *bodyB=bodies[pair.second];
-
-					vector<QCollision::Contact> contacts=GetCollisions(bodyA,bodyB);
-
-						if(contacts.size()>0){
-							QManifold manifold(bodyA,bodyB);
-							manifold.contacts=contacts;
-							manifolds.push_back(manifold);
-						}
+				for(auto pair:pairs){
+					QBody *body=pair.first;
+					QBody *otherBody=pair.second;
+					
+					if(body==otherBody) continue;
+					vector<QCollision::Contact> contacts=GetCollisions(body,otherBody);
+					if(contacts.size()>0){
+						QManifold manifold(body,otherBody);
+						manifold.contacts=contacts;
+						manifolds.push_back(manifold);
+					}
 				}
 				
 				
@@ -282,6 +279,17 @@ void QWorld::Update(){
 
 	}
 
+	
+	for(auto body:bodies){
+		if(body->isSleeping)
+			continue;
+		if(body->GetMode()!=QBody::STATIC && body->GetSimulationModel()!=QBody::SimulationModels::RIGID_BODY){
+			QSoftBody *sBody=static_cast<QSoftBody*>(body);
+			if(sBody->GetShapeMatchingEnabled()){
+				sBody->ApplyShapeMatching();	
+			 }
+		}
+	}
 
 	for(auto body:bodies){
 		body->UpdateAABB();
@@ -446,7 +454,7 @@ QWorld *QWorld::RemoveBodyAt(int index)
 
 		bodies.erase(bodies.begin()+index);
 
-		broadPhase.clear();
+		//broadPhase.clear();
 	}
 
 	return this;
@@ -930,14 +938,15 @@ vector<QCollision::Contact> QWorld::GetCollisions(QBody *bodyA, QBody *bodyB){
 }
 
 //Collision Islands
-void QWorld::CreateIslands(QBody *body, vector<QBody*> &bodyList, vector<QBody *> &island)
+void QWorld::CreateIslands(int bodyIndex, vector<QBody*> &bodyList, vector<QBody*> &island, vector<bool> &visitedList )
 {
-	if(body->visited)return;
+	if(visitedList[bodyIndex]==true) return;
+	QBody*body=bodyList[bodyIndex];
 	if(body->GetEnabled()==false)return;
 	if(body->GetMode()==QBody::Modes::STATIC)return;
 
 	//We visited this body
-	body->visited=true;
+	visitedList[bodyIndex]=true;
 
 	island.push_back(body);
 
@@ -948,7 +957,7 @@ void QWorld::CreateIslands(QBody *body, vector<QBody*> &bodyList, vector<QBody *
 		if (body != otherBody && body->GetAABB().isCollidingWith(otherAABB) && QBody::CanCollide(body,otherBody) )
 		{
 			// If there is a collision, visit to otherBody
-			CreateIslands(otherBody,bodyList, island);
+			CreateIslands(i,bodyList, island,visitedList);
 		}
 	}
 
@@ -958,9 +967,11 @@ void QWorld::CreateIslands(QBody *body, vector<QBody*> &bodyList, vector<QBody *
 void QWorld::GenerateIslands(vector<QBody *> &bodyList, vector<vector<QBody *>> &islandList)
 {
 	// define all bodies as not visited
-	for (int i = 0; i < bodyList.size(); i++)
-	{
-		bodyList[i]->visited = false;
+
+	vector<bool> visitedList; 
+	
+	for(int i=0;i<bodyList.size();i++ ){
+		visitedList.push_back(false);
 	}
 
 
@@ -973,11 +984,11 @@ void QWorld::GenerateIslands(vector<QBody *> &bodyList, vector<vector<QBody *>> 
 			continue;
 		if(body->GetMode()==QBody::Modes::STATIC)
 			continue;
-		if (!body->visited)
+		if (visitedList[i]==false)
 		{
 			// If we don't visited this body, create a new island
 			vector<QBody*> island = vector<QBody*>();
-			CreateIslands(body,bodyList, island);
+			CreateIslands(i,bodyList, island,visitedList);
 			islandList.push_back(island);
 		}
 	}
@@ -1038,7 +1049,7 @@ bool QWorld::SortBodiesVertical(const QBody *bodyA, const QBody *bodyB)
 
 	
 	//Apply The Shape Matching Feature to Soft Bodies
-	for(auto body:bodies){
+	/* for(auto body:bodies){
 		if(body->isSleeping)
 			continue;
 		if(body->GetMode()!=QBody::STATIC && body->GetSimulationModel()!=QBody::SimulationModels::RIGID_BODY){
@@ -1047,7 +1058,7 @@ bool QWorld::SortBodiesVertical(const QBody *bodyA, const QBody *bodyB)
 				sBody->ApplyShapeMatching();	
 			 }
 		}
-	}
+	} */
 	 //Other Soft Body Constraints
 	 for(auto body:bodies){
 

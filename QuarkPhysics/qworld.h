@@ -109,7 +109,7 @@ protected:
 
 
 	//Collisions, Dynamic Colliders Islands and Sleeping Feature
-	void CreateIslands(QBody *body, vector<QBody*> &bodyList, vector<QBody*> &island);
+	void CreateIslands(int bodyIndex, vector<QBody*> &bodyList, vector<QBody*> &island, vector<bool> &visitedList);
 	void GenerateIslands(vector<QBody*> &bodyList, vector<vector<QBody*>> &islandList);
 	static bool SortBodiesHorizontal(const QBody *bodyA,const QBody *bodyB);
 	static bool SortBodiesVertical(const QBody *bodyA,const QBody *bodyB);
@@ -224,8 +224,10 @@ public:
 	 * @param value A value to set
 	*/
 	QWorld *SetSpatialHashingEnabled(bool value){
-		if(value==true)
-			broadPhase.clear();
+		if(value==true){
+			broadPhase.ClearTree();
+			broadPhase.ReCreateTree(bodies);
+		}
 		enableSpatialHashing=value;
 		return this;
 	}

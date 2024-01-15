@@ -35,6 +35,7 @@ class QAABB
 	QVector minPos;
 	QVector maxPos;
 	QVector size;
+	float volume;
 	static float multiplier;
 public:
 
@@ -47,6 +48,7 @@ public:
 		minPos=minPosition;
 		maxPos=maxPosition;
 		size=maxPos-minPos;
+		volume=size.x*size.y;
 	};
 
 	//General Get Methods
@@ -69,6 +71,7 @@ public:
 		minPos=minPosition;
 		maxPos=maxPosition;
 		size=maxPos-minPos;
+		volume=size.x*size.y;
 		return this;
 	}
 
@@ -85,7 +88,11 @@ public:
 		return (minPos+maxPos)*0.5f;
 	}
 
-	bool isContain(const QAABB& otherAABB) const {
+	float GetVolume() const{
+		return volume;
+	}
+
+	double isContain(const QAABB& otherAABB) const {
 		return (minPos.x <= otherAABB.minPos.x) &&
 			(minPos.y <= otherAABB.minPos.y) &&
 			(maxPos.x >= otherAABB.maxPos.x) &&

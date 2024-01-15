@@ -131,7 +131,7 @@ void QCollision::PolylineAndPolygon(vector<QParticle*> &polylineParticles, vecto
 		
 
 		bisectorList.push_back(bisectorVector );
-		p->GetOwnerMesh()->GetOwnerBody()->GetWorld()->gizmos.push_back(new QGizmoLine(p->GetGlobalPosition(),p->GetGlobalPosition()+bisectorVector,true) );
+		//p->GetOwnerMesh()->GetOwnerBody()->GetWorld()->gizmos.push_back(new QGizmoLine(p->GetGlobalPosition(),p->GetGlobalPosition()+bisectorVector,true) );
 
 		/*
 		Notes: Bisector vector is working well now but it doesn't looks true. A different method is followed here.  

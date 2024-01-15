@@ -26,137 +26,194 @@
 **************************************************************************************/
 
 #include "qbroadphase.h"
-#include <iostream>
-#include <algorithm>
 #include "qworld.h"
-#include "qaabb.h"
 
-
-
-QBroadPhase::QBroadPhase(float cellSize) : cellSize(cellSize) {}
-
-void QBroadPhase::insert(int id, const QAABB& AABB) {
-    std::vector<int> cellKeys = getCellKeys(AABB);
-
-    for (int key : cellKeys) {
-        hashTable[key].push_back(id);
-    }
-    
-}
-
-void QBroadPhase::update(int id, const QAABB& newAABB,QAABB& prevAABB) {
-    
-    //Debug Test Bounding Boxes
-
-    /* body->GetWorld()->gizmos.push_back( new QGizmoRect(body->spatialContainerAABB) );
-    body->GetWorld()->gizmos.push_back( new QGizmoRect(newAABB) ); */
-
-    if(isCleared==false)
-        if(prevAABB.isContain(newAABB) )
-            return;
-
-    auto fatAABB=newAABB.FattedWithRate(1.2f);
-    
-
-    remove(id, prevAABB);
-
-    
-    insert(id, fatAABB);
-
-    prevAABB=fatAABB;
-}
-
-void QBroadPhase::remove(int id, const QAABB& AABB) {
-    std::vector<int> cellKeys = getCellKeys(AABB);
-
-    for (int key : cellKeys) {
-        auto& cell = hashTable[key];
-        auto it=find(cell.begin(),cell.end(),id);
-        if(it!=cell.end() ){
-            cell.erase(it);
-        }
-    }
-}
-
-void QBroadPhase::clear()
+QBroadPhase::QBroadPhase(QWorld * targetWorld)
 {
-    hashTable.clear();
-    isCleared=true;
+    world=targetWorld;
 }
 
+QBroadPhase::~QBroadPhase()
+{
+    ClearTree();
+}
 
+void QBroadPhase::ReCreateTree(vector<QBody *> &objectList)
+{
 
-void QBroadPhase::GetAllPairs( unordered_set<pair<int,int>,QBroadPhase::NumericPairHash,QBroadPhase::NumericPairEqual > &pairs,vector<QBody*> &originalCollection){
+    ClearTree();
+    if(objectList.size()==0 ) return;
+
+    for(auto object:objectList){
+        QAABB fattedAABB=object->GetAABB().FattedWithRate(1.2f);
+        Node *newNode=new Node(object, fattedAABB, GetNewNodeID() );
+        newNode->isLeaf=true;
+        nodes.push_back ( newNode );
+    }
 
     
-    
 
-    for (auto& cellPair : hashTable) {
-        vector<int> &cell = cellPair.second;
+    while(nodes.size()>1  ){
 
-        if(cell.size()==1) continue;
+        int bestIndexA=-1, bestIndexB=-1;
+        QAABB bestMergedAABB;
+        float bestSAH= std::numeric_limits<float>::infinity();
 
-         for (auto itA = cell.begin(); itA != cell.end(); ++itA) {
-            int idA=*itA;
-            QBody * body=originalCollection[idA];
-            if(body->GetEnabled()==false )
-				continue;
-            for (auto itB = itA+1; itB != cell.end(); ++itB) {
-                int idB=*itB;
-                QBody *otherBody=originalCollection[idB];
 
-                if(otherBody->GetEnabled()==false )
-                    continue;
+        for (int i=0;i<nodes.size();++i ){
 
-                if( QBody::CanCollide(body,otherBody)==false){
-                    continue;
-                }
-
-                body->GetWorld()->debugAABBTestCount+=1;
-                if(body->GetAABB().isCollidingWith(otherBody->GetAABB()) ){
-                    pairs.insert(pair<int,int>{idA,idB});
-                }
+            for (int j=i+1;j<nodes.size();++j ){
 
                 
+
+                QAABB mergedAABB=QAABB::Combine (nodes[i]->aabb,nodes[j]->aabb);
+                float sah=mergedAABB.GetArea();
+
+                if(sah<bestSAH){
+                    bestSAH=sah;
+                    bestIndexA=i;
+                    bestIndexB=j;
+                    bestMergedAABB=mergedAABB;
+                }
+                
             }
+
+        }
+
+        Node *mergedNode=new Node(nullptr,bestMergedAABB, GetNewNodeID());
+
+        mergedNode->isLeaf=false;
+        mergedNode->left=nodes[bestIndexA];
+        mergedNode->right=nodes[bestIndexB];
+
+        mergedNode->left->parent=mergedNode;
+        mergedNode->right->parent=mergedNode;
+
+        if(bestIndexA>bestIndexB){
+            nodes.erase(nodes.begin()+bestIndexA );
+            nodes.erase(nodes.begin()+bestIndexB );
+        }else{
+            nodes.erase(nodes.begin()+bestIndexB );
+            nodes.erase(nodes.begin()+bestIndexA );
+        }
+
+        
+        nodes.push_back(mergedNode);
+
+    }
+
+    root=nodes[0];
+    
+
+
+}
+
+void QBroadPhase::ClearTree()
+{
+    for (auto node : nodes){
+        delete node;
+    }
+    nodes.clear();
+    lastID=0;
+}
+
+void QBroadPhase::Query(QAABB &AABB, vector<QBody*> &list)
+{
+    QueryInNode(root,AABB,list);
+
+}
+
+void QBroadPhase::QueryInNode(Node *node, QAABB &AABB, vector<QBody *> &list)
+{
+    if(node==nullptr){
+        cout<<"Error: BroadPhase::QueryInNode - An invalid node! ";
+        return;
+    }
+    world->debugAABBTestCount+=1;
+    if(node->isLeaf==true){
+        if(node->obj->GetAABB().isCollidingWith(AABB)==true )
+            list.push_back(node->obj);
+        return;
+    }
+
+    if(node->aabb.isCollidingWith(AABB)==false )
+        return;
+    
+
+    QueryInNode(node->left,AABB,list);
+    QueryInNode(node->right,AABB,list);
+    
+
+}
+
+void QBroadPhase::Insert(QBody *object)
+{
+}
+
+void QBroadPhase::Remove(QBody *object)
+{
+}
+
+void QBroadPhase::Update(QBody *object, QAABB &AABB)
+{
+}
+
+int QBroadPhase::GetNewNodeID()
+{
+    int res=lastID;
+    lastID+=1;
+    return res;
+}
+
+void QBroadPhase::GetPairs(vector<pair<QBody *, QBody *>> &pairCollection)
+{
+    if(root==nullptr || root->isLeaf){
+        return;
+    }
+
+    unordered_set<int> checkedHashes;
+
+    GetPairsBetweenNodes(root->left,root->right,pairCollection,checkedHashes);
+}
+
+void QBroadPhase::GetPairsBetweenNodes(Node * nodeA, Node *nodeB, vector<pair<QBody *, QBody *>> &pairCollection,unordered_set<int> &checkedPairList)
+{
+    int pairHash=(nodeA->id + nodeB->id)*(nodeA->id + nodeB->id+1)/2+nodeB->id;
+    if(checkedPairList.find(pairHash)!=checkedPairList.end() )
+        return;
+
+    checkedPairList.insert(pairHash);
+
+
+    if(nodeA->isLeaf && nodeB->isLeaf){
+        if(nodeA->obj->GetAABB().isCollidingWith(nodeB->obj->GetAABB() ) ){
+            pairCollection.push_back(pair<QBody*,QBody*> (nodeA->obj,nodeB->obj) );
+        }
+    }else if(!nodeA->isLeaf && !nodeB->isLeaf){
+        GetPairsBetweenNodes(nodeA->left,nodeA->right,pairCollection,checkedPairList);
+        GetPairsBetweenNodes(nodeB->left,nodeB->right,pairCollection,checkedPairList);
+
+        if(nodeA->aabb.isCollidingWith(nodeB->aabb) ){
+            GetPairsBetweenNodes(nodeA->left,nodeB->left,pairCollection,checkedPairList);
+            GetPairsBetweenNodes(nodeA->right,nodeB->right,pairCollection,checkedPairList);
+
+            GetPairsBetweenNodes(nodeA->left,nodeB->right,pairCollection,checkedPairList);
+            GetPairsBetweenNodes(nodeA->right,nodeB->left,pairCollection,checkedPairList);
         }
         
-    }
-
-    isCleared=false;
-
-
-}
-
-
-vector<int> QBroadPhase::GetCellItems(QAABB &aabb){
-    vector<int> items;
-    vector<int > cellKeys=getCellKeys(aabb);
-
-    for (int key : cellKeys) {
-        vector<int> &cell=hashTable[key];
-        items.insert(items.end(),cell.begin(),cell.end() );
-    }
-
-    return items;
-}
-
-std::vector<int> QBroadPhase::getCellKeys(QAABB aabb) {
-    std::vector<int> cellKeys;
-
-    int minCellX = static_cast<int>(aabb.GetMin().x / cellSize);
-    int minCellY = static_cast<int>(aabb.GetMin().y / cellSize);
-    int maxCellX = static_cast<int>(aabb.GetMax().x / cellSize);
-    int maxCellY = static_cast<int>(aabb.GetMax().y / cellSize);
-
-    // AABB'nin kapsadığı hücreleri buluyoruz.
-    for (int cellX = minCellX; cellX <= maxCellX; ++cellX) {
-        for (int cellY = minCellY; cellY <= maxCellY; ++cellY) {
-            int key = cellX | (cellY << 16);
-            cellKeys.push_back(key);
+    }else if(nodeA->isLeaf && !nodeB->isLeaf){
+        GetPairsBetweenNodes(nodeB->left,nodeB->right,pairCollection,checkedPairList);
+        if(nodeA->aabb.isCollidingWith(nodeB->aabb) ){
+            GetPairsBetweenNodes(nodeA ,nodeB->left,pairCollection,checkedPairList);
+            GetPairsBetweenNodes(nodeA ,nodeB->right,pairCollection,checkedPairList);
+        }
+    }else if(!nodeA->isLeaf && nodeB->isLeaf){
+        GetPairsBetweenNodes(nodeA->left,nodeA->right,pairCollection,checkedPairList);
+        if(nodeB->aabb.isCollidingWith(nodeA->aabb) ){
+            GetPairsBetweenNodes(nodeB ,nodeA->left,pairCollection,checkedPairList);
+            GetPairsBetweenNodes(nodeB ,nodeA->right,pairCollection,checkedPairList);
         }
     }
 
-    return cellKeys;
-}
 
+}

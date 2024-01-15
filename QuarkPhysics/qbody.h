@@ -106,8 +106,6 @@ protected:
 	int sleepTick=120;
 	int fixedVelocityTick=0;
 	int fixedAngularTick=0;
-	//Island Features
-	bool visited=false;
 	bool canSleep=true;
 
 
