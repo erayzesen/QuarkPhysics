@@ -367,11 +367,7 @@ public:
 		}
 		return subConvexPolygons[index];
 	}
-	/** Removes the polygons that contain the specified particle.
-	 * @param particle A particle to be matched.
-	 * @return QMesh* A pointer to mesh itself.
-	 */
-	QMesh *RemoveMatchingClosedPolygons(QParticle *particle);
+	
 
 	//Spring Operations
 	

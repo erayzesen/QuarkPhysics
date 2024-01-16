@@ -80,7 +80,7 @@ QMesh *QMesh::AddParticle(QParticle *particle){
 
 QMesh *QMesh::RemoveParticleAt(int index){
 	QParticle *particle=particles[index];
-	RemoveMatchingClosedPolygons(particle);
+	RemoveParticleFromPolygon(particle);
 	RemoveMatchingSprings(particle);
 	particles.erase(particles.begin()+index);
 	if(ownerBody!=nullptr){
@@ -367,61 +367,6 @@ void QMesh::DecompositePolygon(vector<QParticle *> &polygonParticles, vector<vec
 
 }
 
-//These  will be removed!! 
-
-QMesh *QMesh::AddClosedPolygon(vector<QParticle *> polygon)
-{
-	subConvexPolygons.push_back(polygon);
-	if(ownerBody!=nullptr){
-		if (ownerBody->mode==QBody::Modes::STATIC)
-			ownerBody->UpdateMeshTransforms();
-		ownerBody->inertiaNeedsUpdate=true;
-		ownerBody->circumferenceNeedsUpdate=true;
-	}
-	collisionBehaviorNeedsUpdate=true;
-	return this;
-}
-
-QMesh *QMesh::RemoveClosedPolygonAt(int index)
-{
-	subConvexPolygons.erase(subConvexPolygons.begin()+index);
-	if(ownerBody!=nullptr){
-		if (ownerBody->mode==QBody::Modes::STATIC)
-			ownerBody->UpdateMeshTransforms();
-		ownerBody->inertiaNeedsUpdate=true;
-		ownerBody->circumferenceNeedsUpdate=true;
-	}
-	collisionBehaviorNeedsUpdate=true;
-	return this;
-
-}
-
-QMesh *QMesh::RemoveMatchingClosedPolygons(QParticle *particle)
-{
-	int i=0;
-	while(i<subConvexPolygons.size()){
-		vector<QParticle*> &polygon=subConvexPolygons[i];
-		bool matched=false;
-		int n=0;
-		while(n<polygon.size()){
-			if(polygon[n]==particle){
-				polygon.erase(polygon.begin()+n);
-				matched=true;
-			}else{
-				++n;
-			}
-		}
-		if(matched==true && polygon.size()<3){
-			RemoveClosedPolygonAt(i);
-
-		}else{
-			++i;
-		}
-	}
-	return this;
-}
-
-//End Of - These  will be removed!!
 
 QMesh *QMesh::AddSpring(QSpring *spring)
 {
@@ -567,7 +512,7 @@ vector<QMesh::MeshData> QMesh::GetMeshDatasFromJsonData(std::string &jsonBasedDa
 			meshData.internalSpringList.push_back(pair<int,int>(spring[0],spring[1]) );
 		}
 
-		vector<int> polygonParticleIndexes=(vector<int>)mesh["polygon"];
+		vector<int> polygonParticleIndexes=mesh["polygon"];
 		if (polygonParticleIndexes.size()>0) {
 			meshData.polygon=polygonParticleIndexes;
 		}

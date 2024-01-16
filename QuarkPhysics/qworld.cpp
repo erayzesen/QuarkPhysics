@@ -487,8 +487,8 @@ vector<QBody *> QWorld::GetBodiesHitByPoint(QVector point, int maxBodyCount, boo
 
 		for(auto mesh:*body->GetMeshes()){
 			if(mesh->collisionBehavior==QMesh::CIRCLES || mesh->collisionBehavior==QMesh::POLYLINE){
-				for(int i=0;i<mesh->GetParticleCount();i++){
-					QParticle *p=mesh->GetParticleAt(i);
+				for(int n=0;n<mesh->GetParticleCount();n++){
+					QParticle *p=mesh->GetParticleAt(n);
 					QVector diff=point-p->GetGlobalPosition();
 					if(diff.Length()<p->GetRadius()){
 						res.push_back(body);
@@ -498,8 +498,8 @@ vector<QBody *> QWorld::GetBodiesHitByPoint(QVector point, int maxBodyCount, boo
 				}
 			}
 			if(mesh->collisionBehavior==QMesh::POLYGONS || mesh->collisionBehavior==QMesh::POLYLINE){
-				for(int i=0;i<mesh->GetSubConvexPolygonCount();i++){
-					vector<QParticle*> polygon=mesh->GetSubConvexPolygonAt(i);
+				for(int n=0;n<mesh->GetSubConvexPolygonCount();n++){
+					vector<QParticle*> polygon=mesh->GetSubConvexPolygonAt(n);
 					if( QCollision::PointInPolygon(point,polygon) ){
 						res.push_back(body);
 						break;
