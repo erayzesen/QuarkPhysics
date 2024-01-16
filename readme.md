@@ -34,9 +34,10 @@ QuarkPhysics is a 2D physics engine designed for games. Its goal is to provide a
   * It uses pixels directly as a unit without any abstractions.
   * Unlimited shape-mesh support for bodies.
   * Simple and consistent API
-  * QMesh Editor app for editing mesh features of the bodies (coming soon) 
+  * External .qmesh file support. There is also [QMeshEditor](https://github.com/erayzesen/QMeshEditor) app for create/edit/manage qmesh files. 
    
 * Rigid bodies
+  * Convex polygons support. 
   * Joints to connect bodies
   * Reasonable stability for stacked objects.
   * Kinematic bodies for creating controllable physics objects. 
@@ -72,12 +73,11 @@ Copy the "QuarkPhysics" named subfolder in the main folder to your project and u
 
 ## Roadmap
 * 1.0
-  * API revisions 
-  * Optimizations
+  * API revisions (v0.9x)
+  * Optimizations ( v0.9x)
   * Bug fixes 
 * 1.1
-  * Automatic conversion of concave polygons to convex polygons
-  * Add Static-dynamic feature to the particles 
+  * ~~Automatic conversion of concave polygons to convex polygons~~ (added v0.9x)
   * Breakable spring connections.
   * UV mapping features to QMesh
 * 1.2
