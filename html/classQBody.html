@@ -86,10 +86,10 @@ Inheritance diagram for QBody:</div>
 <div class="dyncontent">
 <div class="center"><img src="classQBody__inherit__graph.png" border="0" usemap="#aQBody_inherit__map" alt="Inheritance graph"/></div>
 <map name="aQBody_inherit__map" id="aQBody_inherit__map">
-<area shape="rect" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m..." alt="" coords="141,5,207,32"/>
-<area shape="rect" href="classQAreaBody.html" title="QAreaBody objects are objects that don&#39;t respond to collisions or receive any response from them,..." alt="" coords="5,80,100,107"/>
-<area shape="rect" href="classQRigidBody.html" title="QRigidBody is a type of body that is simulated with the dynamics of Rigid body. A rigid body is a typ..." alt="" coords="125,80,223,107"/>
-<area shape="rect" href="classQSoftBody.html" title="QSoftBody is a body type that defines deformable, soft objects in the physics world...." alt="" coords="247,80,338,107"/>
+<area shape="rect" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m..." alt="" coords="133,5,196,32"/>
+<area shape="rect" href="classQAreaBody.html" title="QAreaBody objects are objects that don&#39;t respond to collisions or receive any response from them,..." alt="" coords="5,80,95,107"/>
+<area shape="rect" href="classQRigidBody.html" title="QRigidBody is a type of body that is simulated with the dynamics of Rigid body. A rigid body is a typ..." alt="" coords="119,80,211,107"/>
+<area shape="rect" href="classQSoftBody.html" title="QSoftBody is a body type that defines deformable, soft objects in the physics world...." alt="" coords="235,80,321,107"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
@@ -97,11 +97,12 @@ Collaboration diagram for QBody:</div>
 <div class="dyncontent">
 <div class="center"><img src="classQBody__coll__graph.png" border="0" usemap="#aQBody_coll__map" alt="Collaboration graph"/></div>
 <map name="aQBody_coll__map" id="aQBody_coll__map">
-<area shape="rect" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m..." alt="" coords="64,317,129,344"/>
-<area shape="rect" href="classQWorld.html" title="A QWorld object is required to create a physics simulation. The QWorld class manages the entire physi..." alt="" coords="62,213,131,240"/>
-<area shape="rect" href="classQBroadPhase.html" title=" " alt="" coords="171,95,280,121"/>
-<area shape="rect" href="structQVector.html" title=" " alt="" coords="60,5,133,32"/>
-<area shape="rect" href="classQAABB.html" title=" " alt="" coords="156,213,224,240"/>
+<area shape="rect" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m..." alt="" coords="119,124,181,151"/>
+<area shape="rect" href="structQBroadPhase_1_1Node.html" title=" " alt="" coords="187,222,329,249"/>
+<area shape="rect" href="classQWorld.html" title="A QWorld object is required to create a physics simulation. The QWorld class manages the entire physi..." alt="" coords="121,409,187,436"/>
+<area shape="rect" href="classQBroadPhase.html" title=" " alt="" coords="207,320,309,347"/>
+<area shape="rect" href="classQAABB.html" title=" " alt="" coords="207,5,275,32"/>
+<area shape="rect" href="structQVector.html" title=" " alt="" coords="5,5,76,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -117,6 +118,11 @@ Public Types</h2></td></tr>
 , <b>STATIC</b>
  }</td></tr>
 <tr class="separator:ae468fcc35721b342d171f187dd7cdaf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac12e7c67a420fef6efd831716501fe3d"><td class="memItemLeft" align="right" valign="top"><a id="ac12e7c67a420fef6efd831716501fe3d"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>BodyTypes</b> { <b>RIGID</b>
+, <b>AREA</b>
+, <b>SOFT</b>
+ }</td></tr>
+<tr class="separator:ac12e7c67a420fef6efd831716501fe3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8995ebc965ad51576d0662e44a29d58b"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#a8995ebc965ad51576d0662e44a29d58b">SimulationModels</a> { <b>MASS_SPRING</b>
 , <b>RIGID_BODY</b>
  }</td></tr>
@@ -130,6 +136,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a1519e34dc23d2cfe9ab9a272db23fb8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3254a2e9f22d0dbd3eae008f521099e1"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#a3254a2e9f22d0dbd3eae008f521099e1">OnCollision</a> (<a class="el" href="structQBody_1_1CollisionInfo.html">CollisionInfo</a>)</td></tr>
 <tr class="separator:a3254a2e9f22d0dbd3eae008f521099e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab87ff10ff291bc1bac890c1aaa3f4eb2"><td class="memItemLeft" align="right" valign="top">BodyTypes&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#ab87ff10ff291bc1bac890c1aaa3f4eb2">GetBodyType</a> ()</td></tr>
+<tr class="separator:ab87ff10ff291bc1bac890c1aaa3f4eb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62fa19385684452e22a78cb4137c5e67"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQWorld.html">QWorld</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#a62fa19385684452e22a78cb4137c5e67">GetWorld</a> ()</td></tr>
 <tr class="separator:a62fa19385684452e22a78cb4137c5e67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa2b72ad0502e208aac2a5826b188a9b2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structQVector.html">QVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#aa2b72ad0502e208aac2a5826b188a9b2">GetPosition</a> ()</td></tr>
@@ -176,6 +184,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a137d1cb02371dc3f653cf8bcdc18a087"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50fd7042a2fa3830f8257c70bbdc3981"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#a50fd7042a2fa3830f8257c70bbdc3981">GetStaticFriction</a> ()</td></tr>
 <tr class="separator:a50fd7042a2fa3830f8257c70bbdc3981"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28d5630e22de21427ec660dc0d42f3c4"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#a28d5630e22de21427ec660dc0d42f3c4">GetAirFriction</a> ()</td></tr>
+<tr class="separator:a28d5630e22de21427ec660dc0d42f3c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a8732a12376a3cd7ff3c6bd03f627db"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#a7a8732a12376a3cd7ff3c6bd03f627db">GetMass</a> ()</td></tr>
 <tr class="separator:a7a8732a12376a3cd7ff3c6bd03f627db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abb7f901e0d54d5d0fabeb489a5d33e09"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#abb7f901e0d54d5d0fabeb489a5d33e09">GetRestitution</a> ()</td></tr>
@@ -186,6 +196,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a94d0a52a0c3a606fa36e1e72de542c24"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a25d44398115c027a4a23020565fbbd54"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#a25d44398115c027a4a23020565fbbd54">GetAngularForce</a> ()</td></tr>
 <tr class="separator:a25d44398115c027a4a23020565fbbd54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a740ca2f9c1741b6dea41b51518522ab5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#a740ca2f9c1741b6dea41b51518522ab5">GetBodySpecificTimeScaleEnabled</a> ()</td></tr>
+<tr class="separator:a740ca2f9c1741b6dea41b51518522ab5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8fcad975f32b43d51c4a1685aed9a84"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#ad8fcad975f32b43d51c4a1685aed9a84">GetBodySpesificTimeScale</a> ()</td></tr>
+<tr class="separator:ad8fcad975f32b43d51c4a1685aed9a84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a839c881cd8d58b85165bcf0ad1a1e511"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#a839c881cd8d58b85165bcf0ad1a1e511">GetEnabled</a> ()</td></tr>
+<tr class="separator:a839c881cd8d58b85165bcf0ad1a1e511"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6a1c93344bc3bb6dec7af799322dc06"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQBody.html">QBody</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#ae6a1c93344bc3bb6dec7af799322dc06">SetPosition</a> (<a class="el" href="structQVector.html">QVector</a> value, bool withPreviousPosition=true)</td></tr>
 <tr class="separator:ae6a1c93344bc3bb6dec7af799322dc06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad0e51b5e3e592df7b6432f024ef96b01"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQBody.html">QBody</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#ad0e51b5e3e592df7b6432f024ef96b01">AddPosition</a> (<a class="el" href="structQVector.html">QVector</a> value)</td></tr>
@@ -226,10 +242,18 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a6f18826d7b4a295fdb5c76279444b6ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a115029ccc2351a41989e7229466b05da"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQBody.html">QBody</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#a115029ccc2351a41989e7229466b05da">SetStaticFriction</a> (float value)</td></tr>
 <tr class="separator:a115029ccc2351a41989e7229466b05da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0d2869af6fccee912cd24e787141154"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQBody.html">QBody</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#ad0d2869af6fccee912cd24e787141154">SetAirFriction</a> (float value)</td></tr>
+<tr class="separator:ad0d2869af6fccee912cd24e787141154"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b014c8eaf5f5d98b87a84dafd721c5e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQBody.html">QBody</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#a3b014c8eaf5f5d98b87a84dafd721c5e">SetMass</a> (float value)</td></tr>
 <tr class="separator:a3b014c8eaf5f5d98b87a84dafd721c5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4923a0a1b25e988c633f9bd126ca3ff6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQBody.html">QBody</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#a4923a0a1b25e988c633f9bd126ca3ff6">SetRestitution</a> (float value)</td></tr>
 <tr class="separator:a4923a0a1b25e988c633f9bd126ca3ff6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a016428a8f123e58275ea59ea5cc042a7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQBody.html">QBody</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#a016428a8f123e58275ea59ea5cc042a7">SetBodySpecificTimeScaleEnabled</a> (bool value)</td></tr>
+<tr class="separator:a016428a8f123e58275ea59ea5cc042a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a743249d90c2c1b917760abe8c585548d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQBody.html">QBody</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#a743249d90c2c1b917760abe8c585548d">SetBodySpecificTimeScale</a> (float value)</td></tr>
+<tr class="separator:a743249d90c2c1b917760abe8c585548d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9d11f1b62c3dbb79b72c76c527aa352"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQBody.html">QBody</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#ad9d11f1b62c3dbb79b72c76c527aa352">SetEnabled</a> (bool value)</td></tr>
+<tr class="separator:ad9d11f1b62c3dbb79b72c76c527aa352"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a17bfcd06492a9e566eb930e698b4c3c4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQBody.html">QBody</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#a17bfcd06492a9e566eb930e698b4c3c4">AddMesh</a> (<a class="el" href="structQMesh.html">QMesh</a> *mesh)</td></tr>
 <tr class="separator:a17bfcd06492a9e566eb930e698b4c3c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1440d4534c97dc74064f58f2bf19c329"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQBody.html">QBody</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#a1440d4534c97dc74064f58f2bf19c329">RemoveMeshAt</a> (int index)</td></tr>
@@ -240,6 +264,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a6df110d5fc50683cca7710cfe24a14e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae649803746fedf22ca9abb2f674c5e6d"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="structQMesh.html">QMesh</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#ae649803746fedf22ca9abb2f674c5e6d">GetMeshes</a> ()</td></tr>
 <tr class="separator:ae649803746fedf22ca9abb2f674c5e6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae9bd0113a637678a3811e67447adf12"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQBody.html">QBody</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#aae9bd0113a637678a3811e67447adf12">AddMeshesFromFile</a> (string filePath)</td></tr>
+<tr class="separator:aae9bd0113a637678a3811e67447adf12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -247,8 +273,8 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a9b43b9c0368b080fc4b83754bd42ae1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adcaf713fc5a0e5e1e07c0d844b93a562"><td class="memItemLeft" align="right" valign="top">std::function&lt; void(<a class="el" href="classQBody.html">QBody</a> *body)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#adcaf713fc5a0e5e1e07c0d844b93a562">StepEventListener</a></td></tr>
 <tr class="separator:adcaf713fc5a0e5e1e07c0d844b93a562"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c0103db1b9bad5d5d89e4c420ca860a"><td class="memItemLeft" align="right" valign="top">std::function&lt; void(<a class="el" href="classQBody.html">QBody</a> *body, <a class="el" href="structQBody_1_1CollisionInfo.html">CollisionInfo</a>)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#a6c0103db1b9bad5d5d89e4c420ca860a">CollisionEventListener</a></td></tr>
-<tr class="separator:a6c0103db1b9bad5d5d89e4c420ca860a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0b095617f872559ef5c4920f9c48b70"><td class="memItemLeft" align="right" valign="top">std::function&lt; bool(<a class="el" href="classQBody.html">QBody</a> *body, <a class="el" href="structQBody_1_1CollisionInfo.html">CollisionInfo</a>)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#ac0b095617f872559ef5c4920f9c48b70">CollisionEventListener</a></td></tr>
+<tr class="separator:ac0b095617f872559ef5c4920f9c48b70"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -294,6 +320,9 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>prevRotation</b> =0.
 <tr class="memitem:a5d1c2a93b29047881f492c6b4a4cb8fd"><td class="memItemLeft" align="right" valign="top"><a id="a5d1c2a93b29047881f492c6b4a4cb8fd"></a>
 <a class="el" href="classQAABB.html">QAABB</a>&#160;</td><td class="memItemRight" valign="bottom"><b>aabb</b></td></tr>
 <tr class="separator:a5d1c2a93b29047881f492c6b4a4cb8fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3ba6ac9db7c7770b9fafdd9fb953b7a"><td class="memItemLeft" align="right" valign="top"><a id="af3ba6ac9db7c7770b9fafdd9fb953b7a"></a>
+<a class="el" href="classQAABB.html">QAABB</a>&#160;</td><td class="memItemRight" valign="bottom"><b>spatialContainerAABB</b></td></tr>
+<tr class="separator:af3ba6ac9db7c7770b9fafdd9fb953b7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afeed712f4fcad31195cf9180311be9d2"><td class="memItemLeft" align="right" valign="top"><a id="afeed712f4fcad31195cf9180311be9d2"></a>
 <a class="el" href="classQAABB.html">QAABB</a>&#160;</td><td class="memItemRight" valign="bottom"><b>fattedAABB</b></td></tr>
 <tr class="separator:afeed712f4fcad31195cf9180311be9d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -312,12 +341,27 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>circumferenceNeedsUpd
 <tr class="memitem:a07ae76d6f4e1e290e77589954ca0e882"><td class="memItemLeft" align="right" valign="top"><a id="a07ae76d6f4e1e290e77589954ca0e882"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>angularForce</b> =0.0f</td></tr>
 <tr class="separator:a07ae76d6f4e1e290e77589954ca0e882"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae29eaf9b350cba62917c876d7e026a57"><td class="memItemLeft" align="right" valign="top"><a id="ae29eaf9b350cba62917c876d7e026a57"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>enableBodySpecificTimeScale</b> =false</td></tr>
+<tr class="separator:ae29eaf9b350cba62917c876d7e026a57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac45107efb61795ddd22d1e78a1db13b7"><td class="memItemLeft" align="right" valign="top"><a id="ac45107efb61795ddd22d1e78a1db13b7"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>bodySpecificTimeScale</b> =1.0f</td></tr>
+<tr class="separator:ac45107efb61795ddd22d1e78a1db13b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a873ac9cb61079d961ce963a978320f8c"><td class="memItemLeft" align="right" valign="top"><a id="a873ac9cb61079d961ce963a978320f8c"></a>
+BodyTypes&#160;</td><td class="memItemRight" valign="bottom"><b>bodyType</b> =BodyTypes::RIGID</td></tr>
+<tr class="separator:a873ac9cb61079d961ce963a978320f8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62e19e5c84d7f43e0d70c1048169c152"><td class="memItemLeft" align="right" valign="top"><a id="a62e19e5c84d7f43e0d70c1048169c152"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>enabled</b> =true</td></tr>
+<tr class="separator:a62e19e5c84d7f43e0d70c1048169c152"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa24d597631ad20641860673589b73524"><td class="memItemLeft" align="right" valign="top"><a id="aa24d597631ad20641860673589b73524"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>friction</b> =0.2f</td></tr>
 <tr class="separator:aa24d597631ad20641860673589b73524"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a99d96d027880e17eeb034b008295eb28"><td class="memItemLeft" align="right" valign="top"><a id="a99d96d027880e17eeb034b008295eb28"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>staticFriction</b> =0.5f</td></tr>
 <tr class="separator:a99d96d027880e17eeb034b008295eb28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac904ae7cb915796626a2185db67a1ebd"><td class="memItemLeft" align="right" valign="top"><a id="ac904ae7cb915796626a2185db67a1ebd"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>airFriction</b> =0.01f</td></tr>
+<tr class="separator:ac904ae7cb915796626a2185db67a1ebd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ff7b33d0fd4ca28ddacd5d4ddd6adb8"><td class="memItemLeft" align="right" valign="top"><a id="a9ff7b33d0fd4ca28ddacd5d4ddd6adb8"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>mass</b> =1.0f</td></tr>
 <tr class="separator:a9ff7b33d0fd4ca28ddacd5d4ddd6adb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -348,9 +392,6 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>fixedVelocityTick</b> 
 <tr class="memitem:ae0a89399e192e18e9d3313c5ca180d6b"><td class="memItemLeft" align="right" valign="top"><a id="ae0a89399e192e18e9d3313c5ca180d6b"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>fixedAngularTick</b> =0</td></tr>
 <tr class="separator:ae0a89399e192e18e9d3313c5ca180d6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d92403fba882d3a231855b029b455c8"><td class="memItemLeft" align="right" valign="top"><a id="a7d92403fba882d3a231855b029b455c8"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>visited</b> =false</td></tr>
-<tr class="separator:a7d92403fba882d3a231855b029b455c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4e346a9f36cf487f414b1203ebb1330f"><td class="memItemLeft" align="right" valign="top"><a id="a4e346a9f36cf487f414b1203ebb1330f"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>canSleep</b> =true</td></tr>
 <tr class="separator:a4e346a9f36cf487f414b1203ebb1330f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -375,6 +416,12 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QManifold</b></td></
 <tr class="memitem:a4ad775c25869978af09d7deb3b5a9872"><td class="memItemLeft" align="right" valign="top"><a id="a4ad775c25869978af09d7deb3b5a9872"></a>
 class&#160;</td><td class="memItemRight" valign="bottom"><b>QParticle</b></td></tr>
 <tr class="separator:a4ad775c25869978af09d7deb3b5a9872"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49f6ef09364fd5ae02fccef38015b24c"><td class="memItemLeft" align="right" valign="top"><a id="a49f6ef09364fd5ae02fccef38015b24c"></a>
+class&#160;</td><td class="memItemRight" valign="bottom"><b>QJoint</b></td></tr>
+<tr class="separator:a49f6ef09364fd5ae02fccef38015b24c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62afcafa97c17537ad4d39543cfd7e84"><td class="memItemLeft" align="right" valign="top"><a id="a62afcafa97c17537ad4d39543cfd7e84"></a>
+class&#160;</td><td class="memItemRight" valign="bottom"><b>QBroadPhase</b></td></tr>
+<tr class="separator:a62afcafa97c17537ad4d39543cfd7e84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classQBody.html" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m...">QBody</a> objects are the base class for all types of bodies. Any class derived from <a class="el" href="classQBody.html" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m...">QBody</a> shares these methods and properties. Additionally, this base type provides flexible and common references for independent operations from qualified and named body types in the entire simulation. Virtual methods are defined for users to create different body types that inherit <a class="el" href="classQBody.html" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m...">QBody</a>. For example, the Update() method is used to apply different dynamics for all body types. <a class="el" href="classQRigidBody.html" title="QRigidBody is a type of body that is simulated with the dynamics of Rigid body. A rigid body is a typ...">QRigidBody</a> instances derived from <a class="el" href="classQBody.html" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m...">QBody</a> have their own Update() solution, while <a class="el" href="classQSoftBody.html" title="QSoftBody is a body type that defines deformable, soft objects in the physics world....">QSoftBody</a> instances have their own Update() solution. With these and similar virtual methods, unique new body types can be created. </p>
@@ -494,6 +541,31 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QParticle</b></td></
 <p>Adds a mesh to the body. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">mesh</td><td>A pointer of the mesh to add. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to the body itself. </dd></dl>
+
+</div>
+</div>
+<a id="aae9bd0113a637678a3811e67447adf12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae9bd0113a637678a3811e67447adf12">&#9670;&nbsp;</a></span>AddMeshesFromFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classQBody.html">QBody</a> * QBody::AddMeshesFromFile </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>filePath</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Adds meshes with a json based *.qmesh file. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filePath</td><td>A file path. </td></tr>
   </table>
   </dd>
 </dl>
@@ -659,6 +731,32 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QParticle</b></td></
 
 </div>
 </div>
+<a id="a28d5630e22de21427ec660dc0d42f3c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28d5630e22de21427ec660dc0d42f3c4">&#9670;&nbsp;</a></span>GetAirFriction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float QBody::GetAirFriction </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Returns the air friction value of the body. </p>
+
+</div>
+</div>
 <a id="a25d44398115c027a4a23020565fbbd54"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a25d44398115c027a4a23020565fbbd54">&#9670;&nbsp;</a></span>GetAngularForce()</h2>
 
@@ -682,6 +780,84 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QParticle</b></td></
 </table>
 </div><div class="memdoc">
 <p>Returns the current angular force value of the body. </p>
+
+</div>
+</div>
+<a id="a740ca2f9c1741b6dea41b51518522ab5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a740ca2f9c1741b6dea41b51518522ab5">&#9670;&nbsp;</a></span>GetBodySpecificTimeScaleEnabled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool QBody::GetBodySpecificTimeScaleEnabled </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Returns whether the body spesific time scale is enabled. </p>
+
+</div>
+</div>
+<a id="ad8fcad975f32b43d51c4a1685aed9a84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8fcad975f32b43d51c4a1685aed9a84">&#9670;&nbsp;</a></span>GetBodySpesificTimeScale()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float QBody::GetBodySpesificTimeScale </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Returns the body spesific time scale </p>
+
+</div>
+</div>
+<a id="ab87ff10ff291bc1bac890c1aaa3f4eb2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab87ff10ff291bc1bac890c1aaa3f4eb2">&#9670;&nbsp;</a></span>GetBodyType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">BodyTypes QBody::GetBodyType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Returns the type of the body. </p>
 
 </div>
 </div>
@@ -760,6 +936,33 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QParticle</b></td></
 </table>
 </div><div class="memdoc">
 <p>Returns the bit mask that represents the collidable layers in which the body object is present. </p>
+
+</div>
+</div>
+<a id="a839c881cd8d58b85165bcf0ad1a1e511"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a839c881cd8d58b85165bcf0ad1a1e511">&#9670;&nbsp;</a></span>GetEnabled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool QBody::GetEnabled </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Returns whether the body is enabled. <br  />
+ </p>
 
 </div>
 </div>
@@ -1547,6 +1750,39 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QParticle</b></td></
 
 </div>
 </div>
+<a id="ad0d2869af6fccee912cd24e787141154"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0d2869af6fccee912cd24e787141154">&#9670;&nbsp;</a></span>SetAirFriction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classQBody.html">QBody</a>* QBody::SetAirFriction </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Sets the air friction value of the body. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>A value to set. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to the body itself. </dd></dl>
+
+</div>
+</div>
 <a id="afe2471560c17e72d7fbbfd4ef1c99a5d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afe2471560c17e72d7fbbfd4ef1c99a5d">&#9670;&nbsp;</a></span>SetAngularForce()</h2>
 
@@ -1571,6 +1807,73 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QParticle</b></td></
 </table>
 </div><div class="memdoc">
 <p>Sets the angular force of the body. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>A value to set. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to the body itself. </dd></dl>
+
+</div>
+</div>
+<a id="a743249d90c2c1b917760abe8c585548d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a743249d90c2c1b917760abe8c585548d">&#9670;&nbsp;</a></span>SetBodySpecificTimeScale()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classQBody.html">QBody</a>* QBody::SetBodySpecificTimeScale </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Sets the time scale specific to the body. The world has a time scale, but this allows you to assign a specific time scale to the body object as an exception. <br  />
+ </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>A value to set. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to the body itself. </dd></dl>
+
+</div>
+</div>
+<a id="a016428a8f123e58275ea59ea5cc042a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a016428a8f123e58275ea59ea5cc042a7">&#9670;&nbsp;</a></span>SetBodySpecificTimeScaleEnabled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classQBody.html">QBody</a>* QBody::SetBodySpecificTimeScaleEnabled </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Sets whether the body-specific time scale is enabled. The world has a time scale, but this allows you to assign a specific time scale to the body object as an exception. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">value</td><td>A value to set. </td></tr>
   </table>
@@ -1639,6 +1942,40 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QParticle</b></td></
 <p>Sets the bit mask that represents the collidable layers in which the body object is present.A body object can collide with other body objects present in the layers defined by the user. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">value</td><td>A bit mask value to set. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to the body itself. </dd></dl>
+
+</div>
+</div>
+<a id="ad9d11f1b62c3dbb79b72c76c527aa352"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9d11f1b62c3dbb79b72c76c527aa352">&#9670;&nbsp;</a></span>SetEnabled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classQBody.html">QBody</a>* QBody::SetEnabled </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Sets whether the body is enabled. <br  />
+ </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>A value to set </td></tr>
   </table>
   </dd>
 </dl>
@@ -2109,14 +2446,14 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QParticle</b></td></
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a6c0103db1b9bad5d5d89e4c420ca860a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6c0103db1b9bad5d5d89e4c420ca860a">&#9670;&nbsp;</a></span>CollisionEventListener</h2>
+<a id="ac0b095617f872559ef5c4920f9c48b70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0b095617f872559ef5c4920f9c48b70">&#9670;&nbsp;</a></span>CollisionEventListener</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::function&lt;void(<a class="el" href="classQBody.html">QBody</a> *body,<a class="el" href="structQBody_1_1CollisionInfo.html">CollisionInfo</a>)&gt; QBody::CollisionEventListener</td>
+          <td class="memname">std::function&lt;bool(<a class="el" href="classQBody.html">QBody</a> *body,<a class="el" href="structQBody_1_1CollisionInfo.html">CollisionInfo</a>)&gt; QBody::CollisionEventListener</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2171,8 +2508,8 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QParticle</b></td></
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>src/<a class="el" href="qbody_8h_source.html">qbody.h</a></li>
-<li>src/qbody.cpp</li>
+<li>QuarkPhysics/<a class="el" href="qbody_8h_source.html">qbody.h</a></li>
+<li>QuarkPhysics/qbody.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

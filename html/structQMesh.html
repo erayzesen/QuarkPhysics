@@ -68,6 +68,7 @@ $(function() {
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pro-static-methods">Static Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="#friends">Friends</a> &#124;
 <a href="structQMesh-members.html">List of all members</a>  </div>
@@ -85,12 +86,13 @@ Collaboration diagram for QMesh:</div>
 <div class="dyncontent">
 <div class="center"><img src="structQMesh__coll__graph.png" border="0" usemap="#aQMesh_coll__map" alt="Collaboration graph"/></div>
 <map name="aQMesh_coll__map" id="aQMesh_coll__map">
-<area shape="rect" title="Every QBody object requires meshes. In other traditional physics engines, the term &#39;shape&#39; is used in..." alt="" coords="5,409,72,436"/>
-<area shape="rect" href="structQVector.html" title=" " alt="" coords="166,5,239,32"/>
-<area shape="rect" href="classQBody.html" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m..." alt="" coords="170,320,235,347"/>
-<area shape="rect" href="classQWorld.html" title="A QWorld object is required to create a physics simulation. The QWorld class manages the entire physi..." alt="" coords="207,215,276,241"/>
-<area shape="rect" href="classQBroadPhase.html" title=" " alt="" coords="328,95,437,121"/>
-<area shape="rect" href="classQAABB.html" title=" " alt="" coords="301,215,369,241"/>
+<area shape="rect" title="Every QBody object requires meshes. In other traditional physics engines, the term &#39;shape&#39; is used in..." alt="" coords="80,225,144,251"/>
+<area shape="rect" href="structQVector.html" title=" " alt="" coords="31,5,102,32"/>
+<area shape="rect" href="classQBody.html" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m..." alt="" coords="177,125,239,152"/>
+<area shape="rect" href="classQWorld.html" title="A QWorld object is required to create a physics simulation. The QWorld class manages the entire physi..." alt="" coords="194,412,259,439"/>
+<area shape="rect" href="structQBroadPhase_1_1Node.html" title=" " alt="" coords="247,225,390,251"/>
+<area shape="rect" href="classQBroadPhase.html" title=" " alt="" coords="267,323,370,349"/>
+<area shape="rect" href="classQAABB.html" title=" " alt="" coords="255,5,323,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -147,18 +149,30 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae3beaddf06c2b53e8b85e3b9aca3f93f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae64b62d34df2cf35e6b86c2fb79e3e1c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh.html#ae64b62d34df2cf35e6b86c2fb79e3e1c">GetParticleCount</a> ()</td></tr>
 <tr class="separator:ae64b62d34df2cf35e6b86c2fb79e3e1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaedb36c7ccaf3008ebabe42f4a5aad9d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQParticle.html">QParticle</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh.html#aaedb36c7ccaf3008ebabe42f4a5aad9d">GetParticle</a> (int index)</td></tr>
-<tr class="separator:aaedb36c7ccaf3008ebabe42f4a5aad9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd0b40a5c9f47279d959ccc69ff09ab7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structQMesh.html">QMesh</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh.html#abd0b40a5c9f47279d959ccc69ff09ab7">AddClosedPolygon</a> (vector&lt; <a class="el" href="classQParticle.html">QParticle</a> * &gt; polygon)</td></tr>
-<tr class="separator:abd0b40a5c9f47279d959ccc69ff09ab7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afb07cec4a5d4a4bd07ed7de4d60d288d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structQMesh.html">QMesh</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh.html#afb07cec4a5d4a4bd07ed7de4d60d288d">RemoveClosedPolygonAt</a> (int index)</td></tr>
-<tr class="separator:afb07cec4a5d4a4bd07ed7de4d60d288d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae1842457c689d84809902ad55449b796"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh.html#ae1842457c689d84809902ad55449b796">GetClosedPolygonCount</a> ()</td></tr>
-<tr class="separator:ae1842457c689d84809902ad55449b796"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac785100162791650e2e2f478455c31b1"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="classQParticle.html">QParticle</a> * &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh.html#ac785100162791650e2e2f478455c31b1">GetClosedPolygon</a> (int index)</td></tr>
-<tr class="separator:ac785100162791650e2e2f478455c31b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0ef404fbf6af49b598d3f4ee2acffc97"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structQMesh.html">QMesh</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh.html#a0ef404fbf6af49b598d3f4ee2acffc97">RemoveMatchingClosedPolygons</a> (<a class="el" href="classQParticle.html">QParticle</a> *particle)</td></tr>
-<tr class="separator:a0ef404fbf6af49b598d3f4ee2acffc97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24c1b65f30f2c38994d872e0ba50b35b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQParticle.html">QParticle</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh.html#a24c1b65f30f2c38994d872e0ba50b35b">GetParticleAt</a> (int index)</td></tr>
+<tr class="separator:a24c1b65f30f2c38994d872e0ba50b35b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa576624345068d6c3448ebb18944c5c3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structQMesh.html">QMesh</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh.html#aa576624345068d6c3448ebb18944c5c3">SetPolygon</a> (vector&lt; <a class="el" href="classQParticle.html">QParticle</a> * &gt; polygonParticles)</td></tr>
+<tr class="separator:aa576624345068d6c3448ebb18944c5c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f7e3023e5cff96a91adba31068fcc38"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structQMesh.html">QMesh</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh.html#a4f7e3023e5cff96a91adba31068fcc38">AddParticleToPolygon</a> (<a class="el" href="classQParticle.html">QParticle</a> *particle, int position=-1)</td></tr>
+<tr class="separator:a4f7e3023e5cff96a91adba31068fcc38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae75d1ee6bfbc00535167c2fbc5c4ab72"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structQMesh.html">QMesh</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh.html#ae75d1ee6bfbc00535167c2fbc5c4ab72">RemoveParticleFromPolygon</a> (<a class="el" href="classQParticle.html">QParticle</a> *particle)</td></tr>
+<tr class="separator:ae75d1ee6bfbc00535167c2fbc5c4ab72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9745b719b8b2d7cd7efd19ab94d9ab2c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structQMesh.html">QMesh</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh.html#a9745b719b8b2d7cd7efd19ab94d9ab2c">RemoveParticleFromPolygonAt</a> (int index)</td></tr>
+<tr class="separator:a9745b719b8b2d7cd7efd19ab94d9ab2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54cded3050ae52419520487f5c59f218"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structQMesh.html">QMesh</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh.html#a54cded3050ae52419520487f5c59f218">RemovePolygon</a> ()</td></tr>
+<tr class="separator:a54cded3050ae52419520487f5c59f218"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cfd5c7b7ce25a08e725a8a82093515f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh.html#a3cfd5c7b7ce25a08e725a8a82093515f">GetPolygonParticleCount</a> ()</td></tr>
+<tr class="separator:a3cfd5c7b7ce25a08e725a8a82093515f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76ad36f30bad6755071a423f72621e1a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQParticle.html">QParticle</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh.html#a76ad36f30bad6755071a423f72621e1a">GetParticleFromPolygon</a> (int index)</td></tr>
+<tr class="separator:a76ad36f30bad6755071a423f72621e1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87d4d43d7cc79abb474de11d60abe59a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structQMesh.html">QMesh</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh.html#a87d4d43d7cc79abb474de11d60abe59a">AddClosedPolygon</a> (vector&lt; <a class="el" href="classQParticle.html">QParticle</a> * &gt; polygon)</td></tr>
+<tr class="separator:a87d4d43d7cc79abb474de11d60abe59a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe3d8e0158a24b6d47141625cb9e38c0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structQMesh.html">QMesh</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh.html#abe3d8e0158a24b6d47141625cb9e38c0">RemoveClosedPolygonAt</a> (int index)</td></tr>
+<tr class="separator:abe3d8e0158a24b6d47141625cb9e38c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd7a21ee7b776105411a962e3787f781"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh.html#abd7a21ee7b776105411a962e3787f781">GetSubConvexPolygonCount</a> ()</td></tr>
+<tr class="separator:abd7a21ee7b776105411a962e3787f781"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06945f84179e9559ae71a4e3fc5722b8"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="classQParticle.html">QParticle</a> * &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh.html#a06945f84179e9559ae71a4e3fc5722b8">GetSubConvexPolygonAt</a> (int index)</td></tr>
+<tr class="separator:a06945f84179e9559ae71a4e3fc5722b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8ebb3e667536f4faa76898144c38c337"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structQMesh.html">QMesh</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh.html#a8ebb3e667536f4faa76898144c38c337">AddSpring</a> (<a class="el" href="classQSpring.html">QSpring</a> *spring)</td></tr>
 <tr class="separator:a8ebb3e667536f4faa76898144c38c337"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adac3c5320b74642afec0acbc65a5cd78"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structQMesh.html">QMesh</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh.html#adac3c5320b74642afec0acbc65a5cd78">RemoveSpring</a> (<a class="el" href="classQSpring.html">QSpring</a> *spring)</td></tr>
@@ -187,6 +201,10 @@ Static Public Member Functions</h2></td></tr>
 <tr class="separator:a46fdef1c61a493ed8bd1673604152af1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5dfa8ce766a225b9e788004ac7aed63a"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structQMesh.html">QMesh</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh.html#a5dfa8ce766a225b9e788004ac7aed63a">CreateWithMeshData</a> (<a class="el" href="structQMesh_1_1MeshData.html">QMesh::MeshData</a> &amp;data, bool enableSprings=true, bool enablePolygons=true)</td></tr>
 <tr class="separator:a5dfa8ce766a225b9e788004ac7aed63a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab57b4faf3289ad5d3197d12567c546d2"><td class="memItemLeft" align="right" valign="top">static vector&lt; <a class="el" href="structQMesh_1_1MeshData.html">QMesh::MeshData</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh.html#ab57b4faf3289ad5d3197d12567c546d2">GetMeshDatasFromFile</a> (string filePath)</td></tr>
+<tr class="separator:ab57b4faf3289ad5d3197d12567c546d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14a093917b07688c438e96328bd27424"><td class="memItemLeft" align="right" valign="top">static vector&lt; <a class="el" href="structQMesh_1_1MeshData.html">QMesh::MeshData</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh.html#a14a093917b07688c438e96328bd27424">GetMeshDatasFromJsonData</a> (std::string &amp;jsonBasedData)</td></tr>
+<tr class="separator:a14a093917b07688c438e96328bd27424"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6fab89c48747bc328cd154da4a862172"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh.html#a6fab89c48747bc328cd154da4a862172">GetPolygonArea</a> (vector&lt; <a class="el" href="classQParticle.html">QParticle</a> * &gt; &amp;polygonPoints, bool withLocalPositions=false)</td></tr>
 <tr class="memdesc:a6fab89c48747bc328cd154da4a862172"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the area of a polygon.  <a href="structQMesh.html#a6fab89c48747bc328cd154da4a862172">More...</a><br /></td></tr>
 <tr class="separator:a6fab89c48747bc328cd154da4a862172"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -205,6 +223,27 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a533abba03a676b0a858b16ff0f64b9da"><td class="memItemLeft" align="right" valign="top"><a id="a533abba03a676b0a858b16ff0f64b9da"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateCollisionBehavior</b> ()</td></tr>
 <tr class="separator:a533abba03a676b0a858b16ff0f64b9da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30222f5fb017616ded120441d24ccd93"><td class="memItemLeft" align="right" valign="top"><a id="a30222f5fb017616ded120441d24ccd93"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateSubConvexPolygons</b> ()</td></tr>
+<tr class="separator:a30222f5fb017616ded120441d24ccd93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23a85fa6b977ac102e6f42895b4f7c4e"><td class="memItemLeft" align="right" valign="top"><a id="a23a85fa6b977ac102e6f42895b4f7c4e"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>CheckIsPolygonConcave</b> (vector&lt; <a class="el" href="classQParticle.html">QParticle</a> * &gt; polygonParticles)</td></tr>
+<tr class="separator:a23a85fa6b977ac102e6f42895b4f7c4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-static-methods"></a>
+Static Protected Member Functions</h2></td></tr>
+<tr class="memitem:a2ba36bd2aa587c888a164b23a707f5e9"><td class="memItemLeft" align="right" valign="top"><a id="a2ba36bd2aa587c888a164b23a707f5e9"></a>
+static bool&#160;</td><td class="memItemRight" valign="bottom"><b>CheckIsReflex</b> (<a class="el" href="structQVector.html">QVector</a> pA, <a class="el" href="structQVector.html">QVector</a> pB, <a class="el" href="structQVector.html">QVector</a> pC)</td></tr>
+<tr class="separator:a2ba36bd2aa587c888a164b23a707f5e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbb96efb7f6817ec2d6312654802bdc5"><td class="memItemLeft" align="right" valign="top"><a id="abbb96efb7f6817ec2d6312654802bdc5"></a>
+static bool&#160;</td><td class="memItemRight" valign="bottom"><b>CheckIsReflex</b> (int indexA, int indexB, int indexC, vector&lt; <a class="el" href="classQParticle.html">QParticle</a> * &gt; polygonParticles)</td></tr>
+<tr class="separator:abbb96efb7f6817ec2d6312654802bdc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a489c888e496949f4ad522bb68e159cb5"><td class="memItemLeft" align="right" valign="top"><a id="a489c888e496949f4ad522bb68e159cb5"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>TriangulatePolygon</b> (vector&lt; <a class="el" href="classQParticle.html">QParticle</a> * &gt; &amp;polygonParticles, vector&lt; vector&lt; int &gt;&gt; &amp;triangles)</td></tr>
+<tr class="separator:a489c888e496949f4ad522bb68e159cb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a983281af042fb5257f55fc0735257cb9"><td class="memItemLeft" align="right" valign="top"><a id="a983281af042fb5257f55fc0735257cb9"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>DecompositePolygon</b> (vector&lt; <a class="el" href="classQParticle.html">QParticle</a> * &gt; &amp;polygonParticles, vector&lt; vector&lt; <a class="el" href="classQParticle.html">QParticle</a> * &gt;&gt; &amp;polygons)</td></tr>
+<tr class="separator:a983281af042fb5257f55fc0735257cb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -226,9 +265,12 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>globalRotation</b> =
 <tr class="memitem:ab0dde83c30f75f8c9ff21c94213b168c"><td class="memItemLeft" align="right" valign="top"><a id="ab0dde83c30f75f8c9ff21c94213b168c"></a>
 vector&lt; <a class="el" href="classQSpring.html">QSpring</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>springs</b> =vector&lt;<a class="el" href="classQSpring.html">QSpring</a>*&gt;()</td></tr>
 <tr class="separator:ab0dde83c30f75f8c9ff21c94213b168c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae286be4d21cd4db3e86b3b78b10abb8b"><td class="memItemLeft" align="right" valign="top"><a id="ae286be4d21cd4db3e86b3b78b10abb8b"></a>
-vector&lt; vector&lt; <a class="el" href="classQParticle.html">QParticle</a> * &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>closedPolygons</b> =vector&lt;vector&lt;<a class="el" href="classQParticle.html">QParticle</a>*&gt;&gt;()</td></tr>
-<tr class="separator:ae286be4d21cd4db3e86b3b78b10abb8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64de4b8ba8dd0dabae809de7b4c87a33"><td class="memItemLeft" align="right" valign="top"><a id="a64de4b8ba8dd0dabae809de7b4c87a33"></a>
+vector&lt; <a class="el" href="classQParticle.html">QParticle</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>polygon</b> =vector&lt;<a class="el" href="classQParticle.html">QParticle</a>*&gt;()</td></tr>
+<tr class="separator:a64de4b8ba8dd0dabae809de7b4c87a33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a026959242823125712630ff63efdfd10"><td class="memItemLeft" align="right" valign="top"><a id="a026959242823125712630ff63efdfd10"></a>
+vector&lt; vector&lt; <a class="el" href="classQParticle.html">QParticle</a> * &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>subConvexPolygons</b> =vector&lt;vector&lt;<a class="el" href="classQParticle.html">QParticle</a>*&gt;&gt;()</td></tr>
+<tr class="separator:a026959242823125712630ff63efdfd10"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a235216098faa4fa5e4edd7018321b2d4"><td class="memItemLeft" align="right" valign="top"><a id="a235216098faa4fa5e4edd7018321b2d4"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>circumference</b> =0.0f</td></tr>
 <tr class="separator:a235216098faa4fa5e4edd7018321b2d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -238,6 +280,12 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>circumference</b> =0
 <tr class="memitem:a5af006549d440af00907c0661f0a996e"><td class="memItemLeft" align="right" valign="top"><a id="a5af006549d440af00907c0661f0a996e"></a>
 CollisionBehaviors&#160;</td><td class="memItemRight" valign="bottom"><b>collisionBehavior</b> =CollisionBehaviors::CIRCLES</td></tr>
 <tr class="separator:a5af006549d440af00907c0661f0a996e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fdffbc46f14a0b865ee36425da8e4d0"><td class="memItemLeft" align="right" valign="top"><a id="a5fdffbc46f14a0b865ee36425da8e4d0"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>collisionBehaviorNeedsUpdate</b> =false</td></tr>
+<tr class="separator:a5fdffbc46f14a0b865ee36425da8e4d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36f6330eb9b31e0980a395f9ce2ecb3f"><td class="memItemLeft" align="right" valign="top"><a id="a36f6330eb9b31e0980a395f9ce2ecb3f"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>subConvexPolygonsNeedsUpdate</b> =false</td></tr>
+<tr class="separator:a36f6330eb9b31e0980a395f9ce2ecb3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
@@ -247,6 +295,18 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QWorld</b></td></tr>
 <tr class="memitem:afd9df1b7b5f8a6c532892d9353ab930b"><td class="memItemLeft" align="right" valign="top"><a id="afd9df1b7b5f8a6c532892d9353ab930b"></a>
 class&#160;</td><td class="memItemRight" valign="bottom"><b>QBody</b></td></tr>
 <tr class="separator:afd9df1b7b5f8a6c532892d9353ab930b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3498dc851649f40c47024ba8aa86f57"><td class="memItemLeft" align="right" valign="top"><a id="aa3498dc851649f40c47024ba8aa86f57"></a>
+class&#160;</td><td class="memItemRight" valign="bottom"><b>QRigidBody</b></td></tr>
+<tr class="separator:aa3498dc851649f40c47024ba8aa86f57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72b17d5dd66883780a3c7c53e04fe69c"><td class="memItemLeft" align="right" valign="top"><a id="a72b17d5dd66883780a3c7c53e04fe69c"></a>
+class&#160;</td><td class="memItemRight" valign="bottom"><b>QSoftBody</b></td></tr>
+<tr class="separator:a72b17d5dd66883780a3c7c53e04fe69c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b7b7e613b08c919b75ae3bc4d0b9b24"><td class="memItemLeft" align="right" valign="top"><a id="a4b7b7e613b08c919b75ae3bc4d0b9b24"></a>
+class&#160;</td><td class="memItemRight" valign="bottom"><b>QRaycast</b></td></tr>
+<tr class="separator:a4b7b7e613b08c919b75ae3bc4d0b9b24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3af9182473018cc2543a29c7e0200f20"><td class="memItemLeft" align="right" valign="top"><a id="a3af9182473018cc2543a29c7e0200f20"></a>
+class&#160;</td><td class="memItemRight" valign="bottom"><b>QCollision</b></td></tr>
+<tr class="separator:a3af9182473018cc2543a29c7e0200f20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Every <a class="el" href="classQBody.html" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m...">QBody</a> object requires meshes. In other traditional physics engines, the term 'shape' is used instead. However, in Quark Physics, meshes do not only contain information about primitive shapes. A <a class="el" href="structQMesh.html" title="Every QBody object requires meshes. In other traditional physics engines, the term &#39;shape&#39; is used in...">QMesh</a> includes collision shapes, collision behaviors, internal and external spring connections, particle informations, and necessary collective information for rendering. In the <a class="el" href="structQMesh.html" title="Every QBody object requires meshes. In other traditional physics engines, the term &#39;shape&#39; is used in...">QMesh</a> class, there are methods to quickly create primitive types such as circles, rectangles, and polygons that are suitable for the types and needs of body objects. However, <a class="el" href="structQMesh.html" title="Every QBody object requires meshes. In other traditional physics engines, the term &#39;shape&#39; is used in...">QMesh</a> objects are created with a struct called <a class="el" href="structQMesh_1_1MeshData.html">MeshData</a>. Therefore, it is also possible to create many complex mesh examples for body types. </p>
@@ -270,14 +330,14 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QBody</b></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="abd0b40a5c9f47279d959ccc69ff09ab7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abd0b40a5c9f47279d959ccc69ff09ab7">&#9670;&nbsp;</a></span>AddClosedPolygon()</h2>
+<a id="a87d4d43d7cc79abb474de11d60abe59a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87d4d43d7cc79abb474de11d60abe59a">&#9670;&nbsp;</a></span>AddClosedPolygon()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structQMesh.html">QMesh</a> * QMesh::AddClosedPolygon </td>
+          <td class="memname"><a class="el" href="structQMesh.html">QMesh</a>* QMesh::AddClosedPolygon </td>
           <td>(</td>
           <td class="paramtype">vector&lt; <a class="el" href="classQParticle.html">QParticle</a> * &gt;&#160;</td>
           <td class="paramname"><em>polygon</em></td><td>)</td>
@@ -312,6 +372,42 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QBody</b></td></tr>
 <p>Adds a particle to the mesh </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">particle</td><td>A particle to be added. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>QMesh* A pointer to mesh itself. </dd></dl>
+
+</div>
+</div>
+<a id="a4f7e3023e5cff96a91adba31068fcc38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f7e3023e5cff96a91adba31068fcc38">&#9670;&nbsp;</a></span>AddParticleToPolygon()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structQMesh.html">QMesh</a> * QMesh::AddParticleToPolygon </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classQParticle.html">QParticle</a> *&#160;</td>
+          <td class="paramname"><em>particle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>position</em> = <code>-1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Adds a particle of the mesh to the polygon. If you want to add a particle to the end of the polygon, set the position value as -1. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">particle</td><td>A pointer to a particle </td></tr>
+    <tr><td class="paramname">position</td><td>A position index. Default value is -1, indicating the end of the polygon. </td></tr>
   </table>
   </dd>
 </dl>
@@ -836,64 +932,6 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QBody</b></td></tr>
 
 </div>
 </div>
-<a id="ac785100162791650e2e2f478455c31b1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac785100162791650e2e2f478455c31b1">&#9670;&nbsp;</a></span>GetClosedPolygon()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">vector&lt;<a class="el" href="classQParticle.html">QParticle</a>*&gt;&amp; QMesh::GetClosedPolygon </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>index</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Returns polygon at the specified index </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">index</td><td>The index of the polygon to get. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="ae1842457c689d84809902ad55449b796"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae1842457c689d84809902ad55449b796">&#9670;&nbsp;</a></span>GetClosedPolygonCount()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int QMesh::GetClosedPolygonCount </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Returns the total polygon count in the mesh. </p>
-
-</div>
-</div>
 <a id="afe423292a3655c6d1b0756853fdf9dfc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afe423292a3655c6d1b0756853fdf9dfc">&#9670;&nbsp;</a></span>GetCollisionBehavior()</h2>
 
@@ -1025,6 +1063,72 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QBody</b></td></tr>
 
 </div>
 </div>
+<a id="ab57b4faf3289ad5d3197d12567c546d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab57b4faf3289ad5d3197d12567c546d2">&#9670;&nbsp;</a></span>GetMeshDatasFromFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; <a class="el" href="structQMesh_1_1MeshData.html">QMesh::MeshData</a> &gt; QMesh::GetMeshDatasFromFile </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>filePath</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Returns mesh data list from a json based *.qmesh file.You can use the returned mesh data of the collection with the QWorld::CreateWithMeshData method. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filePath</td><td>The filePath to load </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>vector&lt;QMesh::MeshData&gt; A Mesh data list. </dd></dl>
+
+</div>
+</div>
+<a id="a14a093917b07688c438e96328bd27424"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14a093917b07688c438e96328bd27424">&#9670;&nbsp;</a></span>GetMeshDatasFromJsonData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; <a class="el" href="structQMesh_1_1MeshData.html">QMesh::MeshData</a> &gt; QMesh::GetMeshDatasFromJsonData </td>
+          <td>(</td>
+          <td class="paramtype">std::string &amp;&#160;</td>
+          <td class="paramname"><em>jsonBasedData</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Returns mesh data list from a json based data.You can use the returned mesh data of the collection with the QWorld::CreateWithMeshData method. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">jsonBasedData</td><td>The json data to parse. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>vector&lt;QMesh::MeshData&gt; A Mesh data list. </dd></dl>
+
+</div>
+</div>
 <a id="aaa8d12979d889825fbf2ab1c74b96183"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aaa8d12979d889825fbf2ab1c74b96183">&#9670;&nbsp;</a></span>GetOwnerBody()</h2>
 
@@ -1051,14 +1155,14 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QBody</b></td></tr>
 
 </div>
 </div>
-<a id="aaedb36c7ccaf3008ebabe42f4a5aad9d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaedb36c7ccaf3008ebabe42f4a5aad9d">&#9670;&nbsp;</a></span>GetParticle()</h2>
+<a id="a24c1b65f30f2c38994d872e0ba50b35b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24c1b65f30f2c38994d872e0ba50b35b">&#9670;&nbsp;</a></span>GetParticleAt()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classQParticle.html">QParticle</a> * QMesh::GetParticle </td>
+          <td class="memname"><a class="el" href="classQParticle.html">QParticle</a> * QMesh::GetParticleAt </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>index</em></td><td>)</td>
@@ -1090,6 +1194,32 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QBody</b></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Returns the total particle count in the mesh. </p>
+
+</div>
+</div>
+<a id="a76ad36f30bad6755071a423f72621e1a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76ad36f30bad6755071a423f72621e1a">&#9670;&nbsp;</a></span>GetParticleFromPolygon()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classQParticle.html">QParticle</a> * QMesh::GetParticleFromPolygon </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns a particle of the polygon at the specified index <br  />
+ </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>An index value </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>QParticle* A pointer to the particle. </dd></dl>
 
 </div>
 </div>
@@ -1135,6 +1265,25 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QBody</b></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a3cfd5c7b7ce25a08e725a8a82093515f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3cfd5c7b7ce25a08e725a8a82093515f">&#9670;&nbsp;</a></span>GetPolygonParticleCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int QMesh::GetPolygonParticleCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns the total particle count of the polygon <br  />
+ </p>
 
 </div>
 </div>
@@ -1306,14 +1455,72 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QBody</b></td></tr>
 
 </div>
 </div>
-<a id="afb07cec4a5d4a4bd07ed7de4d60d288d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afb07cec4a5d4a4bd07ed7de4d60d288d">&#9670;&nbsp;</a></span>RemoveClosedPolygonAt()</h2>
+<a id="a06945f84179e9559ae71a4e3fc5722b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06945f84179e9559ae71a4e3fc5722b8">&#9670;&nbsp;</a></span>GetSubConvexPolygonAt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt;<a class="el" href="classQParticle.html">QParticle</a>*&gt;&amp; QMesh::GetSubConvexPolygonAt </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Returns polygon at the specified index </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>The index of the polygon to get. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="abd7a21ee7b776105411a962e3787f781"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd7a21ee7b776105411a962e3787f781">&#9670;&nbsp;</a></span>GetSubConvexPolygonCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int QMesh::GetSubConvexPolygonCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Returns the total polygon count in the mesh. </p>
+
+</div>
+</div>
+<a id="abe3d8e0158a24b6d47141625cb9e38c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe3d8e0158a24b6d47141625cb9e38c0">&#9670;&nbsp;</a></span>RemoveClosedPolygonAt()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structQMesh.html">QMesh</a> * QMesh::RemoveClosedPolygonAt </td>
+          <td class="memname"><a class="el" href="structQMesh.html">QMesh</a>* QMesh::RemoveClosedPolygonAt </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>index</em></td><td>)</td>
@@ -1324,31 +1531,6 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QBody</b></td></tr>
 <p>Removes a polygon from the mesh at the specified index. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">index</td><td>The index of the polygon. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>QMesh* A pointer to mesh itself. </dd></dl>
-
-</div>
-</div>
-<a id="a0ef404fbf6af49b598d3f4ee2acffc97"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0ef404fbf6af49b598d3f4ee2acffc97">&#9670;&nbsp;</a></span>RemoveMatchingClosedPolygons()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structQMesh.html">QMesh</a> * QMesh::RemoveMatchingClosedPolygons </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classQParticle.html">QParticle</a> *&#160;</td>
-          <td class="paramname"><em>particle</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Removes the polygons that contain the specified particle. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">particle</td><td>A particle to be matched. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1428,6 +1610,77 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QBody</b></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>QMesh* A pointer to mesh itself. </dd></dl>
+
+</div>
+</div>
+<a id="ae75d1ee6bfbc00535167c2fbc5c4ab72"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae75d1ee6bfbc00535167c2fbc5c4ab72">&#9670;&nbsp;</a></span>RemoveParticleFromPolygon()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structQMesh.html">QMesh</a> * QMesh::RemoveParticleFromPolygon </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classQParticle.html">QParticle</a> *&#160;</td>
+          <td class="paramname"><em>particle</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Removes a particle from to the polygon. <br  />
+ </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">particle</td><td>A pointer to a particle </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>QMesh* A pointer to mesh itself. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>A polygon requires at least 3 particles. Please check the number of particles in the polygon before removing any particle from it. </dd></dl>
+
+</div>
+</div>
+<a id="a9745b719b8b2d7cd7efd19ab94d9ab2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9745b719b8b2d7cd7efd19ab94d9ab2c">&#9670;&nbsp;</a></span>RemoveParticleFromPolygonAt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structQMesh.html">QMesh</a> * QMesh::RemoveParticleFromPolygonAt </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Removes a particle from to the polygon at the specified index. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>An index value </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>QMesh* A pointer to mesh itself. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>A polygon requires at least 3 particles. Please check the number of particles in the polygon before removing any particle from it. </dd></dl>
+
+</div>
+</div>
+<a id="a54cded3050ae52419520487f5c59f218"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54cded3050ae52419520487f5c59f218">&#9670;&nbsp;</a></span>RemovePolygon()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structQMesh.html">QMesh</a> * QMesh::RemovePolygon </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Removes the polygon from the mesh. </p><dl class="section return"><dt>Returns</dt><dd>QMesh* A pointer to mesh itself. </dd></dl>
 
 </div>
 </div>
@@ -1514,6 +1767,31 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QBody</b></td></tr>
 
 </div>
 </div>
+<a id="aa576624345068d6c3448ebb18944c5c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa576624345068d6c3448ebb18944c5c3">&#9670;&nbsp;</a></span>SetPolygon()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structQMesh.html">QMesh</a> * QMesh::SetPolygon </td>
+          <td>(</td>
+          <td class="paramtype">vector&lt; <a class="el" href="classQParticle.html">QParticle</a> * &gt;&#160;</td>
+          <td class="paramname"><em>polygonParticles</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sets a polygon to the mesh </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">polygonParticles</td><td>A particle pointers collection of the polygon. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>QMesh* A pointer to mesh itself. </dd></dl>
+
+</div>
+</div>
 <a id="af4b4bb36b656b2a1581ca2c39ad32d6b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af4b4bb36b656b2a1581ca2c39ad32d6b">&#9670;&nbsp;</a></span>SetPosition()</h2>
 
@@ -1581,8 +1859,8 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QBody</b></td></tr>
 </div>
 </div>
 <hr/>The documentation for this struct was generated from the following files:<ul>
-<li>src/<a class="el" href="qmesh_8h_source.html">qmesh.h</a></li>
-<li>src/qmesh.cpp</li>
+<li>QuarkPhysics/<a class="el" href="qmesh_8h_source.html">qmesh.h</a></li>
+<li>QuarkPhysics/qmesh.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

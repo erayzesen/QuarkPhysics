@@ -75,6 +75,15 @@ $(function() {
 <div class="contents">
 
 <p><code>#include &lt;<a class="el" href="qmesh_8h_source.html">qmesh.h</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for QMesh::MeshData:</div>
+<div class="dyncontent">
+<div class="center"><img src="structQMesh_1_1MeshData__coll__graph.png" border="0" usemap="#aQMesh_1_1MeshData_coll__map" alt="Collaboration graph"/></div>
+<map name="aQMesh_1_1MeshData_coll__map" id="aQMesh_1_1MeshData_coll__map">
+<area shape="rect" title=" " alt="" coords="5,95,137,121"/>
+<area shape="rect" href="structQVector.html" title=" " alt="" coords="36,5,107,32"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -88,28 +97,16 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a22772cda538a8e6cb76c84a726797f71"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9344124592e33d77bb3f8118d971e488"><td class="memItemLeft" align="right" valign="top">vector&lt; pair&lt; int, int &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh_1_1MeshData.html#a9344124592e33d77bb3f8118d971e488">internalSpringList</a></td></tr>
 <tr class="separator:a9344124592e33d77bb3f8118d971e488"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab6231c77e9dd92a2183003a3a51fe6ca"><td class="memItemLeft" align="right" valign="top">vector&lt; vector&lt; int &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh_1_1MeshData.html#ab6231c77e9dd92a2183003a3a51fe6ca">closedPolygonList</a></td></tr>
-<tr class="separator:ab6231c77e9dd92a2183003a3a51fe6ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6149568d77bbf63115c36c389dbdba5f"><td class="memItemLeft" align="right" valign="top">vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh_1_1MeshData.html#a6149568d77bbf63115c36c389dbdba5f">polygon</a></td></tr>
+<tr class="separator:a6149568d77bbf63115c36c389dbdba5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb11b10f9dc0ca6bd13d1c5d9a87d33b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structQVector.html">QVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh_1_1MeshData.html#abb11b10f9dc0ca6bd13d1c5d9a87d33b">position</a> =QVector::Zero()</td></tr>
+<tr class="separator:abb11b10f9dc0ca6bd13d1c5d9a87d33b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6608cb8b590662835a870c60519c26fa"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh_1_1MeshData.html#a6608cb8b590662835a870c60519c26fa">rotation</a> =0.0f</td></tr>
+<tr class="separator:a6608cb8b590662835a870c60519c26fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The data struct of the mesh. </p>
 </div><h2 class="groupheader">Member Data Documentation</h2>
-<a id="ab6231c77e9dd92a2183003a3a51fe6ca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab6231c77e9dd92a2183003a3a51fe6ca">&#9670;&nbsp;</a></span>closedPolygonList</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">vector&lt;vector&lt;int&gt; &gt; QMesh::MeshData::closedPolygonList</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>The polygon collection containing the index collection of the polygons. Closed polygons are important to define polygon colliders of the mesh. The particle orders should be clockwise. The integer values define the indices of particles in the particlePositions collection. <br  />
- </p>
-
-</div>
-</div>
 <a id="a9344124592e33d77bb3f8118d971e488"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9344124592e33d77bb3f8118d971e488">&#9670;&nbsp;</a></span>internalSpringList</h2>
 
@@ -171,6 +168,52 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a6149568d77bbf63115c36c389dbdba5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6149568d77bbf63115c36c389dbdba5f">&#9670;&nbsp;</a></span>polygon</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt;int&gt; QMesh::MeshData::polygon</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The polygon collection containing the index collection of the polygons. Polygons are important to define polygon colliders of the mesh. The particle orders should be clockwise. The integer values define the indices of particles in the particlePositions collection. <br  />
+ </p>
+
+</div>
+</div>
+<a id="abb11b10f9dc0ca6bd13d1c5d9a87d33b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb11b10f9dc0ca6bd13d1c5d9a87d33b">&#9670;&nbsp;</a></span>position</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structQVector.html">QVector</a> QMesh::MeshData::position =QVector::Zero()</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The position of the mesh </p>
+
+</div>
+</div>
+<a id="a6608cb8b590662835a870c60519c26fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6608cb8b590662835a870c60519c26fa">&#9670;&nbsp;</a></span>rotation</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float QMesh::MeshData::rotation =0.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The rotation of the mesh </p>
+
+</div>
+</div>
 <a id="a22772cda538a8e6cb76c84a726797f71"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a22772cda538a8e6cb76c84a726797f71">&#9670;&nbsp;</a></span>springList</h2>
 
@@ -188,7 +231,7 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
-<li>src/<a class="el" href="qmesh_8h_source.html">qmesh.h</a></li>
+<li>QuarkPhysics/<a class="el" href="qmesh_8h_source.html">qmesh.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

@@ -1,5 +1,5 @@
 <map id="QCollision::Contact" name="QCollision::Contact">
-<area shape="rect" id="node1" title="Contains all the contact information required to resolve collisions." alt="" coords="19,109,166,136"/>
-<area shape="rect" id="node2" href="$structQVector.html" title=" " alt="" coords="5,5,79,32"/>
-<area shape="rect" id="node3" href="$classQParticle.html" title="QParticle objects form the network structures of QMesh objects defined for all body object types...." alt="" coords="103,5,183,32"/>
+<area shape="rect" id="node1" title="Contains all the contact information required to resolve collisions." alt="" coords="21,109,157,136"/>
+<area shape="rect" id="node2" href="$structQVector.html" title=" " alt="" coords="5,5,76,32"/>
+<area shape="rect" id="node3" href="$classQParticle.html" title="QParticle objects form the network structures of QMesh objects defined for all body object types...." alt="" coords="100,5,176,32"/>
 </map>

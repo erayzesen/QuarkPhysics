@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Quark Physics: src/qsoftbody.h Source File</title>
+<title>Quark Physics: QuarkPhysics/qsoftbody.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -62,7 +62,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_7cb6aecc4b16a85f1d6b081dbc4b2bc4.html">QuarkPhysics</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -70,182 +70,270 @@ $(function() {
 <div class="title">qsoftbody.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef QSOFTBODY_H</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define QSOFTBODY_H</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;qbody.h&quot;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="classQSoftBody.html">    6</a></span>&#160;<span class="keyword">class </span><a class="code" href="classQSoftBody.html">QSoftBody</a> : <span class="keyword">public</span> <a class="code" href="classQBody.html">QBody</a></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="comment">//#Softbody Properties</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keywordtype">float</span> rigidity=1.0f;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keywordtype">float</span> enableAreaPreserving=<span class="keyword">false</span>;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keywordtype">float</span> areaPreservingRate=0.8f;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keywordtype">float</span> areaPreservingRigidity=1.0f;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keywordtype">float</span> targetPreservationArea=0.0f;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordtype">float</span> particleSpesificMass=1.0f;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keywordtype">bool</span> enableParticleSpesificMass=<span class="keyword">false</span>;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordtype">float</span> circumference=0.0f;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordtype">bool</span> enableAreaStability=<span class="keyword">false</span>;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordtype">bool</span> enablePassivationOfInternalSprings=<span class="keyword">false</span>;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordtype">bool</span> enableSelfParticleCollisions=<span class="keyword">false</span>;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordtype">bool</span> enableShapeMatching=<span class="keyword">false</span>;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordtype">float</span> shapeMatchingRate=0.4f;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="classQSoftBody.html">QSoftBody</a>();</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="comment">//Properties Set Methods (it returns this)</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="classQSoftBody.html#a13f61dae28e4a74da317765a8a30f7bf">   37</a></span>&#160;<span class="comment"></span>    <a class="code" href="classQSoftBody.html">QSoftBody</a> * <a class="code" href="classQSoftBody.html#a13f61dae28e4a74da317765a8a30f7bf">SetRigidity</a>(<span class="keywordtype">float</span> value){</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        rigidity=value;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    };</div>
-<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classQSoftBody.html#a2e6b6ad9028119b022d2f5a34ee82e44">   45</a></span>&#160;    <a class="code" href="classQSoftBody.html">QSoftBody</a> * <a class="code" href="classQSoftBody.html#a2e6b6ad9028119b022d2f5a34ee82e44">SetAreaPreservingRate</a>(<span class="keywordtype">float</span> value){</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        areaPreservingRate=value;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    }</div>
-<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="classQSoftBody.html#a2de939e5a6e311348f743d88d404b01b">   53</a></span>&#160;    <a class="code" href="classQSoftBody.html">QSoftBody</a> * <a class="code" href="classQSoftBody.html#a2de939e5a6e311348f743d88d404b01b">SetAreaPreservingRigidity</a>(<span class="keywordtype">float</span> value){</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        areaPreservingRigidity=value;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    }</div>
-<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="classQSoftBody.html#a4c056243d7c8596acbc9c095b2d716f7">   61</a></span>&#160;    <a class="code" href="classQSoftBody.html">QSoftBody</a> * <a class="code" href="classQSoftBody.html#a4c056243d7c8596acbc9c095b2d716f7">SetAreaPreservingEnabled</a>(<span class="keywordtype">bool</span> value){</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        enableAreaPreserving=value;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keywordflow">if</span>(value==<span class="keyword">true</span>){</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            targetPreservationArea=<a class="code" href="classQBody.html#a0a22c955808d195fb4acd647943153a3">GetTotalPolygonsInitialArea</a>();</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        }</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    }</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="classQSoftBody.html#a47c41df9c78d3c95143592ea6afbda45">   73</a></span>&#160;    <a class="code" href="classQSoftBody.html">QSoftBody</a> *<a class="code" href="classQSoftBody.html#a47c41df9c78d3c95143592ea6afbda45">SetTargetPreservationArea</a>(<span class="keywordtype">float</span> value){</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        targetPreservationArea=value;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    }</div>
-<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="classQSoftBody.html#a7c50cba37e2bc6f6e2cad4ae33cb10e8">   81</a></span>&#160;    <a class="code" href="classQSoftBody.html">QSoftBody</a> *<a class="code" href="classQSoftBody.html#a7c50cba37e2bc6f6e2cad4ae33cb10e8">SetSelfParticleCollisionsEnabled</a>(<span class="keywordtype">bool</span> value){</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        enableSelfParticleCollisions=value;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    }</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
-<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="classQSoftBody.html#a765eab098e3e8289cf39c5e98ce770d1">   90</a></span>&#160;    <a class="code" href="classQSoftBody.html">QSoftBody</a> *<a class="code" href="classQSoftBody.html#a765eab098e3e8289cf39c5e98ce770d1">SetPassivationOfInternalSpringsEnabled</a>(<span class="keywordtype">bool</span> value){</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        enablePassivationOfInternalSprings=value;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    }</div>
-<div class="line"><a name="l00098"></a><span class="lineno"><a class="line" href="classQSoftBody.html#a8d36825f91bcee4599b4536e2ab6e736">   98</a></span>&#160;    <a class="code" href="classQSoftBody.html">QSoftBody</a> *<a class="code" href="classQSoftBody.html#a8d36825f91bcee4599b4536e2ab6e736">SetShapeMatchingEnabled</a>(<span class="keywordtype">bool</span> value){</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        enableShapeMatching=value;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    }</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
-<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="classQSoftBody.html#adbc3fff7fbd7e56d1b9cba56b048a19f">  107</a></span>&#160;    <a class="code" href="classQSoftBody.html">QSoftBody</a> *<a class="code" href="classQSoftBody.html#adbc3fff7fbd7e56d1b9cba56b048a19f">SetShapeMatchingRate</a>(<span class="keywordtype">float</span> value){</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        shapeMatchingRate=value;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    }</div>
-<div class="line"><a name="l00115"></a><span class="lineno"><a class="line" href="classQSoftBody.html#af38b463aad14365a355aa2d396cf6903">  115</a></span>&#160;    <a class="code" href="classQSoftBody.html">QSoftBody</a> *<a class="code" href="classQSoftBody.html#af38b463aad14365a355aa2d396cf6903">SetParticleSpesificMass</a>(<span class="keywordtype">float</span> value){</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        particleSpesificMass=value;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    }</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
-<div class="line"><a name="l00124"></a><span class="lineno"><a class="line" href="classQSoftBody.html#a766fbc9230326bf7c8bf4d1978551fa1">  124</a></span>&#160;    <a class="code" href="classQSoftBody.html">QSoftBody</a> *<a class="code" href="classQSoftBody.html#a766fbc9230326bf7c8bf4d1978551fa1">SetParticleSpesificMassEnabled</a>(<span class="keywordtype">bool</span> value){</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        enableParticleSpesificMass=value;</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    }</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160; </div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <span class="comment">//Properties Get Methods</span></div>
-<div class="line"><a name="l00131"></a><span class="lineno"><a class="line" href="classQSoftBody.html#aaa33ecde279c50b3c205a265d70c79a2">  131</a></span>&#160;<span class="comment"></span>    <span class="keywordtype">float</span> <a class="code" href="classQSoftBody.html#aaa33ecde279c50b3c205a265d70c79a2">GetMass</a>(){</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        <span class="keywordflow">if</span>(enableParticleSpesificMass)</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;            <span class="keywordflow">return</span> particleSpesificMass;</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;            <span class="keywordflow">return</span> mass;</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    }</div>
-<div class="line"><a name="l00138"></a><span class="lineno"><a class="line" href="classQSoftBody.html#a862ef9ccbd70862cb714f7868f002134">  138</a></span>&#160;    <span class="keywordtype">float</span>  <a class="code" href="classQSoftBody.html#a862ef9ccbd70862cb714f7868f002134">GetRigidity</a>(){</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        <span class="keywordflow">return</span> rigidity;</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    };</div>
-<div class="line"><a name="l00142"></a><span class="lineno"><a class="line" href="classQSoftBody.html#ae7e59e0e07d1c774a58ac38dc5278b7d">  142</a></span>&#160;    <span class="keywordtype">float</span>  <a class="code" href="classQSoftBody.html#ae7e59e0e07d1c774a58ac38dc5278b7d">GetAreaPreservingRate</a>(){</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        <span class="keywordflow">return</span> areaPreservingRate;</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    };</div>
-<div class="line"><a name="l00146"></a><span class="lineno"><a class="line" href="classQSoftBody.html#a10b8fe8c9b94aeaf6f51acd83834bd5d">  146</a></span>&#160;    <span class="keywordtype">float</span>  <a class="code" href="classQSoftBody.html#a10b8fe8c9b94aeaf6f51acd83834bd5d">GetAreaPreservingRigidity</a>(){</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        <span class="keywordflow">return</span> areaPreservingRigidity;</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    };</div>
-<div class="line"><a name="l00150"></a><span class="lineno"><a class="line" href="classQSoftBody.html#af9cc251da66b9b9fbf2f3e281c771afa">  150</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classQSoftBody.html#af9cc251da66b9b9fbf2f3e281c771afa">GetAreaPreservingEnabled</a>(){</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        <span class="keywordflow">return</span> enableAreaPreserving;</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    }</div>
-<div class="line"><a name="l00154"></a><span class="lineno"><a class="line" href="classQSoftBody.html#a1001a341638027052b470ecaaa0104e3">  154</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classQSoftBody.html#a1001a341638027052b470ecaaa0104e3">GetTargetPreservationArea</a>(){</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        <span class="keywordflow">return</span> targetPreservationArea;</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    }</div>
-<div class="line"><a name="l00158"></a><span class="lineno"><a class="line" href="classQSoftBody.html#a8ae18c3bf5ba386933abca30ab0d2462">  158</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classQSoftBody.html#a8ae18c3bf5ba386933abca30ab0d2462">GetSelfParticleCollisionsEnabled</a>(){</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        <span class="keywordflow">return</span> enableSelfParticleCollisions;</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    }</div>
-<div class="line"><a name="l00162"></a><span class="lineno"><a class="line" href="classQSoftBody.html#ab9531d34633a76bf00c2993db4d247bd">  162</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classQSoftBody.html#ab9531d34633a76bf00c2993db4d247bd">GetPassivationOfInternalSpringsEnabled</a>(){</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        <span class="keywordflow">return</span> enablePassivationOfInternalSprings;</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    }</div>
-<div class="line"><a name="l00166"></a><span class="lineno"><a class="line" href="classQSoftBody.html#a67e57a346769e789f46c404bbc61115a">  166</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classQSoftBody.html#a67e57a346769e789f46c404bbc61115a">GetShapeMatchingEnabled</a>(){</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        <span class="keywordflow">return</span> enableShapeMatching;</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    }</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160; </div>
-<div class="line"><a name="l00171"></a><span class="lineno"><a class="line" href="classQSoftBody.html#a5f4286c68191f099dcf648a75888a278">  171</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classQSoftBody.html#a5f4286c68191f099dcf648a75888a278">GetShapeMatchingRate</a>(){</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;        <span class="keywordflow">return</span> shapeMatchingRate;</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    }</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160; </div>
-<div class="line"><a name="l00176"></a><span class="lineno"><a class="line" href="classQSoftBody.html#a2bd86955469b76b74cbe5de9b3faa2f7">  176</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classQSoftBody.html#a2bd86955469b76b74cbe5de9b3faa2f7">GetParticleSpesificMass</a>(){</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;        <span class="keywordflow">return</span> particleSpesificMass;</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    }</div>
-<div class="line"><a name="l00180"></a><span class="lineno"><a class="line" href="classQSoftBody.html#afa04bd28e7090c37338e7e4c1769ca91">  180</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classQSoftBody.html#afa04bd28e7090c37338e7e4c1769ca91">GetParticleSpesificMassEnabled</a>(){</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        <span class="keywordflow">return</span> enableParticleSpesificMass;</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    }</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160; </div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    <span class="comment">//Helper methods</span></div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160; </div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    <span class="keywordtype">float</span> safe_asin(<span class="keywordtype">float</span> value){</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;        <span class="keywordflow">if</span>(value&lt;-1.0f){</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;            <span class="keywordflow">return</span> asin(-1.0);</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        }<span class="keywordflow">else</span> <span class="keywordflow">if</span>(value&gt;1.0f){</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;            <span class="keywordflow">return</span> asin(1.0);</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;        }<span class="keywordflow">else</span>{</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;            <span class="keywordflow">return</span> asin(value);</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        }</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    }</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160; </div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160; </div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160; </div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    <span class="comment">//</span></div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classQSoftBody.html#aa722aea7fb805bb47f507be8a93d27da">Update</a>();</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classQSoftBody.html#a520a4e9b32fa163d6004362ad590526e">PreserveAreas</a>();</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classQSoftBody.html#a95f8790c4c838fe39eb27c3f1629ffdf">ApplyShapeMatching</a>();</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160; </div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;};</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160; </div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// QSOFTBODY_H</span></div>
-<div class="ttc" id="aclassQBody_html"><div class="ttname"><a href="classQBody.html">QBody</a></div><div class="ttdoc">QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m...</div><div class="ttdef"><b>Definition:</b> qbody.h:15</div></div>
-<div class="ttc" id="aclassQBody_html_a0a22c955808d195fb4acd647943153a3"><div class="ttname"><a href="classQBody.html#a0a22c955808d195fb4acd647943153a3">QBody::GetTotalPolygonsInitialArea</a></div><div class="ttdeci">float GetTotalPolygonsInitialArea()</div><div class="ttdef"><b>Definition:</b> qbody.h:173</div></div>
-<div class="ttc" id="aclassQSoftBody_html"><div class="ttname"><a href="classQSoftBody.html">QSoftBody</a></div><div class="ttdoc">QSoftBody is a body type that defines deformable, soft objects in the physics world....</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:7</div></div>
-<div class="ttc" id="aclassQSoftBody_html_a1001a341638027052b470ecaaa0104e3"><div class="ttname"><a href="classQSoftBody.html#a1001a341638027052b470ecaaa0104e3">QSoftBody::GetTargetPreservationArea</a></div><div class="ttdeci">float GetTargetPreservationArea()</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:154</div></div>
-<div class="ttc" id="aclassQSoftBody_html_a10b8fe8c9b94aeaf6f51acd83834bd5d"><div class="ttname"><a href="classQSoftBody.html#a10b8fe8c9b94aeaf6f51acd83834bd5d">QSoftBody::GetAreaPreservingRigidity</a></div><div class="ttdeci">float GetAreaPreservingRigidity()</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:146</div></div>
-<div class="ttc" id="aclassQSoftBody_html_a13f61dae28e4a74da317765a8a30f7bf"><div class="ttname"><a href="classQSoftBody.html#a13f61dae28e4a74da317765a8a30f7bf">QSoftBody::SetRigidity</a></div><div class="ttdeci">QSoftBody * SetRigidity(float value)</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:37</div></div>
-<div class="ttc" id="aclassQSoftBody_html_a2bd86955469b76b74cbe5de9b3faa2f7"><div class="ttname"><a href="classQSoftBody.html#a2bd86955469b76b74cbe5de9b3faa2f7">QSoftBody::GetParticleSpesificMass</a></div><div class="ttdeci">float GetParticleSpesificMass()</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:176</div></div>
-<div class="ttc" id="aclassQSoftBody_html_a2de939e5a6e311348f743d88d404b01b"><div class="ttname"><a href="classQSoftBody.html#a2de939e5a6e311348f743d88d404b01b">QSoftBody::SetAreaPreservingRigidity</a></div><div class="ttdeci">QSoftBody * SetAreaPreservingRigidity(float value)</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:53</div></div>
-<div class="ttc" id="aclassQSoftBody_html_a2e6b6ad9028119b022d2f5a34ee82e44"><div class="ttname"><a href="classQSoftBody.html#a2e6b6ad9028119b022d2f5a34ee82e44">QSoftBody::SetAreaPreservingRate</a></div><div class="ttdeci">QSoftBody * SetAreaPreservingRate(float value)</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:45</div></div>
-<div class="ttc" id="aclassQSoftBody_html_a47c41df9c78d3c95143592ea6afbda45"><div class="ttname"><a href="classQSoftBody.html#a47c41df9c78d3c95143592ea6afbda45">QSoftBody::SetTargetPreservationArea</a></div><div class="ttdeci">QSoftBody * SetTargetPreservationArea(float value)</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:73</div></div>
-<div class="ttc" id="aclassQSoftBody_html_a4c056243d7c8596acbc9c095b2d716f7"><div class="ttname"><a href="classQSoftBody.html#a4c056243d7c8596acbc9c095b2d716f7">QSoftBody::SetAreaPreservingEnabled</a></div><div class="ttdeci">QSoftBody * SetAreaPreservingEnabled(bool value)</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:61</div></div>
-<div class="ttc" id="aclassQSoftBody_html_a520a4e9b32fa163d6004362ad590526e"><div class="ttname"><a href="classQSoftBody.html#a520a4e9b32fa163d6004362ad590526e">QSoftBody::PreserveAreas</a></div><div class="ttdeci">void PreserveAreas()</div><div class="ttdef"><b>Definition:</b> qsoftbody.cpp:52</div></div>
-<div class="ttc" id="aclassQSoftBody_html_a5f4286c68191f099dcf648a75888a278"><div class="ttname"><a href="classQSoftBody.html#a5f4286c68191f099dcf648a75888a278">QSoftBody::GetShapeMatchingRate</a></div><div class="ttdeci">float GetShapeMatchingRate()</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:171</div></div>
-<div class="ttc" id="aclassQSoftBody_html_a67e57a346769e789f46c404bbc61115a"><div class="ttname"><a href="classQSoftBody.html#a67e57a346769e789f46c404bbc61115a">QSoftBody::GetShapeMatchingEnabled</a></div><div class="ttdeci">bool GetShapeMatchingEnabled()</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:166</div></div>
-<div class="ttc" id="aclassQSoftBody_html_a765eab098e3e8289cf39c5e98ce770d1"><div class="ttname"><a href="classQSoftBody.html#a765eab098e3e8289cf39c5e98ce770d1">QSoftBody::SetPassivationOfInternalSpringsEnabled</a></div><div class="ttdeci">QSoftBody * SetPassivationOfInternalSpringsEnabled(bool value)</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:90</div></div>
-<div class="ttc" id="aclassQSoftBody_html_a766fbc9230326bf7c8bf4d1978551fa1"><div class="ttname"><a href="classQSoftBody.html#a766fbc9230326bf7c8bf4d1978551fa1">QSoftBody::SetParticleSpesificMassEnabled</a></div><div class="ttdeci">QSoftBody * SetParticleSpesificMassEnabled(bool value)</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:124</div></div>
-<div class="ttc" id="aclassQSoftBody_html_a7c50cba37e2bc6f6e2cad4ae33cb10e8"><div class="ttname"><a href="classQSoftBody.html#a7c50cba37e2bc6f6e2cad4ae33cb10e8">QSoftBody::SetSelfParticleCollisionsEnabled</a></div><div class="ttdeci">QSoftBody * SetSelfParticleCollisionsEnabled(bool value)</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:81</div></div>
-<div class="ttc" id="aclassQSoftBody_html_a862ef9ccbd70862cb714f7868f002134"><div class="ttname"><a href="classQSoftBody.html#a862ef9ccbd70862cb714f7868f002134">QSoftBody::GetRigidity</a></div><div class="ttdeci">float GetRigidity()</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:138</div></div>
-<div class="ttc" id="aclassQSoftBody_html_a8ae18c3bf5ba386933abca30ab0d2462"><div class="ttname"><a href="classQSoftBody.html#a8ae18c3bf5ba386933abca30ab0d2462">QSoftBody::GetSelfParticleCollisionsEnabled</a></div><div class="ttdeci">bool GetSelfParticleCollisionsEnabled()</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:158</div></div>
-<div class="ttc" id="aclassQSoftBody_html_a8d36825f91bcee4599b4536e2ab6e736"><div class="ttname"><a href="classQSoftBody.html#a8d36825f91bcee4599b4536e2ab6e736">QSoftBody::SetShapeMatchingEnabled</a></div><div class="ttdeci">QSoftBody * SetShapeMatchingEnabled(bool value)</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:98</div></div>
-<div class="ttc" id="aclassQSoftBody_html_a95f8790c4c838fe39eb27c3f1629ffdf"><div class="ttname"><a href="classQSoftBody.html#a95f8790c4c838fe39eb27c3f1629ffdf">QSoftBody::ApplyShapeMatching</a></div><div class="ttdeci">void ApplyShapeMatching()</div><div class="ttdef"><b>Definition:</b> qsoftbody.cpp:94</div></div>
-<div class="ttc" id="aclassQSoftBody_html_aa722aea7fb805bb47f507be8a93d27da"><div class="ttname"><a href="classQSoftBody.html#aa722aea7fb805bb47f507be8a93d27da">QSoftBody::Update</a></div><div class="ttdeci">void Update()</div><div class="ttdef"><b>Definition:</b> qsoftbody.cpp:18</div></div>
-<div class="ttc" id="aclassQSoftBody_html_aaa33ecde279c50b3c205a265d70c79a2"><div class="ttname"><a href="classQSoftBody.html#aaa33ecde279c50b3c205a265d70c79a2">QSoftBody::GetMass</a></div><div class="ttdeci">float GetMass()</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:131</div></div>
-<div class="ttc" id="aclassQSoftBody_html_ab9531d34633a76bf00c2993db4d247bd"><div class="ttname"><a href="classQSoftBody.html#ab9531d34633a76bf00c2993db4d247bd">QSoftBody::GetPassivationOfInternalSpringsEnabled</a></div><div class="ttdeci">bool GetPassivationOfInternalSpringsEnabled()</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:162</div></div>
-<div class="ttc" id="aclassQSoftBody_html_adbc3fff7fbd7e56d1b9cba56b048a19f"><div class="ttname"><a href="classQSoftBody.html#adbc3fff7fbd7e56d1b9cba56b048a19f">QSoftBody::SetShapeMatchingRate</a></div><div class="ttdeci">QSoftBody * SetShapeMatchingRate(float value)</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:107</div></div>
-<div class="ttc" id="aclassQSoftBody_html_ae7e59e0e07d1c774a58ac38dc5278b7d"><div class="ttname"><a href="classQSoftBody.html#ae7e59e0e07d1c774a58ac38dc5278b7d">QSoftBody::GetAreaPreservingRate</a></div><div class="ttdeci">float GetAreaPreservingRate()</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:142</div></div>
-<div class="ttc" id="aclassQSoftBody_html_af38b463aad14365a355aa2d396cf6903"><div class="ttname"><a href="classQSoftBody.html#af38b463aad14365a355aa2d396cf6903">QSoftBody::SetParticleSpesificMass</a></div><div class="ttdeci">QSoftBody * SetParticleSpesificMass(float value)</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:115</div></div>
-<div class="ttc" id="aclassQSoftBody_html_af9cc251da66b9b9fbf2f3e281c771afa"><div class="ttname"><a href="classQSoftBody.html#af9cc251da66b9b9fbf2f3e281c771afa">QSoftBody::GetAreaPreservingEnabled</a></div><div class="ttdeci">bool GetAreaPreservingEnabled()</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:150</div></div>
-<div class="ttc" id="aclassQSoftBody_html_afa04bd28e7090c37338e7e4c1769ca91"><div class="ttname"><a href="classQSoftBody.html#afa04bd28e7090c37338e7e4c1769ca91">QSoftBody::GetParticleSpesificMassEnabled</a></div><div class="ttdeci">bool GetParticleSpesificMassEnabled()</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:180</div></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/************************************************************************************</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * MIT License</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * Copyright (c) 2023 Eray Zesen</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> * Permission is hereby granted, free of charge, to any person obtaining a copy</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> * of this software and associated documentation files (the &quot;Software&quot;), to deal</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> * in the Software without restriction, including without limitation the rights</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> * copies of the Software, and to permit persons to whom the Software is</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> * furnished to do so, subject to the following conditions:</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> * The above copyright notice and this permission notice shall be included in all</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> * copies or substantial portions of the Software.</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"> * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment"> * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment"> * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment"> * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> * SOFTWARE.</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment"> * https://github.com/erayzesen/QuarkPhysics</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">**************************************************************************************/</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#ifndef QSOFTBODY_H</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#define QSOFTBODY_H</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;qbody.h&quot;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &lt;utility&gt;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="classQSoftBody.html">   34</a></span>&#160;<span class="keyword">class </span><a class="code" href="classQSoftBody.html">QSoftBody</a> : <span class="keyword">public</span> <a class="code" href="classQBody.html">QBody</a></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;{</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="comment">//#Softbody Properties</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">float</span> rigidity=1.0f;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">float</span> enableAreaPreserving=<span class="keyword">false</span>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">float</span> areaPreservingRate=0.8f;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordtype">float</span> areaPreservingRigidity=1.0f;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">float</span> targetPreservationArea=0.0f;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">float</span> particleSpesificMass=1.0f;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">bool</span> enableParticleSpesificMass=<span class="keyword">false</span>;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">float</span> circumference=0.0f;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">bool</span> enableAreaStability=<span class="keyword">false</span>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">bool</span> enablePassivationOfInternalSprings=<span class="keyword">false</span>;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">bool</span> enableSelfCollisions=<span class="keyword">false</span>;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">float</span> selfCollisionParticleRadius=0.0f;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">bool</span> enableShapeMatching=<span class="keyword">false</span>;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">float</span> shapeMatchingRate=0.4f;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">bool</span> ApplyShapeMatchingInternals=<span class="keyword">false</span>;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">bool</span> enableShapeMatchingFixedTransform=<span class="keyword">false</span>;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <a class="code" href="structQVector.html">QVector</a> shapeMatchingFixedPosition=QVector::Zero();</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">float</span> shapeMatchingFixedRotation=0.0f;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="comment">//Helper methods</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordtype">float</span> safe_asin(<span class="keywordtype">float</span> value){</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordflow">if</span>(value&lt;-1.0f){</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            <span class="keywordflow">return</span> asin(-1.0);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        }<span class="keywordflow">else</span> <span class="keywordflow">if</span>(value&gt;1.0f){</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            <span class="keywordflow">return</span> asin(1.0);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        }<span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="keywordflow">return</span> asin(value);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        }</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    }</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <a class="code" href="classQSoftBody.html">QSoftBody</a>();</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="comment">//Properties Set Methods (it returns this)</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="classQSoftBody.html#a13f61dae28e4a74da317765a8a30f7bf">   86</a></span>&#160;<span class="comment"></span>    <a class="code" href="classQSoftBody.html">QSoftBody</a> * <a class="code" href="classQSoftBody.html#a13f61dae28e4a74da317765a8a30f7bf">SetRigidity</a>(<span class="keywordtype">float</span> value){</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        rigidity=value;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    };</div>
+<div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="classQSoftBody.html#a2e6b6ad9028119b022d2f5a34ee82e44">   94</a></span>&#160;    <a class="code" href="classQSoftBody.html">QSoftBody</a> * <a class="code" href="classQSoftBody.html#a2e6b6ad9028119b022d2f5a34ee82e44">SetAreaPreservingRate</a>(<span class="keywordtype">float</span> value){</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        areaPreservingRate=value;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    }</div>
+<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="classQSoftBody.html#a2de939e5a6e311348f743d88d404b01b">  102</a></span>&#160;    <a class="code" href="classQSoftBody.html">QSoftBody</a> * <a class="code" href="classQSoftBody.html#a2de939e5a6e311348f743d88d404b01b">SetAreaPreservingRigidity</a>(<span class="keywordtype">float</span> value){</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        areaPreservingRigidity=value;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    }</div>
+<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="classQSoftBody.html#a4c056243d7c8596acbc9c095b2d716f7">  110</a></span>&#160;    <a class="code" href="classQSoftBody.html">QSoftBody</a> * <a class="code" href="classQSoftBody.html#a4c056243d7c8596acbc9c095b2d716f7">SetAreaPreservingEnabled</a>(<span class="keywordtype">bool</span> value){</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        enableAreaPreserving=value;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        <span class="keywordflow">if</span>(value==<span class="keyword">true</span>){</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;            targetPreservationArea=<a class="code" href="classQBody.html#a0a22c955808d195fb4acd647943153a3">GetTotalPolygonsInitialArea</a>();</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        }</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    }</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160; </div>
+<div class="line"><a name="l00122"></a><span class="lineno"><a class="line" href="classQSoftBody.html#a47c41df9c78d3c95143592ea6afbda45">  122</a></span>&#160;    <a class="code" href="classQSoftBody.html">QSoftBody</a> *<a class="code" href="classQSoftBody.html#a47c41df9c78d3c95143592ea6afbda45">SetTargetPreservationArea</a>(<span class="keywordtype">float</span> value){</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        targetPreservationArea=value;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    }</div>
+<div class="line"><a name="l00130"></a><span class="lineno"><a class="line" href="classQSoftBody.html#a892640951eeca6e568d997af0b910662">  130</a></span>&#160;    <a class="code" href="classQSoftBody.html">QSoftBody</a> *<a class="code" href="classQSoftBody.html#a892640951eeca6e568d997af0b910662">SetSelfCollisionsEnabled</a>(<span class="keywordtype">bool</span> value){</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        enableSelfCollisions=value;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    }</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
+<div class="line"><a name="l00139"></a><span class="lineno"><a class="line" href="classQSoftBody.html#ae973811601a40ccc6adde3e72870f539">  139</a></span>&#160;    <a class="code" href="classQSoftBody.html">QSoftBody</a> *<a class="code" href="classQSoftBody.html#ae973811601a40ccc6adde3e72870f539">SetSelfCollisionsSpecifiedRadius</a>(<span class="keywordtype">float</span> value){</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;        selfCollisionParticleRadius=value;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    }</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160; </div>
+<div class="line"><a name="l00148"></a><span class="lineno"><a class="line" href="classQSoftBody.html#a765eab098e3e8289cf39c5e98ce770d1">  148</a></span>&#160;    <a class="code" href="classQSoftBody.html">QSoftBody</a> *<a class="code" href="classQSoftBody.html#a765eab098e3e8289cf39c5e98ce770d1">SetPassivationOfInternalSpringsEnabled</a>(<span class="keywordtype">bool</span> value){</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        enablePassivationOfInternalSprings=value;</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    }</div>
+<div class="line"><a name="l00157"></a><span class="lineno"><a class="line" href="classQSoftBody.html#a00a191e59bb117249cda89781a4a714b">  157</a></span>&#160;    <a class="code" href="classQSoftBody.html">QSoftBody</a> *<a class="code" href="classQSoftBody.html#a00a191e59bb117249cda89781a4a714b">SetShapeMatchingEnabled</a>(<span class="keywordtype">bool</span> value, <span class="keywordtype">bool</span> withoutInternals=<span class="keyword">false</span>){</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        enableShapeMatching=value;</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        ApplyShapeMatchingInternals=!withoutInternals;</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    }</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; </div>
+<div class="line"><a name="l00167"></a><span class="lineno"><a class="line" href="classQSoftBody.html#adbc3fff7fbd7e56d1b9cba56b048a19f">  167</a></span>&#160;    <a class="code" href="classQSoftBody.html">QSoftBody</a> *<a class="code" href="classQSoftBody.html#adbc3fff7fbd7e56d1b9cba56b048a19f">SetShapeMatchingRate</a>(<span class="keywordtype">float</span> value){</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        shapeMatchingRate=value;</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    }</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160; </div>
+<div class="line"><a name="l00176"></a><span class="lineno"><a class="line" href="classQSoftBody.html#ac855c9bbbd7e639e7f992c843a638a86">  176</a></span>&#160;    <a class="code" href="classQSoftBody.html">QSoftBody</a> *<a class="code" href="classQSoftBody.html#ac855c9bbbd7e639e7f992c843a638a86">SetShapeMatchingFixedTransformEnabled</a>(<span class="keywordtype">bool</span> value){</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;        enableShapeMatchingFixedTransform=value;</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    }</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160; </div>
+<div class="line"><a name="l00185"></a><span class="lineno"><a class="line" href="classQSoftBody.html#aed5a74a6bb127b342cb7beb6482be9af">  185</a></span>&#160;    <a class="code" href="classQSoftBody.html">QSoftBody</a> *<a class="code" href="classQSoftBody.html#aed5a74a6bb127b342cb7beb6482be9af">SetShapeMatchingFixedPosition</a>(<a class="code" href="structQVector.html">QVector</a> value){</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;        shapeMatchingFixedPosition=value;</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    }</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160; </div>
+<div class="line"><a name="l00194"></a><span class="lineno"><a class="line" href="classQSoftBody.html#a9e86b00e9c8b451e5cb7a34997794848">  194</a></span>&#160;    <a class="code" href="classQSoftBody.html">QSoftBody</a> *<a class="code" href="classQSoftBody.html#a9e86b00e9c8b451e5cb7a34997794848">SetShapeMatchingFixedRotation</a>(<span class="keywordtype">float</span> value){</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        shapeMatchingFixedRotation=value;</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    }</div>
+<div class="line"><a name="l00202"></a><span class="lineno"><a class="line" href="classQSoftBody.html#af38b463aad14365a355aa2d396cf6903">  202</a></span>&#160;    <a class="code" href="classQSoftBody.html">QSoftBody</a> *<a class="code" href="classQSoftBody.html#af38b463aad14365a355aa2d396cf6903">SetParticleSpesificMass</a>(<span class="keywordtype">float</span> value){</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;        particleSpesificMass=value;</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    }</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160; </div>
+<div class="line"><a name="l00211"></a><span class="lineno"><a class="line" href="classQSoftBody.html#a766fbc9230326bf7c8bf4d1978551fa1">  211</a></span>&#160;    <a class="code" href="classQSoftBody.html">QSoftBody</a> *<a class="code" href="classQSoftBody.html#a766fbc9230326bf7c8bf4d1978551fa1">SetParticleSpesificMassEnabled</a>(<span class="keywordtype">bool</span> value){</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;        enableParticleSpesificMass=value;</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    }</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160; </div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;    <span class="comment">//Properties Get Methods</span></div>
+<div class="line"><a name="l00218"></a><span class="lineno"><a class="line" href="classQSoftBody.html#aaa33ecde279c50b3c205a265d70c79a2">  218</a></span>&#160;<span class="comment"></span>    <span class="keywordtype">float</span> <a class="code" href="classQSoftBody.html#aaa33ecde279c50b3c205a265d70c79a2">GetMass</a>(){</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;        <span class="keywordflow">if</span>(enableParticleSpesificMass)</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;            <span class="keywordflow">return</span> particleSpesificMass;</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;            <span class="keywordflow">return</span> mass;</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    }</div>
+<div class="line"><a name="l00225"></a><span class="lineno"><a class="line" href="classQSoftBody.html#a862ef9ccbd70862cb714f7868f002134">  225</a></span>&#160;    <span class="keywordtype">float</span>  <a class="code" href="classQSoftBody.html#a862ef9ccbd70862cb714f7868f002134">GetRigidity</a>(){</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;        <span class="keywordflow">return</span> rigidity;</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    };</div>
+<div class="line"><a name="l00229"></a><span class="lineno"><a class="line" href="classQSoftBody.html#ae7e59e0e07d1c774a58ac38dc5278b7d">  229</a></span>&#160;    <span class="keywordtype">float</span>  <a class="code" href="classQSoftBody.html#ae7e59e0e07d1c774a58ac38dc5278b7d">GetAreaPreservingRate</a>(){</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;        <span class="keywordflow">return</span> areaPreservingRate;</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    };</div>
+<div class="line"><a name="l00233"></a><span class="lineno"><a class="line" href="classQSoftBody.html#a10b8fe8c9b94aeaf6f51acd83834bd5d">  233</a></span>&#160;    <span class="keywordtype">float</span>  <a class="code" href="classQSoftBody.html#a10b8fe8c9b94aeaf6f51acd83834bd5d">GetAreaPreservingRigidity</a>(){</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;        <span class="keywordflow">return</span> areaPreservingRigidity;</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    };</div>
+<div class="line"><a name="l00237"></a><span class="lineno"><a class="line" href="classQSoftBody.html#af9cc251da66b9b9fbf2f3e281c771afa">  237</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classQSoftBody.html#af9cc251da66b9b9fbf2f3e281c771afa">GetAreaPreservingEnabled</a>(){</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;        <span class="keywordflow">return</span> enableAreaPreserving;</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;    }</div>
+<div class="line"><a name="l00241"></a><span class="lineno"><a class="line" href="classQSoftBody.html#a1001a341638027052b470ecaaa0104e3">  241</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classQSoftBody.html#a1001a341638027052b470ecaaa0104e3">GetTargetPreservationArea</a>(){</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;        <span class="keywordflow">return</span> targetPreservationArea;</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    }</div>
+<div class="line"><a name="l00245"></a><span class="lineno"><a class="line" href="classQSoftBody.html#a682ad5fde720de99da067254af72085f">  245</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classQSoftBody.html#a682ad5fde720de99da067254af72085f">GetSelfCollisionsEnabled</a>(){</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;        <span class="keywordflow">return</span> enableSelfCollisions;</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    }</div>
+<div class="line"><a name="l00249"></a><span class="lineno"><a class="line" href="classQSoftBody.html#af361efd7da4fe13f79d69a8b9a983105">  249</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classQSoftBody.html#af361efd7da4fe13f79d69a8b9a983105">GetSelfCollisionsSpecifiedRadius</a>(){</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;        <span class="keywordflow">return</span> selfCollisionParticleRadius;</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    }</div>
+<div class="line"><a name="l00253"></a><span class="lineno"><a class="line" href="classQSoftBody.html#ab9531d34633a76bf00c2993db4d247bd">  253</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classQSoftBody.html#ab9531d34633a76bf00c2993db4d247bd">GetPassivationOfInternalSpringsEnabled</a>(){</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;        <span class="keywordflow">return</span> enablePassivationOfInternalSprings;</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;    }</div>
+<div class="line"><a name="l00257"></a><span class="lineno"><a class="line" href="classQSoftBody.html#a67e57a346769e789f46c404bbc61115a">  257</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classQSoftBody.html#a67e57a346769e789f46c404bbc61115a">GetShapeMatchingEnabled</a>(){</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;        <span class="keywordflow">return</span> enableShapeMatching;</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;    }</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;    </div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160; </div>
+<div class="line"><a name="l00263"></a><span class="lineno"><a class="line" href="classQSoftBody.html#a5f4286c68191f099dcf648a75888a278">  263</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classQSoftBody.html#a5f4286c68191f099dcf648a75888a278">GetShapeMatchingRate</a>(){</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;        <span class="keywordflow">return</span> shapeMatchingRate;</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    }</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160; </div>
+<div class="line"><a name="l00268"></a><span class="lineno"><a class="line" href="classQSoftBody.html#ab25812aa09c9b84ceb2c1fc28e4d58df">  268</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classQSoftBody.html#ab25812aa09c9b84ceb2c1fc28e4d58df">GetShapeMatchingFixedTransformEnabled</a>(){</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;        <span class="keywordflow">return</span> enableShapeMatchingFixedTransform;</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;    }</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160; </div>
+<div class="line"><a name="l00273"></a><span class="lineno"><a class="line" href="classQSoftBody.html#a0c0f4c8527880080d3b56fe1980e35df">  273</a></span>&#160;    <a class="code" href="structQVector.html">QVector</a> <a class="code" href="classQSoftBody.html#a0c0f4c8527880080d3b56fe1980e35df">GetShapeMatchingFixedPosition</a>(){</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;        <span class="keywordflow">return</span> shapeMatchingFixedPosition;</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;    }</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160; </div>
+<div class="line"><a name="l00278"></a><span class="lineno"><a class="line" href="classQSoftBody.html#a87273921c137631cab0bb30981fb4055">  278</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classQSoftBody.html#a87273921c137631cab0bb30981fb4055">GetShapeMatchingFixedRotation</a>(){</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;        <span class="keywordflow">return</span> shapeMatchingFixedRotation;</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;    }</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160; </div>
+<div class="line"><a name="l00283"></a><span class="lineno"><a class="line" href="classQSoftBody.html#a2bd86955469b76b74cbe5de9b3faa2f7">  283</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classQSoftBody.html#a2bd86955469b76b74cbe5de9b3faa2f7">GetParticleSpesificMass</a>(){</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;        <span class="keywordflow">return</span> particleSpesificMass;</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;    }</div>
+<div class="line"><a name="l00287"></a><span class="lineno"><a class="line" href="classQSoftBody.html#afa04bd28e7090c37338e7e4c1769ca91">  287</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classQSoftBody.html#afa04bd28e7090c37338e7e4c1769ca91">GetParticleSpesificMassEnabled</a>(){</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;        <span class="keywordflow">return</span> enableParticleSpesificMass;</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;    }</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160; </div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160; </div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;    pair&lt;QVector, float&gt; <a class="code" href="classQSoftBody.html#a782e0acf3cc5d0fa684266ab410ce5ad">GetAveragePositionAndRotation</a>(vector&lt;QParticle*&gt; particles);</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;    </div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160; </div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160; </div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    <span class="comment">//</span></div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classQSoftBody.html#aa722aea7fb805bb47f507be8a93d27da">Update</a>();</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classQSoftBody.html#a520a4e9b32fa163d6004362ad590526e">PreserveAreas</a>();</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classQSoftBody.html#a95f8790c4c838fe39eb27c3f1629ffdf">ApplyShapeMatching</a>();</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;    </div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160; </div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;};</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160; </div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// QSOFTBODY_H</span></div>
+<div class="ttc" id="aclassQBody_html"><div class="ttname"><a href="classQBody.html">QBody</a></div><div class="ttdoc">QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m...</div><div class="ttdef"><b>Definition:</b> qbody.h:42</div></div>
+<div class="ttc" id="aclassQBody_html_a0a22c955808d195fb4acd647943153a3"><div class="ttname"><a href="classQBody.html#a0a22c955808d195fb4acd647943153a3">QBody::GetTotalPolygonsInitialArea</a></div><div class="ttdeci">float GetTotalPolygonsInitialArea()</div><div class="ttdef"><b>Definition:</b> qbody.h:212</div></div>
+<div class="ttc" id="aclassQSoftBody_html"><div class="ttname"><a href="classQSoftBody.html">QSoftBody</a></div><div class="ttdoc">QSoftBody is a body type that defines deformable, soft objects in the physics world....</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:35</div></div>
+<div class="ttc" id="aclassQSoftBody_html_a00a191e59bb117249cda89781a4a714b"><div class="ttname"><a href="classQSoftBody.html#a00a191e59bb117249cda89781a4a714b">QSoftBody::SetShapeMatchingEnabled</a></div><div class="ttdeci">QSoftBody * SetShapeMatchingEnabled(bool value, bool withoutInternals=false)</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:157</div></div>
+<div class="ttc" id="aclassQSoftBody_html_a0c0f4c8527880080d3b56fe1980e35df"><div class="ttname"><a href="classQSoftBody.html#a0c0f4c8527880080d3b56fe1980e35df">QSoftBody::GetShapeMatchingFixedPosition</a></div><div class="ttdeci">QVector GetShapeMatchingFixedPosition()</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:273</div></div>
+<div class="ttc" id="aclassQSoftBody_html_a1001a341638027052b470ecaaa0104e3"><div class="ttname"><a href="classQSoftBody.html#a1001a341638027052b470ecaaa0104e3">QSoftBody::GetTargetPreservationArea</a></div><div class="ttdeci">float GetTargetPreservationArea()</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:241</div></div>
+<div class="ttc" id="aclassQSoftBody_html_a10b8fe8c9b94aeaf6f51acd83834bd5d"><div class="ttname"><a href="classQSoftBody.html#a10b8fe8c9b94aeaf6f51acd83834bd5d">QSoftBody::GetAreaPreservingRigidity</a></div><div class="ttdeci">float GetAreaPreservingRigidity()</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:233</div></div>
+<div class="ttc" id="aclassQSoftBody_html_a13f61dae28e4a74da317765a8a30f7bf"><div class="ttname"><a href="classQSoftBody.html#a13f61dae28e4a74da317765a8a30f7bf">QSoftBody::SetRigidity</a></div><div class="ttdeci">QSoftBody * SetRigidity(float value)</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:86</div></div>
+<div class="ttc" id="aclassQSoftBody_html_a2bd86955469b76b74cbe5de9b3faa2f7"><div class="ttname"><a href="classQSoftBody.html#a2bd86955469b76b74cbe5de9b3faa2f7">QSoftBody::GetParticleSpesificMass</a></div><div class="ttdeci">float GetParticleSpesificMass()</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:283</div></div>
+<div class="ttc" id="aclassQSoftBody_html_a2de939e5a6e311348f743d88d404b01b"><div class="ttname"><a href="classQSoftBody.html#a2de939e5a6e311348f743d88d404b01b">QSoftBody::SetAreaPreservingRigidity</a></div><div class="ttdeci">QSoftBody * SetAreaPreservingRigidity(float value)</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:102</div></div>
+<div class="ttc" id="aclassQSoftBody_html_a2e6b6ad9028119b022d2f5a34ee82e44"><div class="ttname"><a href="classQSoftBody.html#a2e6b6ad9028119b022d2f5a34ee82e44">QSoftBody::SetAreaPreservingRate</a></div><div class="ttdeci">QSoftBody * SetAreaPreservingRate(float value)</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:94</div></div>
+<div class="ttc" id="aclassQSoftBody_html_a47c41df9c78d3c95143592ea6afbda45"><div class="ttname"><a href="classQSoftBody.html#a47c41df9c78d3c95143592ea6afbda45">QSoftBody::SetTargetPreservationArea</a></div><div class="ttdeci">QSoftBody * SetTargetPreservationArea(float value)</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:122</div></div>
+<div class="ttc" id="aclassQSoftBody_html_a4c056243d7c8596acbc9c095b2d716f7"><div class="ttname"><a href="classQSoftBody.html#a4c056243d7c8596acbc9c095b2d716f7">QSoftBody::SetAreaPreservingEnabled</a></div><div class="ttdeci">QSoftBody * SetAreaPreservingEnabled(bool value)</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:110</div></div>
+<div class="ttc" id="aclassQSoftBody_html_a520a4e9b32fa163d6004362ad590526e"><div class="ttname"><a href="classQSoftBody.html#a520a4e9b32fa163d6004362ad590526e">QSoftBody::PreserveAreas</a></div><div class="ttdeci">void PreserveAreas()</div><div class="ttdef"><b>Definition:</b> qsoftbody.cpp:103</div></div>
+<div class="ttc" id="aclassQSoftBody_html_a5f4286c68191f099dcf648a75888a278"><div class="ttname"><a href="classQSoftBody.html#a5f4286c68191f099dcf648a75888a278">QSoftBody::GetShapeMatchingRate</a></div><div class="ttdeci">float GetShapeMatchingRate()</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:263</div></div>
+<div class="ttc" id="aclassQSoftBody_html_a67e57a346769e789f46c404bbc61115a"><div class="ttname"><a href="classQSoftBody.html#a67e57a346769e789f46c404bbc61115a">QSoftBody::GetShapeMatchingEnabled</a></div><div class="ttdeci">bool GetShapeMatchingEnabled()</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:257</div></div>
+<div class="ttc" id="aclassQSoftBody_html_a682ad5fde720de99da067254af72085f"><div class="ttname"><a href="classQSoftBody.html#a682ad5fde720de99da067254af72085f">QSoftBody::GetSelfCollisionsEnabled</a></div><div class="ttdeci">bool GetSelfCollisionsEnabled()</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:245</div></div>
+<div class="ttc" id="aclassQSoftBody_html_a765eab098e3e8289cf39c5e98ce770d1"><div class="ttname"><a href="classQSoftBody.html#a765eab098e3e8289cf39c5e98ce770d1">QSoftBody::SetPassivationOfInternalSpringsEnabled</a></div><div class="ttdeci">QSoftBody * SetPassivationOfInternalSpringsEnabled(bool value)</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:148</div></div>
+<div class="ttc" id="aclassQSoftBody_html_a766fbc9230326bf7c8bf4d1978551fa1"><div class="ttname"><a href="classQSoftBody.html#a766fbc9230326bf7c8bf4d1978551fa1">QSoftBody::SetParticleSpesificMassEnabled</a></div><div class="ttdeci">QSoftBody * SetParticleSpesificMassEnabled(bool value)</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:211</div></div>
+<div class="ttc" id="aclassQSoftBody_html_a782e0acf3cc5d0fa684266ab410ce5ad"><div class="ttname"><a href="classQSoftBody.html#a782e0acf3cc5d0fa684266ab410ce5ad">QSoftBody::GetAveragePositionAndRotation</a></div><div class="ttdeci">pair&lt; QVector, float &gt; GetAveragePositionAndRotation(vector&lt; QParticle * &gt; particles)</div><div class="ttdef"><b>Definition:</b> qsoftbody.cpp:163</div></div>
+<div class="ttc" id="aclassQSoftBody_html_a862ef9ccbd70862cb714f7868f002134"><div class="ttname"><a href="classQSoftBody.html#a862ef9ccbd70862cb714f7868f002134">QSoftBody::GetRigidity</a></div><div class="ttdeci">float GetRigidity()</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:225</div></div>
+<div class="ttc" id="aclassQSoftBody_html_a87273921c137631cab0bb30981fb4055"><div class="ttname"><a href="classQSoftBody.html#a87273921c137631cab0bb30981fb4055">QSoftBody::GetShapeMatchingFixedRotation</a></div><div class="ttdeci">float GetShapeMatchingFixedRotation()</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:278</div></div>
+<div class="ttc" id="aclassQSoftBody_html_a892640951eeca6e568d997af0b910662"><div class="ttname"><a href="classQSoftBody.html#a892640951eeca6e568d997af0b910662">QSoftBody::SetSelfCollisionsEnabled</a></div><div class="ttdeci">QSoftBody * SetSelfCollisionsEnabled(bool value)</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:130</div></div>
+<div class="ttc" id="aclassQSoftBody_html_a95f8790c4c838fe39eb27c3f1629ffdf"><div class="ttname"><a href="classQSoftBody.html#a95f8790c4c838fe39eb27c3f1629ffdf">QSoftBody::ApplyShapeMatching</a></div><div class="ttdeci">void ApplyShapeMatching()</div><div class="ttdef"><b>Definition:</b> qsoftbody.cpp:198</div></div>
+<div class="ttc" id="aclassQSoftBody_html_a9e86b00e9c8b451e5cb7a34997794848"><div class="ttname"><a href="classQSoftBody.html#a9e86b00e9c8b451e5cb7a34997794848">QSoftBody::SetShapeMatchingFixedRotation</a></div><div class="ttdeci">QSoftBody * SetShapeMatchingFixedRotation(float value)</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:194</div></div>
+<div class="ttc" id="aclassQSoftBody_html_aa722aea7fb805bb47f507be8a93d27da"><div class="ttname"><a href="classQSoftBody.html#aa722aea7fb805bb47f507be8a93d27da">QSoftBody::Update</a></div><div class="ttdeci">void Update()</div><div class="ttdef"><b>Definition:</b> qsoftbody.cpp:47</div></div>
+<div class="ttc" id="aclassQSoftBody_html_aaa33ecde279c50b3c205a265d70c79a2"><div class="ttname"><a href="classQSoftBody.html#aaa33ecde279c50b3c205a265d70c79a2">QSoftBody::GetMass</a></div><div class="ttdeci">float GetMass()</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:218</div></div>
+<div class="ttc" id="aclassQSoftBody_html_ab25812aa09c9b84ceb2c1fc28e4d58df"><div class="ttname"><a href="classQSoftBody.html#ab25812aa09c9b84ceb2c1fc28e4d58df">QSoftBody::GetShapeMatchingFixedTransformEnabled</a></div><div class="ttdeci">bool GetShapeMatchingFixedTransformEnabled()</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:268</div></div>
+<div class="ttc" id="aclassQSoftBody_html_ab9531d34633a76bf00c2993db4d247bd"><div class="ttname"><a href="classQSoftBody.html#ab9531d34633a76bf00c2993db4d247bd">QSoftBody::GetPassivationOfInternalSpringsEnabled</a></div><div class="ttdeci">bool GetPassivationOfInternalSpringsEnabled()</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:253</div></div>
+<div class="ttc" id="aclassQSoftBody_html_ac855c9bbbd7e639e7f992c843a638a86"><div class="ttname"><a href="classQSoftBody.html#ac855c9bbbd7e639e7f992c843a638a86">QSoftBody::SetShapeMatchingFixedTransformEnabled</a></div><div class="ttdeci">QSoftBody * SetShapeMatchingFixedTransformEnabled(bool value)</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:176</div></div>
+<div class="ttc" id="aclassQSoftBody_html_adbc3fff7fbd7e56d1b9cba56b048a19f"><div class="ttname"><a href="classQSoftBody.html#adbc3fff7fbd7e56d1b9cba56b048a19f">QSoftBody::SetShapeMatchingRate</a></div><div class="ttdeci">QSoftBody * SetShapeMatchingRate(float value)</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:167</div></div>
+<div class="ttc" id="aclassQSoftBody_html_ae7e59e0e07d1c774a58ac38dc5278b7d"><div class="ttname"><a href="classQSoftBody.html#ae7e59e0e07d1c774a58ac38dc5278b7d">QSoftBody::GetAreaPreservingRate</a></div><div class="ttdeci">float GetAreaPreservingRate()</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:229</div></div>
+<div class="ttc" id="aclassQSoftBody_html_ae973811601a40ccc6adde3e72870f539"><div class="ttname"><a href="classQSoftBody.html#ae973811601a40ccc6adde3e72870f539">QSoftBody::SetSelfCollisionsSpecifiedRadius</a></div><div class="ttdeci">QSoftBody * SetSelfCollisionsSpecifiedRadius(float value)</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:139</div></div>
+<div class="ttc" id="aclassQSoftBody_html_aed5a74a6bb127b342cb7beb6482be9af"><div class="ttname"><a href="classQSoftBody.html#aed5a74a6bb127b342cb7beb6482be9af">QSoftBody::SetShapeMatchingFixedPosition</a></div><div class="ttdeci">QSoftBody * SetShapeMatchingFixedPosition(QVector value)</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:185</div></div>
+<div class="ttc" id="aclassQSoftBody_html_af361efd7da4fe13f79d69a8b9a983105"><div class="ttname"><a href="classQSoftBody.html#af361efd7da4fe13f79d69a8b9a983105">QSoftBody::GetSelfCollisionsSpecifiedRadius</a></div><div class="ttdeci">float GetSelfCollisionsSpecifiedRadius()</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:249</div></div>
+<div class="ttc" id="aclassQSoftBody_html_af38b463aad14365a355aa2d396cf6903"><div class="ttname"><a href="classQSoftBody.html#af38b463aad14365a355aa2d396cf6903">QSoftBody::SetParticleSpesificMass</a></div><div class="ttdeci">QSoftBody * SetParticleSpesificMass(float value)</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:202</div></div>
+<div class="ttc" id="aclassQSoftBody_html_af9cc251da66b9b9fbf2f3e281c771afa"><div class="ttname"><a href="classQSoftBody.html#af9cc251da66b9b9fbf2f3e281c771afa">QSoftBody::GetAreaPreservingEnabled</a></div><div class="ttdeci">bool GetAreaPreservingEnabled()</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:237</div></div>
+<div class="ttc" id="aclassQSoftBody_html_afa04bd28e7090c37338e7e4c1769ca91"><div class="ttname"><a href="classQSoftBody.html#afa04bd28e7090c37338e7e4c1769ca91">QSoftBody::GetParticleSpesificMassEnabled</a></div><div class="ttdeci">bool GetParticleSpesificMassEnabled()</div><div class="ttdef"><b>Definition:</b> qsoftbody.h:287</div></div>
+<div class="ttc" id="astructQVector_html"><div class="ttname"><a href="structQVector.html">QVector</a></div><div class="ttdef"><b>Definition:</b> qvector.h:43</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

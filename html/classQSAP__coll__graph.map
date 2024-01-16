@@ -1,9 +1,0 @@
-<map id="QSAP" name="QSAP">
-<area shape="rect" id="node1" title=" " alt="" coords="106,499,165,525"/>
-<area shape="rect" id="node2" href="$classQWorld.html" title=" " alt="" coords="77,216,146,243"/>
-<area shape="rect" id="node6" href="$classQBody.html" title=" " alt="" coords="190,320,255,347"/>
-<area shape="rect" id="node3" href="$classQBroadPhase.html" title=" " alt="" coords="76,103,185,130"/>
-<area shape="rect" id="node4" href="$structQVector.html" title=" " alt="" coords="147,5,220,32"/>
-<area shape="rect" id="node7" href="$classQAABB.html" title=" " alt="" coords="290,216,358,243"/>
-<area shape="rect" id="node5" href="$structQSAP_1_1SAPNode.html" title=" " alt="" coords="159,409,286,436"/>
-</map>

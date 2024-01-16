@@ -1,4 +1,4 @@
 <map id="QSoftBody" name="QSoftBody">
-<area shape="rect" id="node1" title="QSoftBody is a body type that defines deformable, soft objects in the physics world...." alt="" coords="5,80,96,107"/>
-<area shape="rect" id="node2" href="$classQBody.html" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m..." alt="" coords="18,5,83,32"/>
+<area shape="rect" id="node1" title="QSoftBody is a body type that defines deformable, soft objects in the physics world...." alt="" coords="5,80,92,107"/>
+<area shape="rect" id="node2" href="$classQBody.html" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m..." alt="" coords="17,5,80,32"/>
 </map>

@@ -81,8 +81,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a54265e7a37fc708b4bee76e79e218ee4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8f47b75f9a652ba4b40fa14a11f8d0c3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQSpring.html#a8f47b75f9a652ba4b40fa14a11f8d0c3">QSpring</a> (<a class="el" href="classQParticle.html">QParticle</a> *particleA, <a class="el" href="classQParticle.html">QParticle</a> *particleB, float length, bool internal=false)</td></tr>
 <tr class="separator:a8f47b75f9a652ba4b40fa14a11f8d0c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e3197361e9d0f803c6271de1013f428"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQSpring.html#a7e3197361e9d0f803c6271de1013f428">Update</a> (float rigidity, bool internalsException)</td></tr>
-<tr class="separator:a7e3197361e9d0f803c6271de1013f428"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a046221209171732c4c8c94225770c8d9"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQSpring.html#a046221209171732c4c8c94225770c8d9">Update</a> (float rigidity, bool internalsException, bool isWorldSpring=false)</td></tr>
+<tr class="separator:a046221209171732c4c8c94225770c8d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a28c516a0bb5ca2ddab6e512a2c5e0b68"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQParticle.html">QParticle</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQSpring.html#a28c516a0bb5ca2ddab6e512a2c5e0b68">GetParticleA</a> ()</td></tr>
 <tr class="separator:a28c516a0bb5ca2ddab6e512a2c5e0b68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a940a8c41673a5ca6bb4aefc2b798a2f8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQParticle.html">QParticle</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQSpring.html#a940a8c41673a5ca6bb4aefc2b798a2f8">GetParticleB</a> ()</td></tr>
@@ -561,8 +561,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a7e3197361e9d0f803c6271de1013f428"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7e3197361e9d0f803c6271de1013f428">&#9670;&nbsp;</a></span>Update()</h2>
+<a id="a046221209171732c4c8c94225770c8d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a046221209171732c4c8c94225770c8d9">&#9670;&nbsp;</a></span>Update()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -580,7 +580,13 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>internalsException</em>&#160;</td>
+          <td class="paramname"><em>internalsException</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isWorldSpring</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -605,8 +611,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>src/<a class="el" href="qspring_8h_source.html">qspring.h</a></li>
-<li>src/qspring.cpp</li>
+<li>QuarkPhysics/<a class="el" href="qspring_8h_source.html">qspring.h</a></li>
+<li>QuarkPhysics/qspring.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

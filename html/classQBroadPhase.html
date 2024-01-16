@@ -76,41 +76,74 @@ Collaboration diagram for QBroadPhase:</div>
 <div class="dyncontent">
 <div class="center"><img src="classQBroadPhase__coll__graph.png" border="0" usemap="#aQBroadPhase_coll__map" alt="Collaboration graph"/></div>
 <map name="aQBroadPhase_coll__map" id="aQBroadPhase_coll__map">
-<area shape="rect" title=" " alt="" coords="5,95,115,121"/>
-<area shape="rect" href="structQVector.html" title=" " alt="" coords="23,5,97,32"/>
+<area shape="rect" title=" " alt="" coords="5,5,108,32"/>
+<area shape="rect" href="classQWorld.html" title="A QWorld object is required to create a physics simulation. The QWorld class manages the entire physi..." alt="" coords="152,103,217,130"/>
+<area shape="rect" href="classQBody.html" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m..." alt="" coords="260,231,323,257"/>
+<area shape="rect" href="structQVector.html" title=" " alt="" coords="224,5,295,32"/>
+<area shape="rect" href="structQBroadPhase_1_1Node.html" title=" " alt="" coords="220,329,363,355"/>
+<area shape="rect" href="classQAABB.html" title=" " alt="" coords="420,103,488,130"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQBroadPhase_1_1Node.html">Node</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af44b2abc03e91cfb2b6488b375ab8753"><td class="memItemLeft" align="right" valign="top"><a id="af44b2abc03e91cfb2b6488b375ab8753"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>QBroadPhase</b> (<a class="el" href="structQVector.html">QVector</a> cellSize)</td></tr>
-<tr class="separator:af44b2abc03e91cfb2b6488b375ab8753"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a87b26970b7c2a3d18ee95153b630135f"><td class="memItemLeft" align="right" valign="top"><a id="a87b26970b7c2a3d18ee95153b630135f"></a>
-<a class="el" href="classQBroadPhase.html">QBroadPhase</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>Add</b> (<a class="el" href="classQBody.html">QBody</a> *body)</td></tr>
-<tr class="separator:a87b26970b7c2a3d18ee95153b630135f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d4e1d89169882b6ca30ad03704bf4ef"><td class="memItemLeft" align="right" valign="top"><a id="a9d4e1d89169882b6ca30ad03704bf4ef"></a>
-<a class="el" href="classQBroadPhase.html">QBroadPhase</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>Clear</b> ()</td></tr>
-<tr class="separator:a9d4e1d89169882b6ca30ad03704bf4ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1964efdf07419289de95c3e3367b126"><td class="memItemLeft" align="right" valign="top"><a id="ad1964efdf07419289de95c3e3367b126"></a>
-std::unordered_set&lt; std::pair&lt; <a class="el" href="classQBody.html">QBody</a> *, <a class="el" href="classQBody.html">QBody</a> * &gt;, pairHash, pairEqual &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>GetPairs</b> ()</td></tr>
-<tr class="separator:ad1964efdf07419289de95c3e3367b126"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4508da0727e4fb05d5ea2eb4be468cb"><td class="memItemLeft" align="right" valign="top"><a id="ac4508da0727e4fb05d5ea2eb4be468cb"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>QBroadPhase</b> (<a class="el" href="classQWorld.html">QWorld</a> *targetWorld)</td></tr>
+<tr class="separator:ac4508da0727e4fb05d5ea2eb4be468cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63971f2f130d647825451399e5d4620d"><td class="memItemLeft" align="right" valign="top"><a id="a63971f2f130d647825451399e5d4620d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>ReCreateTree</b> (vector&lt; <a class="el" href="classQBody.html">QBody</a> * &gt; &amp;objectList)</td></tr>
+<tr class="separator:a63971f2f130d647825451399e5d4620d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a6a7c98b32e1882559fbd32daefe321"><td class="memItemLeft" align="right" valign="top"><a id="a4a6a7c98b32e1882559fbd32daefe321"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>ClearTree</b> ()</td></tr>
+<tr class="separator:a4a6a7c98b32e1882559fbd32daefe321"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ab78f23b17de371a641e58d0b1cb60d"><td class="memItemLeft" align="right" valign="top"><a id="a8ab78f23b17de371a641e58d0b1cb60d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Query</b> (<a class="el" href="classQAABB.html">QAABB</a> &amp;AABB, vector&lt; <a class="el" href="classQBody.html">QBody</a> * &gt; &amp;list)</td></tr>
+<tr class="separator:a8ab78f23b17de371a641e58d0b1cb60d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa37b94491b3130de8d85402aea393632"><td class="memItemLeft" align="right" valign="top"><a id="aa37b94491b3130de8d85402aea393632"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>QueryInNode</b> (<a class="el" href="structQBroadPhase_1_1Node.html">Node</a> *node, <a class="el" href="classQAABB.html">QAABB</a> &amp;AABB, vector&lt; <a class="el" href="classQBody.html">QBody</a> * &gt; &amp;list)</td></tr>
+<tr class="separator:aa37b94491b3130de8d85402aea393632"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a539ffc63ea6a36c130b86db56114a27b"><td class="memItemLeft" align="right" valign="top"><a id="a539ffc63ea6a36c130b86db56114a27b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>GetPairs</b> (vector&lt; pair&lt; <a class="el" href="classQBody.html">QBody</a> *, <a class="el" href="classQBody.html">QBody</a> * &gt; &gt; &amp;pairCollection)</td></tr>
+<tr class="separator:a539ffc63ea6a36c130b86db56114a27b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a440e826787cae8271f81889c7a10df57"><td class="memItemLeft" align="right" valign="top"><a id="a440e826787cae8271f81889c7a10df57"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>GetPairsBetweenNodes</b> (<a class="el" href="structQBroadPhase_1_1Node.html">Node</a> *nodeA, <a class="el" href="structQBroadPhase_1_1Node.html">Node</a> *nodeB, vector&lt; pair&lt; <a class="el" href="classQBody.html">QBody</a> *, <a class="el" href="classQBody.html">QBody</a> * &gt; &gt; &amp;pairCollection, unordered_set&lt; int &gt; &amp;checkedPairList)</td></tr>
+<tr class="separator:a440e826787cae8271f81889c7a10df57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46f6f7fcc5ed3b292eb2dcd6fff0e4af"><td class="memItemLeft" align="right" valign="top"><a id="a46f6f7fcc5ed3b292eb2dcd6fff0e4af"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Insert</b> (<a class="el" href="classQBody.html">QBody</a> *object)</td></tr>
+<tr class="separator:a46f6f7fcc5ed3b292eb2dcd6fff0e4af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe3f059e04de42c9c1e849957697f7f6"><td class="memItemLeft" align="right" valign="top"><a id="afe3f059e04de42c9c1e849957697f7f6"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Remove</b> (<a class="el" href="classQBody.html">QBody</a> *object)</td></tr>
+<tr class="separator:afe3f059e04de42c9c1e849957697f7f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a397324e9f48ca56fc8e560baa10bd3c2"><td class="memItemLeft" align="right" valign="top"><a id="a397324e9f48ca56fc8e560baa10bd3c2"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Update</b> (<a class="el" href="classQBody.html">QBody</a> *object, <a class="el" href="classQAABB.html">QAABB</a> &amp;AABB)</td></tr>
+<tr class="separator:a397324e9f48ca56fc8e560baa10bd3c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08cf25deb8bf362a51dcf86f4e7e67cf"><td class="memItemLeft" align="right" valign="top"><a id="a08cf25deb8bf362a51dcf86f4e7e67cf"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>GetNewNodeID</b> ()</td></tr>
+<tr class="separator:a08cf25deb8bf362a51dcf86f4e7e67cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a4c4160da38a6d4d86be4047bac27f52d"><td class="memItemLeft" align="right" valign="top"><a id="a4c4160da38a6d4d86be4047bac27f52d"></a>
-<a class="el" href="structQVector.html">QVector</a>&#160;</td><td class="memItemRight" valign="bottom"><b>cellSize</b></td></tr>
-<tr class="separator:a4c4160da38a6d4d86be4047bac27f52d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a684c26bbd6907adc74a1a12c1f41b465"><td class="memItemLeft" align="right" valign="top"><a id="a684c26bbd6907adc74a1a12c1f41b465"></a>
-unordered_map&lt; int, unordered_set&lt; <a class="el" href="classQBody.html">QBody</a> * &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>collisionGroups</b></td></tr>
-<tr class="separator:a684c26bbd6907adc74a1a12c1f41b465"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeb2840d31bba4c543c51dfda583a6cea"><td class="memItemLeft" align="right" valign="top"><a id="aeb2840d31bba4c543c51dfda583a6cea"></a>
-std::unordered_set&lt; std::pair&lt; <a class="el" href="classQBody.html">QBody</a> *, <a class="el" href="classQBody.html">QBody</a> * &gt;, pairHash, pairEqual &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>pairList</b></td></tr>
-<tr class="separator:aeb2840d31bba4c543c51dfda583a6cea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3eb70d1de300ad0435642db4e5c4f69d"><td class="memItemLeft" align="right" valign="top"><a id="a3eb70d1de300ad0435642db4e5c4f69d"></a>
+<a class="el" href="classQWorld.html">QWorld</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>world</b></td></tr>
+<tr class="separator:a3eb70d1de300ad0435642db4e5c4f69d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a316a2da191cac046e6a062d419fcf568"><td class="memItemLeft" align="right" valign="top"><a id="a316a2da191cac046e6a062d419fcf568"></a>
+<a class="el" href="structQBroadPhase_1_1Node.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>root</b></td></tr>
+<tr class="separator:a316a2da191cac046e6a062d419fcf568"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5f2a536028ed1d8dee13e7ebad81d2c"><td class="memItemLeft" align="right" valign="top"><a id="ae5f2a536028ed1d8dee13e7ebad81d2c"></a>
+vector&lt; <a class="el" href="structQBroadPhase_1_1Node.html">Node</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>nodes</b></td></tr>
+<tr class="separator:ae5f2a536028ed1d8dee13e7ebad81d2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f8e900cb18339e88c117e9a54df9d04"><td class="memItemLeft" align="right" valign="top"><a id="a3f8e900cb18339e88c117e9a54df9d04"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>lastID</b> =0</td></tr>
+<tr class="separator:a3f8e900cb18339e88c117e9a54df9d04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>src/<a class="el" href="qbroadphase_8h_source.html">qbroadphase.h</a></li>
-<li>src/qbroadphase.cpp</li>
+<li>QuarkPhysics/<a class="el" href="qbroadphase_8h_source.html">qbroadphase.h</a></li>
+<li>QuarkPhysics/qbroadphase.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

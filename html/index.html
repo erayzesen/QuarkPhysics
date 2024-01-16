@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Quark Physics: Main Page</title>
+<title>Quark Physics: API Documentation</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -61,11 +61,31 @@ $(function() {
 </iframe>
 </div>
 
-<div class="header">
+<div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">Quark Physics Documentation</div>  </div>
+<div class="title">API Documentation </div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><p>QuarkPhysics is a 2D physics engine designed for games. Its goal is to provide a reasonable approach to simulate rigid bodies, soft bodies, and different physics models together.</p>
+<p><a href="https://github.com/erayzesen/QuarkPhysics">Project Github Page</a></p>
+<h2><a class="anchor" id="autotoc_md0"></a>
+Building Examples</h2>
+<p>You need to install <a href="https://www.sfml-dev.org/">SFML</a> and <a href="https://cmake.org/">CMake</a> on your system before.</p>
+<p>Download project, enter the main folder and call this; </p><pre class="fragment">    ./build.sh -r
+</pre><p> Another way is that compiling the project directly via gcc if you're on linux call; </p><pre class="fragment">    ./run_linux_fast.sh -r
+</pre> <h2><a class="anchor" id="autotoc_md1"></a>
+Using</h2>
+<p>Copy the "QuarkPhysics" named subfolder in the main folder to your project and use it.</p>
+<h2><a class="anchor" id="autotoc_md2"></a>
+Third Party</h2>
+<ul>
+<li><a href="https://github.com/nlohmann/json">nlohmann's json</a> for the json parsing. (Importing meshes via *.qmesh files)</li>
+<li><a href="https://www.sfml-dev.org/">SFML</a> library for window,input,opengl.</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md3"></a>
+License</h2>
+<p>Licensed under the <a href="https://github.com/erayzesen/QuarkPhysics/blob/master/LICENSE">MIT</a> license. </p>
+</div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Quark Physics: src/qrigidbody.h Source File</title>
+<title>Quark Physics: QuarkPhysics/qrigidbody.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -62,7 +62,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_7cb6aecc4b16a85f1d6b081dbc4b2bc4.html">QuarkPhysics</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -70,67 +70,94 @@ $(function() {
 <div class="title">qrigidbody.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef QRIGIDBODY_H</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define QRIGIDBODY_H</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;qbody.h&quot;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;qvector.h&quot;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="classQRigidBody.html">   12</a></span>&#160;<span class="keyword">class </span><a class="code" href="classQRigidBody.html">QRigidBody</a> : <span class="keyword">public</span> <a class="code" href="classQBody.html">QBody</a></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;{</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keywordtype">bool</span> fixedRotation=<span class="keyword">false</span>;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="classQRigidBody.html">QRigidBody</a>();</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="comment">//Get Methods</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="classQRigidBody.html#af172107b350cb0cf85fab5ff6268c36e">   20</a></span>&#160;<span class="comment"></span>    <span class="keywordtype">bool</span> <a class="code" href="classQRigidBody.html#af172107b350cb0cf85fab5ff6268c36e">GetFixedRotationEnabled</a>(){</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keywordflow">return</span> fixedRotation;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    }</div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="classQRigidBody.html#aaf7dd93ce8b1605e2e8c3529c33c5297">   24</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classQRigidBody.html#aaf7dd93ce8b1605e2e8c3529c33c5297">GetKinematicEnabled</a>(){</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <span class="keywordflow">return</span> isKinematic;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    }</div>
-<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="classQRigidBody.html#aafc301a8c1a5b22990fc4cf011f5fc38">   28</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classQRigidBody.html#aafc301a8c1a5b22990fc4cf011f5fc38">GetKinematicCollisionsEnabled</a>(){</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordflow">return</span> allowKinematicCollisions;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    }</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="comment">//Set Methods</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="classQRigidBody.html#a2d47f8cd4408cc039ab6f67ac8f35ed6">   34</a></span>&#160;<span class="comment"></span>    <a class="code" href="classQRigidBody.html">QRigidBody</a>* <a class="code" href="classQRigidBody.html#a2d47f8cd4408cc039ab6f67ac8f35ed6">SetFixedRotationEnabled</a>(<span class="keywordtype">bool</span> value){</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        fixedRotation=value;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    }</div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classQRigidBody.html#a7f58408e14fd3bad7b7c810257d8f4c8">   39</a></span>&#160;    <a class="code" href="classQRigidBody.html">QRigidBody</a>* <a class="code" href="classQRigidBody.html#a7f58408e14fd3bad7b7c810257d8f4c8">SetKinematicEnabled</a>(<span class="keywordtype">bool</span> value){</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        isKinematic=value;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    }</div>
-<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classQRigidBody.html#a1c5c14c5b08aedcfbce3131993ba93f9">   45</a></span>&#160;    <a class="code" href="classQRigidBody.html">QRigidBody</a> * <a class="code" href="classQRigidBody.html#a1c5c14c5b08aedcfbce3131993ba93f9">SetKinematicCollisionsEnabled</a>(<span class="keywordtype">bool</span> value){</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        allowKinematicCollisions=value;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    }</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <a class="code" href="classQRigidBody.html">QRigidBody</a> * <a class="code" href="classQRigidBody.html#a5613b4dbd8f51b37a4c3e940f065710a">SetPositionAndCollide</a>(<a class="code" href="structQVector.html">QVector</a> value,<span class="keywordtype">bool</span> withPreviousPosition=<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="comment">//#Rigidbody Methods</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment"></span>    <a class="code" href="classQRigidBody.html">QRigidBody</a>* <a class="code" href="classQRigidBody.html#acd6c1585fa9ea9b3cc40b035dc158955">ApplyForce</a>(<a class="code" href="structQVector.html">QVector</a> force,<a class="code" href="structQVector.html">QVector</a> r,<span class="keywordtype">bool</span> updateMeshTransforms=<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <a class="code" href="classQRigidBody.html">QRigidBody</a>* <a class="code" href="classQRigidBody.html#a13e7b634a3b02b6c70e724b215027876">ApplyImpulse</a>(<a class="code" href="structQVector.html">QVector</a> impulse,<a class="code" href="structQVector.html">QVector</a> r);</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classQRigidBody.html#a37036d66caa7670f7c9048db8d4c6a12">Update</a>();</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;};</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// QRIGIDBODY_H</span></div>
-<div class="ttc" id="aclassQBody_html"><div class="ttname"><a href="classQBody.html">QBody</a></div><div class="ttdoc">QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m...</div><div class="ttdef"><b>Definition:</b> qbody.h:15</div></div>
-<div class="ttc" id="aclassQRigidBody_html"><div class="ttname"><a href="classQRigidBody.html">QRigidBody</a></div><div class="ttdoc">QRigidBody is a type of body that is simulated with the dynamics of Rigid body. A rigid body is a typ...</div><div class="ttdef"><b>Definition:</b> qrigidbody.h:13</div></div>
-<div class="ttc" id="aclassQRigidBody_html_a13e7b634a3b02b6c70e724b215027876"><div class="ttname"><a href="classQRigidBody.html#a13e7b634a3b02b6c70e724b215027876">QRigidBody::ApplyImpulse</a></div><div class="ttdeci">QRigidBody * ApplyImpulse(QVector impulse, QVector r)</div><div class="ttdef"><b>Definition:</b> qrigidbody.cpp:36</div></div>
-<div class="ttc" id="aclassQRigidBody_html_a1c5c14c5b08aedcfbce3131993ba93f9"><div class="ttname"><a href="classQRigidBody.html#a1c5c14c5b08aedcfbce3131993ba93f9">QRigidBody::SetKinematicCollisionsEnabled</a></div><div class="ttdeci">QRigidBody * SetKinematicCollisionsEnabled(bool value)</div><div class="ttdef"><b>Definition:</b> qrigidbody.h:45</div></div>
-<div class="ttc" id="aclassQRigidBody_html_a2d47f8cd4408cc039ab6f67ac8f35ed6"><div class="ttname"><a href="classQRigidBody.html#a2d47f8cd4408cc039ab6f67ac8f35ed6">QRigidBody::SetFixedRotationEnabled</a></div><div class="ttdeci">QRigidBody * SetFixedRotationEnabled(bool value)</div><div class="ttdef"><b>Definition:</b> qrigidbody.h:34</div></div>
-<div class="ttc" id="aclassQRigidBody_html_a37036d66caa7670f7c9048db8d4c6a12"><div class="ttname"><a href="classQRigidBody.html#a37036d66caa7670f7c9048db8d4c6a12">QRigidBody::Update</a></div><div class="ttdeci">void Update()</div><div class="ttdef"><b>Definition:</b> qrigidbody.cpp:50</div></div>
-<div class="ttc" id="aclassQRigidBody_html_a5613b4dbd8f51b37a4c3e940f065710a"><div class="ttname"><a href="classQRigidBody.html#a5613b4dbd8f51b37a4c3e940f065710a">QRigidBody::SetPositionAndCollide</a></div><div class="ttdeci">QRigidBody * SetPositionAndCollide(QVector value, bool withPreviousPosition=true)</div><div class="ttdef"><b>Definition:</b> qrigidbody.cpp:13</div></div>
-<div class="ttc" id="aclassQRigidBody_html_a7f58408e14fd3bad7b7c810257d8f4c8"><div class="ttname"><a href="classQRigidBody.html#a7f58408e14fd3bad7b7c810257d8f4c8">QRigidBody::SetKinematicEnabled</a></div><div class="ttdeci">QRigidBody * SetKinematicEnabled(bool value)</div><div class="ttdef"><b>Definition:</b> qrigidbody.h:39</div></div>
-<div class="ttc" id="aclassQRigidBody_html_aaf7dd93ce8b1605e2e8c3529c33c5297"><div class="ttname"><a href="classQRigidBody.html#aaf7dd93ce8b1605e2e8c3529c33c5297">QRigidBody::GetKinematicEnabled</a></div><div class="ttdeci">bool GetKinematicEnabled()</div><div class="ttdef"><b>Definition:</b> qrigidbody.h:24</div></div>
-<div class="ttc" id="aclassQRigidBody_html_aafc301a8c1a5b22990fc4cf011f5fc38"><div class="ttname"><a href="classQRigidBody.html#aafc301a8c1a5b22990fc4cf011f5fc38">QRigidBody::GetKinematicCollisionsEnabled</a></div><div class="ttdeci">bool GetKinematicCollisionsEnabled()</div><div class="ttdef"><b>Definition:</b> qrigidbody.h:28</div></div>
-<div class="ttc" id="aclassQRigidBody_html_acd6c1585fa9ea9b3cc40b035dc158955"><div class="ttname"><a href="classQRigidBody.html#acd6c1585fa9ea9b3cc40b035dc158955">QRigidBody::ApplyForce</a></div><div class="ttdeci">QRigidBody * ApplyForce(QVector force, QVector r, bool updateMeshTransforms=true)</div><div class="ttdef"><b>Definition:</b> qrigidbody.cpp:22</div></div>
-<div class="ttc" id="aclassQRigidBody_html_af172107b350cb0cf85fab5ff6268c36e"><div class="ttname"><a href="classQRigidBody.html#af172107b350cb0cf85fab5ff6268c36e">QRigidBody::GetFixedRotationEnabled</a></div><div class="ttdeci">bool GetFixedRotationEnabled()</div><div class="ttdef"><b>Definition:</b> qrigidbody.h:20</div></div>
-<div class="ttc" id="astructQVector_html"><div class="ttname"><a href="structQVector.html">QVector</a></div><div class="ttdef"><b>Definition:</b> qvector.h:16</div></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/************************************************************************************</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * MIT License</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * Copyright (c) 2023 Eray Zesen</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> * Permission is hereby granted, free of charge, to any person obtaining a copy</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> * of this software and associated documentation files (the &quot;Software&quot;), to deal</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> * in the Software without restriction, including without limitation the rights</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> * copies of the Software, and to permit persons to whom the Software is</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> * furnished to do so, subject to the following conditions:</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> * The above copyright notice and this permission notice shall be included in all</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> * copies or substantial portions of the Software.</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"> * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment"> * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment"> * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment"> * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> * SOFTWARE.</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment"> * https://github.com/erayzesen/QuarkPhysics</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">**************************************************************************************/</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#ifndef QRIGIDBODY_H</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#define QRIGIDBODY_H</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;qbody.h&quot;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;qvector.h&quot;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classQRigidBody.html">   39</a></span>&#160;<span class="keyword">class </span><a class="code" href="classQRigidBody.html">QRigidBody</a> : <span class="keyword">public</span> <a class="code" href="classQBody.html">QBody</a></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;{</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">bool</span> fixedRotation=<span class="keyword">false</span>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="classQRigidBody.html">QRigidBody</a>();</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="comment">//Get Methods</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="classQRigidBody.html#af172107b350cb0cf85fab5ff6268c36e">   47</a></span>&#160;<span class="comment"></span>    <span class="keywordtype">bool</span> <a class="code" href="classQRigidBody.html#af172107b350cb0cf85fab5ff6268c36e">GetFixedRotationEnabled</a>(){</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keywordflow">return</span> fixedRotation;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    }</div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="classQRigidBody.html#aaf7dd93ce8b1605e2e8c3529c33c5297">   51</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classQRigidBody.html#aaf7dd93ce8b1605e2e8c3529c33c5297">GetKinematicEnabled</a>(){</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordflow">return</span> isKinematic;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    }</div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="classQRigidBody.html#aafc301a8c1a5b22990fc4cf011f5fc38">   55</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classQRigidBody.html#aafc301a8c1a5b22990fc4cf011f5fc38">GetKinematicCollisionsEnabled</a>(){</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordflow">return</span> allowKinematicCollisions;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    }</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="comment">//Set Methods</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="classQRigidBody.html#a2d47f8cd4408cc039ab6f67ac8f35ed6">   61</a></span>&#160;<span class="comment"></span>    <a class="code" href="classQRigidBody.html">QRigidBody</a>* <a class="code" href="classQRigidBody.html#a2d47f8cd4408cc039ab6f67ac8f35ed6">SetFixedRotationEnabled</a>(<span class="keywordtype">bool</span> value){</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        fixedRotation=value;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    }</div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="classQRigidBody.html#a7f58408e14fd3bad7b7c810257d8f4c8">   66</a></span>&#160;    <a class="code" href="classQRigidBody.html">QRigidBody</a>* <a class="code" href="classQRigidBody.html#a7f58408e14fd3bad7b7c810257d8f4c8">SetKinematicEnabled</a>(<span class="keywordtype">bool</span> value){</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        isKinematic=value;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    }</div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="classQRigidBody.html#a1c5c14c5b08aedcfbce3131993ba93f9">   72</a></span>&#160;    <a class="code" href="classQRigidBody.html">QRigidBody</a> * <a class="code" href="classQRigidBody.html#a1c5c14c5b08aedcfbce3131993ba93f9">SetKinematicCollisionsEnabled</a>(<span class="keywordtype">bool</span> value){</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        allowKinematicCollisions=value;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    }</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <a class="code" href="classQRigidBody.html">QRigidBody</a> * <a class="code" href="classQRigidBody.html#a5613b4dbd8f51b37a4c3e940f065710a">SetPositionAndCollide</a>(<a class="code" href="structQVector.html">QVector</a> value,<span class="keywordtype">bool</span> withPreviousPosition=<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="comment">//#Rigidbody Methods</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment"></span>    <a class="code" href="classQRigidBody.html">QRigidBody</a>* <a class="code" href="classQRigidBody.html#acd6c1585fa9ea9b3cc40b035dc158955">ApplyForce</a>(<a class="code" href="structQVector.html">QVector</a> force,<a class="code" href="structQVector.html">QVector</a> r,<span class="keywordtype">bool</span> updateMeshTransforms=<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <a class="code" href="classQRigidBody.html">QRigidBody</a>* <a class="code" href="classQRigidBody.html#a13e7b634a3b02b6c70e724b215027876">ApplyImpulse</a>(<a class="code" href="structQVector.html">QVector</a> impulse,<a class="code" href="structQVector.html">QVector</a> r);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classQRigidBody.html#a37036d66caa7670f7c9048db8d4c6a12">Update</a>();</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;};</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// QRIGIDBODY_H</span></div>
+<div class="ttc" id="aclassQBody_html"><div class="ttname"><a href="classQBody.html">QBody</a></div><div class="ttdoc">QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m...</div><div class="ttdef"><b>Definition:</b> qbody.h:42</div></div>
+<div class="ttc" id="aclassQRigidBody_html"><div class="ttname"><a href="classQRigidBody.html">QRigidBody</a></div><div class="ttdoc">QRigidBody is a type of body that is simulated with the dynamics of Rigid body. A rigid body is a typ...</div><div class="ttdef"><b>Definition:</b> qrigidbody.h:40</div></div>
+<div class="ttc" id="aclassQRigidBody_html_a13e7b634a3b02b6c70e724b215027876"><div class="ttname"><a href="classQRigidBody.html#a13e7b634a3b02b6c70e724b215027876">QRigidBody::ApplyImpulse</a></div><div class="ttdeci">QRigidBody * ApplyImpulse(QVector impulse, QVector r)</div><div class="ttdef"><b>Definition:</b> qrigidbody.cpp:64</div></div>
+<div class="ttc" id="aclassQRigidBody_html_a1c5c14c5b08aedcfbce3131993ba93f9"><div class="ttname"><a href="classQRigidBody.html#a1c5c14c5b08aedcfbce3131993ba93f9">QRigidBody::SetKinematicCollisionsEnabled</a></div><div class="ttdeci">QRigidBody * SetKinematicCollisionsEnabled(bool value)</div><div class="ttdef"><b>Definition:</b> qrigidbody.h:72</div></div>
+<div class="ttc" id="aclassQRigidBody_html_a2d47f8cd4408cc039ab6f67ac8f35ed6"><div class="ttname"><a href="classQRigidBody.html#a2d47f8cd4408cc039ab6f67ac8f35ed6">QRigidBody::SetFixedRotationEnabled</a></div><div class="ttdeci">QRigidBody * SetFixedRotationEnabled(bool value)</div><div class="ttdef"><b>Definition:</b> qrigidbody.h:61</div></div>
+<div class="ttc" id="aclassQRigidBody_html_a37036d66caa7670f7c9048db8d4c6a12"><div class="ttname"><a href="classQRigidBody.html#a37036d66caa7670f7c9048db8d4c6a12">QRigidBody::Update</a></div><div class="ttdeci">void Update()</div><div class="ttdef"><b>Definition:</b> qrigidbody.cpp:78</div></div>
+<div class="ttc" id="aclassQRigidBody_html_a5613b4dbd8f51b37a4c3e940f065710a"><div class="ttname"><a href="classQRigidBody.html#a5613b4dbd8f51b37a4c3e940f065710a">QRigidBody::SetPositionAndCollide</a></div><div class="ttdeci">QRigidBody * SetPositionAndCollide(QVector value, bool withPreviousPosition=true)</div><div class="ttdef"><b>Definition:</b> qrigidbody.cpp:41</div></div>
+<div class="ttc" id="aclassQRigidBody_html_a7f58408e14fd3bad7b7c810257d8f4c8"><div class="ttname"><a href="classQRigidBody.html#a7f58408e14fd3bad7b7c810257d8f4c8">QRigidBody::SetKinematicEnabled</a></div><div class="ttdeci">QRigidBody * SetKinematicEnabled(bool value)</div><div class="ttdef"><b>Definition:</b> qrigidbody.h:66</div></div>
+<div class="ttc" id="aclassQRigidBody_html_aaf7dd93ce8b1605e2e8c3529c33c5297"><div class="ttname"><a href="classQRigidBody.html#aaf7dd93ce8b1605e2e8c3529c33c5297">QRigidBody::GetKinematicEnabled</a></div><div class="ttdeci">bool GetKinematicEnabled()</div><div class="ttdef"><b>Definition:</b> qrigidbody.h:51</div></div>
+<div class="ttc" id="aclassQRigidBody_html_aafc301a8c1a5b22990fc4cf011f5fc38"><div class="ttname"><a href="classQRigidBody.html#aafc301a8c1a5b22990fc4cf011f5fc38">QRigidBody::GetKinematicCollisionsEnabled</a></div><div class="ttdeci">bool GetKinematicCollisionsEnabled()</div><div class="ttdef"><b>Definition:</b> qrigidbody.h:55</div></div>
+<div class="ttc" id="aclassQRigidBody_html_acd6c1585fa9ea9b3cc40b035dc158955"><div class="ttname"><a href="classQRigidBody.html#acd6c1585fa9ea9b3cc40b035dc158955">QRigidBody::ApplyForce</a></div><div class="ttdeci">QRigidBody * ApplyForce(QVector force, QVector r, bool updateMeshTransforms=true)</div><div class="ttdef"><b>Definition:</b> qrigidbody.cpp:50</div></div>
+<div class="ttc" id="aclassQRigidBody_html_af172107b350cb0cf85fab5ff6268c36e"><div class="ttname"><a href="classQRigidBody.html#af172107b350cb0cf85fab5ff6268c36e">QRigidBody::GetFixedRotationEnabled</a></div><div class="ttdeci">bool GetFixedRotationEnabled()</div><div class="ttdef"><b>Definition:</b> qrigidbody.h:47</div></div>
+<div class="ttc" id="astructQVector_html"><div class="ttname"><a href="structQVector.html">QVector</a></div><div class="ttdef"><b>Definition:</b> qvector.h:43</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
