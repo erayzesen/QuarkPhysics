@@ -75,6 +75,7 @@ public:
 
 
 
+
 	//Math Operations
 	QVector &operator +=(const QVector &other) {
 		this->x+=other.x;
@@ -152,6 +153,7 @@ public:
 	static QVector AngleToUnitVector(const float radianAngle);
 	static float AngleBetweenTwoVectors(QVector vector,QVector referenceVector);
 	static QSides GetVectorSide(QVector vector,QVector referenceUpVector,float maxAngleDefiningSide=0.785398f);
+	static QVector GeteBisectorUnitVector(QVector pointA,QVector pointB,QVector pointC,bool checkPointsAreCCW=false);
 
 	//Operations
 

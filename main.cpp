@@ -258,7 +258,7 @@ int main()
 	window->setFramerateLimit(60);
 	window->setKeyRepeatEnabled(false);
 
-	LoadExampleScene(2);
+	LoadExampleScene(9);
 
 	while (window->isOpen())
 	{
@@ -281,6 +281,7 @@ int main()
 			//Mouse Events
 			if(event.type==sf::Event::MouseButtonPressed){
 				scene->OnMousePressed(mousePosition);
+				
 			}else if(event.type==sf::Event::MouseButtonReleased){
 				scene->OnMouseReleased(mousePosition);
 			}

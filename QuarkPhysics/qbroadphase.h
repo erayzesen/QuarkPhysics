@@ -38,58 +38,58 @@
 #include "qbody.h"
 #include "qmanifold.h"
 #include "qcollision.h"
-#include "qaabb.h"
 
 
 
 
 class QBroadPhase {   
 public:
-    QWorld *world;
-    QBroadPhase(QWorld * targetWorld);
     QBroadPhase(){};
-    ~QBroadPhase();
+    QBroadPhase(float cellSize);
 
-
-    
-    struct Node{
-        QAABB aabb;
-        QBody *obj;
-        Node *left;
-        Node *right;
-        bool isLeaf;
-        Node *parent;
-        int id;
-        Node(QBody *object, QAABB AABB, int nodeID) : obj(object), aabb(AABB) {
-            isLeaf=true;
-            id=nodeID;
-        }; 
-        
-        
+    struct NumericPairHash {
+        size_t operator()(const std::pair<int, int>& p) const {
+            std::size_t h1 = std::hash<int>{}(p.first);
+            std::size_t h2 = std::hash<int>{}(p.second);
+            return h1 ^ (h2 + 0x9e3779b9 + (h1 << 6) + (h1 >> 2));
+        }
     };
 
-    Node *root;
-    vector<Node*> nodes;
+    struct NumericPairEqual {
+        bool operator()(const std::pair<int, int>& p1, const std::pair<int, int>& p2) const {
+            return (p1.first == p2.first && p1.second == p2.second) ||
+                (p1.first == p2.second && p1.second == p2.first);
+        }
+    };
 
-    void ReCreateTree(vector<QBody *> &objectList);
-    void ClearTree();
 
-    void Query(QAABB &AABB, vector<QBody*> &list);
-
-    void QueryInNode(Node* node, QAABB &AABB, vector<QBody*> &list);
-
-    void GetPairs(vector<pair<QBody*,QBody*> > &pairCollection);
-    void GetPairsBetweenNodes(Node * nodeA, Node *nodeB, vector<pair<QBody*,QBody*> > &pairCollection, unordered_set<int> &checkedPairList);
-
-    void Insert(QBody *object);
-    void Remove(QBody *object);
-    void Update(QBody *object, QAABB &AABB);
-
-    int GetNewNodeID();
-
-    int lastID=0;
 
     
+    void Insert(int id, const QAABB& AABB);
+    void Update(int id, const QAABB& aabb, QAABB& prevAABB );
+    void Remove(int id, const QAABB& AABB);
+
+    void Clear(vector<QBody *> bodyCollection);
+
+    void GetAllPairs(unordered_set<pair<int,int>,QBroadPhase::NumericPairHash,QBroadPhase::NumericPairEqual > &pairs, vector<QBody*> &originalCollection);
+
+    vector<int> GetCellItems(QAABB &aabb);
+
+   
+
+    
+
+
+
+
+private:
+    float cellSize;
+    std::unordered_map<int, std::vector<int>> hashTable;
+    std::vector<int> GetCellKeys(QAABB aabb);
+
+    bool isCleared=false;
+    
+
     
 
 	 

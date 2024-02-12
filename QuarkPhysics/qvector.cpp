@@ -85,6 +85,39 @@ QSides QVector::GetVectorSide(QVector vector, QVector referenceUpVector, float m
 	return QSides::NONE;
 }
 
+QVector QVector::GeteBisectorUnitVector(QVector pointA,QVector pointB,QVector pointC,bool checkPointsAreCCW)
+{
+	QVector fromPrev=pointB-pointA;
+	QVector toNext=pointC-pointB;
+
+
+	QVector prevToNext=pointC-pointA;
+	QVector prevToNextPerp=prevToNext.Perpendicular();
+
+	QVector bisectorUnit=prevToNextPerp.Normalized();
+
+
+	if(fromPrev.Dot(prevToNextPerp)<0.0f ){
+		if(checkPointsAreCCW){
+			QVector toCenterPos=prevToNext*0.5-fromPrev;
+			if( toCenterPos.Dot(bisectorUnit)<0.0f ){
+				bisectorUnit*=-1;
+			}
+		}
+	}else{
+		if (checkPointsAreCCW){
+			QVector toCenterPos=prevToNext*0.5-fromPrev;
+			if( toCenterPos.Dot(bisectorUnit)>0.0f ){
+				bisectorUnit*=-1;
+			}
+		}else{
+			bisectorUnit*=1;
+		}
+	}
+	
+	return -bisectorUnit;
+}
+
 QVector QVector::Rotated(float radianAngle) const{
 	if(radianAngle==0)return QVector(x,y);
 	QVector rotVec=AngleToUnitVector(radianAngle);

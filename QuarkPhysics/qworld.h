@@ -217,6 +217,9 @@ public:
 	 */
 	QWorld *SetBroadphaseEnabled(bool value){
 		enableBroadphase=value;
+		if(value==true && enableSpatialHashing==true){
+			broadPhase.Clear(bodies);
+		}
 		return this;
 	}
 
@@ -224,10 +227,7 @@ public:
 	 * @param value A value to set
 	*/
 	QWorld *SetSpatialHashingEnabled(bool value){
-		if(value==true){
-			broadPhase.ClearTree();
-			broadPhase.ReCreateTree(bodies);
-		}
+		broadPhase.Clear(bodies);
 		enableSpatialHashing=value;
 		return this;
 	}
@@ -281,7 +281,7 @@ public:
 	 * @param bodyA A body in the world.
 	 * @param bodyB Another body in the world.
 	 */
-	static vector<QCollision::Contact> GetCollisions(QBody *bodyA, QBody *bodyB);
+	static vector<QCollision::Contact*> GetCollisions(QBody *bodyA, QBody *bodyB);
 
 
 	/**Adds a body to the world

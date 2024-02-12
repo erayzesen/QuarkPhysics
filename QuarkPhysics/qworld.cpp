@@ -40,7 +40,7 @@
 
 using namespace std;
 QWorld::QWorld(){
-	broadPhase=QBroadPhase(this);
+	broadPhase=QBroadPhase(spatialHashingSize);
 
 }
 
@@ -88,12 +88,16 @@ void QWorld::Update(){
 	debugCollisionTestCount=0;
 	//cout<<broadPhase.collisionGroups.size()<<endl;
 
-	vector<pair<QBody*,QBody*>> pairs;
+	unordered_set<pair<int,int>,QBroadPhase::NumericPairHash,QBroadPhase::NumericPairEqual> pairs;
 
 	//Preparing Updated Broadphasevariables
 	if (enableBroadphase){
 		if (enableSpatialHashing){
-			broadPhase.GetPairs(pairs);
+			for (int i=0;i<bodies.size();i++){
+				QBody *body=bodies[i];
+				broadPhase.Update(i,body->GetAABB(),body->spatialContainerAABB);
+				broadPhase.GetAllPairs(pairs,bodies);
+			}
 		}else{
 			sort(bodies.begin(),bodies.end(),SortBodiesHorizontal);
 		}
@@ -120,17 +124,17 @@ void QWorld::Update(){
 			
 			if(enableSpatialHashing){
 				//Spatial Hashing method
-				for(auto pair:pairs){
-					QBody *body=pair.first;
-					QBody *otherBody=pair.second;
-					
-					if(body==otherBody) continue;
-					vector<QCollision::Contact> contacts=GetCollisions(body,otherBody);
-					if(contacts.size()>0){
-						QManifold manifold(body,otherBody);
-						manifold.contacts=contacts;
-						manifolds.push_back(manifold);
-					}
+				for (auto pair: pairs){
+					QBody *bodyA=bodies[pair.first];
+					QBody *bodyB=bodies[pair.second];
+
+					vector<QCollision::Contact*> contacts=GetCollisions(bodyA,bodyB);
+
+						if(contacts.size()>0){
+							QManifold manifold(bodyA,bodyB);
+							manifold.contacts=contacts;
+							manifolds.push_back(manifold);
+						}
 				}
 				
 				
@@ -161,7 +165,7 @@ void QWorld::Update(){
 						if(body->GetAABB().GetMax().x >= otherBody->GetAABB().GetMin().x){
 							if( body->GetAABB().GetMin().y <= otherBody->GetAABB().GetMax().y &&
 								body->GetAABB().GetMax().y >= otherBody->GetAABB().GetMin().y) {
-								vector<QCollision::Contact> contacts=GetCollisions(body,otherBody);
+								vector<QCollision::Contact*> contacts=GetCollisions(body,otherBody);
 								if(contacts.size()>0){
 									QManifold manifold(body,otherBody);
 									manifold.contacts=contacts;
@@ -198,7 +202,7 @@ void QWorld::Update(){
 						continue;
 					}
 
-					vector<QCollision::Contact> contacts=GetCollisions(bodyA,bodyB);
+					vector<QCollision::Contact*> contacts=GetCollisions(bodyA,bodyB);
 					if(contacts.size()>0){
 						QManifold manifold(bodyA,bodyB);
 						manifold.contacts=contacts;
@@ -232,7 +236,7 @@ void QWorld::Update(){
 					QMesh *meshA=sBody->GetMeshAt(ma);
 					for(int mb=0;mb<sBody->GetMeshCount();mb++){
 						QMesh *meshB=sBody->GetMeshAt(mb);
-						vector<QCollision::Contact> contacts;
+						vector<QCollision::Contact*> contacts;
 						//Self Particle Collisions
 						QCollision::CircleAndCircle(meshA->particles,meshB->particles,contacts,sBody->GetSelfCollisionsSpecifiedRadius());
 						if(contacts.size()>0){
@@ -253,7 +257,7 @@ void QWorld::Update(){
 						}else if(QMesh::CheckCollisionBehaviors(meshA,meshB,QMesh::CollisionBehaviors::CIRCLES,QMesh::CollisionBehaviors::POLYLINE) ){ //Self Polyline-Particle Collisions
 							QMesh * circleMesh=meshA->GetCollisionBehavior()==QMesh::CollisionBehaviors::CIRCLES ? meshA:meshB;
 							QMesh * polylineMesh=circleMesh==meshA ? meshB:meshA;
-							QCollision::CircleAndPolyline( polylineMesh->polygon,circleMesh->particles,contacts);
+							QCollision::CircleAndPolyline( polylineMesh->polygon,circleMesh->particles, sBody->GetAABB(),contacts);
 
 						}
 
@@ -313,8 +317,8 @@ void QWorld::Update(){
 	}
 
 
-	std::cout<<"Total Broad Phase Test Count: "<<debugAABBTestCount<<endl;
-	std::cout<<"Total Narrow Test Count: "<<debugCollisionTestCount<<endl;
+	/* std::cout<<"Total Broad Phase Test Count: "<<debugAABBTestCount<<endl;
+	std::cout<<"Total Narrow Test Count: "<<debugCollisionTestCount<<endl; */
 
 
 	//Generating Islands and Sleeping Operations
@@ -454,7 +458,7 @@ QWorld *QWorld::RemoveBodyAt(int index)
 
 		bodies.erase(bodies.begin()+index);
 
-		//broadPhase.clear();
+		broadPhase.Clear(bodies);
 	}
 
 	return this;
@@ -577,7 +581,7 @@ bool QWorld::CollideWithWorld(QBody *body){
 				if( body->GetAABB().GetMin().y <= otherBody->GetAABB().GetMax().y &&
 					body->GetAABB().GetMax().y >= otherBody->GetAABB().GetMin().y) {
 					debugAABBTestCount+=1;
-					vector<QCollision::Contact> contacts=GetCollisions(body,otherBody);
+					vector<QCollision::Contact*> contacts=GetCollisions(body,otherBody);
 					if(contacts.size()>0){
 						QManifold manifold(body,otherBody);
 						manifold.contacts=contacts;
@@ -854,8 +858,8 @@ bool QWorld::CheckCollisionException(QBody *bodyA, QBody *bodyB)
 
 
 //Collision Constraints and Response Between Bodies
-vector<QCollision::Contact> QWorld::GetCollisions(QBody *bodyA, QBody *bodyB){
-	vector<QCollision::Contact> contactList;
+vector<QCollision::Contact*> QWorld::GetCollisions(QBody *bodyA, QBody *bodyB){
+	vector<QCollision::Contact*> contactList;
 
 	vector<QMesh*>* meshesA=bodyA->GetMeshes();
 	vector<QMesh*>* meshesB=bodyB->GetMeshes();
@@ -897,27 +901,22 @@ vector<QCollision::Contact> QWorld::GetCollisions(QBody *bodyA, QBody *bodyB){
 			}else if(QMesh::CheckCollisionBehaviors(meshA,meshB,QMesh::POLYLINE, QMesh::POLYLINE )){
 				
 
-				if(bodyA->simulationModel!=QBody::SimulationModels::RIGID_BODY && bodyB->simulationModel!=QBody::SimulationModels::RIGID_BODY){
-					QSoftBody *sBodyA=static_cast<QSoftBody*>(bodyA);
-					QSoftBody *sBodyB=static_cast<QSoftBody*>(bodyB);
-					if (sBodyA!=nullptr && sBodyB!=nullptr){
-						if (sBodyA->GetAreaPreservingEnabled()==true && sBodyB->GetAreaPreservingEnabled()==true ){
-							QCollision::CircleAndCircle(meshA->polygon,meshB->polygon,contactList);
-							QCollision::CircleAndPolyline(meshA->polygon,meshB->polygon,contactList);
-							QCollision::CircleAndPolyline(meshB->polygon,meshA->polygon,contactList);
-						}else{
-							QCollision::PolylineAndPolygon(meshA->polygon,meshB->polygon,contactList);
-							QCollision::PolylineAndPolygon(meshB->polygon,meshA->polygon,contactList);
-						}
-					}
+				if(bodyA->simulationModel==QBody::SimulationModels::MASS_SPRING && bodyB->simulationModel==QBody::SimulationModels::MASS_SPRING){
+					QCollision::CircleAndCircle(meshA->polygon,meshB->polygon,contactList);
+					QCollision::CircleAndPolyline(meshA->polygon,meshB->polygon,bodyB->GetAABB(),contactList);
+					QCollision::CircleAndPolyline(meshB->polygon,meshA->polygon,bodyA->GetAABB(), contactList);
+					/* QCollision::PolylineAndPolygon(meshA->polygon,meshB->polygon,contactList);
+						QCollision::PolylineAndPolygon(meshB->polygon,meshA->polygon,contactList); */
+					
 				}
 				
 
 			}else if(QMesh::CheckCollisionBehaviors(meshA,meshB,QMesh::POLYLINE, QMesh::CIRCLES )){
 				QMesh *circleMesh=meshA->collisionBehavior==QMesh::CIRCLES ? meshA:meshB;
 				QMesh *polylineMesh=meshA->collisionBehavior==QMesh::POLYLINE ? meshA:meshB;
+				QAABB polylineAABB=meshA->collisionBehavior==QMesh::POLYLINE ? bodyA->GetAABB():bodyB->GetAABB();
 				QCollision::CircleAndCircle(circleMesh->particles,polylineMesh->polygon,contactList);
-				QCollision::CircleAndPolyline(circleMesh->particles,polylineMesh->polygon,contactList);
+				QCollision::CircleAndPolyline(circleMesh->particles,polylineMesh->polygon, polylineAABB,contactList);
 
 			}
 

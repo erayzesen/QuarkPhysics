@@ -149,7 +149,7 @@ void QManifold::Solve()
 
 
 	for(int i=0;i<contacts.size();i++){
-		QCollision::Contact *contact=&contacts[i];
+		QCollision::Contact *contact=contacts[i];
 
 		if(betweenRigidbodies){
 			contact->penetration*=0.75f;
@@ -305,7 +305,7 @@ void QManifold::SolveFrictionAndVelocities()
 
 
 	for(int i=0;i<contacts.size();i++){
-		QCollision::Contact *contact=&contacts[i];
+		QCollision::Contact *contact=contacts[i];
 		//Don't apply friction and velocity to not solved contacts
 		if(contact->solved==false) continue;
 

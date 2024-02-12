@@ -34,7 +34,9 @@ class ExampleSceneBlobs : public QExampleScene
 {
 public:
 	ExampleSceneBlobs(QVector sceneSize);
-	void OnMousePressed(QVector mousePosition);
+	void OnKeyPressed(sf::Keyboard::Key key);
+	QVector mousePos;
+	void OnMouseMoved(QVector mousePosition);
 };
 
 #endif // EXAMPLESCENEBLOBS_H

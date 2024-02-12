@@ -55,14 +55,21 @@ ExampleSceneBlobs::ExampleSceneBlobs(QVector sceneSize):QExampleScene(sceneSize)
 	world->AddBody(wallRight);
 
 }
-void ExampleSceneBlobs::OnMousePressed(QVector mousePosition)
-{
-	//QExampleScene::OnMousePressed(mousePosition);
-	//Adding pressure volume model soft body via gridded polygon mesh
-	QSoftBody *griddedPressuredBody=new QSoftBody();
-	griddedPressuredBody->AddMesh( QMesh::CreateWithPolygon(64,24,QVector::Zero(),-1 ,true,true) );
-	griddedPressuredBody->SetRigidity(0.5f)->SetPosition(mousePosition)->SetMass(0.5f);
-	griddedPressuredBody->SetAreaPreservingEnabled(true)->SetAreaPreservingRate(0.7)->SetSelfCollisionsEnabled(true)->SetSelfCollisionsSpecifiedRadius(5.0f);
-	world->AddBody(griddedPressuredBody);
 
+
+void ExampleSceneBlobs::OnKeyPressed(sf::Keyboard::Key key)
+{
+	if(key==sf::Keyboard::Space){
+		QSoftBody *griddedPressuredBody=new QSoftBody();
+		griddedPressuredBody->AddMesh( QMesh::CreateWithPolygon(64,24,QVector::Zero(),-1 ,true,true) );
+		griddedPressuredBody->SetRigidity(0.5f)->SetPosition(mousePos)->SetMass(0.5f);
+		griddedPressuredBody->SetAreaPreservingEnabled(true)->SetAreaPreservingRate(0.7)->SetSelfCollisionsEnabled(true)->SetSelfCollisionsSpecifiedRadius(5.0f);
+		world->AddBody(griddedPressuredBody);
+	}
+}
+
+void ExampleSceneBlobs::OnMouseMoved(QVector mousePosition)
+{
+	QExampleScene::OnMouseMoved(mousePosition);
+	mousePos=mousePosition;
 }

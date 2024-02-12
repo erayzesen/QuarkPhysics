@@ -55,7 +55,7 @@ public:
 	QBody *bodyB;
 
 	/** The collection of contacs from collision test using QCollision methods. */
-	vector<QCollision::Contact> contacts;
+	vector<QCollision::Contact*> contacts;
 
 	/** Applies collision reactions by changing the positions of the contact partners. */
 	void Solve();

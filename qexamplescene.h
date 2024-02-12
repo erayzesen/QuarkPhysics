@@ -36,6 +36,7 @@ class QExampleScene
 protected:
 
 public:
+	
 	QExampleScene(QVector sceneSize);
 	~QExampleScene(){
 		delete world;
