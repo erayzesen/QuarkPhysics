@@ -45,7 +45,10 @@ QWorld::QWorld(){
 }
 
 
-QWorld::~QWorld(){}
+QWorld::~QWorld(){
+	ClearWorld();
+	QCollision::GetContactPool().ClearAll();
+}
 
 
 void QWorld::ClearGizmos(){
@@ -108,7 +111,7 @@ void QWorld::Update(){
 	
 
 	for(unsigned int n=0;n<iteration;++n){
-
+		QCollision::GetContactPool().FreeAll();
 		UpdateConstraints();
 		for(auto body:bodies){
 			body->UpdateAABB();
@@ -228,6 +231,7 @@ void QWorld::Update(){
 
 		//The Self Collision Feature of Soft Bodies
 		for(auto body:bodies){
+			QAABB bodyAABB=body->GetAABB();
 			if(body->simulationModel!=QBody::SimulationModels::RIGID_BODY){
 				QSoftBody *sBody=static_cast<QSoftBody*>(body);
 				if(sBody==nullptr)continue;
@@ -238,7 +242,7 @@ void QWorld::Update(){
 						QMesh *meshB=sBody->GetMeshAt(mb);
 						vector<QCollision::Contact*> contacts;
 						//Self Particle Collisions
-						QCollision::CircleAndCircle(meshA->particles,meshB->particles,contacts,sBody->GetSelfCollisionsSpecifiedRadius());
+						QCollision::CircleAndCircle(meshA->particles,meshB->particles,bodyAABB ,contacts,sBody->GetSelfCollisionsSpecifiedRadius());
 						if(contacts.size()>0){
 							QManifold manifold(sBody,sBody);
 							manifold.contacts=contacts;
@@ -864,6 +868,9 @@ vector<QCollision::Contact*> QWorld::GetCollisions(QBody *bodyA, QBody *bodyB){
 	vector<QMesh*>* meshesA=bodyA->GetMeshes();
 	vector<QMesh*>* meshesB=bodyB->GetMeshes();
 
+	QAABB bboxA=bodyA->GetAABB();
+	QAABB bboxB=bodyB->GetAABB();
+
 
 
 
@@ -888,7 +895,7 @@ vector<QCollision::Contact*> QWorld::GetCollisions(QBody *bodyA, QBody *bodyB){
 				}
 
 			}else if(QMesh::CheckCollisionBehaviors(meshA,meshB,QMesh::CIRCLES, QMesh::CIRCLES )){
-				QCollision::CircleAndCircle(meshA->particles,meshB->particles,contactList);
+				QCollision::CircleAndCircle(meshA->particles,meshB->particles,bboxB,contactList);
 
 			}else if(QMesh::CheckCollisionBehaviors(meshA,meshB,QMesh::POLYLINE, QMesh::POLYGONS )){
 				QMesh *polylineMesh=meshA->collisionBehavior==QMesh::POLYLINE ? meshA:meshB;
@@ -902,9 +909,9 @@ vector<QCollision::Contact*> QWorld::GetCollisions(QBody *bodyA, QBody *bodyB){
 				
 
 				if(bodyA->simulationModel==QBody::SimulationModels::MASS_SPRING && bodyB->simulationModel==QBody::SimulationModels::MASS_SPRING){
-					QCollision::CircleAndCircle(meshA->polygon,meshB->polygon,contactList);
-					QCollision::CircleAndPolyline(meshA->polygon,meshB->polygon,bodyB->GetAABB(),contactList);
-					QCollision::CircleAndPolyline(meshB->polygon,meshA->polygon,bodyA->GetAABB(), contactList);
+					QCollision::CircleAndCircle(meshA->polygon,meshB->polygon,bboxB, contactList);
+					QCollision::CircleAndPolyline(meshA->polygon,meshB->polygon,bboxB,contactList);
+					QCollision::CircleAndPolyline(meshB->polygon,meshA->polygon,bboxA, contactList);
 					/* QCollision::PolylineAndPolygon(meshA->polygon,meshB->polygon,contactList);
 						QCollision::PolylineAndPolygon(meshB->polygon,meshA->polygon,contactList); */
 					
@@ -915,7 +922,7 @@ vector<QCollision::Contact*> QWorld::GetCollisions(QBody *bodyA, QBody *bodyB){
 				QMesh *circleMesh=meshA->collisionBehavior==QMesh::CIRCLES ? meshA:meshB;
 				QMesh *polylineMesh=meshA->collisionBehavior==QMesh::POLYLINE ? meshA:meshB;
 				QAABB polylineAABB=meshA->collisionBehavior==QMesh::POLYLINE ? bodyA->GetAABB():bodyB->GetAABB();
-				QCollision::CircleAndCircle(circleMesh->particles,polylineMesh->polygon,contactList);
+				QCollision::CircleAndCircle(circleMesh->particles,polylineMesh->polygon,polylineAABB, contactList);
 				QCollision::CircleAndPolyline(circleMesh->particles,polylineMesh->polygon, polylineAABB,contactList);
 
 			}
@@ -1074,9 +1081,10 @@ bool QWorld::SortBodiesVertical(const QBody *bodyA, const QBody *bodyB)
 		}
 		
 
+
 		 if(body->GetMode()!=QBody::STATIC && body->GetSimulationModel()!=QBody::SimulationModels::RIGID_BODY){
 			 QSoftBody *sBody=static_cast<QSoftBody*>(body);
-
+			
 
 			 for(int i=0;i<sBody->GetMeshCount();i++){
 				 QMesh * mesh=sBody->GetMeshAt(i);
@@ -1084,6 +1092,8 @@ bool QWorld::SortBodiesVertical(const QBody *bodyA, const QBody *bodyB)
 					 spring->Update(sBody->GetRigidity()*ts,sBody->GetPassivationOfInternalSpringsEnabled());
 				 }
 			 }
+
+			 
 
 
 			 

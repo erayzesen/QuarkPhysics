@@ -37,7 +37,6 @@ ExampleSceneSoftBodies::ExampleSceneSoftBodies(QVector sceneSize) :QExampleScene
 	floor->AddMesh(QMesh::CreateWithRect(QVector(3000,64),QVector(0.0f,0.0f) ) )->SetPosition(QVector(512.0f,550.0f));
 	floor->SetMode(QBody::Modes::STATIC);
 	world->AddBody(floor);
-	//world->SetGravity(QVector::Zero() );
 	
 
 

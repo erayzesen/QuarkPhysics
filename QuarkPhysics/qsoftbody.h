@@ -289,11 +289,7 @@ public:
 	}
 
 
-	/**Calculates the average position and rotation values of the specified particles of the body. Soft bodies don't have a definite actual position or rotation values like rigid bodies. Only these values are estimated based on the body's particle positions. 
-	 * @param particles A Particles collection
-	 * @return Returns a position-rotation pair.
-	 */
-	pair<QVector, float> GetAveragePositionAndRotation(vector<QParticle*> particles);
+	
 	
 
 

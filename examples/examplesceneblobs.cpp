@@ -33,7 +33,6 @@
 
 ExampleSceneBlobs::ExampleSceneBlobs(QVector sceneSize):QExampleScene(sceneSize)
 {
-	//world->SetEnableSleeping(false);
 
 	world->SetIterationCount(10);
 
@@ -61,9 +60,10 @@ void ExampleSceneBlobs::OnKeyPressed(sf::Keyboard::Key key)
 {
 	if(key==sf::Keyboard::Space){
 		QSoftBody *griddedPressuredBody=new QSoftBody();
-		griddedPressuredBody->AddMesh( QMesh::CreateWithPolygon(64,24,QVector::Zero(),-1 ,true,true) );
+		griddedPressuredBody->AddMesh( QMesh::CreateWithPolygon(64,16,QVector::Zero(),-1 ,true,true) );
 		griddedPressuredBody->SetRigidity(0.5f)->SetPosition(mousePos)->SetMass(0.5f);
-		griddedPressuredBody->SetAreaPreservingEnabled(true)->SetAreaPreservingRate(0.7)->SetSelfCollisionsEnabled(true)->SetSelfCollisionsSpecifiedRadius(5.0f);
+		griddedPressuredBody->SetAreaPreservingEnabled(true)->SetAreaPreservingRate(0.7);
+		//griddedPressuredBody->SetSelfCollisionsEnabled(true)->SetSelfCollisionsSpecifiedRadius(6.0f);
 		world->AddBody(griddedPressuredBody);
 	}
 }

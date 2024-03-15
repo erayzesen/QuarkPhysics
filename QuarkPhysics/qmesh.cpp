@@ -33,6 +33,8 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include "qcollision.h"
+#include "qworld.h"
 
 
 QMesh::QMesh(){
@@ -189,6 +191,96 @@ void QMesh::UpdateSubConvexPolygons()
 		cout<<"polygon is convex"<<endl;
 	}
 	
+}
+
+
+
+void QMesh::ApplyAngleConstraintsToPolygon()
+{
+	if(minAngleConstraintOfPolygon==0.0f){
+		return;
+	}
+
+	bool beginToSaveAngles=false;
+
+	if (lastPolygonCornerAngles.size()!=polygon.size() ){
+		lastPolygonCornerAngles.clear();
+		for(size_t i=0;i<polygon.size();++i ){
+			lastPolygonCornerAngles.push_back(0.0f);
+		}
+		beginToSaveAngles=true;
+	}
+	
+	float minAngle=minAngleConstraintOfPolygon;
+	float maxAngle=(M_PI*2.0)-minAngle;
+
+	for (size_t i=0;i<polygon.size();++i ){
+		size_t pi=(i-1+polygon.size())%polygon.size();
+		size_t ni=(i+1)%polygon.size();
+
+		QParticle *pp=polygon[pi];
+		QParticle *p=polygon[i];
+		QParticle *np=polygon[ni];
+
+		QVector toPrev=pp->GetGlobalPosition()-p->GetGlobalPosition();
+		QVector toNext=np->GetGlobalPosition()-p->GetGlobalPosition();
+
+		float cosA=toNext.Dot(toPrev)/(toPrev.Length()*toNext.Length() );
+		float sinA=toNext.Dot(toPrev.Perpendicular() )/(toPrev.Length()*toNext.Length() );
+
+		float angleRad=atan2(sinA,cosA);
+
+
+
+		if(angleRad<0){
+			angleRad=(M_PI*2.0)-abs(angleRad);
+		}
+
+
+		
+		if(beginToSaveAngles){
+			lastPolygonCornerAngles[i]=angleRad;
+			continue;
+		}
+
+
+		QVector d1=QVector::AngleToUnitVector(lastPolygonCornerAngles[i]);
+		QVector d2=QVector::AngleToUnitVector(angleRad);
+		float angleDifference=QVector::AngleBetweenTwoVectors(d2,d1);
+
+		angleRad=lastPolygonCornerAngles[i]+angleDifference;
+
+		
+
+
+		if(angleRad>maxAngle){
+			float diffAngle=maxAngle-angleRad;
+			float angularForce=diffAngle*0.5f;
+
+			
+			
+			pp->SetGlobalPosition( p->GetGlobalPosition()+toPrev.Rotated(angularForce) );
+			np->SetGlobalPosition( p->GetGlobalPosition()+toNext.Rotated(-angularForce) );
+
+			
+			
+		}
+
+		if(angleRad<minAngle){
+			float diffAngle=minAngle-angleRad;
+			float angularForce=diffAngle*0.5f;
+
+			pp->SetGlobalPosition( p->GetGlobalPosition()+toPrev.Rotated(angularForce) );
+			np->SetGlobalPosition( p->GetGlobalPosition()+toNext.Rotated(-angularForce) );
+
+			
+		}
+
+		lastPolygonCornerAngles[i]=angleRad;
+
+		
+	}
+
 }
 
 bool QMesh::CheckIsPolygonConcave(vector<QParticle *> polygonParticles)
@@ -366,6 +458,7 @@ void QMesh::DecompositePolygon(vector<QParticle *> &polygonParticles, vector<vec
 	
 
 }
+
 
 
 QMesh *QMesh::AddSpring(QSpring *spring)
@@ -771,5 +864,56 @@ QMesh::MeshData QMesh::GeneratePolygonMeshData(float radius, int sideCount, QVec
 }
 
 
+pair<QVector, float> QMesh::GetAveragePositionAndRotation(vector<QParticle *> particleCollection)
+{
+    if(particleCollection.size()==1)
+		return pair<QVector, float>(particleCollection[0]->GetGlobalPosition(),0.0f);
+	//Finding Actual Position
+	QVector averagePosition=QVector::Zero();
+	
+	for(int i=0;i<particleCollection.size();i++){
+		QParticle *particle=particleCollection[i];
+		averagePosition+=particle->GetGlobalPosition();
+	}  
+	averagePosition/=particleCollection.size();
+	
+	float averageRotation=0;
+	float cosAxis=0.0f;
+	float sinAxis=0.0f;
+	for(int i=0;i<particleCollection.size();i++){
+		QParticle *particle=particleCollection[i];
+		
+		QVector currentVec=particle->GetGlobalPosition()-averagePosition;
+		cosAxis+=currentVec.Dot(particle->GetPosition() );
+		sinAxis+=currentVec.Dot(particle->GetPosition().Perpendicular() );
+	}
 
+	
+	float rad=atan2(sinAxis,cosAxis);
+	averageRotation=rad;
+	
+
+	return pair< QVector, float >(averagePosition,averageRotation);
+}
+
+vector<QVector> QMesh::GetMatchingParticlePositions(vector<QParticle *> particleCollection, QVector targetPosition, float targetRotation)
+{
+    QVector localCenterPosition;
+	for(auto particle:particleCollection){
+		localCenterPosition+=particle->GetPosition();
+	}
+	localCenterPosition/=particleCollection.size();
+
+	vector<QVector> positions;
+	for(int n=0;n<particleCollection.size();n++){
+		QParticle * particle=particleCollection[n];
+		
+		QVector targetPos=(particle->GetPosition()-localCenterPosition).Rotated(-targetRotation);
+		targetPos+=targetPosition;
+		//world->GetGizmos()->push_back(new QGizmoCircle(targetPos,3.0f) );
+		positions.push_back(targetPos);
+	}
+
+	return positions;
+}
 

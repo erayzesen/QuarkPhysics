@@ -34,15 +34,9 @@
 #include "qaabb.h"
 
 
-QObjectPool<QCollision::Contact>* QCollision::contactPool = nullptr;
 
- QObjectPool<QCollision::Contact> *QCollision::GetContactPool()
- {
-     if(QCollision::contactPool==nullptr){
-		QCollision::contactPool=new QObjectPool<QCollision::Contact>(100);
-	 }
-	 return QCollision::contactPool;
- }
+
+QObjectPool<QCollision::Contact> QCollision::contactPool(100,50);
 
 
 
@@ -112,11 +106,9 @@ void QCollision::PolylineAndPolygon(vector<QParticle*> &polylineParticles, vecto
 		
 
 		bisectorList.push_back(bisectorVector );
-		p->GetOwnerMesh()->GetOwnerBody()->GetWorld()->gizmos.push_back(new QGizmoLine(p->GetGlobalPosition(),p->GetGlobalPosition()+bisectorVector,true) );
+		//p->GetOwnerMesh()->GetOwnerBody()->GetWorld()->gizmos.push_back(new QGizmoLine(p->GetGlobalPosition(),p->GetGlobalPosition()+bisectorVector,true) );
 
-		/*
-		Notes: Bisector vector is working well now but it doesn't looks true. A different method is followed here.  
-		*/
+		
 
 
 
@@ -175,9 +167,10 @@ void QCollision::PolylineAndPolygon(vector<QParticle*> &polylineParticles, vecto
 			float penetration=bridgeVec.Dot(-normal);
 			
 			
-			auto contact=QCollision::GetContactPool();
-			/* contact->Configure(p,p->GetGlobalPosition(),normal,penetration,vector<QParticle*>{s1,s2});
-			contacts.push_back(contact); */
+			
+			QCollision::Contact *contact=QCollision::GetContactPool().Create().data;
+			contact->Configure(p,p->GetGlobalPosition(),normal,penetration,vector<QParticle*>{s1,s2});
+			contacts.push_back(contact);
 
 		}
 	}
@@ -354,9 +347,10 @@ void QCollision::CircleAndPolyline(vector<QParticle *> &circleParticles, vector<
 
 			//pA->GetOwnerMesh()->GetOwnerBody()->GetWorld()->gizmos.push_back(new QGizmoCircle(pA->GetGlobalPosition(),5.0f ) );
 
-			auto contact=QCollision::GetContactPool();
-			/* contact->Configure( pA,pA->GetGlobalPosition(),normal,-penetration,vector<QParticle*>{ nearestSides[collidedSideIndex][0],nearestSides[collidedSideIndex][1] }  );
-			contacts.push_back(contact) ; */
+			
+			QCollision::Contact *contact=QCollision::GetContactPool().Create().data;
+			contact->Configure( pA,pA->GetGlobalPosition(),normal,-penetration,vector<QParticle*>{ nearestSides[collidedSideIndex][0],nearestSides[collidedSideIndex][1] }  );
+			contacts.push_back(contact) ;
 			
 
 		}else{
@@ -431,9 +425,10 @@ void QCollision::CircleAndPolyline(vector<QParticle *> &circleParticles, vector<
 							float penetration=abs( (pA->GetRadius()*projSign)-perpProj);
 							QVector contactPosition=pA->GetGlobalPosition()-(pA->GetRadius()*projSign*normal);
 
-							auto contact=QCollision::GetContactPool();
-							/* contact->Configure(pA,contactPosition,normal,penetration,vector<QParticle*>{s1,s2});
-							contacts.push_back(contact); */
+							
+							QCollision::Contact *contact=QCollision::GetContactPool().Create().data;
+							contact->Configure(pA,contactPosition,normal,penetration,vector<QParticle*>{s1,s2});
+							contacts.push_back(contact);
 
 						}
 					}
@@ -451,7 +446,7 @@ void QCollision::CircleAndPolyline(vector<QParticle *> &circleParticles, vector<
 	
 }
 
-void QCollision::CircleAndCircle(vector<QParticle*> &particlesA,vector<QParticle*> &particlesB,vector<QCollision::Contact*> &contacts,float specifiedRadius){
+void QCollision::CircleAndCircle(vector<QParticle*> &particlesA,vector<QParticle*> &particlesB,QAABB boundingBoxB,vector<QCollision::Contact*> &contacts,float specifiedRadius){
 
 	/*
 	A. Start the loop for all points of particlesA
@@ -464,20 +459,49 @@ void QCollision::CircleAndCircle(vector<QParticle*> &particlesA,vector<QParticle
 	float totalRadiusPow;
 	float radiusA;
 	float radiusB;
+	QVector bboxSizeA;
+
+	QVector distVec;
+	float positionalPenetrationSq;
+	float positionalPenetration;
+	float penetration;
+	QVector normal;
+	QVector contactPosition;
+
 
 	if(specifiedRadius!=0.0){
 		radiusA=specifiedRadius;
 		radiusB=specifiedRadius;
 		totalRadius=specifiedRadius+specifiedRadius;
 		totalRadiusPow=totalRadius*totalRadius;
+		bboxSizeA=QVector(specifiedRadius,specifiedRadius);
 	}
 
 	//A. Start the loop for all points of circleparticlesA
 	for(size_t i=0;i<particlesA.size();i++){
 		QParticle *pA=particlesA[i];
 
+		//Optimization phase: aabb test 
+		if(particlesA.size()>1 && particlesB.size()>1 ){
+			if(specifiedRadius==0.0){
+				bboxSizeA=QVector(radiusA,radiusA);
+			}
+			QAABB boundingBoxA(pA->GetGlobalPosition()-bboxSizeA,pA->GetGlobalPosition()+bboxSizeA );
+
+			if(boundingBoxA.isCollidingWith(boundingBoxB)==false ){
+				continue;
+			}
+		}
+
+		//Optimization phase: reducing loop count whether the test is self collision
+		size_t n=0;
+		if(particlesA==particlesB){
+			n=i+1;
+		}
+
+
 		//B. Start the loop for all points of circleparticlesB
-		for(size_t n=0;n<particlesB.size();n++){
+		for(;n<particlesB.size();n++){
 			QParticle *pB=particlesB[n];
 			if(pA==pB) continue;
 
@@ -494,24 +518,25 @@ void QCollision::CircleAndCircle(vector<QParticle*> &particlesA,vector<QParticle
 			//C. Check the distance between both points
 
 
-			QVector distVec=pB->GetGlobalPosition()-pA->GetGlobalPosition();
-			float positionalPenetrationSq=distVec.LengthSquared();
+			distVec=pB->GetGlobalPosition()-pA->GetGlobalPosition();
+			positionalPenetrationSq=distVec.LengthSquared();
 
 			
 
 			//D. If the distance is less than radius of these points, create a new collision data
 			if(positionalPenetrationSq<totalRadiusPow){
 				//The penetration is the difference between the existing penetration and the total radius of the objA and the objB.
-				float positionalPenetration=sqrt(positionalPenetrationSq);
-				QVector normal=distVec.Normalized();
+				positionalPenetration=sqrt(positionalPenetrationSq);
+				normal=distVec.Normalized();
 
-				float penetration=totalRadius-positionalPenetration;
+				penetration=totalRadius-positionalPenetration;
 
-				QVector contactPosition=pA->GetGlobalPosition()+radiusA*normal;
+				contactPosition=pA->GetGlobalPosition()+radiusA*normal;
 
-				auto contact=QCollision::GetContactPool();
-				/* contact->Configure(pB,contactPosition,normal,penetration,vector<QParticle*>{pA});
-				contacts.push_back(contact); */
+				//auto contact=QCollision::GetContactPool();
+				QCollision::Contact *contact=QCollision::GetContactPool().Create().data;
+				contact->Configure(pB,contactPosition,normal,penetration,vector<QParticle*>{pA});
+				contacts.push_back(contact);
 				
 
 			}
@@ -636,9 +661,11 @@ void QCollision::CircleAndPolygon(vector<QParticle*> &circleParticles,vector<QPa
 			}
 			vector<QParticle*> refSegment={ polygonParticles[ refSegmentIndexes[0] ],polygonParticles[ refSegmentIndexes[1] ] };
 
-			auto contact=QCollision::GetContactPool();
-			/* contact->Configure(circleParticle,contactPosition,normal,penetration,refSegment );
-			contacts.push_back(contact); */
+			
+			
+			QCollision::Contact *contact=QCollision::GetContactPool().Create().data;
+			contact->Configure(circleParticle,contactPosition,normal,penetration,refSegment );
+			contacts.push_back(contact);
 
 			continue;
 
@@ -646,7 +673,7 @@ void QCollision::CircleAndPolygon(vector<QParticle*> &circleParticles,vector<QPa
 		}
 
 
-
+		
 		//D. If collision doesn't exist, make collision test with this nearest point
 		if(abs(penetration)<circleParticle->GetRadius()){
 			penetration=circleParticle->GetRadius()-abs(penetration);
@@ -654,9 +681,11 @@ void QCollision::CircleAndPolygon(vector<QParticle*> &circleParticles,vector<QPa
 			if(circleParticle->GetRadius()>0.5f){
 				contactPosition-=circleParticle->GetRadius()*normal;
 			}
-			auto contact=QCollision::GetContactPool();
-			/* contact->Configure(circleParticle,contactPosition,normal,penetration,vector<QParticle*>{ polygonParticles[npi] } );
-			contacts.push_back(contact); */
+			
+			
+			QCollision::Contact *contact=QCollision::GetContactPool().Create().data;
+			contact->Configure(circleParticle,contactPosition,normal,penetration,vector<QParticle*>{ polygonParticles[npi] } );
+			contacts.push_back(contact);
 
 		}
 	}
@@ -670,8 +699,10 @@ QCollision::~QCollision()
 	
 }
 
-
-
+QObjectPool<QCollision::Contact> &QCollision::GetContactPool()
+{
+    return contactPool;
+}
 
 void QCollision::PolygonAndPolygon(vector<QParticle *> &particlesA, vector<QParticle *> &particlesB, vector<QCollision::Contact *> &contacts)
 {
@@ -810,9 +841,9 @@ void QCollision::ClipContactParticles(QParticle *referenceParticles[], QParticle
 		if(dist<=0){
 			float proj=bv.Dot(unit);
 			if(proj>=0.0f && proj<=len){
-				auto contact=QCollision::GetContactPool();
-				/* contact->Configure(p,p->GetGlobalPosition(),normal,abs(dist), vector<QParticle*>{referenceParticles[0],referenceParticles[1]});
-				contacts.push_back(contact); */
+				QCollision::Contact *contact=QCollision::GetContactPool().Create().data;
+				contact->Configure(p,p->GetGlobalPosition(),normal,abs(dist), vector<QParticle*>{referenceParticles[0],referenceParticles[1]});
+				contacts.push_back(contact); 
 
 			}
 		}

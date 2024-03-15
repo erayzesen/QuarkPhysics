@@ -71,8 +71,13 @@ protected:
 	//Helper Methods
 	void UpdateCollisionBehavior();
 
+	//Polygon Properties
+	vector<float> lastPolygonCornerAngles;
+	float minAngleConstraintOfPolygon=M_PI*0.1;
+
 	//Polygon Methods
 	void UpdateSubConvexPolygons();
+	void ApplyAngleConstraintsToPolygon();
 	bool CheckIsPolygonConcave(vector<QParticle*> polygonParticles);
 	static bool CheckIsReflex(QVector pA,QVector pB, QVector pC);
 	static bool CheckIsReflex(int indexA,int indexB, int indexC, vector<QParticle*> polygonParticles);
@@ -333,6 +338,27 @@ public:
 	QParticle *GetParticleFromPolygon(int index);
 
 
+	/** Returns the minimum angle for the angle constraints of the polygon. If the constraints are disabled, the value will be 0. 
+	 * The default value is pi * 0.1.
+	 * @return The minimum angle value in radians of the angle constraints of the polygon.
+	*/
+	float  GetMinAngleConstraintOfPolygon(){
+		return minAngleConstraintOfPolygon;
+	}
+
+	/** Sets the minimum angle for the angle constraints of the polygon. If the value is 0, it means constraints are disabled. 
+	 * The default value is pi * 0.1.
+	 * @param radian The minimum angle value in radians.
+	 * @return QMesh* A pointer to mesh itself.
+	*/
+	QMesh *SetMinAngleConstraintOfPolygon(float radian){
+		minAngleConstraintOfPolygon=radian;
+		return this;
+	}
+
+	
+
+
 
 
 
@@ -510,6 +536,25 @@ public:
 	 * @return MeshData The data needed to create a mesh.
 	 */
 	static MeshData GeneratePolygonMeshData(float radius, int sideCount, QVector centerPosition=QVector::Zero(),int polarGrid=-1,float particleRadius=0.5f);
+
+	/**Calculates the average position and rotation values of the specified particles. 
+	 * @param particleCollection A Particles collection
+	 * @return Returns a position-rotation pair.
+	 */
+	static pair<QVector, float> GetAveragePositionAndRotation(vector<QParticle*> particleCollection);
+
+	/** Returns the non-deformed particle positions based on the target position and rotation. 
+	 * This method is also used for shape matching operations.
+	 * @param particleCollection  A collection of particles
+	 * @param targetPosition  Target center position to transformation.
+	 * @param targetRotation  Target center rotation to transformation.
+	 * @return Returns A list of positions.
+	*/
+	static vector<QVector> GetMatchingParticlePositions(vector<QParticle*> particleCollection,QVector targetPosition, float targetRotation);
+
+
+	
+	
 
 
 

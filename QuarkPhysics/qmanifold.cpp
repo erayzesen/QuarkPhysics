@@ -168,7 +168,7 @@ void QManifold::Solve()
 
 
 
-		bodyA->GetWorld()->gizmos.push_back(new QGizmoCircle(contact->position,2.0f));
+		bodyA->GetWorld()->gizmos.push_back( new QGizmoRect( QAABB(contact->position+QVector(-0.5f,-0.5f) ,contact->position+QVector(0.5f,0.5f) ) ));
 
 
 

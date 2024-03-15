@@ -43,7 +43,7 @@ using namespace std;
 class QCollision
 {
 public:
-	QCollision();
+	QCollision(){}
 	~QCollision();
 
 	
@@ -90,6 +90,9 @@ public:
 
 	};
 
+	static QObjectPool<QCollision::Contact> contactPool;
+
+	static QObjectPool<QCollision::Contact> &GetContactPool();
 
 
 	struct Project{
@@ -116,8 +119,7 @@ public:
 
 	};
 
-	static QObjectPool<QCollision::Contact> *contactPool;
-	static QObjectPool<QCollision::Contact> *GetContactPool();
+	
 
 	//Collision Methods
 	/** Checks collisions between polygons. 
@@ -137,7 +139,7 @@ public:
 	 * @param particlesB Another collection of particles representing one or more circles, each having a radius.
 	 * @param contacts A collection where collision contact information will be stored.
 	 */
-	static void CircleAndCircle(vector<QParticle*> &particlesA,vector<QParticle*> &particlesB,vector<QCollision::Contact*> &contacts, float specifiedRadius=0.0f);
+	static void CircleAndCircle(vector<QParticle*> &particlesA,vector<QParticle*> &particlesB, QAABB boundingBoxB, vector<QCollision::Contact*> &contacts, float specifiedRadius=0.0f);
 	/** Checks collisions between polyline and polygon. 
 	 * @param polylineParticles A collection of particles that make up a polyline.
 	 * @param polygonParticles Another collection of particles that make up a polygon.
@@ -197,6 +199,7 @@ private:
 
 
 };
+
 
 
 
