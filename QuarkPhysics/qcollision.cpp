@@ -192,6 +192,7 @@ void QCollision::CircleAndPolyline(vector<QParticle *> &circleParticles, vector<
 	D. If the circle particle is not within the polyline and the radius value is greater than 0.5, a collision edge is queried with a distance 
 	test between the circle diameter and the edges of the nearest particle.
 	*/
+	
 
 	vector< vector<QParticle*> > nearestSides;
 	
@@ -275,6 +276,8 @@ void QCollision::CircleAndPolyline(vector<QParticle *> &circleParticles, vector<
 
 			float minDistance=-QWorld::MAX_WORLD_SIZE;
 
+			float maxIntersectionDistance=-QWorld::MAX_WORLD_SIZE;
+
 			for( int n=0;n<nearestSides.size();n++ ){ 
 				QParticle *sA=nearestSides[n][0];
 				QParticle *sB=nearestSides[n][1];
@@ -308,13 +311,15 @@ void QCollision::CircleAndPolyline(vector<QParticle *> &circleParticles, vector<
 						float radius=pA->GetRadius();
 						QVector bridgeVec=pA->GetGlobalPosition()-sAPos;
 						float dist=bridgeVec.Dot( sideNormal );
+						float distIntersection=(intersection-pA->GetGlobalPosition()).Length();
+						//pA->GetOwnerMesh()->GetOwnerBody()->GetWorld()->gizmos.push_back(new QGizmoLine(pA->GetGlobalPosition(),pA->GetGlobalPosition()+rayUnit*16,true ) );
 						if(dist<0 && dist>minDistance){
 							minDistance=dist;
 							normal=sideNormal;
 							penetration=dist-radius;
 							collidedSideIndex=n;
-							/* pA->GetOwnerMesh()->GetOwnerBody()->GetWorld()->gizmos.push_back(new QGizmoLine(pA->GetGlobalPosition(),pA->GetGlobalPosition()+rayUnit*64,true ) );
-							pA->GetOwnerMesh()->GetOwnerBody()->GetWorld()->gizmos.push_back(new QGizmoLine(sAPos,sBPos,false ) ); */
+							//pA->GetOwnerMesh()->GetOwnerBody()->GetWorld()->gizmos.push_back(new QGizmoLine(pA->GetGlobalPosition(),pA->GetGlobalPosition()+rayUnit*16,true ) );
+							//pA->GetOwnerMesh()->GetOwnerBody()->GetWorld()->gizmos.push_back(new QGizmoLine(sAPos,sBPos,false ) );
 						}
 					}
 				}else{

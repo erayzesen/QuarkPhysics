@@ -901,7 +901,6 @@ vector<QCollision::Contact*> QWorld::GetCollisions(QBody *bodyA, QBody *bodyB){
 				QMesh *polylineMesh=meshA->collisionBehavior==QMesh::POLYLINE ? meshA:meshB;
 				QMesh *polygonMesh=meshA->collisionBehavior==QMesh::POLYGONS ? meshA:meshB;
 				for(int b=0;b<polygonMesh->GetSubConvexPolygonCount();b++){
-					//QCollision::PolygonAndPolygon(polylineMesh->subConvexPolygons[a],polygonMesh->subConvexPolygons[b],contactList);
 					QCollision::CircleAndPolygon(polylineMesh->polygon,polygonMesh->GetSubConvexPolygonAt(b),contactList);
 					QCollision::PolylineAndPolygon(polylineMesh->polygon,polygonMesh->GetSubConvexPolygonAt(b),contactList);
 				}
@@ -909,11 +908,10 @@ vector<QCollision::Contact*> QWorld::GetCollisions(QBody *bodyA, QBody *bodyB){
 				
 
 				if(bodyA->simulationModel==QBody::SimulationModels::MASS_SPRING && bodyB->simulationModel==QBody::SimulationModels::MASS_SPRING){
-					QCollision::CircleAndCircle(meshA->polygon,meshB->polygon,bboxB, contactList);
+					//QCollision::CircleAndCircle(meshA->polygon,meshB->polygon,bboxB, contactList);
 					QCollision::CircleAndPolyline(meshA->polygon,meshB->polygon,bboxB,contactList);
 					QCollision::CircleAndPolyline(meshB->polygon,meshA->polygon,bboxA, contactList);
-					/* QCollision::PolylineAndPolygon(meshA->polygon,meshB->polygon,contactList);
-						QCollision::PolylineAndPolygon(meshB->polygon,meshA->polygon,contactList); */
+					
 					
 				}
 				
@@ -1055,16 +1053,7 @@ bool QWorld::SortBodiesVertical(const QBody *bodyA, const QBody *bodyB)
 
 	
 	//Apply The Shape Matching Feature to Soft Bodies
-	/* for(auto body:bodies){
-		if(body->isSleeping)
-			continue;
-		if(body->GetMode()!=QBody::STATIC && body->GetSimulationModel()!=QBody::SimulationModels::RIGID_BODY){
-			QSoftBody *sBody=static_cast<QSoftBody*>(body);
-			if(sBody->GetShapeMatchingEnabled()){
-				sBody->ApplyShapeMatching();	
-			 }
-		}
-	} */
+	
 	 //Other Soft Body Constraints
 	 for(auto body:bodies){
 
@@ -1092,12 +1081,9 @@ bool QWorld::SortBodiesVertical(const QBody *bodyA, const QBody *bodyB)
 					 spring->Update(sBody->GetRigidity()*ts,sBody->GetPassivationOfInternalSpringsEnabled());
 				 }
 			 }
-
-			 
-
-
-			 
+			 		
 		 }
+		 
 	 }
 	 
 	 for(auto spring:springs){

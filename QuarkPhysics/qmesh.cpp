@@ -201,6 +201,39 @@ void QMesh::ApplyAngleConstraintsToPolygon()
 		return;
 	}
 
+	//Intersection Test
+	bool polygonIntersection=false;
+	for(int i=0;i<polygon.size();++i ){
+		int ni=(i+1)%polygon.size();
+		QParticle* d1A=polygon[i];
+		QParticle* d1B=polygon[ (i+1)%polygon.size() ];
+		for(int n=i+1;n<polygon.size();++n ){
+			if(n==i || n==ni || n==(i-1+polygon.size())%polygon.size() )continue;
+			QParticle* d2A=polygon[n];
+			QParticle* d2B=polygon[ (n+1)%polygon.size() ];
+
+			QVector intersection=QCollision::LineIntersectionLine(d1A->GetGlobalPosition(),d1B->GetGlobalPosition(),d2A->GetGlobalPosition(),d2B->GetGlobalPosition() );
+			
+			if(intersection.isNaN()==false ){
+				d1A->GetOwnerMesh()->GetOwnerBody()->GetWorld()->GetGizmos()->push_back(new QGizmoCircle(intersection,5.0) );
+				polygonIntersection=true;
+				break;
+			}
+		}
+
+	}
+	if(polygonIntersection==true){
+		//cout<<"there is line intersection in polygon"<<endl;
+		pair<QVector,float> averagePosRot=QMesh::GetAveragePositionAndRotation(polygon);
+		vector<QVector> matchingShape=QMesh::GetMatchingParticlePositions(polygon,averagePosRot.first,averagePosRot.second);
+		for(int i=0;i<matchingShape.size();i++ ){
+			QVector force=(matchingShape[i]-polygon[i]->GetGlobalPosition())*0.2;
+			polygon[i]->ApplyForce(force );
+			lastPolygonCornerAngles.clear();
+			return;
+		}
+	}
+
 	bool beginToSaveAngles=false;
 
 	if (lastPolygonCornerAngles.size()!=polygon.size() ){
