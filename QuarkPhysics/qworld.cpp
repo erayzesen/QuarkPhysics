@@ -1074,13 +1074,14 @@ bool QWorld::SortBodiesVertical(const QBody *bodyA, const QBody *bodyB)
 		 if(body->GetMode()!=QBody::STATIC && body->GetSimulationModel()!=QBody::SimulationModels::RIGID_BODY){
 			 QSoftBody *sBody=static_cast<QSoftBody*>(body);
 			
-
 			 for(int i=0;i<sBody->GetMeshCount();i++){
 				 QMesh * mesh=sBody->GetMeshAt(i);
 				 for(auto spring:mesh->springs){
 					 spring->Update(sBody->GetRigidity()*ts,sBody->GetPassivationOfInternalSpringsEnabled());
 				 }
 			 }
+
+			
 			 		
 		 }
 		 

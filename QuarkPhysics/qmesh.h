@@ -73,7 +73,7 @@ protected:
 
 	//Polygon Properties
 	vector<float> lastPolygonCornerAngles;
-	float minAngleConstraintOfPolygon=M_PI*0.1;
+	float minAngleConstraintOfPolygon=M_PI*0.3;
 
 	//Polygon Methods
 	void UpdateSubConvexPolygons();

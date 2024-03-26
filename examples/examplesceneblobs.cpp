@@ -60,10 +60,9 @@ void ExampleSceneBlobs::OnKeyPressed(sf::Keyboard::Key key)
 {
 	if(key==sf::Keyboard::Space){
 		QSoftBody *pressureBody=new QSoftBody();
-		pressureBody->AddMesh( QMesh::CreateWithPolygon(64,24,QVector::Zero(),-1 ,true,true) );
+		pressureBody->AddMesh( QMesh::CreateWithPolygon(64,12,QVector::Zero(),-1 ,true,true) );
 		pressureBody->SetRigidity(0.5f)->SetPosition(mousePos)->SetMass(0.5f);
 		pressureBody->SetAreaPreservingEnabled(true)->SetAreaPreservingRate(0.7);
-		pressureBody->SetSelfCollisionsEnabled(true)->SetSelfCollisionsSpecifiedRadius(6.0f);
 		world->AddBody(pressureBody);
 	}
 }
