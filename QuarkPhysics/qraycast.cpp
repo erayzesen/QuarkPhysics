@@ -49,8 +49,13 @@ vector<QBody *> QRaycast::GetPotentialBodies(QWorld *whichWorld, QVector rayPosi
 
 	for(int i=0;i<whichWorld->GetBodyCount();i++){
 		QBody* body=whichWorld->GetBodyAt(i);
+		
 		if(body->GetEnabled()==false )
 			continue;
+		
+		if ( (collidableLayers & body->GetLayersBit()) ==0 )
+			continue;
+	
 		if(isRayToNegativeX){
 			if(body->GetAABB().GetMin().x>rayPosition.x || body->GetAABB().GetMax().x<rayEndPosition.x){
 				continue;
@@ -70,6 +75,7 @@ vector<QBody *> QRaycast::GetPotentialBodies(QWorld *whichWorld, QVector rayPosi
 				continue;
 			}
 		}
+		
 		res.push_back(body);
 	}
 	return res;
@@ -242,6 +248,7 @@ void QRaycast::RaycastToPolygon(QBody *body, QMesh *mesh, QVector rayPosition, Q
 		//It's a containing body
 		if(enableContainingBodies){
 			nearContactPosition=rayPosition;
+			nearDistance=0.0f;
 
 		}else{
 			return;

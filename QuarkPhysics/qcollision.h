@@ -152,9 +152,11 @@ public:
 	/** Checks collisions between circles and polyline. 
 	 * @param circleParticles A collection of particles representing one or more circles, each having a radius.
 	 * @param polylineParticles A collection of particles that make up a polyline.
+	 * @param polylineAABB AABB of polyline for tests between circle and AABB.
 	 * @param contacts A collection where collision contact information will be stored.
+	 * @param circlesArePolygon It defines whether circle particles is the part of a polygon.  
 	 */
-	static void CircleAndPolyline(vector<QParticle*> &circleParticles,vector<QParticle*> &polylineParticles,QAABB polylineAABB , vector<QCollision::Contact*> &contacts);
+	static void CircleAndPolyline(vector<QParticle*> &circleParticles,vector<QParticle*> &polylineParticles,QAABB polylineAABB , vector<QCollision::Contact*> &contacts, bool circlesArePolygon=false);
 
 
 	//Geometry Helper Methods

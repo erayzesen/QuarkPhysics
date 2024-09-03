@@ -177,7 +177,7 @@ void QCollision::PolylineAndPolygon(vector<QParticle*> &polylineParticles, vecto
 
 }
 
-void QCollision::CircleAndPolyline(vector<QParticle *> &circleParticles, vector<QParticle *> &polylineParticles,QAABB polylineAABB,vector<QCollision::Contact*> &contacts)
+void QCollision::CircleAndPolyline(vector<QParticle *> &circleParticles, vector<QParticle *> &polylineParticles,QAABB polylineAABB,vector<QCollision::Contact*> &contacts,bool circlesArePolygon)
 {
 
 	/* The algorithm detects collisions between one or more particles and a polyline. 
@@ -214,11 +214,41 @@ void QCollision::CircleAndPolyline(vector<QParticle *> &circleParticles, vector<
 
 		int collidedSideIndex=-1;
 
-		//All values
-
-
 		//Checking whether the cirlce particle is in the polyline. 
-		if (PointInPolygonWN(pA->GetGlobalPosition(),polylineParticles) && circleParticles!=polylineParticles) {
+		bool collisionIsPolygonal=false;
+		if (circlesArePolygon){
+			if (circleParticles!=polylineParticles){
+				if (PointInPolygonWN(pA->GetGlobalPosition(),polylineParticles)){
+					collisionIsPolygonal=true;
+				}else{
+					//intersection tests between target particle sides and polyline
+					if(circleParticles.size()>3 && polylineParticles.size()>3 ){
+						QParticle *ppA=circleParticles[ (ia-1+circleParticles.size() )%circleParticles.size() ];
+						QParticle *npA=circleParticles[ (ia+1 )%circleParticles.size() ];
+						for(size_t j=0;j<polylineParticles.size();++j ){
+							QParticle * pJ=polylineParticles[j];
+							QParticle *npJ=polylineParticles[ (j+1)% polylineParticles.size() ];
+							bool sideIntersectionA=LineIntersectionLine(ppA->GetGlobalPosition(),pA->GetGlobalPosition(),pJ->GetGlobalPosition(), npJ->GetGlobalPosition() ).isNaN()==false;
+							
+							if( sideIntersectionA){
+								bool sideIntersectionB=LineIntersectionLine(pA->GetGlobalPosition(),npA->GetGlobalPosition(),pJ->GetGlobalPosition(), npJ->GetGlobalPosition() ).isNaN()==false;
+								if (sideIntersectionB){
+									collisionIsPolygonal=true;
+								}
+								
+							}
+						}
+
+					}
+				}
+		}
+		
+
+		}
+
+
+		
+		if (collisionIsPolygonal) {
 
 			//B. If the circular particle belongs to a collection with 3 or more elements, a ray vector is prepared towards the angle bisector using its edges.
 			nearestSides.clear();
@@ -244,25 +274,27 @@ void QCollision::CircleAndPolyline(vector<QParticle *> &circleParticles, vector<
 			nearestSides.push_back(vector<QParticle*>{ pB, polylineParticles[ (ni+1)%polylineParticles.size() ]}  );
 
 			//Nearest particle is on the outside of the test particle sides.
-			bool isNearesParticleOnWrongSide=true;
+			if (circlesArePolygon){
+				bool isNearesParticleOnWrongSide=true;
 
-			for (size_t j=0;j<nearestSides.size();++j ){
-				QVector sideVec=nearestSides[j][1]->GetGlobalPosition()-nearestSides[j][0]->GetGlobalPosition();
-				QVector sidePerp=sideVec.Perpendicular();
-				QVector bVector=pA->GetGlobalPosition()-nearestSides[j][0]->GetGlobalPosition();
-				if(sidePerp.Dot(rayUnit)>0 ){
-					isNearesParticleOnWrongSide=false;
-				}
-			}
-			if(isNearesParticleOnWrongSide==true  ){
-				nearestSides.clear();
-				for(size_t j=0;j<polylineParticles.size();++j ){
-					int nj=(j+1)%polylineParticles.size();
-
-					QVector sideVec=polylineParticles[nj]->GetGlobalPosition()-polylineParticles[j]->GetGlobalPosition();
+				for (size_t j=0;j<nearestSides.size();++j ){
+					QVector sideVec=nearestSides[j][1]->GetGlobalPosition()-nearestSides[j][0]->GetGlobalPosition();
 					QVector sidePerp=sideVec.Perpendicular();
+					QVector bVector=pA->GetGlobalPosition()-nearestSides[j][0]->GetGlobalPosition();
 					if(sidePerp.Dot(rayUnit)>0 ){
-						nearestSides.push_back(vector<QParticle*>{ polylineParticles[ j], polylineParticles[ nj]}  );			
+						isNearesParticleOnWrongSide=false;
+					}
+				}
+				if(isNearesParticleOnWrongSide==true  ){
+					nearestSides.clear();
+					for(size_t j=0;j<polylineParticles.size();++j ){
+						int nj=(j+1)%polylineParticles.size();
+
+						QVector sideVec=polylineParticles[nj]->GetGlobalPosition()-polylineParticles[j]->GetGlobalPosition();
+						QVector sidePerp=sideVec.Perpendicular();
+						if(sidePerp.Dot(rayUnit)>0 ){
+							nearestSides.push_back(vector<QParticle*>{ polylineParticles[ j], polylineParticles[ nj]}  );			
+						}
 					}
 				}
 			}
