@@ -185,10 +185,10 @@ void QMesh::UpdateSubConvexPolygons()
 	subConvexPolygons.clear();
 	if (CheckIsPolygonConcave(polygon)==true ){
 		DecompositePolygon(polygon,subConvexPolygons);
-		cout<<"polygon is concave"<<endl;
+		// cout<<"polygon is concave"<<endl;
 	}else{
 		subConvexPolygons.push_back( polygon );
-		cout<<"polygon is convex"<<endl;
+		// cout<<"polygon is convex"<<endl;
 	}
 	
 }
@@ -421,7 +421,7 @@ void QMesh::DecompositePolygon(vector<QParticle *> &polygonParticles, vector<vec
 
 	//Per all subPolygons
 	while (ia!=subPolygons.size()){
-		cout<<"started subpolygons loop ia is:"<<ia <<endl;
+		// cout<<"started subpolygons loop ia is:"<<ia <<endl;
 		auto polyA=subPolygons[ia];
 		bool isDiagonal=false;
 		//Check diagonals
@@ -432,7 +432,7 @@ void QMesh::DecompositePolygon(vector<QParticle *> &polygonParticles, vector<vec
 			for (size_t ib=0;ib<subPolygons.size();ib++ ){
 				if (ia==ib)
 					continue;
-				cout<<"started subpolygons loop ib is:"<<ib <<endl;
+				// cout<<"started subpolygons loop ib is:"<<ib <<endl;
 				auto polyB=subPolygons[ib];
 				for (size_t nb=0;nb<polyB.size();nb++ ){
 					int pB1=polyB[nb];
@@ -447,32 +447,32 @@ void QMesh::DecompositePolygon(vector<QParticle *> &polygonParticles, vector<vec
 						int pIndex=(nb+1)%polyB.size();
 						int pos=na+1;
 						//Adding points to first polygon
-						cout<<"adding next polygon to prev polygon"<<endl;
+						// cout<<"adding next polygon to prev polygon"<<endl;
 						while (pIndex!=(nb-1+polyB.size() )%polyB.size() ){
 							pIndex=(pIndex+1)%polyB.size();
 							polyA.insert(polyA.begin()+pos,polyB[pIndex]);
 							pos+=1;
 						}
 						subPolygons[ia]=polyA;
-						cout<<"erased polygon"<<endl;
+						// cout<<"erased polygon"<<endl;
 						subPolygons.erase(subPolygons.begin()+ib );
-						cout<<"erased polygon finished"<<endl;
+						// cout<<"erased polygon finished"<<endl;
 						isDiagonal=true;
 						break;
 					}
 				}
 				if (isDiagonal){
-					cout<<"exiting for polyB  loop"<<endl;
+					// cout<<"exiting for polyB  loop"<<endl;
 					break;
 				}
 			}
 			if (isDiagonal){
-				cout<<"exiting for polyA loop"<<endl;
+				// cout<<"exiting for polyA loop"<<endl;
 				break;	
 			}
 		}
 		if (isDiagonal){
-			cout<<"continue subpolygons loop ia is:"<<ia <<endl;
+			// cout<<"continue subpolygons loop ia is:"<<ia <<endl;
 			continue;
 		}
 		ia+=1;

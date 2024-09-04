@@ -39,6 +39,9 @@
 class QRigidBody : public QBody
 {
 	bool fixedRotation=false;
+protected:
+	QVector force=QVector::Zero();
+	float angularForce=0.0f;
 public:
 	QRigidBody();
 
@@ -54,6 +57,15 @@ public:
 	/** Sets whether collisions against other kinematic bodies are enabled. */
 	bool GetKinematicCollisionsEnabled(){
 		return allowKinematicCollisions;
+	}
+
+	/** Returns the current force value of the body. */
+	QVector GetForce(){
+		return force;
+	}
+	/** Returns the current angular force value of the body. */
+	float GetAngularForce(){
+		return angularForce;
 	}
 
 	//Set Methods
@@ -93,6 +105,29 @@ public:
 	 * @param r The relative position to apply impulse.
 	 */
 	QRigidBody* ApplyImpulse(QVector impulse,QVector r);
+	/** Sets the force value of the body. Set forces determine the force to be applied to a body object at the next physics step from the current step. 
+	 * @param value A value to set. 
+	 * @return A pointer to the body itself.
+	 */
+	QRigidBody *SetForce(QVector value);
+	/** Adds a vector to the force value of the body. Set forces determine the force to be applied to a body object at the next physics step from the current step. 
+	 * @param value A value to add. 
+	 * @return A pointer to the body itself.
+	 */
+	QRigidBody *AddForce(QVector value);
+
+	/** Sets the angular force of the body. 
+	 * @param value A value to set. 
+	 * @return A pointer to the body itself.
+	 */
+	QRigidBody *SetAngularForce(float value);
+	/** Adds a value to the angular force of the body. 
+	 * @param value A value to add. 
+	 * @return A pointer to the body itself.
+	 */
+	QRigidBody *AddAngularForce(float value);
+
+
 	/** Updates properties of the rigid body and applies needed physical dynamics. */
 	void Update();
 

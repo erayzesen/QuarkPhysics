@@ -46,7 +46,7 @@ public:
 	//Player properties
 	QRigidBody *player;
 	QVector velocity;
-	QBody *currentFloor=nullptr;
+	QRigidBody *currentFloor=nullptr;
 	int jumpTickCount=30;
 	int jumpTickDown=0;
 

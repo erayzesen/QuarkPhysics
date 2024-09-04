@@ -84,6 +84,9 @@ QParticle *QParticle::SetPosition(QVector value){
 		if(ownerBody!=nullptr){
 			ownerBody->inertiaNeedsUpdate=true;
 			ownerBody->circumferenceNeedsUpdate=true;
+			if (ownerBody->GetBodyType()==QBody::BodyTypes::SOFT){
+				ownerBody->WakeUp();
+			}
 		}
 	}
 	return this;
@@ -129,6 +132,11 @@ QParticle *QParticle::ApplyForce(QVector value)
 	return this;
 }
 QParticle *QParticle::SetForce(QVector value){
+	if (ownerMesh!=nullptr){
+		if (ownerMesh->GetOwnerBody()!=nullptr ){
+			ownerMesh->GetOwnerBody()->WakeUp();
+		}
+	}
 	force=value;
 	return this;
 }

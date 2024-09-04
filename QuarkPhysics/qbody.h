@@ -79,8 +79,6 @@ protected:
 	Modes mode=QBody::Modes::DYNAMIC;
 	bool inertiaNeedsUpdate=true;
 	bool circumferenceNeedsUpdate=true;
-	QVector force=QVector::Zero();
-	float angularForce=0.0f;
 	bool enableBodySpecificTimeScale=false;
 	float bodySpecificTimeScale=1.0f;
 	BodyTypes bodyType=BodyTypes::RIGID;
@@ -162,12 +160,12 @@ protected:
 
 
 
+		//General Get Methods
 
 		/** Returns the type of the body. */
 		BodyTypes GetBodyType(){
 			return bodyType;
 		}
-		//General Get Methods
 		/** Returns the world. */
 		QWorld *GetWorld(){
 			return world;
@@ -240,7 +238,7 @@ protected:
 		float GetInertia(){
 			if(inertiaNeedsUpdate==true){
 				inertia=GetTotalInitialArea()*2.0f*mass;
-				inertia=inertia==0.0f ? 0.25:inertia;
+				inertia=inertia<500.0f ? 500.0f:inertia;
 				inertiaNeedsUpdate=false;
 			}
 			return inertia;
@@ -318,14 +316,7 @@ protected:
 
 			return circumference;
 		}
-		/** Returns the current force value of the body. */
-		QVector GetForce(){
-			return force;
-		}
-		/** Returns the current angular force value of the body. */
-		float GetAngularForce(){
-			return angularForce;
-		}
+		
 		/** Returns whether the body spesific time scale is enabled. */
 		bool GetBodySpecificTimeScaleEnabled(){
 			return enableBodySpecificTimeScale;
@@ -402,22 +393,7 @@ protected:
 		QBody * SetRotationDegree(float degree, bool withPreviousRotation=true){
 			return SetRotation( degree*(M_PI/180.0f),withPreviousRotation );
 		}
-		/** Sets the force value of the body. Set forces determine the force to be applied to a body object at the next physics step from the current step. 
-		 * @param value A value to set. 
-		 * @return A pointer to the body itself.
-		 */
-		QBody *SetForce(QVector value){
-			force=value;
-			return this;
-
-		}
-		/** Adds a vector to the force value of the body. Set forces determine the force to be applied to a body object at the next physics step from the current step. 
-		 * @param value A value to add. 
-		 * @return A pointer to the body itself.
-		 */
-		QBody *AddForce(QVector value){
-			return SetForce(GetForce()+value);
-		}
+		
 		/** Adds a value to the rotation of the body. 
 		 * @param angleRadian A value to add, in radians. 
 		 * @return A pointer to the body itself.
@@ -440,21 +416,7 @@ protected:
 		QBody *AddPreviousRotation(float angleRadian){
 			return SetPreviousRotation(GetPreviousRotation()+angleRadian);
 		}
-		/** Sets the angular force of the body. 
-		 * @param value A value to set. 
-		 * @return A pointer to the body itself.
-		 */
-		QBody *SetAngularForce(float value){
-			angularForce=value;
-			return this;
-		}
-		/** Adds a value to the angular force of the body. 
-		 * @param value A value to add. 
-		 * @return A pointer to the body itself.
-		 */
-		QBody *AddAngularForce(float value){
-			return SetAngularForce(GetAngularForce()+value);
-		}
+		
 		
 
 
@@ -574,8 +536,6 @@ protected:
 			enabled=true;
 		}
 
-		
-
 
 		//Mesh Methods
 		/** Adds a mesh to the body.
@@ -602,6 +562,17 @@ protected:
 		 * @return A pointer to the body itself.
 		 */
 		QBody * AddMeshesFromFile(string filePath);
+
+
+		//Methods About the Sleeping Feature
+		/**
+		 * Wakes up a body that is in a sleeping state.
+		 * @return A pointer to the body itself.
+		 */
+		QBody* WakeUp() {
+			isSleeping = false;
+			return this;
+		}
 
 
 		friend class QMesh;

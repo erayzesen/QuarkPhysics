@@ -214,14 +214,14 @@ bool ExampleScenePlatformer::OnPlayerCollision(QBody *body, QBody::CollisionInfo
 	//Floor properties
 	auto side=QVector::GetVectorSide(-info.normal,QVector::Up());
 
-	if(info.body->GetBodyType()==QBody::BodyTypes::AREA){
+	if(info.body->GetBodyType()!=QBody::BodyTypes::RIGID){
 		return false;
 	}
 	//cout<<side<<endl;
 	if(side==QSides::DOWN){
 		isOnFloor=true;
 		//Defining currentfloor 
-		currentFloor=info.body;
+		currentFloor=static_cast<QRigidBody*>(info.body);
 	}else if(side==QSides::RIGHT){
 		isOnRightWall=true;
 	}else if(side==QSides::LEFT){

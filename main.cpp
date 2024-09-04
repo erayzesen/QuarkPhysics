@@ -258,7 +258,7 @@ int main()
 	window->setFramerateLimit(60);
 	window->setKeyRepeatEnabled(false);
 
-	LoadExampleScene(9);
+	LoadExampleScene(1);
 
 	while (window->isOpen())
 	{

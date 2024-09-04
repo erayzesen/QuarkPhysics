@@ -75,8 +75,33 @@ QRigidBody *QRigidBody::ApplyImpulse(QVector impulse, QVector r)
 	return this;
 }
 
-void QRigidBody::Update(){
-	if(mode==QBody::STATIC){
+QRigidBody *QRigidBody::SetForce(QVector value)
+{
+	WakeUp();
+    force=value;
+	return this;
+}
+
+QRigidBody *QRigidBody::AddForce(QVector value)
+{
+    return SetForce(GetForce()+value);
+}
+
+QRigidBody *QRigidBody::SetAngularForce(float value)
+{
+	WakeUp();
+    angularForce=value;
+	return this;
+}
+
+QRigidBody *QRigidBody::AddAngularForce(float value)
+{
+    return SetAngularForce(GetAngularForce()+value);
+}
+
+void QRigidBody::Update()
+{
+    if(mode==QBody::STATIC){
 		return;
 	}
 	if(world==nullptr){
@@ -133,5 +158,3 @@ void QRigidBody::Update(){
 	UpdateMeshTransforms();
 	UpdateAABB();
 }
-
-
