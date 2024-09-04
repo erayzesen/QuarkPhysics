@@ -25,20 +25,51 @@
  *
 **************************************************************************************/
 
-#include "qbroadphase.h"
-#include <iostream>
-#include <algorithm>
-#include "qworld.h"
-#include "qaabb.h"
 
-void QBroadPhase::Clear()
-{
-}
 
-void QBroadPhase::GetAllPairs(unordered_set<pair<int, int>, QBroadPhase::NumericPairHash, QBroadPhase::NumericPairEqual> &pairs)
-{
-}
 
-void QBroadPhase::Update()
-{
-}
+#ifndef QSPATIALHASHING_H
+#define QSPATIALHASHING_H
+
+#include <unordered_map>
+#include <unordered_set>
+#include <vector>
+#include "../qbroadphase.h"
+
+
+
+
+class QSpatialHashing : public QBroadPhase {   
+    vector<QBody*> bodies;
+public:
+    QSpatialHashing(vector<QBody*> &worldBodies): QBroadPhase(worldBodies){
+        bodies=worldBodies;
+    }
+
+    ~QSpatialHashing(){
+
+    }
+
+
+   
+
+    void Clear();
+
+    void GetAllPairs(unordered_set<pair<int,int>,QBroadPhase::NumericPairHash,QBroadPhase::NumericPairEqual > &pairs, vector<QBody*> &originalCollection);
+
+    void Update();
+   
+
+    
+
+
+
+
+private:
+    
+
+	 
+};
+
+
+#endif // QSPATIALHASHING_H

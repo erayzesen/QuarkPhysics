@@ -40,7 +40,6 @@
 
 using namespace std;
 QWorld::QWorld(){
-	broadPhase=QBroadPhase(spatialHashingSize);
 
 }
 
@@ -95,13 +94,12 @@ void QWorld::Update(){
 
 	//Preparing Updated Broadphasevariables
 	if (enableBroadphase){
-		if (enableSpatialHashing){
-			for (int i=0;i<bodies.size();i++){
-				QBody *body=bodies[i];
-				broadPhase.Update(i,body->GetAABB(),body->spatialContainerAABB);
-				broadPhase.GetAllPairs(pairs,bodies);
-			}
+		if (broadPhase!=nullptr){
+			broadPhase->Update();
+			broadPhase->GetAllPairs(pairs);
+			
 		}else{
+			//SweepAndPrune
 			sort(bodies.begin(),bodies.end(),SortBodiesHorizontal);
 		}
 		
@@ -125,7 +123,7 @@ void QWorld::Update(){
 		if(enableBroadphase){
 
 			
-			if(enableSpatialHashing){
+			if(broadPhase!=nullptr){
 				//Spatial Hashing method
 				for (auto pair: pairs){
 					QBody *bodyA=bodies[pair.first];
@@ -462,7 +460,10 @@ QWorld *QWorld::RemoveBodyAt(int index)
 
 		bodies.erase(bodies.begin()+index);
 
-		broadPhase.Clear(bodies);
+		if (broadPhase!=nullptr){
+			broadPhase->Clear();
+		}
+		
 	}
 
 	return this;
@@ -662,6 +663,9 @@ QWorld* QWorld::ClearWorld(bool deleteAll){
 	ClearSprings(deleteAll);
 	ClearRaycasts(deleteAll);
 	ClearGizmos();
+	if (broadPhase!=nullptr){
+		delete broadPhase;
+	}
 
 	return this;
 }

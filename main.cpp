@@ -144,7 +144,7 @@ void RenderFPS(QWorld *world){
 	str+="\n FPS:"+to_string(fpsInt)+"(World Step "+ to_string(worldStepMs/1000)+" ms)" + " | object count:"+ to_string(world->GetBodyCount());
 	str+="\n Broadphase:" + to_string(scene->world->GetBroadphaseEnabled())+" | Sleeping Mode:"+to_string(scene->world->GetSleepingEnabled());
 	str+="\n Iteration Count:"+to_string(scene->world->GetIterationCount());
-	str+="\n Spatial Hashing Enabled:"+to_string(scene->world->GetSpatialHashingEnabled());
+	str+="\n Broadphase Enabled:"+to_string(scene->world->GetBroadphaseEnabled());
 
 	text.setString( str);
 	text.setCharacterSize(12);
@@ -311,7 +311,7 @@ int main()
 				scene->OnKeyReleased(event.key.code);
 
 				if(event.key.code==sf::Keyboard::S){
-					scene->world->SetSpatialHashingEnabled(scene->world->GetSpatialHashingEnabled()==true ? false:true );
+					scene->world->SetBroadphaseEnabled(scene->world->GetBroadphaseEnabled()==true ? false:true );
 				}
 
 				if(event.key.code==sf::Keyboard::B){

@@ -44,8 +44,8 @@
 
 class QBroadPhase {   
 public:
-    QBroadPhase(){};
-    QBroadPhase(float cellSize);
+    QBroadPhase(vector<QBody*> &worldBodies){};
+    ~QBroadPhase(){};
 
     struct NumericPairHash {
         size_t operator()(const std::pair<int, int>& p) const {
@@ -64,33 +64,11 @@ public:
 
 
 
-    
-    void Insert(int id, const QAABB& AABB);
-    void Update(int id, const QAABB& aabb, QAABB& prevAABB );
-    void Remove(int id, const QAABB& AABB);
+    virtual void Clear();
 
-    void Clear(vector<QBody *> bodyCollection);
+    virtual void GetAllPairs(unordered_set<pair<int,int>,QBroadPhase::NumericPairHash,QBroadPhase::NumericPairEqual > &pairs);
 
-    void GetAllPairs(unordered_set<pair<int,int>,QBroadPhase::NumericPairHash,QBroadPhase::NumericPairEqual > &pairs, vector<QBody*> &originalCollection);
-
-    vector<int> GetCellItems(QAABB &aabb);
-
-   
-
-    
-
-
-
-
-private:
-    float cellSize;
-    std::unordered_map<int, std::vector<int>> hashTable;
-    std::vector<int> GetCellKeys(QAABB aabb);
-
-    bool isCleared=false;
-    
-
-    
+    virtual void Update();
 
 	 
 };

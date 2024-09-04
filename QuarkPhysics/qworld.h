@@ -79,7 +79,7 @@ protected:
 	vector<vector<QBody*> > sleepingIslands=vector<vector<QBody*> >();
 	unordered_set<pair<QBody*, QBody*>, bodyPairHash,bodyPairEqual> collisionExceptions;
 
-	QBroadPhase broadPhase;
+	QBroadPhase *broadPhase=nullptr;
 
 	vector<QManifold> manifolds;
 
@@ -92,8 +92,6 @@ protected:
 	bool enableBroadphase=true;
 	int iteration=4;
 	float timeScale=1.0f;
-	bool enableSpatialHashing=false;
-	float spatialHashingSize=512.0f;
 
 
 	//Sleeping
@@ -156,15 +154,6 @@ public:
 		return enableBroadphase;
 	}
 
-	/** Returns whether  spatial hashing feature is enabled in the broad phase. The Spatial hashing operation can improves performance for big scenes.  */
-	bool GetSpatialHashingEnabled(){
-		return enableSpatialHashing;
-	}
-
-	/** Returns cell size value of the spatial hashing.  */
-	float GetSpatialHashingCellSize(){
-		return spatialHashingSize;
-	}
 
 	/** Returns the iteration count per step of physics in the world. 
 	 * The Iteration count determines the stability level of the simulation.
@@ -217,28 +206,9 @@ public:
 	 */
 	QWorld *SetBroadphaseEnabled(bool value){
 		enableBroadphase=value;
-		if(value==true && enableSpatialHashing==true){
-			broadPhase.Clear(bodies);
-		}
 		return this;
 	}
 
-	/** Sets whether  spatial hashing feature is enabled in the broad phase. The Spatial hashing operation can improves performance for big scenes. 
-	 * @param value A value to set
-	*/
-	QWorld *SetSpatialHashingEnabled(bool value){
-		broadPhase.Clear(bodies);
-		enableSpatialHashing=value;
-		return this;
-	}
-
-	/** Sets cell sizes for spatial hashing.  
-	 * @param value A value to set
-	*/
-	QWorld *SetSpatialHashingCellSize(float value){
-		spatialHashingSize=value;
-		return this;
-	}
 
 	/** Sets the iteration count per step of physics in the world. 
 	 * Iteration count determines stability level of the simulation.

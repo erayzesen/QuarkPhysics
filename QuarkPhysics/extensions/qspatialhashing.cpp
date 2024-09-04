@@ -25,20 +25,18 @@
  *
 **************************************************************************************/
 
-#include "qbroadphase.h"
 #include <iostream>
 #include <algorithm>
-#include "qworld.h"
-#include "qaabb.h"
+#include "qspatialhashing.h"
 
-void QBroadPhase::Clear()
+void QSpatialHashing::Clear()
 {
 }
 
-void QBroadPhase::GetAllPairs(unordered_set<pair<int, int>, QBroadPhase::NumericPairHash, QBroadPhase::NumericPairEqual> &pairs)
+void QSpatialHashing::GetAllPairs(unordered_set<pair<int, int>, QBroadPhase::NumericPairHash, QBroadPhase::NumericPairEqual> &pairs, vector<QBody *> &originalCollection)
 {
 }
 
-void QBroadPhase::Update()
+void QSpatialHashing::Update()
 {
 }

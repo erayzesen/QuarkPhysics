@@ -5,6 +5,7 @@ project(QuarkPhysics VERSION 0.9)
 find_package(SFML 2.5 COMPONENTS graphics window system REQUIRED)
 file(GLOB SOURCE_FILES 
 	${PROJECT_SOURCE_DIR}/QuarkPhysics/*.cpp
+	${PROJECT_SOURCE_DIR}/QuarkPhysics/extensions/*.cpp
 	${PROJECT_SOURCE_DIR}/QuarkPhysics/json/*.hpp
 	${PROJECT_SOURCE_DIR}/examples/*.cpp 
 	${PROJECT_SOURCE_DIR}/*.cpp 

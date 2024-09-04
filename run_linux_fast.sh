@@ -12,7 +12,7 @@ echo "Compiling..."
 rm -rf build
 mkdir build
 cd build
-gcc $build_flag -c ../QuarkPhysics/*.cpp  ../QuarkPhysics/json/*.hpp ../examples/*.cpp ../resources/*.hpp  ../*.cpp
+gcc $build_flag -c ../QuarkPhysics/*.cpp ../QuarkPhysics/extensions/*.cpp  ../QuarkPhysics/json/*.hpp ../examples/*.cpp ../resources/*.hpp  ../*.cpp
 g++ -o QuarkPhysics ./*.o -lsfml-graphics -lsfml-window -lsfml-system
 rm *.o
 echo "Build Succesfully! Running execute file..."
