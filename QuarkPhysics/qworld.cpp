@@ -668,6 +668,11 @@ QWorld* QWorld::ClearWorld(bool deleteAll){
 
 QWorld *QWorld::AddJoint(QJoint *joint)
 {
+	if (joint->collisionsEnabled==true){
+		if (joint->bodyA!=nullptr && joint->bodyB!=nullptr){
+			AddCollisionException(joint->bodyA,joint->bodyB);
+		}
+	}
 	joints.push_back(joint);
 	joint->world=this;
 	return this;
