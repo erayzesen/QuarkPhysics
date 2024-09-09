@@ -64,6 +64,21 @@ public:
 		RIGID_BODY
 	};
 
+	struct BodyPairHash {
+		size_t operator()(const std::pair<QBody*, QBody*>& p) const {
+			std::size_t h1 = std::hash<QBody*>{}(p.first);
+			std::size_t h2 = std::hash<QBody*>{}(p.second);
+			return h1 ^ (h2 + 0x9e3779b9 + (h1 << 6) + (h1 >> 2));
+		}
+	};
+
+	struct BodyPairEqual {
+		bool operator()(const std::pair<QBody*, QBody*>& p1, const std::pair<QBody*, QBody*>& p2) const {
+			return (p1.first == p2.first && p1.second == p2.second) ||
+				(p1.first == p2.second && p1.second == p2.first);
+		}
+	};
+
 protected:
 
 	//General Properties
@@ -74,8 +89,6 @@ protected:
 	float rotation=0.0f;
 	float prevRotation=0.0f;
 	QAABB aabb;
-	QAABB spatialContainerAABB;
-	QAABB fattedAABB;
 	Modes mode=QBody::Modes::DYNAMIC;
 	bool inertiaNeedsUpdate=true;
 	bool circumferenceNeedsUpdate=true;
@@ -194,10 +207,7 @@ protected:
 		QAABB GetAABB()const{
 			return aabb;
 		}
-		/** Returns the fattened AABB feature of the body. */
-		QAABB GetFattedAABB()const{
-			return fattedAABB;
-		}
+		
 		/** Returns the total initial area of the body. Initial area means the calculated total area with non-transformed meshes of the body. */
 		float GetTotalInitialArea(){
 			float res=0.0f;
@@ -586,7 +596,7 @@ protected:
 		vector<QMesh*> _meshes=vector<QMesh*>();
 		SimulationModels simulationModel=SimulationModels::RIGID_BODY;
 		static QVector ComputeFriction(QBody *bodyA, QBody *bodyB, QVector &normal, float penetration, QVector &relativeVelocity);
-		static bool CanCollide(QBody *bodyA,QBody *bodyB);
+		static bool CanCollide(QBody *bodyA,QBody *bodyB,bool checkBodiesAreEnabled=true);
 
 
 };

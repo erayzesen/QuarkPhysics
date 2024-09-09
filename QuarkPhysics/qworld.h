@@ -49,24 +49,11 @@ using namespace std;
  */
 class QWorld{
 
-	struct bodyPairHash {
-		size_t operator()(const std::pair<QBody*, QBody*>& p) const {
-			std::size_t h1 = std::hash<QBody*>{}(p.first);
-			std::size_t h2 = std::hash<QBody*>{}(p.second);
-			return h1 ^ (h2 + 0x9e3779b9 + (h1 << 6) + (h1 >> 2));
-		}
-	};
-
-	struct bodyPairEqual {
-		bool operator()(const std::pair<QBody*, QBody*>& p1, const std::pair<QBody*, QBody*>& p2) const {
-			return (p1.first == p2.first && p1.second == p2.second) ||
-				(p1.first == p2.second && p1.second == p2.first);
-		}
-	};
-
 protected:
+
+	
 	//Collections
-	vector<QBody*> bodies=vector<QBody*>();
+	
 
 	vector <QJoint*> joints=vector<QJoint*>();
 
@@ -76,10 +63,12 @@ protected:
 
 	vector <QGizmo*> gizmos=vector<QGizmo*>();
 
-	vector<vector<QBody*> > sleepingIslands=vector<vector<QBody*> >();
-	unordered_set<pair<QBody*, QBody*>, bodyPairHash,bodyPairEqual> collisionExceptions;
+	std::unordered_set<pair<QBody*, QBody*>,QBody::BodyPairHash,QBody::BodyPairEqual> broadPhasePairs;
 
-	QBroadPhase *broadPhase=nullptr;
+	vector<vector<QBody*> > sleepingIslands=vector<vector<QBody*> >();
+	unordered_set<pair<QBody*, QBody*>, QBody::BodyPairHash,QBody::BodyPairEqual> collisionExceptions;
+
+	
 
 	vector<QManifold> manifolds;
 
@@ -119,9 +108,15 @@ protected:
 	//Constraints
 	void UpdateConstraints();
 
+	
 
 
 public:
+
+	
+
+	vector<QBody*> bodies=vector<QBody*>();
+	QBroadPhase *broadPhase=nullptr;
 	/* It's the maximum world size in pixels. It is used in some calculations that require maximum values. */
 	inline static float MAX_WORLD_SIZE=99999.0f;
 

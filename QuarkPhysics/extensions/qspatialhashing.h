@@ -33,42 +33,72 @@
 
 #include <unordered_map>
 #include <unordered_set>
+#include <cmath>
 #include <vector>
 #include "../qbroadphase.h"
 
 
 
 
-class QSpatialHashing : public QBroadPhase {   
-    vector<QBody*> bodies;
+class QSpatialHashing : public QBroadPhase {
+private:
+    float cellSize=128.0f;
+
+    struct PairHash {
+        template <class T1, class T2>
+        std::size_t operator()(const std::pair<T1, T2>& p) const {
+            return std::hash<T1>()(p.first) ^ 0x100000001b3 ^std::hash<T2>()(p.second);
+        };
+    };
+
+    struct CellAABB{
+        CellAABB(int minimumX,int minimumY,int maximumX,int maximumY){
+            minX=minimumX;
+            minY=minimumY;
+            maxX=maximumX;
+            maxY=maximumY;
+        };
+        CellAABB(){
+            minX=0;
+            minY=0;
+            maxX=0;
+            maxY=0;
+        }
+        int minX;
+        int minY;
+        int maxX;
+        int maxY;
+
+        bool operator==(const CellAABB &other) const {
+            return (other.minX == minX && other.minY == minY &&
+                    other.maxX == maxX && other.maxY == maxY);
+        }
+
+        
+    };
+    
+
+    std::unordered_map<pair<int,int>,vector<QBody*>,PairHash> cells;
+
+    static bool SortBodiesHorizontal(const QBody *bodyA,const QBody *bodyB){
+        if(bodyA->GetAABB().GetMin().x==bodyB->GetAABB().GetMin().x){
+            return bodyA->GetAABB().GetMax().y>bodyB->GetAABB().GetMax().y;
+        }
+        return bodyA->GetAABB().GetMin().x<bodyB->GetAABB().GetMin().x;
+    };
+
+    std::unordered_map<QBody*,CellAABB> bodyOldCells;
+
 public:
-    QSpatialHashing(vector<QBody*> &worldBodies): QBroadPhase(worldBodies){
-        bodies=worldBodies;
-    }
-
-    ~QSpatialHashing(){
-
-    }
-
-
-   
+    QSpatialHashing(vector<QBody*>& worldBodies, float sizeOfCells=128.0f);
 
     void Clear();
 
-    void GetAllPairs(unordered_set<pair<int,int>,QBroadPhase::NumericPairHash,QBroadPhase::NumericPairEqual > &pairs, vector<QBody*> &originalCollection);
-
     void Update();
-   
+
+    void GetAllPairs(std::unordered_set<std::pair<QBody*, QBody*>,QBody::BodyPairHash,QBody::BodyPairEqual> &pairs);    
 
     
-
-
-
-
-private:
-    
-
-	 
 };
 
 

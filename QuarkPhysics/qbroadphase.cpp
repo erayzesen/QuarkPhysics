@@ -30,12 +30,13 @@
 #include <algorithm>
 #include "qworld.h"
 #include "qaabb.h"
+#include "qworld.h"
 
 void QBroadPhase::Clear()
 {
 }
 
-void QBroadPhase::GetAllPairs(unordered_set<pair<int, int>, QBroadPhase::NumericPairHash, QBroadPhase::NumericPairEqual> &pairs)
+void QBroadPhase::GetAllPairs(std::unordered_set<std::pair<QBody*, QBody*>,QBody::BodyPairHash,QBody::BodyPairEqual> &pairs)
 {
 }
 

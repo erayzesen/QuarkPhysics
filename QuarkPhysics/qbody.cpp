@@ -76,9 +76,14 @@ QVector QBody::ComputeFriction(QBody *bodyA, QBody *bodyB, QVector &normal,float
 	return frictionForce;
 }
 
-bool QBody::CanCollide(QBody *bodyA, QBody *bodyB)
+bool QBody::CanCollide(QBody *bodyA, QBody *bodyB,bool checkBodiesAreEnabled)
 {
 	if(bodyA->world!=bodyB->world)return false;
+
+	if (checkBodiesAreEnabled==true)
+		if (bodyA->GetEnabled()==false || bodyB->GetEnabled()==false)
+			return false;
+
 	QWorld *world=bodyA->world;
 	//Check Static and Sleeping Modes
 	if((bodyA->isSleeping || bodyA->mode==QBody::Modes::STATIC) && (bodyB->isSleeping || bodyB->mode==QBody::Modes::STATIC ))

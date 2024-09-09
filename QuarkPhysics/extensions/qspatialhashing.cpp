@@ -28,15 +28,123 @@
 #include <iostream>
 #include <algorithm>
 #include "qspatialhashing.h"
+#include "algorithm"
+
+
+QSpatialHashing::QSpatialHashing(vector<QBody*>& worldBodies, float sizeOfCells): QBroadPhase(worldBodies) {
+    cellSize=sizeOfCells;
+}
 
 void QSpatialHashing::Clear()
 {
+    cells.clear();
 }
 
-void QSpatialHashing::GetAllPairs(unordered_set<pair<int, int>, QBroadPhase::NumericPairHash, QBroadPhase::NumericPairEqual> &pairs, vector<QBody *> &originalCollection)
-{
+
+void QSpatialHashing::Update() {
+    
+    float sizeFactor = 1 / cellSize;
+
+    
+    for (auto &body : bodies) {
+        
+        auto aabb = body->GetAABB();
+
+
+        CellAABB cellAABB(floor(aabb.GetMin().x * sizeFactor),floor(aabb.GetMin().y * sizeFactor),
+                          floor(aabb.GetMax().x * sizeFactor),floor(aabb.GetMax().y * sizeFactor));
+
+
+        
+        auto it = bodyOldCells.find(body);
+        
+        
+        if (it != bodyOldCells.end()) {
+            
+            CellAABB &oldCellAABB = it->second;
+
+            //AABB Cells doesn't change against to the previous.  
+            if (oldCellAABB==cellAABB) {
+                
+                continue; 
+            }
+
+            //Removing body from cells
+            for (int cellX = oldCellAABB.minX; cellX <= oldCellAABB.maxX; ++cellX) {
+                for (int cellY = oldCellAABB.minY; cellY <= oldCellAABB.maxY; ++cellY) {
+                    auto& cell = cells[{cellX, cellY}];
+                    auto bodyIt=find(cell.begin(),cell.end(),body );
+                    if (bodyIt!=cell.end ()){
+                        cell.erase(bodyIt);
+                    }
+                }
+            }
+
+
+            
+        }
+
+        bodyOldCells[body]= cellAABB;
+        //Adding body to cells
+        for (int cellX = cellAABB.minX; cellX <= cellAABB.maxX; ++cellX) {
+            for (int cellY = cellAABB.minY; cellY <= cellAABB.maxY; ++cellY) {
+                cells[{cellX, cellY}].push_back(body);
+            }
+        }
+        
+    }
+
+    
+
+    
 }
 
-void QSpatialHashing::Update()
-{
+
+
+void QSpatialHashing::GetAllPairs(std::unordered_set<std::pair<QBody*, QBody*>,QBody::BodyPairHash,QBody::BodyPairEqual> &pairs) {
+     
+
+    int aabbTestCount=0;
+    for (auto& cell : cells) {
+        std::vector<QBody*>& cellBodies = cell.second;
+        size_t numBodies = cellBodies.size();
+        if (numBodies<=1){
+            continue;
+        }
+
+        //Sorting cell bodies to apply Sweep and Prune method.
+        sort(cellBodies.begin(),cellBodies.end(),SortBodiesHorizontal);
+        
+        for (size_t i = 0; i < numBodies - 1; ++i) {
+            QBody* bodyA = cellBodies[i];
+            
+            for (size_t j = i + 1; j < numBodies; ++j) {
+                QBody* bodyB = cellBodies[j];
+                
+                pair<QBody*,QBody*> bodyPair={bodyA,bodyB};
+                if (pairs.find(bodyPair)!=pairs.end() ){
+                    continue;
+                }
+                
+                if (!BodiesCanCollide(bodyA, bodyB))
+                    continue;
+
+                aabbTestCount+=1;
+                if(bodyA->GetAABB().GetMax().x >= bodyB->GetAABB().GetMin().x){
+                    if( bodyA->GetAABB().GetMin().y <= bodyB->GetAABB().GetMax().y &&
+                        bodyA->GetAABB().GetMax().y >= bodyB->GetAABB().GetMin().y) {
+
+                        pairs.insert(bodyPair);
+
+                    }
+
+                }else{
+                    break;
+                }
+                
+            }
+        }
+    }
+
+    
 }

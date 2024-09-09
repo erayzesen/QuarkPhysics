@@ -199,7 +199,7 @@ void ExampleScenePlatformer::OnPlayerPreStep(QBody *body)
 void ExampleScenePlatformer::OnPlayerStep(QBody *body){
 	if(currentFloor!=nullptr){
 		//Checking if  the fatted player's aaabb is still colliding with currentfloor's aabb
-		if(player->GetAABB().Fatted(1.0f).isCollidingWith(currentFloor->GetAABB())==false ){
+		if(player->GetAABB().Fattened(1.0f).isCollidingWith(currentFloor->GetAABB())==false ){
 			currentFloor=nullptr;
 		}else{
 			//Adding the floor platform's force to player

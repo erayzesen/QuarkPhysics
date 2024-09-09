@@ -90,13 +90,15 @@ void QWorld::Update(){
 	debugCollisionTestCount=0;
 	//cout<<broadPhase.collisionGroups.size()<<endl;
 
-	unordered_set<pair<int,int>,QBroadPhase::NumericPairHash,QBroadPhase::NumericPairEqual> pairs;
+	
 
-	//Preparing Updated Broadphasevariables
+	//Preparing Updated Broadphase variables
+	
 	if (enableBroadphase){
 		if (broadPhase!=nullptr){
+			broadPhasePairs.clear();
 			broadPhase->Update();
-			broadPhase->GetAllPairs(pairs);
+			broadPhase->GetAllPairs(broadPhasePairs);
 			
 		}else{
 			//SweepAndPrune
@@ -124,10 +126,10 @@ void QWorld::Update(){
 
 			
 			if(broadPhase!=nullptr){
-				//Spatial Hashing method
-				for (auto pair: pairs){
-					QBody *bodyA=bodies[pair.first];
-					QBody *bodyB=bodies[pair.second];
+				//External Broadphase Pairs
+				for (auto &pair: broadPhasePairs){
+					QBody *bodyA=pair.first;
+					QBody *bodyB=pair.second;
 
 					vector<QCollision::Contact*> contacts=GetCollisions(bodyA,bodyB);
 
@@ -148,15 +150,8 @@ void QWorld::Update(){
 				for(unsigned int i=0;i<bodiesSize;++i){
 					QBody* body=bodies[i];
 
-					if(body->GetEnabled()==false )
-						continue;
-
-					bool seperated=false;
 					for(unsigned int q=i+1;q<bodiesSize;q++){
 						QBody * otherBody=bodies[q];
-
-						if(otherBody->GetEnabled()==false )
-							continue;
 
 						if( QBody::CanCollide(body,otherBody)==false){
 							continue;
@@ -184,8 +179,6 @@ void QWorld::Update(){
 				}
 				
 			}
-
-		
 
 
 
@@ -542,7 +535,7 @@ vector<QParticle *> QWorld::GetParticlesCloseToPoint(QVector point, float distan
 			continue;
 		}
 
-		QAABB bodyFattedAABB=body->GetAABB().Fatted(distance);
+		QAABB bodyFattedAABB=body->GetAABB().Fattened(distance);
 		if(bodyFattedAABB.isCollidingWith(pointAABB)==false){
 			continue;
 		}
@@ -577,7 +570,7 @@ bool QWorld::CollideWithWorld(QBody *body){
 		if(otherBody->GetEnabled()==false )
 			continue;
 		if(body==otherBody)continue;
-		if( QBody::CanCollide(body,otherBody)==false){
+		if( QBody::CanCollide(body,otherBody,false)==false){
 			continue;
 		}
 

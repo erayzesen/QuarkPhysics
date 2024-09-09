@@ -27,12 +27,16 @@
 
 #include "qexamplescene.h"
 #include "QuarkPhysics/qmesh.h"
+#include "QuarkPhysics/extensions/qspatialhashing.h"
 
 
 
 QExampleScene::QExampleScene(QVector sceneSize)
 {
 	world=new QWorld();
+	//Trying QSpatialHashing broadphase extension
+	/* QSpatialHashing *broadPhase=new QSpatialHashing(world->bodies,128.0f);
+	world->broadPhase=broadPhase; */
 	this->sceneSize=sceneSize;
 
 

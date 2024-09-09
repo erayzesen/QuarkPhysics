@@ -114,13 +114,13 @@ public:
 		SetMinMax(minPos-amountVec,maxPos+amountVec);
 	}
 
-	QAABB Fatted(float amount)const{
+	QAABB Fattened(float amount)const{
 		QVector amountVec=QVector(amount,amount);
 		return QAABB(minPos-amountVec,maxPos+amountVec);
 
 	}
 
-	QAABB FattedWithRate(float rate)const{
+	QAABB FattenedWithRate(float rate)const{
 		QVector ratedSize=size*rate*0.5f;
 		return QAABB(minPos-ratedSize,maxPos+ratedSize);
 	}

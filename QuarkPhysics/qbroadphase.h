@@ -41,34 +41,22 @@
 
 
 
-
-class QBroadPhase {   
+class QBroadPhase { 
 public:
-    QBroadPhase(vector<QBody*> &worldBodies){};
+    vector<QBody*> &bodies;
+    QBroadPhase(vector<QBody*> &worldBodies): bodies(worldBodies){};
     ~QBroadPhase(){};
-
-    struct NumericPairHash {
-        size_t operator()(const std::pair<int, int>& p) const {
-            std::size_t h1 = std::hash<int>{}(p.first);
-            std::size_t h2 = std::hash<int>{}(p.second);
-            return h1 ^ (h2 + 0x9e3779b9 + (h1 << 6) + (h1 >> 2));
-        }
-    };
-
-    struct NumericPairEqual {
-        bool operator()(const std::pair<int, int>& p1, const std::pair<int, int>& p2) const {
-            return (p1.first == p2.first && p1.second == p2.second) ||
-                (p1.first == p2.second && p1.second == p2.first);
-        }
-    };
-
 
 
     virtual void Clear();
 
-    virtual void GetAllPairs(unordered_set<pair<int,int>,QBroadPhase::NumericPairHash,QBroadPhase::NumericPairEqual > &pairs);
+    virtual void GetAllPairs(std::unordered_set<std::pair<QBody*, QBody*>,QBody::BodyPairHash,QBody::BodyPairEqual> &pairs);
 
     virtual void Update();
+
+    bool BodiesCanCollide(QBody * bodyA,QBody *bodyB){
+        return QBody::CanCollide(bodyA,bodyB);
+    }
 
 	 
 };
