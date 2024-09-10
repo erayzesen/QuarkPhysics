@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['meshdata_305',['MeshData',['../structQMesh_1_1MeshData.html',1,'QMesh']]]
+  ['collisioninfo_308',['CollisionInfo',['../structQBody_1_1CollisionInfo.html',1,'QBody']]],
+  ['contact_309',['Contact',['../structQCollision_1_1Contact.html',1,'QCollision::Contact'],['../structQRaycast_1_1Contact.html',1,'QRaycast::Contact']]]
 ];

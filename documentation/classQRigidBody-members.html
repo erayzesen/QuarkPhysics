@@ -9,10 +9,16 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -46,6 +52,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('classQRigidBody.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -60,7 +83,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">QRigidBody Member List</div>  </div>
@@ -71,8 +93,8 @@ $(function() {
 <table class="directory">
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>_meshes</b> (defined in <a class="el" href="classQBody.html">QBody</a>)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>aabb</b> (defined in <a class="el" href="classQBody.html">QBody</a>)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classQBody.html#a9e456620acb9ce0b1264248cc93d8539">AddAngularForce</a>(float value)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classQBody.html#afeffef5ae7b732b486ec45efa8430e71">AddForce</a>(QVector value)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classQRigidBody.html#a0a2841cf69268953127436c140deb26a">AddAngularForce</a>(float value)</td><td class="entry"><a class="el" href="classQRigidBody.html">QRigidBody</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classQRigidBody.html#af8702d2bc5ca2a3c943fe5c3677c5108">AddForce</a>(QVector value)</td><td class="entry"><a class="el" href="classQRigidBody.html">QRigidBody</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classQBody.html#a17bfcd06492a9e566eb930e698b4c3c4">AddMesh</a>(QMesh *mesh)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classQBody.html#aae9bd0113a637678a3811e67447adf12">AddMeshesFromFile</a>(string filePath)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classQBody.html#ad0e51b5e3e592df7b6432f024ef96b01">AddPosition</a>(QVector value)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
@@ -81,14 +103,14 @@ $(function() {
   <tr><td class="entry"><a class="el" href="classQBody.html#a6e03e583b821823a5ee2bdd84f5b8f9c">AddRotation</a>(float angleRadian)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>airFriction</b> (defined in <a class="el" href="classQBody.html">QBody</a>)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>allowKinematicCollisions</b> (defined in <a class="el" href="classQBody.html">QBody</a>)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>angularForce</b> (defined in <a class="el" href="classQBody.html">QBody</a>)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>angularForce</b> (defined in <a class="el" href="classQRigidBody.html">QRigidBody</a>)</td><td class="entry"><a class="el" href="classQRigidBody.html">QRigidBody</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
   <tr><td class="entry"><a class="el" href="classQRigidBody.html#acd6c1585fa9ea9b3cc40b035dc158955">ApplyForce</a>(QVector force, QVector r, bool updateMeshTransforms=true)</td><td class="entry"><a class="el" href="classQRigidBody.html">QRigidBody</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classQRigidBody.html#a13e7b634a3b02b6c70e724b215027876">ApplyImpulse</a>(QVector impulse, QVector r)</td><td class="entry"><a class="el" href="classQRigidBody.html">QRigidBody</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>AREA</b> enum value (defined in <a class="el" href="classQBody.html">QBody</a>)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>bodySpecificTimeScale</b> (defined in <a class="el" href="classQBody.html">QBody</a>)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>bodyType</b> (defined in <a class="el" href="classQBody.html">QBody</a>)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>BodyTypes</b> enum name (defined in <a class="el" href="classQBody.html">QBody</a>)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>CanCollide</b>(QBody *bodyA, QBody *bodyB) (defined in <a class="el" href="classQBody.html">QBody</a>)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">protected</span><span class="mlabel">static</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>CanCollide</b>(QBody *bodyA, QBody *bodyB, bool checkBodiesAreEnabled=true) (defined in <a class="el" href="classQBody.html">QBody</a>)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">protected</span><span class="mlabel">static</span></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>CanGiveCollisionResponseTo</b>(QBody *otherBody) (defined in <a class="el" href="classQBody.html">QBody</a>)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">protected</span><span class="mlabel">virtual</span></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>canSleep</b> (defined in <a class="el" href="classQBody.html">QBody</a>)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>circumferenceNeedsUpdate</b> (defined in <a class="el" href="classQBody.html">QBody</a>)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
@@ -98,24 +120,22 @@ $(function() {
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>DYNAMIC</b> enum value (defined in <a class="el" href="classQBody.html">QBody</a>)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>enableBodySpecificTimeScale</b> (defined in <a class="el" href="classQBody.html">QBody</a>)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>enabled</b> (defined in <a class="el" href="classQBody.html">QBody</a>)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>fattedAABB</b> (defined in <a class="el" href="classQBody.html">QBody</a>)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>fixedAngularTick</b> (defined in <a class="el" href="classQBody.html">QBody</a>)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>fixedVelocityTick</b> (defined in <a class="el" href="classQBody.html">QBody</a>)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>force</b> (defined in <a class="el" href="classQBody.html">QBody</a>)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>friction</b> (defined in <a class="el" href="classQBody.html">QBody</a>)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classQBody.html#a4d1a83064e59f896f425e10d87734c8c">GetAABB</a>() const</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classQBody.html#a28d5630e22de21427ec660dc0d42f3c4">GetAirFriction</a>()</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classQBody.html#a25d44398115c027a4a23020565fbbd54">GetAngularForce</a>()</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classQBody.html#a740ca2f9c1741b6dea41b51518522ab5">GetBodySpecificTimeScaleEnabled</a>()</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classQBody.html#ad8fcad975f32b43d51c4a1685aed9a84">GetBodySpesificTimeScale</a>()</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classQBody.html#ab87ff10ff291bc1bac890c1aaa3f4eb2">GetBodyType</a>()</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classQBody.html#aff4dec562be97ff7683c0390679b11e5">GetCanSleep</a>()</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classQBody.html#a6a4b71c064a6ad7951efc748854400ed">GetCircumference</a>()</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classQBody.html#a44df9b4b51aa258c893e71a2ece48a30">GetCollidableLayersBit</a>()</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classQBody.html#a839c881cd8d58b85165bcf0ad1a1e511">GetEnabled</a>()</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classQBody.html#ab291e4d76a697e732b020ef191acdcd3">GetFattedAABB</a>() const</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>fixedAngularTick</b> (defined in <a class="el" href="classQBody.html">QBody</a>)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>fixedVelocityTick</b> (defined in <a class="el" href="classQBody.html">QBody</a>)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>force</b> (defined in <a class="el" href="classQRigidBody.html">QRigidBody</a>)</td><td class="entry"><a class="el" href="classQRigidBody.html">QRigidBody</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>friction</b> (defined in <a class="el" href="classQBody.html">QBody</a>)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classQBody.html#a4d1a83064e59f896f425e10d87734c8c">GetAABB</a>() const</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classQBody.html#a28d5630e22de21427ec660dc0d42f3c4">GetAirFriction</a>()</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classQRigidBody.html#a402ac736c7fa5e3d99de4743126b615b">GetAngularForce</a>()</td><td class="entry"><a class="el" href="classQRigidBody.html">QRigidBody</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classQBody.html#a740ca2f9c1741b6dea41b51518522ab5">GetBodySpecificTimeScaleEnabled</a>()</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classQBody.html#ad8fcad975f32b43d51c4a1685aed9a84">GetBodySpesificTimeScale</a>()</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classQBody.html#ab87ff10ff291bc1bac890c1aaa3f4eb2">GetBodyType</a>()</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classQBody.html#aff4dec562be97ff7683c0390679b11e5">GetCanSleep</a>()</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classQBody.html#a6a4b71c064a6ad7951efc748854400ed">GetCircumference</a>()</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classQBody.html#a44df9b4b51aa258c893e71a2ece48a30">GetCollidableLayersBit</a>()</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classQBody.html#a839c881cd8d58b85165bcf0ad1a1e511">GetEnabled</a>()</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr><td class="entry"><a class="el" href="classQRigidBody.html#af172107b350cb0cf85fab5ff6268c36e">GetFixedRotationEnabled</a>()</td><td class="entry"><a class="el" href="classQRigidBody.html">QRigidBody</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classQBody.html#a94d0a52a0c3a606fa36e1e72de542c24">GetForce</a>()</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classQRigidBody.html#a0bf062a66ec6fb464b02d1e9ea134832">GetForce</a>()</td><td class="entry"><a class="el" href="classQRigidBody.html">QRigidBody</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr><td class="entry"><a class="el" href="classQBody.html#a137d1cb02371dc3f653cf8bcdc18a087">GetFriction</a>()</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classQBody.html#a99db5bfc6aa20065589d6dea12aa9238">GetInertia</a>()</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr><td class="entry"><a class="el" href="classQBody.html#a827f9a1ed61a60197b66de9573c91225">GetIsSleeping</a>()</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
@@ -165,14 +185,14 @@ $(function() {
   <tr bgcolor="#f0f0f0"><td class="entry"><b>RIGID_BODY</b> enum value (defined in <a class="el" href="classQBody.html">QBody</a>)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>rotation</b> (defined in <a class="el" href="classQBody.html">QBody</a>)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
   <tr><td class="entry"><a class="el" href="classQBody.html#ad0d2869af6fccee912cd24e787141154">SetAirFriction</a>(float value)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classQBody.html#afe2471560c17e72d7fbbfd4ef1c99a5d">SetAngularForce</a>(float value)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classQRigidBody.html#a23c08f9e4cc5fc74cb1c1faf062c15ed">SetAngularForce</a>(float value)</td><td class="entry"><a class="el" href="classQRigidBody.html">QRigidBody</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classQBody.html#a743249d90c2c1b917760abe8c585548d">SetBodySpecificTimeScale</a>(float value)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classQBody.html#a016428a8f123e58275ea59ea5cc042a7">SetBodySpecificTimeScaleEnabled</a>(bool value)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr><td class="entry"><a class="el" href="classQBody.html#af888e50c58bd21232d7a7e0d04c486a2">SetCanSleep</a>(bool value)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classQBody.html#a2902d2650da94a7038a50b6e32ca4c2c">SetCollidableLayersBit</a>(int value)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr><td class="entry"><a class="el" href="classQBody.html#ad9d11f1b62c3dbb79b72c76c527aa352">SetEnabled</a>(bool value)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classQRigidBody.html#a2d47f8cd4408cc039ab6f67ac8f35ed6">SetFixedRotationEnabled</a>(bool value)</td><td class="entry"><a class="el" href="classQRigidBody.html">QRigidBody</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classQBody.html#ac302235b0ec97150f1ec8ab05813fd3b">SetForce</a>(QVector value)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classQRigidBody.html#ace3249b5b436af711bc898577ab277a5">SetForce</a>(QVector value)</td><td class="entry"><a class="el" href="classQRigidBody.html">QRigidBody</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classQBody.html#a6f18826d7b4a295fdb5c76279444b6ce">SetFriction</a>(float value)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr><td class="entry"><a class="el" href="classQRigidBody.html#a1c5c14c5b08aedcfbce3131993ba93f9">SetKinematicCollisionsEnabled</a>(bool value)</td><td class="entry"><a class="el" href="classQRigidBody.html">QRigidBody</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classQRigidBody.html#a7f58408e14fd3bad7b7c810257d8f4c8">SetKinematicEnabled</a>(bool value)</td><td class="entry"><a class="el" href="classQRigidBody.html">QRigidBody</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
@@ -192,19 +212,22 @@ $(function() {
   <tr class="even"><td class="entry"><a class="el" href="classQBody.html#a8995ebc965ad51576d0662e44a29d58b">SimulationModels</a> enum name</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>sleepTick</b> (defined in <a class="el" href="classQBody.html">QBody</a>)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>SOFT</b> enum value (defined in <a class="el" href="classQBody.html">QBody</a>)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>spatialContainerAABB</b> (defined in <a class="el" href="classQBody.html">QBody</a>)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>STATIC</b> enum value (defined in <a class="el" href="classQBody.html">QBody</a>)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>staticFriction</b> (defined in <a class="el" href="classQBody.html">QBody</a>)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classQBody.html#adcaf713fc5a0e5e1e07c0d844b93a562">StepEventListener</a></td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classQRigidBody.html#a37036d66caa7670f7c9048db8d4c6a12">Update</a>()</td><td class="entry"><a class="el" href="classQRigidBody.html">QRigidBody</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>UpdateAABB</b>() (defined in <a class="el" href="classQBody.html">QBody</a>)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>UpdateMeshTransforms</b>() (defined in <a class="el" href="classQBody.html">QBody</a>)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>STATIC</b> enum value (defined in <a class="el" href="classQBody.html">QBody</a>)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>staticFriction</b> (defined in <a class="el" href="classQBody.html">QBody</a>)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classQBody.html#adcaf713fc5a0e5e1e07c0d844b93a562">StepEventListener</a></td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classQRigidBody.html#a37036d66caa7670f7c9048db8d4c6a12">Update</a>()</td><td class="entry"><a class="el" href="classQRigidBody.html">QRigidBody</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>UpdateAABB</b>() (defined in <a class="el" href="classQBody.html">QBody</a>)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>UpdateMeshTransforms</b>() (defined in <a class="el" href="classQBody.html">QBody</a>)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classQBody.html#a32068b2a00a00adee2aa5564fa290f6b">WakeUp</a>()</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>world</b> (defined in <a class="el" href="classQBody.html">QBody</a>)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>~QBody</b>() (defined in <a class="el" href="classQBody.html">QBody</a>)</td><td class="entry"><a class="el" href="classQBody.html">QBody</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
 </table></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
 </body>
 </html>

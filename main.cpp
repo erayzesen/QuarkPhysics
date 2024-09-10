@@ -40,7 +40,8 @@
 #include "examples/examplescenesoftbodies.h"
 #include "examples/examplesceneplatformer.h"
 #include "examples/examplescenefrictions.h"
-#include "examples/examplesceneblobs.h""
+#include "examples/examplesceneblobs.h"
+#include "examples/examplescenetesting.h"
 
 
 //Font Resource Binary Header
@@ -108,6 +109,9 @@ void LoadExampleScene(int sceneIndex){
 		break;
 	case 9:
 		scene=new ExampleSceneBlobs(windowSize);
+		break;
+	case 99:
+		scene=new ExampleSceneTesting(windowSize);
 		break;
 	default:
 		break;
@@ -235,6 +239,9 @@ int KeyCodeToNumber(sf::Keyboard::Key &keyCode){
 		break;
 	case sf::Keyboard::Num9 :
 		res=9;
+		break;
+	case sf::Keyboard::Multiply :
+		res=99;
 		break;
 	default:
 		break;

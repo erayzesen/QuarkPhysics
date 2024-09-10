@@ -9,10 +9,16 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -47,6 +53,22 @@ $(function() {
 /* @license-end */</script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('functions_func_g.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -90,7 +112,7 @@ $(function() {
 : <a class="el" href="classQJoint.html#a677e93175ba9235e1d2be2d267d8bae7">QJoint</a>
 </li>
 <li>GetAngularForce()
-: <a class="el" href="classQBody.html#a25d44398115c027a4a23020565fbbd54">QBody</a>
+: <a class="el" href="classQRigidBody.html#a402ac736c7fa5e3d99de4743126b615b">QRigidBody</a>
 </li>
 <li>GetArea()
 : <a class="el" href="structQMesh.html#a952f166f1c49a36006981db7ed406b62">QMesh</a>
@@ -105,7 +127,7 @@ $(function() {
 : <a class="el" href="classQSoftBody.html#a10b8fe8c9b94aeaf6f51acd83834bd5d">QSoftBody</a>
 </li>
 <li>GetAveragePositionAndRotation()
-: <a class="el" href="classQSoftBody.html#a782e0acf3cc5d0fa684266ab410ce5ad">QSoftBody</a>
+: <a class="el" href="structQMesh.html#a79d8ee4acd7a80a7af82b91213055631">QMesh</a>
 </li>
 <li>GetBalance()
 : <a class="el" href="classQJoint.html#a43ae8f2e2d8b88fd95fc439381139baf">QJoint</a>
@@ -157,7 +179,7 @@ $(function() {
 : <a class="el" href="classQJoint.html#ab11e331724704ecea2febeb461b547b1">QJoint</a>
 </li>
 <li>GetCollisions()
-: <a class="el" href="classQWorld.html#ab8127d44aae527403bb514421c16981f">QWorld</a>
+: <a class="el" href="classQWorld.html#a64514ed74f8667d65b8eff4bbf57627e">QWorld</a>
 </li>
 <li>GetContacts()
 : <a class="el" href="classQRaycast.html#a516c87eaff2ea65b595de010c62eaf44">QRaycast</a>
@@ -171,15 +193,12 @@ $(function() {
 <li>GetEnabledContainingBodies()
 : <a class="el" href="classQRaycast.html#a72cfc9a08a4bc95ee09619e97ba23222">QRaycast</a>
 </li>
-<li>GetFattedAABB()
-: <a class="el" href="classQBody.html#ab291e4d76a697e732b020ef191acdcd3">QBody</a>
-</li>
 <li>GetFixedRotationEnabled()
 : <a class="el" href="classQRigidBody.html#af172107b350cb0cf85fab5ff6268c36e">QRigidBody</a>
 </li>
 <li>GetForce()
-: <a class="el" href="classQBody.html#a94d0a52a0c3a606fa36e1e72de542c24">QBody</a>
-, <a class="el" href="classQParticle.html#a128465d6b25cbb4711dc185b5ab1a672">QParticle</a>
+: <a class="el" href="classQParticle.html#a128465d6b25cbb4711dc185b5ab1a672">QParticle</a>
+, <a class="el" href="classQRigidBody.html#a0bf062a66ec6fb464b02d1e9ea134832">QRigidBody</a>
 </li>
 <li>GetFriction()
 : <a class="el" href="classQBody.html#a137d1cb02371dc3f653cf8bcdc18a087">QBody</a>
@@ -243,6 +262,9 @@ $(function() {
 , <a class="el" href="classQParticle.html#a6b65cb149db891db10b98c7ee20637e0">QParticle</a>
 , <a class="el" href="classQSoftBody.html#aaa33ecde279c50b3c205a265d70c79a2">QSoftBody</a>
 </li>
+<li>GetMatchingParticlePositions()
+: <a class="el" href="structQMesh.html#a633b51c680ac7c7e9e2edad3d93b73f9">QMesh</a>
+</li>
 <li>GetMeshAt()
 : <a class="el" href="classQBody.html#aca74ba58c56a5cf4bf23bab89c43d182">QBody</a>
 </li>
@@ -257,6 +279,9 @@ $(function() {
 </li>
 <li>GetMeshes()
 : <a class="el" href="classQBody.html#ae649803746fedf22ca9abb2f674c5e6d">QBody</a>
+</li>
+<li>GetMinAngleConstraintOfPolygon()
+: <a class="el" href="structQMesh.html#a86af89146b986c2768c31a17bd0e56b7">QMesh</a>
 </li>
 <li>GetMode()
 : <a class="el" href="classQBody.html#ad6ebf482d0356511d630565db2a29645">QBody</a>
@@ -388,12 +413,6 @@ $(function() {
 <li>GetSleepingRotationTolerance()
 : <a class="el" href="classQWorld.html#aeb10a5be2a77ad8e9048a5475dd960e7">QWorld</a>
 </li>
-<li>GetSpatialHashingCellSize()
-: <a class="el" href="classQWorld.html#addc16d7096d6f313e4b4e72129f75875">QWorld</a>
-</li>
-<li>GetSpatialHashingEnabled()
-: <a class="el" href="classQWorld.html#a17740d220cf68e9f382307d98863138b">QWorld</a>
-</li>
 <li>GetSpringAt()
 : <a class="el" href="structQMesh.html#a13e1401e2b9c8c66f56288ea8d6dd181">QMesh</a>
 , <a class="el" href="classQWorld.html#a3b352ea9b2a8e93ce59e79a579a7b7e9">QWorld</a>
@@ -438,9 +457,12 @@ $(function() {
 </li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
 </body>
 </html>

@@ -98,8 +98,9 @@ ExampleSceneSoftBodies::ExampleSceneSoftBodies(QVector sceneSize) :QExampleScene
 	griddedPressuredBody->SetAreaPreservingEnabled(true)->SetPassivationOfInternalSpringsEnabled(true);
 	world->AddBody(griddedPressuredBody);
 
-	
-
+	float circleRadius=24.0;
+	QRigidBody *circleBody=AddCircleBody(500.0f,-200.0f, circleRadius);
+	circleBody->SetRestitution(0.9f);
 
 	//It's about self collision tests.
 	/* QSoftBody *wordBody=new QSoftBody();

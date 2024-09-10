@@ -9,10 +9,16 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -46,6 +52,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('classQWorld.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -60,12 +83,11 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-static-methods">Static Protected Member Functions</a> &#124;
@@ -86,14 +108,11 @@ Collaboration diagram for QWorld:</div>
 <div class="dyncontent">
 <div class="center"><img src="classQWorld__coll__graph.png" border="0" usemap="#aQWorld_coll__map" alt="Collaboration graph"/></div>
 <map name="aQWorld_coll__map" id="aQWorld_coll__map">
-<area shape="rect" title="A QWorld object is required to create a physics simulation. The QWorld class manages the entire physi..." alt="" coords="33,103,99,130"/>
-<area shape="rect" href="classQBroadPhase.html" title=" " alt="" coords="5,427,108,453"/>
-<area shape="rect" href="classQBody.html" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m..." alt="" coords="128,231,191,257"/>
-<area shape="rect" href="structQBroadPhase_1_1Node.html" title=" " alt="" coords="95,329,237,355"/>
-<area shape="rect" href="structQVector.html" title=" " alt="" coords="81,5,152,32"/>
-<area shape="rect" href="classQAABB.html" title=" " alt="" coords="285,103,353,130"/>
+<area shape="rect" title="A QWorld object is required to create a physics simulation. The QWorld class manages the entire physi..." alt="" coords="79,95,144,121"/>
+<area shape="rect" href="classQBroadPhase.html" title=" " alt="" coords="5,5,108,32"/>
+<area shape="rect" href="structQVector.html" title=" " alt="" coords="132,5,203,32"/>
 </map>
-<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -108,10 +127,6 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aeb10a5be2a77ad8e9048a5475dd960e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a227d82935e60c65574ed5e20f69fa63e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQWorld.html#a227d82935e60c65574ed5e20f69fa63e">GetBroadphaseEnabled</a> ()</td></tr>
 <tr class="separator:a227d82935e60c65574ed5e20f69fa63e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a17740d220cf68e9f382307d98863138b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQWorld.html#a17740d220cf68e9f382307d98863138b">GetSpatialHashingEnabled</a> ()</td></tr>
-<tr class="separator:a17740d220cf68e9f382307d98863138b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:addc16d7096d6f313e4b4e72129f75875"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQWorld.html#addc16d7096d6f313e4b4e72129f75875">GetSpatialHashingCellSize</a> ()</td></tr>
-<tr class="separator:addc16d7096d6f313e4b4e72129f75875"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a608c51223da93f819577d3331ecf96df"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQWorld.html#a608c51223da93f819577d3331ecf96df">GetIterationCount</a> ()</td></tr>
 <tr class="separator:a608c51223da93f819577d3331ecf96df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a57bde0fe82841149d503efe53c234d21"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQWorld.html#a57bde0fe82841149d503efe53c234d21">GetTimeScale</a> ()</td></tr>
@@ -128,10 +143,6 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a160231b1bf0c74e4d9ebd7f14f536fbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab588d2c09603281b1181723c6559bab8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQWorld.html">QWorld</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQWorld.html#ab588d2c09603281b1181723c6559bab8">SetBroadphaseEnabled</a> (bool value)</td></tr>
 <tr class="separator:ab588d2c09603281b1181723c6559bab8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac87eee18034fdcd3878ab9b773668823"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQWorld.html">QWorld</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQWorld.html#ac87eee18034fdcd3878ab9b773668823">SetSpatialHashingEnabled</a> (bool value)</td></tr>
-<tr class="separator:ac87eee18034fdcd3878ab9b773668823"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a98d6e9c63c47e01f2b7d1ccb77536264"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQWorld.html">QWorld</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQWorld.html#a98d6e9c63c47e01f2b7d1ccb77536264">SetSpatialHashingCellSize</a> (float value)</td></tr>
-<tr class="separator:a98d6e9c63c47e01f2b7d1ccb77536264"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac39f7669811bfe14f12644a6f9e676c6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQWorld.html">QWorld</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQWorld.html#ac39f7669811bfe14f12644a6f9e676c6">SetIterationCount</a> (int value)</td></tr>
 <tr class="separator:ac39f7669811bfe14f12644a6f9e676c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a25fb435d666b9d87f8f85cdbb3606326"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQWorld.html">QWorld</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQWorld.html#a25fb435d666b9d87f8f85cdbb3606326">SetTimeScale</a> (float value=1.0f)</td></tr>
@@ -225,8 +236,17 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:ab8127d44aae527403bb514421c16981f"><td class="memItemLeft" align="right" valign="top">static vector&lt; <a class="el" href="structQCollision_1_1Contact.html">QCollision::Contact</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQWorld.html#ab8127d44aae527403bb514421c16981f">GetCollisions</a> (<a class="el" href="classQBody.html">QBody</a> *bodyA, <a class="el" href="classQBody.html">QBody</a> *bodyB)</td></tr>
-<tr class="separator:ab8127d44aae527403bb514421c16981f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64514ed74f8667d65b8eff4bbf57627e"><td class="memItemLeft" align="right" valign="top">static vector&lt; <a class="el" href="structQCollision_1_1Contact.html">QCollision::Contact</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQWorld.html#a64514ed74f8667d65b8eff4bbf57627e">GetCollisions</a> (<a class="el" href="classQBody.html">QBody</a> *bodyA, <a class="el" href="classQBody.html">QBody</a> *bodyB)</td></tr>
+<tr class="separator:a64514ed74f8667d65b8eff4bbf57627e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:af808340974c259fdacff71ad22791b0a"><td class="memItemLeft" align="right" valign="top"><a id="af808340974c259fdacff71ad22791b0a"></a>
+vector&lt; <a class="el" href="classQBody.html">QBody</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>bodies</b> =vector&lt;<a class="el" href="classQBody.html">QBody</a>*&gt;()</td></tr>
+<tr class="separator:af808340974c259fdacff71ad22791b0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5353d0a99cd5b5bcf6a5a4d99188caa"><td class="memItemLeft" align="right" valign="top"><a id="ae5353d0a99cd5b5bcf6a5a4d99188caa"></a>
+<a class="el" href="classQBroadPhase.html">QBroadPhase</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>broadPhase</b> =nullptr</td></tr>
+<tr class="separator:ae5353d0a99cd5b5bcf6a5a4d99188caa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
@@ -272,9 +292,6 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>SortBodiesVert
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:af808340974c259fdacff71ad22791b0a"><td class="memItemLeft" align="right" valign="top"><a id="af808340974c259fdacff71ad22791b0a"></a>
-vector&lt; <a class="el" href="classQBody.html">QBody</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>bodies</b> =vector&lt;<a class="el" href="classQBody.html">QBody</a>*&gt;()</td></tr>
-<tr class="separator:af808340974c259fdacff71ad22791b0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac9b9fcaf42d64462ec2ea528ae104b14"><td class="memItemLeft" align="right" valign="top"><a id="ac9b9fcaf42d64462ec2ea528ae104b14"></a>
 vector&lt; <a class="el" href="classQJoint.html">QJoint</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>joints</b> =vector&lt;<a class="el" href="classQJoint.html">QJoint</a>*&gt;()</td></tr>
 <tr class="separator:ac9b9fcaf42d64462ec2ea528ae104b14"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -287,15 +304,15 @@ vector&lt; <a class="el" href="classQRaycast.html">QRaycast</a> * &gt;&#160;</td
 <tr class="memitem:a85a96d1b1d804e710627872e140ffcea"><td class="memItemLeft" align="right" valign="top"><a id="a85a96d1b1d804e710627872e140ffcea"></a>
 vector&lt; <a class="el" href="classQGizmo.html">QGizmo</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>gizmos</b> =vector&lt;<a class="el" href="classQGizmo.html">QGizmo</a>*&gt;()</td></tr>
 <tr class="separator:a85a96d1b1d804e710627872e140ffcea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4975e68d132a27744e86d70eb432380"><td class="memItemLeft" align="right" valign="top"><a id="ab4975e68d132a27744e86d70eb432380"></a>
+std::unordered_set&lt; pair&lt; <a class="el" href="classQBody.html">QBody</a> *, <a class="el" href="classQBody.html">QBody</a> * &gt;, <a class="el" href="structQBody_1_1BodyPairHash.html">QBody::BodyPairHash</a>, <a class="el" href="structQBody_1_1BodyPairEqual.html">QBody::BodyPairEqual</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>broadPhasePairs</b></td></tr>
+<tr class="separator:ab4975e68d132a27744e86d70eb432380"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a348586de9250200674d5d6651c51b5bd"><td class="memItemLeft" align="right" valign="top"><a id="a348586de9250200674d5d6651c51b5bd"></a>
 vector&lt; vector&lt; <a class="el" href="classQBody.html">QBody</a> * &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>sleepingIslands</b> =vector&lt;vector&lt;<a class="el" href="classQBody.html">QBody</a>*&gt; &gt;()</td></tr>
 <tr class="separator:a348586de9250200674d5d6651c51b5bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae5b9a8b931f862456d59828623f06d96"><td class="memItemLeft" align="right" valign="top"><a id="ae5b9a8b931f862456d59828623f06d96"></a>
-unordered_set&lt; pair&lt; <a class="el" href="classQBody.html">QBody</a> *, <a class="el" href="classQBody.html">QBody</a> * &gt;, bodyPairHash, bodyPairEqual &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>collisionExceptions</b></td></tr>
-<tr class="separator:ae5b9a8b931f862456d59828623f06d96"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:affd710ed03c7a346f5816afc2f74d4ab"><td class="memItemLeft" align="right" valign="top"><a id="affd710ed03c7a346f5816afc2f74d4ab"></a>
-<a class="el" href="classQBroadPhase.html">QBroadPhase</a>&#160;</td><td class="memItemRight" valign="bottom"><b>broadPhase</b></td></tr>
-<tr class="separator:affd710ed03c7a346f5816afc2f74d4ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20ce66c52338da3ac8d0886c93480796"><td class="memItemLeft" align="right" valign="top"><a id="a20ce66c52338da3ac8d0886c93480796"></a>
+unordered_set&lt; pair&lt; <a class="el" href="classQBody.html">QBody</a> *, <a class="el" href="classQBody.html">QBody</a> * &gt;, <a class="el" href="structQBody_1_1BodyPairHash.html">QBody::BodyPairHash</a>, <a class="el" href="structQBody_1_1BodyPairEqual.html">QBody::BodyPairEqual</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>collisionExceptions</b></td></tr>
+<tr class="separator:a20ce66c52338da3ac8d0886c93480796"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab2d8e9c09dbd934b61f5c31f1f02608b"><td class="memItemLeft" align="right" valign="top"><a id="ab2d8e9c09dbd934b61f5c31f1f02608b"></a>
 vector&lt; <a class="el" href="classQManifold.html">QManifold</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>manifolds</b></td></tr>
 <tr class="separator:ab2d8e9c09dbd934b61f5c31f1f02608b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -317,12 +334,6 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>iteration</b> =4</td><
 <tr class="memitem:a6789303d3c34485eb6f2e7e3443bb83c"><td class="memItemLeft" align="right" valign="top"><a id="a6789303d3c34485eb6f2e7e3443bb83c"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>timeScale</b> =1.0f</td></tr>
 <tr class="separator:a6789303d3c34485eb6f2e7e3443bb83c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afb7dbe991328d69ee2abfb7b16d34bd2"><td class="memItemLeft" align="right" valign="top"><a id="afb7dbe991328d69ee2abfb7b16d34bd2"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>enableSpatialHashing</b> =false</td></tr>
-<tr class="separator:afb7dbe991328d69ee2abfb7b16d34bd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a795026583f8b1ed3fc9fe15e6877e2ea"><td class="memItemLeft" align="right" valign="top"><a id="a795026583f8b1ed3fc9fe15e6877e2ea"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>spatialHashingSize</b> =512.0f</td></tr>
-<tr class="separator:a795026583f8b1ed3fc9fe15e6877e2ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a34d5c2b1c1e3b45e2d4943ba543f0ab1"><td class="memItemLeft" align="right" valign="top"><a id="a34d5c2b1c1e3b45e2d4943ba543f0ab1"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>sleepingPositionTolerance</b> =0.1f</td></tr>
 <tr class="separator:a34d5c2b1c1e3b45e2d4943ba543f0ab1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -828,8 +839,8 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QBroadPhase</b></td>
 
 </div>
 </div>
-<a id="ab8127d44aae527403bb514421c16981f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab8127d44aae527403bb514421c16981f">&#9670;&nbsp;</a></span>GetCollisions()</h2>
+<a id="a64514ed74f8667d65b8eff4bbf57627e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64514ed74f8667d65b8eff4bbf57627e">&#9670;&nbsp;</a></span>GetCollisions()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -838,7 +849,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QBroadPhase</b></td>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">vector&lt; <a class="el" href="structQCollision_1_1Contact.html">QCollision::Contact</a> &gt; QWorld::GetCollisions </td>
+          <td class="memname">vector&lt; <a class="el" href="structQCollision_1_1Contact.html">QCollision::Contact</a> * &gt; QWorld::GetCollisions </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classQBody.html">QBody</a> *&#160;</td>
           <td class="paramname"><em>bodyA</em>, </td>
@@ -1261,60 +1272,6 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QBroadPhase</b></td>
 </table>
 </div><div class="memdoc">
 <p>Returns the sleeping rotation tolerance. If the sleeping option is active, objects will go to sleep as long as they do not exceed this rotation change limit within a certain step amount. </p>
-
-</div>
-</div>
-<a id="addc16d7096d6f313e4b4e72129f75875"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#addc16d7096d6f313e4b4e72129f75875">&#9670;&nbsp;</a></span>GetSpatialHashingCellSize()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">float QWorld::GetSpatialHashingCellSize </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Returns cell size value of the spatial hashing. <br  />
- </p>
-
-</div>
-</div>
-<a id="a17740d220cf68e9f382307d98863138b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a17740d220cf68e9f382307d98863138b">&#9670;&nbsp;</a></span>GetSpatialHashingEnabled()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool QWorld::GetSpatialHashingEnabled </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Returns whether spatial hashing feature is enabled in the broad phase. The Spatial hashing operation can improves performance for big scenes. <br  />
- </p>
 
 </div>
 </div>
@@ -1979,71 +1936,6 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QBroadPhase</b></td>
 
 </div>
 </div>
-<a id="a98d6e9c63c47e01f2b7d1ccb77536264"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a98d6e9c63c47e01f2b7d1ccb77536264">&#9670;&nbsp;</a></span>SetSpatialHashingCellSize()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classQWorld.html">QWorld</a>* QWorld::SetSpatialHashingCellSize </td>
-          <td>(</td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>value</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Sets cell sizes for spatial hashing. <br  />
- </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">value</td><td>A value to set </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="ac87eee18034fdcd3878ab9b773668823"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac87eee18034fdcd3878ab9b773668823">&#9670;&nbsp;</a></span>SetSpatialHashingEnabled()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classQWorld.html">QWorld</a>* QWorld::SetSpatialHashingEnabled </td>
-          <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>value</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Sets whether spatial hashing feature is enabled in the broad phase. The Spatial hashing operation can improves performance for big scenes. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">value</td><td>A value to set </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a id="a25fb435d666b9d87f8f85cdbb3606326"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a25fb435d666b9d87f8f85cdbb3606326">&#9670;&nbsp;</a></span>SetTimeScale()</h2>
 
@@ -2099,9 +1991,13 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QBroadPhase</b></td>
 <li>QuarkPhysics/qworld.cpp</li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="classQWorld.html">QWorld</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
 </body>
 </html>

@@ -1,11 +1,11 @@
 var searchData=
 [
-  ['addangularforce_0',['AddAngularForce',['../classQBody.html#a9e456620acb9ce0b1264248cc93d8539',1,'QBody']]],
+  ['addangularforce_0',['AddAngularForce',['../classQRigidBody.html#a0a2841cf69268953127436c140deb26a',1,'QRigidBody']]],
   ['addbody_1',['AddBody',['../classQWorld.html#aaaedfc8a0f251d74fe26cb2f9dcb6a23',1,'QWorld']]],
   ['addbodygroup_2',['AddBodyGroup',['../classQWorld.html#aa22e74b5100912bc33a844f4ad3680d5',1,'QWorld']]],
   ['addclosedpolygon_3',['AddClosedPolygon',['../structQMesh.html#a87d4d43d7cc79abb474de11d60abe59a',1,'QMesh']]],
   ['addcollisionexception_4',['AddCollisionException',['../classQWorld.html#a3493f52fe1f24eef2279bdd0100ec198',1,'QWorld']]],
-  ['addforce_5',['AddForce',['../classQBody.html#afeffef5ae7b732b486ec45efa8430e71',1,'QBody::AddForce()'],['../classQParticle.html#acc4a898aa75cbb7f261a29a5edd3e357',1,'QParticle::AddForce(QVector value)']]],
+  ['addforce_5',['AddForce',['../classQParticle.html#acc4a898aa75cbb7f261a29a5edd3e357',1,'QParticle::AddForce()'],['../classQRigidBody.html#af8702d2bc5ca2a3c943fe5c3677c5108',1,'QRigidBody::AddForce()']]],
   ['addglobalposition_6',['AddGlobalPosition',['../classQParticle.html#a0ab37356cb431069bad74303d2f1e659',1,'QParticle']]],
   ['addjoint_7',['AddJoint',['../classQWorld.html#a62394f07462a94a489108ae7f0eb99c1',1,'QWorld']]],
   ['addmesh_8',['AddMesh',['../classQBody.html#a17bfcd06492a9e566eb930e698b4c3c4',1,'QBody']]],

@@ -9,10 +9,16 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -46,6 +52,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('classQWorld.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -60,7 +83,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">QWorld Member List</div>  </div>
@@ -75,25 +97,25 @@ $(function() {
   <tr><td class="entry"><a class="el" href="classQWorld.html#a62394f07462a94a489108ae7f0eb99c1">AddJoint</a>(QJoint *joint)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classQWorld.html#a5b6a36a5ba21082100f67987420992c7">AddRaycast</a>(QRaycast *raycast)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classQWorld.html#a85ddb69ce67d6d7c4704a6eaaaf52af5">AddSpring</a>(QSpring *spring)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>bodies</b> (defined in <a class="el" href="classQWorld.html">QWorld</a>)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>broadPhase</b> (defined in <a class="el" href="classQWorld.html">QWorld</a>)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classQWorld.html#aa2895a9baac4215f7cc6943759ceb92f">CheckCollisionException</a>(QBody *bodyA, QBody *bodyB)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>ClearBodies</b>(bool deleteAll=false) (defined in <a class="el" href="classQWorld.html">QWorld</a>)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>ClearGizmos</b>() (defined in <a class="el" href="classQWorld.html">QWorld</a>)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classQWorld.html#a88cd6420e59c187e7ccfb3e0fcca7c8c">ClearJoints</a>(bool deleteAll=false)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classQWorld.html#a996f9a1168a9663e03c71c8fd1606218">ClearRaycasts</a>(bool deleteAll=false)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classQWorld.html#ad244e05c9c17a70b5cd4619a4e1b5946">ClearSprings</a>(bool deleteAll=false)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classQWorld.html#a23d6c6e67fef4a6e6e0cdb066eda6781">ClearWorld</a>(bool deleteAll=false)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classQWorld.html#a02ebbdc91672617a67e1a77e0ed6a10e">CollideWithWorld</a>(QBody *body)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>collisionExceptions</b> (defined in <a class="el" href="classQWorld.html">QWorld</a>)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>CreateIslands</b>(int bodyIndex, vector&lt; QBody * &gt; &amp;bodyList, vector&lt; QBody * &gt; &amp;island, vector&lt; bool &gt; &amp;visitedList) (defined in <a class="el" href="classQWorld.html">QWorld</a>)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>CreateIslands</b>(QBody &amp;body, vector&lt; QBody * &gt; island) (defined in <a class="el" href="classQWorld.html">QWorld</a>)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>debugAABBTestCount</b> (defined in <a class="el" href="classQWorld.html">QWorld</a>)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>debugCollisionTestCount</b> (defined in <a class="el" href="classQWorld.html">QWorld</a>)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>enableBroadphase</b> (defined in <a class="el" href="classQWorld.html">QWorld</a>)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>enabled</b> (defined in <a class="el" href="classQWorld.html">QWorld</a>)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>enableSleeping</b> (defined in <a class="el" href="classQWorld.html">QWorld</a>)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>enableSpatialHashing</b> (defined in <a class="el" href="classQWorld.html">QWorld</a>)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>bodies</b> (defined in <a class="el" href="classQWorld.html">QWorld</a>)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>broadPhase</b> (defined in <a class="el" href="classQWorld.html">QWorld</a>)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>broadPhasePairs</b> (defined in <a class="el" href="classQWorld.html">QWorld</a>)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classQWorld.html#aa2895a9baac4215f7cc6943759ceb92f">CheckCollisionException</a>(QBody *bodyA, QBody *bodyB)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>ClearBodies</b>(bool deleteAll=false) (defined in <a class="el" href="classQWorld.html">QWorld</a>)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>ClearGizmos</b>() (defined in <a class="el" href="classQWorld.html">QWorld</a>)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classQWorld.html#a88cd6420e59c187e7ccfb3e0fcca7c8c">ClearJoints</a>(bool deleteAll=false)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classQWorld.html#a996f9a1168a9663e03c71c8fd1606218">ClearRaycasts</a>(bool deleteAll=false)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classQWorld.html#ad244e05c9c17a70b5cd4619a4e1b5946">ClearSprings</a>(bool deleteAll=false)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classQWorld.html#a23d6c6e67fef4a6e6e0cdb066eda6781">ClearWorld</a>(bool deleteAll=false)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classQWorld.html#a02ebbdc91672617a67e1a77e0ed6a10e">CollideWithWorld</a>(QBody *body)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>collisionExceptions</b> (defined in <a class="el" href="classQWorld.html">QWorld</a>)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>CreateIslands</b>(int bodyIndex, vector&lt; QBody * &gt; &amp;bodyList, vector&lt; QBody * &gt; &amp;island, vector&lt; bool &gt; &amp;visitedList) (defined in <a class="el" href="classQWorld.html">QWorld</a>)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>CreateIslands</b>(QBody &amp;body, vector&lt; QBody * &gt; island) (defined in <a class="el" href="classQWorld.html">QWorld</a>)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>debugAABBTestCount</b> (defined in <a class="el" href="classQWorld.html">QWorld</a>)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>debugCollisionTestCount</b> (defined in <a class="el" href="classQWorld.html">QWorld</a>)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>enableBroadphase</b> (defined in <a class="el" href="classQWorld.html">QWorld</a>)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>enabled</b> (defined in <a class="el" href="classQWorld.html">QWorld</a>)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>enableSleeping</b> (defined in <a class="el" href="classQWorld.html">QWorld</a>)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>GenerateIslands</b>(vector&lt; QBody * &gt; &amp;bodyList, vector&lt; vector&lt; QBody * &gt;&gt; &amp;islandList) (defined in <a class="el" href="classQWorld.html">QWorld</a>)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>GenerateIslands</b>(vector&lt; QBody &gt; bodyList) (defined in <a class="el" href="classQWorld.html">QWorld</a>)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
   <tr><td class="entry"><a class="el" href="classQWorld.html#af86ba1991db1d5e02690f60e83907dc0">GetBodiesHitByPoint</a>(QVector point, int maxBodyCount=1, bool onlyRigidBodies=true, int layersBit=-1)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"></td></tr>
@@ -102,7 +124,7 @@ $(function() {
   <tr class="even"><td class="entry"><a class="el" href="classQWorld.html#a5f39e42493f9ce66f108360c0b483a35">GetBodyIndex</a>(QBody *body)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr><td class="entry"><a class="el" href="classQWorld.html#a227d82935e60c65574ed5e20f69fa63e">GetBroadphaseEnabled</a>()</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>GetCollisionPairs</b>(vector&lt; QBody * &gt; &amp;bodyList, vector&lt; pair&lt; QBody *, QBody * &gt; &gt; *resList) (defined in <a class="el" href="classQWorld.html">QWorld</a>)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classQWorld.html#ab8127d44aae527403bb514421c16981f">GetCollisions</a>(QBody *bodyA, QBody *bodyB)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classQWorld.html#a64514ed74f8667d65b8eff4bbf57627e">GetCollisions</a>(QBody *bodyA, QBody *bodyB)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classQWorld.html#a00720555ef36488eb54efb16f58a6ad2">GetEnabled</a>()</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr><td class="entry"><a class="el" href="classQWorld.html#adb9f2d100cb41fdb9e668c2a6d64a902">GetGizmos</a>()</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>GetGravity</b>() (defined in <a class="el" href="classQWorld.html">QWorld</a>)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
@@ -117,8 +139,6 @@ $(function() {
   <tr><td class="entry"><a class="el" href="classQWorld.html#a8672f0f4802387a56038fdc90bcace86">GetSleepingEnabled</a>()</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classQWorld.html#a6df2fc91db92b4c46d302d8fe335b087">GetSleepingPositionTolerance</a>()</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr><td class="entry"><a class="el" href="classQWorld.html#aeb10a5be2a77ad8e9048a5475dd960e7">GetSleepingRotationTolerance</a>()</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classQWorld.html#addc16d7096d6f313e4b4e72129f75875">GetSpatialHashingCellSize</a>()</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classQWorld.html#a17740d220cf68e9f382307d98863138b">GetSpatialHashingEnabled</a>()</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classQWorld.html#a3b352ea9b2a8e93ce59e79a579a7b7e9">GetSpringAt</a>(int index)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr><td class="entry"><a class="el" href="classQWorld.html#affd0f4d8829b323e8f60004944fc8bda">GetSpringCount</a>()</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classQWorld.html#ab7f364025ef6ef7a2338235dbd8e9188">GetSpringIndex</a>(QSpring *spring)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
@@ -155,24 +175,24 @@ $(function() {
   <tr><td class="entry"><a class="el" href="classQWorld.html#ab5aabd4071610644359127966fce17f2">SetSleepingEnabled</a>(bool value)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classQWorld.html#a234ce17eb8b4157df3bfc18d35d454c7">SetSleepingPositionTolerance</a>(float value)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr><td class="entry"><a class="el" href="classQWorld.html#a160231b1bf0c74e4d9ebd7f14f536fbd">SetSleepingRotationTolerance</a>(float value)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classQWorld.html#a98d6e9c63c47e01f2b7d1ccb77536264">SetSpatialHashingCellSize</a>(float value)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classQWorld.html#ac87eee18034fdcd3878ab9b773668823">SetSpatialHashingEnabled</a>(bool value)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classQWorld.html#a25fb435d666b9d87f8f85cdbb3606326">SetTimeScale</a>(float value=1.0f)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>sleepingIslands</b> (defined in <a class="el" href="classQWorld.html">QWorld</a>)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>sleepingPositionTolerance</b> (defined in <a class="el" href="classQWorld.html">QWorld</a>)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>sleepingRotationTolerance</b> (defined in <a class="el" href="classQWorld.html">QWorld</a>)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>SortBodiesHorizontal</b>(const QBody *bodyA, const QBody *bodyB) (defined in <a class="el" href="classQWorld.html">QWorld</a>)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">protected</span><span class="mlabel">static</span></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>SortBodiesVertical</b>(const QBody *bodyA, const QBody *bodyB) (defined in <a class="el" href="classQWorld.html">QWorld</a>)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">protected</span><span class="mlabel">static</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>spatialHashingSize</b> (defined in <a class="el" href="classQWorld.html">QWorld</a>)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>springs</b> (defined in <a class="el" href="classQWorld.html">QWorld</a>)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>timeScale</b> (defined in <a class="el" href="classQWorld.html">QWorld</a>)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classQWorld.html#af1a55d7ae18388f9a46547781c89a183">Update</a>()</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>UpdateConstraints</b>() (defined in <a class="el" href="classQWorld.html">QWorld</a>)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>~QWorld</b>() (defined in <a class="el" href="classQWorld.html">QWorld</a>)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>springs</b> (defined in <a class="el" href="classQWorld.html">QWorld</a>)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>timeScale</b> (defined in <a class="el" href="classQWorld.html">QWorld</a>)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classQWorld.html#af1a55d7ae18388f9a46547781c89a183">Update</a>()</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>UpdateConstraints</b>() (defined in <a class="el" href="classQWorld.html">QWorld</a>)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>~QWorld</b>() (defined in <a class="el" href="classQWorld.html">QWorld</a>)</td><td class="entry"><a class="el" href="classQWorld.html">QWorld</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
 </body>
 </html>

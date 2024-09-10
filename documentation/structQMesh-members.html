@@ -9,10 +9,16 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -46,6 +52,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('structQMesh.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -60,7 +83,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">QMesh Member List</div>  </div>
@@ -73,31 +95,35 @@ $(function() {
   <tr><td class="entry"><a class="el" href="structQMesh.html#a434e16cf66107a5e8081b640743d0c8d">AddParticle</a>(QParticle *particle)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="structQMesh.html#a4f7e3023e5cff96a91adba31068fcc38">AddParticleToPolygon</a>(QParticle *particle, int position=-1)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="structQMesh.html#a8ebb3e667536f4faa76898144c38c337">AddSpring</a>(QSpring *spring)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="structQMesh.html#adf3ef753745ae9de6becd4d127f28a45">CheckCollisionBehaviors</a>(QMesh *meshA, QMesh *meshB, CollisionBehaviors firstBehavior, CollisionBehaviors secondBehavior)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>CheckIsPolygonConcave</b>(vector&lt; QParticle * &gt; polygonParticles) (defined in <a class="el" href="structQMesh.html">QMesh</a>)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>CheckIsReflex</b>(QVector pA, QVector pB, QVector pC) (defined in <a class="el" href="structQMesh.html">QMesh</a>)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">protected</span><span class="mlabel">static</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>CheckIsReflex</b>(int indexA, int indexB, int indexC, vector&lt; QParticle * &gt; polygonParticles) (defined in <a class="el" href="structQMesh.html">QMesh</a>)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">protected</span><span class="mlabel">static</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>CIRCLES</b> enum value (defined in <a class="el" href="structQMesh.html">QMesh</a>)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>circumference</b> (defined in <a class="el" href="structQMesh.html">QMesh</a>)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>collisionBehavior</b> (defined in <a class="el" href="structQMesh.html">QMesh</a>)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>collisionBehaviorNeedsUpdate</b> (defined in <a class="el" href="structQMesh.html">QMesh</a>)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>CollisionBehaviors</b> enum name (defined in <a class="el" href="structQMesh.html">QMesh</a>)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="structQMesh.html#a3f9aeaed089ee82fa425f8c98ed63f02">CreateWithCircle</a>(float radius, QVector centerPosition=QVector::Zero())</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="structQMesh.html#a5dfa8ce766a225b9e788004ac7aed63a">CreateWithMeshData</a>(QMesh::MeshData &amp;data, bool enableSprings=true, bool enablePolygons=true)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr><td class="entry"><a class="el" href="structQMesh.html#a75523f7fed5db8b2e3c6aa6e55afac58">CreateWithPolygon</a>(float radius, int sideCount, QVector centerPosition=QVector::Zero(), int polarGrid=-1, bool enableSprings=true, bool enablePolygons=true, float particleRadius=0.5f)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="structQMesh.html#a46fdef1c61a493ed8bd1673604152af1">CreateWithRect</a>(QVector size, QVector centerPosition=QVector::Zero(), QVector grid=QVector::Zero(), bool enableSprings=true, bool enablePolygons=true, float particleRadius=0.5f)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>DecompositePolygon</b>(vector&lt; QParticle * &gt; &amp;polygonParticles, vector&lt; vector&lt; QParticle * &gt;&gt; &amp;polygons) (defined in <a class="el" href="structQMesh.html">QMesh</a>)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">protected</span><span class="mlabel">static</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="structQMesh.html#ab3dfb24decb1a81850e26b69604557d1">GeneratePolygonMeshData</a>(float radius, int sideCount, QVector centerPosition=QVector::Zero(), int polarGrid=-1, float particleRadius=0.5f)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr><td class="entry"><a class="el" href="structQMesh.html#a820a70601c717e41297eb9da26b1d3be">GenerateRectangleMeshData</a>(QVector size, QVector centerPosition=QVector::Zero(), QVector grid=QVector::Zero(), float particleRadius=0.5f)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="structQMesh.html#a952f166f1c49a36006981db7ed406b62">GetArea</a>()</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>ApplyAngleConstraintsToPolygon</b>() (defined in <a class="el" href="structQMesh.html">QMesh</a>)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr><td class="entry"><a class="el" href="structQMesh.html#adf3ef753745ae9de6becd4d127f28a45">CheckCollisionBehaviors</a>(QMesh *meshA, QMesh *meshB, CollisionBehaviors firstBehavior, CollisionBehaviors secondBehavior)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>CheckIsPolygonConcave</b>(vector&lt; QParticle * &gt; polygonParticles) (defined in <a class="el" href="structQMesh.html">QMesh</a>)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>CheckIsReflex</b>(QVector pA, QVector pB, QVector pC) (defined in <a class="el" href="structQMesh.html">QMesh</a>)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">protected</span><span class="mlabel">static</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>CheckIsReflex</b>(int indexA, int indexB, int indexC, vector&lt; QParticle * &gt; polygonParticles) (defined in <a class="el" href="structQMesh.html">QMesh</a>)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">protected</span><span class="mlabel">static</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>CIRCLES</b> enum value (defined in <a class="el" href="structQMesh.html">QMesh</a>)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>circumference</b> (defined in <a class="el" href="structQMesh.html">QMesh</a>)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>collisionBehavior</b> (defined in <a class="el" href="structQMesh.html">QMesh</a>)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>collisionBehaviorNeedsUpdate</b> (defined in <a class="el" href="structQMesh.html">QMesh</a>)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>CollisionBehaviors</b> enum name (defined in <a class="el" href="structQMesh.html">QMesh</a>)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="structQMesh.html#a3f9aeaed089ee82fa425f8c98ed63f02">CreateWithCircle</a>(float radius, QVector centerPosition=QVector::Zero())</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr><td class="entry"><a class="el" href="structQMesh.html#a5dfa8ce766a225b9e788004ac7aed63a">CreateWithMeshData</a>(QMesh::MeshData &amp;data, bool enableSprings=true, bool enablePolygons=true)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="structQMesh.html#a75523f7fed5db8b2e3c6aa6e55afac58">CreateWithPolygon</a>(float radius, int sideCount, QVector centerPosition=QVector::Zero(), int polarGrid=-1, bool enableSprings=true, bool enablePolygons=true, float particleRadius=0.5f)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr><td class="entry"><a class="el" href="structQMesh.html#a46fdef1c61a493ed8bd1673604152af1">CreateWithRect</a>(QVector size, QVector centerPosition=QVector::Zero(), QVector grid=QVector::Zero(), bool enableSprings=true, bool enablePolygons=true, float particleRadius=0.5f)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>DecompositePolygon</b>(vector&lt; QParticle * &gt; &amp;polygonParticles, vector&lt; vector&lt; QParticle * &gt;&gt; &amp;polygons) (defined in <a class="el" href="structQMesh.html">QMesh</a>)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">protected</span><span class="mlabel">static</span></td></tr>
+  <tr><td class="entry"><a class="el" href="structQMesh.html#ab3dfb24decb1a81850e26b69604557d1">GeneratePolygonMeshData</a>(float radius, int sideCount, QVector centerPosition=QVector::Zero(), int polarGrid=-1, float particleRadius=0.5f)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="structQMesh.html#a820a70601c717e41297eb9da26b1d3be">GenerateRectangleMeshData</a>(QVector size, QVector centerPosition=QVector::Zero(), QVector grid=QVector::Zero(), float particleRadius=0.5f)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr><td class="entry"><a class="el" href="structQMesh.html#a952f166f1c49a36006981db7ed406b62">GetArea</a>()</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="structQMesh.html#a79d8ee4acd7a80a7af82b91213055631">GetAveragePositionAndRotation</a>(vector&lt; QParticle * &gt; particleCollection)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
   <tr><td class="entry"><a class="el" href="structQMesh.html#adb6925d9717f1a53f9d1f27bbe37ea9f">GetCircumference</a>()</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="structQMesh.html#afe423292a3655c6d1b0756853fdf9dfc">GetCollisionBehavior</a>()</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr><td class="entry"><a class="el" href="structQMesh.html#a10599397b147c11ea6067890cb187b81">GetGlobalPosition</a>()</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="structQMesh.html#a84f42582e970c5327a980a17cdc01669">GetGlobalRotation</a>()</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr><td class="entry"><a class="el" href="structQMesh.html#adf81cf3d4cf0290b5a81418f4279be85">GetInitialArea</a>()</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="structQMesh.html#ab3a900cffdbf4a4cce1a6dccf2fc8760">GetInitialPolygonsArea</a>()</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr><td class="entry"><a class="el" href="structQMesh.html#ab57b4faf3289ad5d3197d12567c546d2">GetMeshDatasFromFile</a>(string filePath)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="structQMesh.html#a14a093917b07688c438e96328bd27424">GetMeshDatasFromJsonData</a>(std::string &amp;jsonBasedData)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr><td class="entry"><a class="el" href="structQMesh.html#a633b51c680ac7c7e9e2edad3d93b73f9">GetMatchingParticlePositions</a>(vector&lt; QParticle * &gt; particleCollection, QVector targetPosition, float targetRotation)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="structQMesh.html#ab57b4faf3289ad5d3197d12567c546d2">GetMeshDatasFromFile</a>(string filePath)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr><td class="entry"><a class="el" href="structQMesh.html#a14a093917b07688c438e96328bd27424">GetMeshDatasFromJsonData</a>(std::string &amp;jsonBasedData)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="structQMesh.html#a86af89146b986c2768c31a17bd0e56b7">GetMinAngleConstraintOfPolygon</a>()</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr><td class="entry"><a class="el" href="structQMesh.html#aaa8d12979d889825fbf2ab1c74b96183">GetOwnerBody</a>()</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="structQMesh.html#a24c1b65f30f2c38994d872e0ba50b35b">GetParticleAt</a>(int index)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="structQMesh.html#ae64b62d34df2cf35e6b86c2fb79e3e1c">GetParticleCount</a>()</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"></td></tr>
@@ -114,6 +140,8 @@ $(function() {
   <tr class="even"><td class="entry"><a class="el" href="structQMesh.html#abd7a21ee7b776105411a962e3787f781">GetSubConvexPolygonCount</a>()</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>globalPosition</b> (defined in <a class="el" href="structQMesh.html">QMesh</a>)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>globalRotation</b> (defined in <a class="el" href="structQMesh.html">QMesh</a>)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>lastPolygonCornerAngles</b> (defined in <a class="el" href="structQMesh.html">QMesh</a>)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>minAngleConstraintOfPolygon</b> (defined in <a class="el" href="structQMesh.html">QMesh</a>)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>ownerBody</b> (defined in <a class="el" href="structQMesh.html">QMesh</a>)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>particles</b> (defined in <a class="el" href="structQMesh.html">QMesh</a>)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>polygon</b> (defined in <a class="el" href="structQMesh.html">QMesh</a>)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
@@ -138,20 +166,24 @@ $(function() {
   <tr class="even"><td class="entry"><a class="el" href="structQMesh.html#a1c1885fa237466008a1bfd2997423ed0">RemoveSpringAt</a>(int index)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>rotation</b> (defined in <a class="el" href="structQMesh.html">QMesh</a>)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="structQMesh.html#a6b08a4b5b903c944018e28c26c28476a">SetGlobalPosition</a>(QVector value)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr><td class="entry"><a class="el" href="structQMesh.html#aa576624345068d6c3448ebb18944c5c3">SetPolygon</a>(vector&lt; QParticle * &gt; polygonParticles)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="structQMesh.html#af4b4bb36b656b2a1581ca2c39ad32d6b">SetPosition</a>(QVector value)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr><td class="entry"><a class="el" href="structQMesh.html#aba6a6d1057f78bbd9063505726dc7651">SetRotation</a>(float value)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>springs</b> (defined in <a class="el" href="structQMesh.html">QMesh</a>)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>subConvexPolygons</b> (defined in <a class="el" href="structQMesh.html">QMesh</a>)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>subConvexPolygonsNeedsUpdate</b> (defined in <a class="el" href="structQMesh.html">QMesh</a>)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>TriangulatePolygon</b>(vector&lt; QParticle * &gt; &amp;polygonParticles, vector&lt; vector&lt; int &gt;&gt; &amp;triangles) (defined in <a class="el" href="structQMesh.html">QMesh</a>)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">protected</span><span class="mlabel">static</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>UpdateCollisionBehavior</b>() (defined in <a class="el" href="structQMesh.html">QMesh</a>)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>UpdateSubConvexPolygons</b>() (defined in <a class="el" href="structQMesh.html">QMesh</a>)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>~QMesh</b>() (defined in <a class="el" href="structQMesh.html">QMesh</a>)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="structQMesh.html#afab856b716f627605af0ae934f0a0cd9">SetMinAngleConstraintOfPolygon</a>(float radian)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="structQMesh.html#aa576624345068d6c3448ebb18944c5c3">SetPolygon</a>(vector&lt; QParticle * &gt; polygonParticles)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="structQMesh.html#af4b4bb36b656b2a1581ca2c39ad32d6b">SetPosition</a>(QVector value)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="structQMesh.html#aba6a6d1057f78bbd9063505726dc7651">SetRotation</a>(float value)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>springs</b> (defined in <a class="el" href="structQMesh.html">QMesh</a>)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>subConvexPolygons</b> (defined in <a class="el" href="structQMesh.html">QMesh</a>)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>subConvexPolygonsNeedsUpdate</b> (defined in <a class="el" href="structQMesh.html">QMesh</a>)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>TriangulatePolygon</b>(vector&lt; QParticle * &gt; &amp;polygonParticles, vector&lt; vector&lt; int &gt;&gt; &amp;triangles) (defined in <a class="el" href="structQMesh.html">QMesh</a>)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">protected</span><span class="mlabel">static</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>UpdateCollisionBehavior</b>() (defined in <a class="el" href="structQMesh.html">QMesh</a>)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>UpdateSubConvexPolygons</b>() (defined in <a class="el" href="structQMesh.html">QMesh</a>)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>~QMesh</b>() (defined in <a class="el" href="structQMesh.html">QMesh</a>)</td><td class="entry"><a class="el" href="structQMesh.html">QMesh</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
 </body>
 </html>

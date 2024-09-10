@@ -104,7 +104,6 @@ void QSpatialHashing::Update() {
 void QSpatialHashing::GetAllPairs(std::unordered_set<std::pair<QBody*, QBody*>,QBody::BodyPairHash,QBody::BodyPairEqual> &pairs) {
      
 
-    int aabbTestCount=0;
     for (auto& cell : cells) {
         std::vector<QBody*>& cellBodies = cell.second;
         size_t numBodies = cellBodies.size();
@@ -129,7 +128,7 @@ void QSpatialHashing::GetAllPairs(std::unordered_set<std::pair<QBody*, QBody*>,Q
                 if (!BodiesCanCollide(bodyA, bodyB))
                     continue;
 
-                aabbTestCount+=1;
+                
                 if(bodyA->GetAABB().GetMax().x >= bodyB->GetAABB().GetMin().x){
                     if( bodyA->GetAABB().GetMin().y <= bodyB->GetAABB().GetMax().y &&
                         bodyA->GetAABB().GetMax().y >= bodyB->GetAABB().GetMin().y) {

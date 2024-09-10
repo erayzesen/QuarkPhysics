@@ -514,8 +514,11 @@ void QCollision::CircleAndCircle(vector<QParticle*> &particlesA,vector<QParticle
 		bboxSizeA=QVector(specifiedRadius,specifiedRadius);
 	}
 
+	size_t particlesASize=particlesA.size();
+	size_t particlesBSize=particlesB.size();
+
 	//A. Start the loop for all points of circleparticlesA
-	for(size_t i=0;i<particlesA.size();i++){
+	for(size_t i=0;i<particlesASize;i++){
 		QParticle *pA=particlesA[i];
 
 		//Optimization phase: aabb test 
@@ -538,7 +541,7 @@ void QCollision::CircleAndCircle(vector<QParticle*> &particlesA,vector<QParticle
 
 
 		//B. Start the loop for all points of circleparticlesB
-		for(;n<particlesB.size();n++){
+		for(;n<particlesBSize;n++){
 			QParticle *pB=particlesB[n];
 			if(pA==pB) continue;
 
@@ -564,7 +567,9 @@ void QCollision::CircleAndCircle(vector<QParticle*> &particlesA,vector<QParticle
 			if(positionalPenetrationSq<totalRadiusPow){
 				//The penetration is the difference between the existing penetration and the total radius of the objA and the objB.
 				positionalPenetration=sqrt(positionalPenetrationSq);
-				normal=distVec.Normalized();
+				//normal=distVec.Normalized();
+				//The normal with previous positions gives us more realistic collision normals in the simulation.
+				normal=(pB->GetPreviousGlobalPosition()-pA->GetPreviousGlobalPosition()).Normalized();
 
 				penetration=totalRadius-positionalPenetration;
 

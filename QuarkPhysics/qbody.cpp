@@ -84,13 +84,15 @@ bool QBody::CanCollide(QBody *bodyA, QBody *bodyB,bool checkBodiesAreEnabled)
 		if (bodyA->GetEnabled()==false || bodyB->GetEnabled()==false)
 			return false;
 
-	QWorld *world=bodyA->world;
+	
 	//Check Static and Sleeping Modes
 	if((bodyA->isSleeping || bodyA->mode==QBody::Modes::STATIC) && (bodyB->isSleeping || bodyB->mode==QBody::Modes::STATIC ))
 		return false;
 	//Check Layers Bits
 	if( ( ((bodyA->layersBit & bodyB->collidableLayersBit)==0 ) && (bodyB->layersBit & bodyA->collidableLayersBit)==0 ) )
 		return false;
+
+	QWorld *world=bodyA->world;
 
 	if( world->CheckCollisionException(bodyA,bodyB)==true ){
 		return false;
@@ -191,8 +193,13 @@ void QBody::UpdateMeshTransforms(){
 			float nx=originVec.x*rotVecUnit.x-originVec.y*rotVecUnit.y;
 			float ny=originVec.y*rotVecUnit.x+originVec.x*rotVecUnit.y;
 			QVector newPos=mesh->globalPosition+QVector(nx,ny);
+			if (bodyType==QBody::BodyTypes::RIGID){
+				particle->SetPreviousGlobalPosition(particle->GetGlobalPosition());
+			}else{
+				particle->SetPreviousGlobalPosition(newPos);
+			}
 			particle->SetGlobalPosition(newPos);
-			particle->SetPreviousGlobalPosition(newPos);
+			
 		}
 	}
 

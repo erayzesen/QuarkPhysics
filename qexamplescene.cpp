@@ -35,8 +35,8 @@ QExampleScene::QExampleScene(QVector sceneSize)
 {
 	world=new QWorld();
 	//Trying QSpatialHashing broadphase extension
-	/* QSpatialHashing *broadPhase=new QSpatialHashing(world->bodies,128.0f);
-	world->broadPhase=broadPhase; */
+	QSpatialHashing *broadPhase=new QSpatialHashing(world->bodies,128.0f);
+	world->broadPhase=broadPhase;
 	this->sceneSize=sceneSize;
 
 
@@ -106,21 +106,25 @@ void QExampleScene::CreateSceneBorders()
 	QRigidBody *bodyLeft=new QRigidBody();
 	bodyLeft->AddMesh( QMesh::CreateWithRect(hBoxSizes) )->SetPosition(QVector(-hBoxSizes.x*0.5f,hBoxSizes.y*0.5f));
 	bodyLeft->SetMode(QBody::STATIC);
+	bodyLeft->SetRestitution(1.0f);
 	world->AddBody(bodyLeft);
 
 	QRigidBody *bodyTop=new QRigidBody();
 	bodyTop->AddMesh( QMesh::CreateWithRect(vBoxSizes) )->SetPosition(QVector(vBoxSizes.x*0.5f,-vBoxSizes.y*0.5f));
 	bodyTop->SetMode(QBody::STATIC);
+	bodyTop->SetRestitution(1.0f);
 	world->AddBody(bodyTop);
 
 	QRigidBody *bodyRight=new QRigidBody();
 	bodyRight->AddMesh( QMesh::CreateWithRect(hBoxSizes) )->SetPosition(QVector(sceneSize.x+hBoxSizes.x*0.5f,hBoxSizes.y*0.5f));
 	bodyRight->SetMode(QBody::STATIC);
+	bodyRight->SetRestitution(1.0f);
 	world->AddBody(bodyRight);
 
 	QRigidBody *bodyBottom=new QRigidBody();
 	bodyBottom->AddMesh( QMesh::CreateWithRect(vBoxSizes) )->SetPosition(QVector(vBoxSizes.x*0.5f,sceneSize.y+vBoxSizes.y*0.5f));
 	bodyBottom->SetMode(QBody::STATIC);
+	bodyBottom->SetRestitution(1.0f);
 	world->AddBody(bodyBottom);
 }
 
