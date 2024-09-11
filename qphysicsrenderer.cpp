@@ -36,23 +36,7 @@ QPhysicsRenderer::QPhysicsRenderer()
 
 void QPhysicsRenderer::RenderSpatialCells(QWorld *world, sf::RenderWindow *window)
 {
-//	auto &brc=world->broadPhase.collisionGroups;
-//	auto &cellSize=world->broadPhase.cellSize;
-//	sf::Color col=sf::Color::White;
-//	col.a=15.0f;
-//	for(int y=0;y!=20;y++){
-//		for(int x=0;x!=20;x++){
-//			auto pos=sf::Vector2f(x*cellSize.x,y*cellSize.y);
-//			sf::RectangleShape shape(sf::Vector2f(cellSize.x,cellSize.y));
-
-//			shape.setOutlineColor(col);
-//			shape.setOutlineThickness(1.0f);
-//			shape.setFillColor(sf::Color::Transparent);
-
-//			shape.setPosition(pos);
-//			window->draw(shape);
-//		}
-//	}
+	
 }
 
 void QPhysicsRenderer::RenderBoundingBoxes(QWorld *world, sf::RenderWindow *window)

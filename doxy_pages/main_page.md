@@ -5,6 +5,17 @@ QuarkPhysics is a 2D physics engine designed for games. Its goal is to provide a
 
 [Project Github Page](https://github.com/erayzesen/QuarkPhysics)
 
+## Concept Map
+\htmlonly
+<div style="text-align: center; background-color: transparent; max-width: 500px">
+  <object type="image/svg+xml" data="../doxy_pages/images/concept.svg" style="width: 100%; height: auto; background-color: transparent;">
+    Your browser does not support SVG.
+  </object>
+</div>
+
+\endhtmlonly
+
+
   
 ## Building Examples
 You need to install [SFML](https://www.sfml-dev.org/) and [CMake](https://cmake.org/) on your system before. 

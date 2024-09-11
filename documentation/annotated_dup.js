@@ -1,9 +1,10 @@
 var annotated_dup =
 [
-    [ "Building Examples", "index.html#autotoc_md0", null ],
-    [ "Using", "index.html#autotoc_md1", null ],
-    [ "Third Party", "index.html#autotoc_md2", null ],
-    [ "License", "index.html#autotoc_md3", null ],
+    [ "Concept Map", "index.html#autotoc_md0", null ],
+    [ "Building Examples", "index.html#autotoc_md1", null ],
+    [ "Using", "index.html#autotoc_md2", null ],
+    [ "Third Party", "index.html#autotoc_md3", null ],
+    [ "License", "index.html#autotoc_md4", null ],
     [ "QAABB", "classQAABB.html", "classQAABB" ],
     [ "QAreaBody", "classQAreaBody.html", "classQAreaBody" ],
     [ "QBody", "classQBody.html", "classQBody" ],
@@ -22,6 +23,7 @@ var annotated_dup =
     [ "QRaycast", "classQRaycast.html", "classQRaycast" ],
     [ "QRigidBody", "classQRigidBody.html", "classQRigidBody" ],
     [ "QSoftBody", "classQSoftBody.html", "classQSoftBody" ],
+    [ "QSpatialHashing", "classQSpatialHashing.html", "classQSpatialHashing" ],
     [ "QSpring", "classQSpring.html", "classQSpring" ],
     [ "QVector", "structQVector.html", "structQVector" ],
     [ "QWorld", "classQWorld.html", "classQWorld" ]

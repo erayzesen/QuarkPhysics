@@ -17,8 +17,9 @@
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-custom-qp.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="tweeks.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -26,8 +27,10 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo_x2.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Quark Physics
+   &#160;<span id="projectnumber">v1.0</span>
    </div>
    <div id="projectbrief">2D Rigid and Soft Body Physics Engine</div>
   </td>
@@ -91,20 +94,30 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <div class="textblock"><p>QuarkPhysics is a 2D physics engine designed for games. Its goal is to provide a reasonable approach to simulate rigid bodies, soft bodies, and different physics models together.</p>
 <p><a href="https://github.com/erayzesen/QuarkPhysics">Project Github Page</a></p>
 <h2><a class="anchor" id="autotoc_md0"></a>
+Concept Map</h2>
+<p> 
+<div style="text-align: center; background-color: transparent; max-width: 500px">
+  <object type="image/svg+xml" data="../doxy_pages/images/concept.svg" style="width: 100%; height: auto; background-color: transparent;">
+    Your browser does not support SVG.
+  </object>
+</div>
+
+</p>
+<h2><a class="anchor" id="autotoc_md1"></a>
 Building Examples</h2>
 <p>You need to install <a href="https://www.sfml-dev.org/">SFML</a> and <a href="https://cmake.org/">CMake</a> on your system before.</p>
 <p>Download project, enter the main folder and call this; </p><pre class="fragment">    ./build.sh -r
 </pre><p> Another way is that compiling the project directly via gcc if you're on linux call; </p><pre class="fragment">    ./run_linux_fast.sh -r
-</pre> <h2><a class="anchor" id="autotoc_md1"></a>
+</pre> <h2><a class="anchor" id="autotoc_md2"></a>
 Using</h2>
 <p>Copy the "QuarkPhysics" named subfolder in the main folder to your project and use it.</p>
-<h2><a class="anchor" id="autotoc_md2"></a>
+<h2><a class="anchor" id="autotoc_md3"></a>
 Third Party</h2>
 <ul>
 <li><a href="https://github.com/nlohmann/json">nlohmann's json</a> for the json parsing. (Importing meshes via *.qmesh files)</li>
 <li><a href="https://www.sfml-dev.org/">SFML</a> library for window,input,opengl.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3"></a>
+<h2><a class="anchor" id="autotoc_md4"></a>
 License</h2>
 <p>Licensed under the <a href="https://github.com/erayzesen/QuarkPhysics/blob/master/LICENSE">MIT</a> license. </p>
 </div></div><!-- PageDoc -->

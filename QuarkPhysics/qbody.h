@@ -544,6 +544,7 @@ protected:
 		 */
 		QBody *SetEnabled(bool value){
 			enabled=true;
+			return this;
 		}
 
 

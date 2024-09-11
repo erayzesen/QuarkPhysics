@@ -39,6 +39,8 @@ class QRaycast
 
 protected:
 	void UpdateContacts();
+	
+	int collidableLayersBit=1;
 
 public:
 	/** Creates a raycast. 
@@ -89,6 +91,8 @@ public:
 	QVector GetRayVector();
 	/** Returns whether a body should be ignored in raycast collisions if the ray position is inside the shape representing the body in the world. If set to true, these objects will be ignored in raycast collisions. */ 
 	bool GetEnabledContainingBodies();
+	/**Returns the bit mask that represents the layers in which the body object is present. */
+	int GetCollidableLayersBit();
 
 	//Set Methods
 	/** Sets the position of the raycast 
@@ -107,6 +111,11 @@ public:
 	 * @param value True or false. 
 	 */
 	QRaycast *SetEnabledContainingBodies(bool value);
+
+	/**Sets the bit mask that represents the collidable layers in which the body object is present.A raycast object can collide with other body objects present in the layers defined by the user.  
+	 * @param value A bit mask value to set.  
+	*/
+	QRaycast *SetCollidableLayersBit(int value);
 
 
 	friend class QWorld;

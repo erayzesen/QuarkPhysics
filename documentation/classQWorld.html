@@ -17,8 +17,9 @@
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-custom-qp.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="tweeks.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -26,8 +27,10 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo_x2.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Quark Physics
+   &#160;<span id="projectnumber">v1.0</span>
    </div>
    <div id="projectbrief">2D Rigid and Soft Body Physics Engine</div>
   </td>
@@ -143,6 +146,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a160231b1bf0c74e4d9ebd7f14f536fbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab588d2c09603281b1181723c6559bab8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQWorld.html">QWorld</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQWorld.html#ab588d2c09603281b1181723c6559bab8">SetBroadphaseEnabled</a> (bool value)</td></tr>
 <tr class="separator:ab588d2c09603281b1181723c6559bab8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab892f3f4b1ca484a0385375f2359f482"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQWorld.html">QWorld</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQWorld.html#ab892f3f4b1ca484a0385375f2359f482">SetBroadphase</a> (<a class="el" href="classQBroadPhase.html">QBroadPhase</a> *externalBroadphase)</td></tr>
+<tr class="separator:ab892f3f4b1ca484a0385375f2359f482"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac39f7669811bfe14f12644a6f9e676c6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQWorld.html">QWorld</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQWorld.html#ac39f7669811bfe14f12644a6f9e676c6">SetIterationCount</a> (int value)</td></tr>
 <tr class="separator:ac39f7669811bfe14f12644a6f9e676c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a25fb435d666b9d87f8f85cdbb3606326"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQWorld.html">QWorld</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQWorld.html#a25fb435d666b9d87f8f85cdbb3606326">SetTimeScale</a> (float value=1.0f)</td></tr>
@@ -225,14 +230,14 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa2895a9baac4215f7cc6943759ceb92f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa7c23d1663e97194f6e23f5a4e6e6d1d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQWorld.html#aa7c23d1663e97194f6e23f5a4e6e6d1d">QWorld</a> ()</td></tr>
 <tr class="separator:aa7c23d1663e97194f6e23f5a4e6e6d1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a88cd6420e59c187e7ccfb3e0fcca7c8c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQWorld.html">QWorld</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQWorld.html#a88cd6420e59c187e7ccfb3e0fcca7c8c">ClearJoints</a> (bool deleteAll=false)</td></tr>
-<tr class="separator:a88cd6420e59c187e7ccfb3e0fcca7c8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad244e05c9c17a70b5cd4619a4e1b5946"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQWorld.html">QWorld</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQWorld.html#ad244e05c9c17a70b5cd4619a4e1b5946">ClearSprings</a> (bool deleteAll=false)</td></tr>
-<tr class="separator:ad244e05c9c17a70b5cd4619a4e1b5946"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a996f9a1168a9663e03c71c8fd1606218"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQWorld.html">QWorld</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQWorld.html#a996f9a1168a9663e03c71c8fd1606218">ClearRaycasts</a> (bool deleteAll=false)</td></tr>
-<tr class="separator:a996f9a1168a9663e03c71c8fd1606218"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a23d6c6e67fef4a6e6e0cdb066eda6781"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQWorld.html">QWorld</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQWorld.html#a23d6c6e67fef4a6e6e0cdb066eda6781">ClearWorld</a> (bool deleteAll=false)</td></tr>
-<tr class="separator:a23d6c6e67fef4a6e6e0cdb066eda6781"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a921c1a4b0a677851d870f6e0f9c9b72b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQWorld.html">QWorld</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQWorld.html#a921c1a4b0a677851d870f6e0f9c9b72b">ClearJoints</a> ()</td></tr>
+<tr class="separator:a921c1a4b0a677851d870f6e0f9c9b72b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada546b7ac198475a0acb047c5a643a9d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQWorld.html">QWorld</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQWorld.html#ada546b7ac198475a0acb047c5a643a9d">ClearSprings</a> ()</td></tr>
+<tr class="separator:ada546b7ac198475a0acb047c5a643a9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20ddfa38330814af778e4098af2e4f7e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQWorld.html">QWorld</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQWorld.html#a20ddfa38330814af778e4098af2e4f7e">ClearRaycasts</a> ()</td></tr>
+<tr class="separator:a20ddfa38330814af778e4098af2e4f7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aacbd7bde28628720f14939e1b7bffb59"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQWorld.html">QWorld</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQWorld.html#aacbd7bde28628720f14939e1b7bffb59">ClearWorld</a> ()</td></tr>
+<tr class="separator:aacbd7bde28628720f14939e1b7bffb59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -244,9 +249,6 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:af808340974c259fdacff71ad22791b0a"><td class="memItemLeft" align="right" valign="top"><a id="af808340974c259fdacff71ad22791b0a"></a>
 vector&lt; <a class="el" href="classQBody.html">QBody</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>bodies</b> =vector&lt;<a class="el" href="classQBody.html">QBody</a>*&gt;()</td></tr>
 <tr class="separator:af808340974c259fdacff71ad22791b0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae5353d0a99cd5b5bcf6a5a4d99188caa"><td class="memItemLeft" align="right" valign="top"><a id="ae5353d0a99cd5b5bcf6a5a4d99188caa"></a>
-<a class="el" href="classQBroadPhase.html">QBroadPhase</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>broadPhase</b> =nullptr</td></tr>
-<tr class="separator:ae5353d0a99cd5b5bcf6a5a4d99188caa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
@@ -259,9 +261,9 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a914019d2ce4cf6caaec4559187078d4e"><td class="memItemLeft" align="right" valign="top"><a id="a914019d2ce4cf6caaec4559187078d4e"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>ClearGizmos</b> ()</td></tr>
 <tr class="separator:a914019d2ce4cf6caaec4559187078d4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4448856b30f353f58356b6b7b3ccfc24"><td class="memItemLeft" align="right" valign="top"><a id="a4448856b30f353f58356b6b7b3ccfc24"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>ClearBodies</b> (bool deleteAll=false)</td></tr>
-<tr class="separator:a4448856b30f353f58356b6b7b3ccfc24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84445ff22d3ef353b8d763e1f56fc4f7"><td class="memItemLeft" align="right" valign="top"><a id="a84445ff22d3ef353b8d763e1f56fc4f7"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>ClearBodies</b> ()</td></tr>
+<tr class="separator:a84445ff22d3ef353b8d763e1f56fc4f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac550a37533235595811e53b662f0a5ca"><td class="memItemLeft" align="right" valign="top"><a id="ac550a37533235595811e53b662f0a5ca"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>CreateIslands</b> (int bodyIndex, vector&lt; <a class="el" href="classQBody.html">QBody</a> * &gt; &amp;bodyList, vector&lt; <a class="el" href="classQBody.html">QBody</a> * &gt; &amp;island, vector&lt; bool &gt; &amp;visitedList)</td></tr>
 <tr class="separator:ac550a37533235595811e53b662f0a5ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -304,9 +306,6 @@ vector&lt; <a class="el" href="classQRaycast.html">QRaycast</a> * &gt;&#160;</td
 <tr class="memitem:a85a96d1b1d804e710627872e140ffcea"><td class="memItemLeft" align="right" valign="top"><a id="a85a96d1b1d804e710627872e140ffcea"></a>
 vector&lt; <a class="el" href="classQGizmo.html">QGizmo</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>gizmos</b> =vector&lt;<a class="el" href="classQGizmo.html">QGizmo</a>*&gt;()</td></tr>
 <tr class="separator:a85a96d1b1d804e710627872e140ffcea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab4975e68d132a27744e86d70eb432380"><td class="memItemLeft" align="right" valign="top"><a id="ab4975e68d132a27744e86d70eb432380"></a>
-std::unordered_set&lt; pair&lt; <a class="el" href="classQBody.html">QBody</a> *, <a class="el" href="classQBody.html">QBody</a> * &gt;, <a class="el" href="structQBody_1_1BodyPairHash.html">QBody::BodyPairHash</a>, <a class="el" href="structQBody_1_1BodyPairEqual.html">QBody::BodyPairEqual</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>broadPhasePairs</b></td></tr>
-<tr class="separator:ab4975e68d132a27744e86d70eb432380"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a348586de9250200674d5d6651c51b5bd"><td class="memItemLeft" align="right" valign="top"><a id="a348586de9250200674d5d6651c51b5bd"></a>
 vector&lt; vector&lt; <a class="el" href="classQBody.html">QBody</a> * &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>sleepingIslands</b> =vector&lt;vector&lt;<a class="el" href="classQBody.html">QBody</a>*&gt; &gt;()</td></tr>
 <tr class="separator:a348586de9250200674d5d6651c51b5bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -316,6 +315,9 @@ unordered_set&lt; pair&lt; <a class="el" href="classQBody.html">QBody</a> *, <a 
 <tr class="memitem:ab2d8e9c09dbd934b61f5c31f1f02608b"><td class="memItemLeft" align="right" valign="top"><a id="ab2d8e9c09dbd934b61f5c31f1f02608b"></a>
 vector&lt; <a class="el" href="classQManifold.html">QManifold</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>manifolds</b></td></tr>
 <tr class="separator:ab2d8e9c09dbd934b61f5c31f1f02608b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5353d0a99cd5b5bcf6a5a4d99188caa"><td class="memItemLeft" align="right" valign="top"><a id="ae5353d0a99cd5b5bcf6a5a4d99188caa"></a>
+<a class="el" href="classQBroadPhase.html">QBroadPhase</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>broadPhase</b> =nullptr</td></tr>
+<tr class="separator:ae5353d0a99cd5b5bcf6a5a4d99188caa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a919c97d8b303a05f6949c27518343529"><td class="memItemLeft" align="right" valign="top"><a id="a919c97d8b303a05f6949c27518343529"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>enabled</b> =true</td></tr>
 <tr class="separator:a919c97d8b303a05f6949c27518343529"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -574,8 +576,8 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QBroadPhase</b></td>
 
 </div>
 </div>
-<a id="a88cd6420e59c187e7ccfb3e0fcca7c8c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a88cd6420e59c187e7ccfb3e0fcca7c8c">&#9670;&nbsp;</a></span>ClearJoints()</h2>
+<a id="a921c1a4b0a677851d870f6e0f9c9b72b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a921c1a4b0a677851d870f6e0f9c9b72b">&#9670;&nbsp;</a></span>ClearJoints()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -583,8 +585,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QBroadPhase</b></td>
         <tr>
           <td class="memname"><a class="el" href="classQWorld.html">QWorld</a> * QWorld::ClearJoints </td>
           <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>deleteAll</em> = <code>false</code></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -593,8 +594,8 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QBroadPhase</b></td>
 
 </div>
 </div>
-<a id="a996f9a1168a9663e03c71c8fd1606218"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a996f9a1168a9663e03c71c8fd1606218">&#9670;&nbsp;</a></span>ClearRaycasts()</h2>
+<a id="a20ddfa38330814af778e4098af2e4f7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20ddfa38330814af778e4098af2e4f7e">&#9670;&nbsp;</a></span>ClearRaycasts()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -602,8 +603,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QBroadPhase</b></td>
         <tr>
           <td class="memname"><a class="el" href="classQWorld.html">QWorld</a> * QWorld::ClearRaycasts </td>
           <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>deleteAll</em> = <code>false</code></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -612,8 +612,8 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QBroadPhase</b></td>
 
 </div>
 </div>
-<a id="ad244e05c9c17a70b5cd4619a4e1b5946"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad244e05c9c17a70b5cd4619a4e1b5946">&#9670;&nbsp;</a></span>ClearSprings()</h2>
+<a id="ada546b7ac198475a0acb047c5a643a9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada546b7ac198475a0acb047c5a643a9d">&#9670;&nbsp;</a></span>ClearSprings()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -621,8 +621,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QBroadPhase</b></td>
         <tr>
           <td class="memname"><a class="el" href="classQWorld.html">QWorld</a> * QWorld::ClearSprings </td>
           <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>deleteAll</em> = <code>false</code></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -631,8 +630,8 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QBroadPhase</b></td>
 
 </div>
 </div>
-<a id="a23d6c6e67fef4a6e6e0cdb066eda6781"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a23d6c6e67fef4a6e6e0cdb066eda6781">&#9670;&nbsp;</a></span>ClearWorld()</h2>
+<a id="aacbd7bde28628720f14939e1b7bffb59"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aacbd7bde28628720f14939e1b7bffb59">&#9670;&nbsp;</a></span>ClearWorld()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -640,8 +639,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QBroadPhase</b></td>
         <tr>
           <td class="memname"><a class="el" href="classQWorld.html">QWorld</a> * QWorld::ClearWorld </td>
           <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>deleteAll</em> = <code>false</code></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -1709,6 +1707,38 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QBroadPhase</b></td>
 <p>Removes a spring from the world at the specified index. The index of a spring can be obtained using the <a class="el" href="classQWorld.html#ab7f364025ef6ef7a2338235dbd8e9188">GetSpringIndex()</a> method. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">index</td><td>The index of the spring to be removed. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab892f3f4b1ca484a0385375f2359f482"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab892f3f4b1ca484a0385375f2359f482">&#9670;&nbsp;</a></span>SetBroadphase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classQWorld.html">QWorld</a>* QWorld::SetBroadphase </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classQBroadPhase.html">QBroadPhase</a> *&#160;</td>
+          <td class="paramname"><em>externalBroadphase</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Custom solutions inheriting from the QBroadphase class can be defined for the broad phase. This allows external broad phase solutions to be plugged in or removed. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">externalBroadphase</td><td>A QBroadphase-typed class representing the external broad phase solution. </td></tr>
   </table>
   </dd>
 </dl>

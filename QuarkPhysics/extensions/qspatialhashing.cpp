@@ -31,78 +31,98 @@
 #include "algorithm"
 
 
-QSpatialHashing::QSpatialHashing(vector<QBody*>& worldBodies, float sizeOfCells): QBroadPhase(worldBodies) {
-    cellSize=sizeOfCells;
+
+QSpatialHashing::QSpatialHashing(vector<QBody *> &worldBodies, float sizeOfCells) : QBroadPhase(worldBodies)
+{
+    
 }
 
 void QSpatialHashing::Clear()
 {
+    bodyOldCells.clear();
     cells.clear();
+    pairs.clear();
 }
 
 
-void QSpatialHashing::Update() {
-    
-    float sizeFactor = 1 / cellSize;
+void QSpatialHashing::Insert(QBody *body)
+{
 
-    
-    for (auto &body : bodies) {
-        
-        auto aabb = body->GetAABB();
+    auto aabb = body->GetAABB();
 
 
-        CellAABB cellAABB(floor(aabb.GetMin().x * sizeFactor),floor(aabb.GetMin().y * sizeFactor),
-                          floor(aabb.GetMax().x * sizeFactor),floor(aabb.GetMax().y * sizeFactor));
+    CellAABB cellAABB(floor(aabb.GetMin().x * cellSizeFactor),floor(aabb.GetMin().y * cellSizeFactor),
+                        floor(aabb.GetMax().x * cellSizeFactor),floor(aabb.GetMax().y * cellSizeFactor));
 
+    auto it = bodyOldCells.find(body);
 
-        
-        auto it = bodyOldCells.find(body);
-        
-        
-        if (it != bodyOldCells.end()) {
+    if (it != bodyOldCells.end()) {
             
-            CellAABB &oldCellAABB = it->second;
+        CellAABB &oldCellAABB = it->second;
 
-            //AABB Cells doesn't change against to the previous.  
-            if (oldCellAABB==cellAABB) {
-                
-                continue; 
-            }
-
-            //Removing body from cells
-            for (int cellX = oldCellAABB.minX; cellX <= oldCellAABB.maxX; ++cellX) {
-                for (int cellY = oldCellAABB.minY; cellY <= oldCellAABB.maxY; ++cellY) {
-                    auto& cell = cells[{cellX, cellY}];
-                    auto bodyIt=find(cell.begin(),cell.end(),body );
-                    if (bodyIt!=cell.end ()){
-                        cell.erase(bodyIt);
-                    }
-                }
-            }
-
-
+        //AABB Cells doesn't change against to the previous.  
+        if (oldCellAABB==cellAABB) {
             
+            return;
         }
 
-        bodyOldCells[body]= cellAABB;
-        //Adding body to cells
-        for (int cellX = cellAABB.minX; cellX <= cellAABB.maxX; ++cellX) {
-            for (int cellY = cellAABB.minY; cellY <= cellAABB.maxY; ++cellY) {
-                cells[{cellX, cellY}].push_back(body);
-            }
-        }
+        //Removing body from cells
+        RemoveBodyFromCells(body,oldCellAABB);
         
     }
 
-    
+    bodyOldCells[body]= cellAABB;
+    //Adding body to cells
+    for (int cellX = cellAABB.minX; cellX <= cellAABB.maxX; ++cellX) {
+        for (int cellY = cellAABB.minY; cellY <= cellAABB.maxY; ++cellY) {
+            cells[{cellX, cellY}].push_back(body);
+        }
+    }
 
-    
+
 }
 
+void QSpatialHashing::Remove(QBody *body)
+{
 
+    auto it = bodyOldCells.find(body);
 
-void QSpatialHashing::GetAllPairs(std::unordered_set<std::pair<QBody*, QBody*>,QBody::BodyPairHash,QBody::BodyPairEqual> &pairs) {
+    if (it != bodyOldCells.end()) {
+        
+        CellAABB &oldCellAABB = it->second;
+
+        //Removing body from cells
+        RemoveBodyFromCells(body,oldCellAABB);
+        //Removing from bodyOldCells collection 
+        bodyOldCells.erase(it);
+    }
+
+}
+
+void QSpatialHashing::SetCellSize(float size)
+{
+    Clear();
+    cellSize=size;
+    cellSizeFactor=1/cellSize;
+}
+
+void QSpatialHashing::RemoveBodyFromCells(QBody *body, CellAABB &cellAABB)
+{
+    for (int cellX = cellAABB.minX; cellX <= cellAABB.maxX; ++cellX) {
+        for (int cellY = cellAABB.minY; cellY <= cellAABB.maxY; ++cellY) {
+            auto& cell = cells[{cellX, cellY}];
+            auto bodyIt=find(cell.begin(),cell.end(),body );
+            if (bodyIt!=cell.end ()){
+                cell.erase(bodyIt);
+            }
+        }
+    }
+}
+
+std::unordered_set<std::pair<QBody*, QBody*>,QBody::BodyPairHash,QBody::BodyPairEqual> & QSpatialHashing::GetPairs() {
      
+
+    pairs.clear();
 
     for (auto& cell : cells) {
         std::vector<QBody*>& cellBodies = cell.second;
@@ -144,6 +164,8 @@ void QSpatialHashing::GetAllPairs(std::unordered_set<std::pair<QBody*, QBody*>,Q
             }
         }
     }
+
+    return pairs;
 
     
 }

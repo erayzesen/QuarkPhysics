@@ -61,30 +61,6 @@ QManifold::QManifold(QBody *bodyA, QBody *bodyB)
 
 }
 
-//void QManifold::Update(vector<QCollision::Contact> newContacts)
-//{
-
-//	//contacts.clear();
-//	vector<QCollision::Contact> mergedContacts;
-//	bool isFlipFlop=false;
-//	for(int i=0;i<newContacts.size();i++){
-//		auto nc=newContacts[i];
-//		int k=-1;
-//		for(int n=0;n<contacts.size();n++){
-//			auto c=contacts[n];
-//			if(c.particle==nc.particle){
-
-//			}
-
-//		}
-//		mergedContacts.push_back(nc);
-
-
-
-//	}
-//	contacts=mergedContacts;
-//}
-
 
 
 QVector QManifold::GetRelativeVelocity(QParticle *contactParticle,vector<QParticle*> referenceParticles,QVector rRef, QVector rInc)

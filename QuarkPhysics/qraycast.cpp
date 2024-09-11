@@ -86,7 +86,7 @@ vector<QBody *> QRaycast::GetPotentialBodies(QWorld *whichWorld, QVector rayPosi
 void QRaycast::UpdateContacts()
 {
 	if(world==nullptr)return;
-	contacts=RaycastTo(world,position,ray,1,enabledContainingBodies);
+	contacts=RaycastTo(world,position,ray,collidableLayersBit,enabledContainingBodies);
 }
 
 
@@ -135,6 +135,10 @@ bool QRaycast::GetEnabledContainingBodies()
 	return enabledContainingBodies;
 }
 
+int QRaycast::GetCollidableLayersBit()
+{
+    return collidableLayersBit;
+}
 
 
 float QRaycast::GetRotation()
@@ -166,6 +170,12 @@ QRaycast *QRaycast::SetEnabledContainingBodies(bool value)
 {
 	enabledContainingBodies=value;
 	return this;
+}
+
+QRaycast *QRaycast::SetCollidableLayersBit(int value)
+{
+	collidableLayersBit=value;	
+    return this;
 }
 
 void QRaycast::RaycastToParticles(QBody *body, QMesh *mesh, QVector rayPosition, QVector rayVector, QVector rayUnit, QVector rayNormal, bool enableContainingBodies,vector<QRaycast::Contact> *contacts)

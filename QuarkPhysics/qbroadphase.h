@@ -42,6 +42,12 @@
 
 
 class QBroadPhase { 
+protected:
+    std::unordered_set<pair<QBody*, QBody*>,QBody::BodyPairHash,QBody::BodyPairEqual> pairs;
+    bool BodiesCanCollide(QBody * bodyA,QBody *bodyB){
+        return QBody::CanCollide(bodyA,bodyB);
+    }
+
 public:
     vector<QBody*> &bodies;
     QBroadPhase(vector<QBody*> &worldBodies): bodies(worldBodies){};
@@ -50,13 +56,11 @@ public:
 
     virtual void Clear();
 
-    virtual void GetAllPairs(std::unordered_set<std::pair<QBody*, QBody*>,QBody::BodyPairHash,QBody::BodyPairEqual> &pairs);
+    virtual std::unordered_set<pair<QBody*, QBody*>,QBody::BodyPairHash,QBody::BodyPairEqual> &GetPairs();
 
-    virtual void Update();
+    virtual void Insert(QBody* body);
 
-    bool BodiesCanCollide(QBody * bodyA,QBody *bodyB){
-        return QBody::CanCollide(bodyA,bodyB);
-    }
+    virtual void Remove(QBody* body);
 
 	 
 };

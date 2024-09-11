@@ -48,7 +48,6 @@ ExampleSceneBenchmarkBoxes2::ExampleSceneBenchmarkBoxes2(QVector sceneSize):QExa
 	for(int i=0;i<boxHeapCount;i++){
 		float ny=startPos.y-(i*(boxSize));
 		for(int n=0;n<boxGroupCount;n++){
-			//if(n%2==0)continue;
 			float nx=startPos.x+(n*(boxSize));
 			AddRectBody(nx,ny,boxSize,boxSize);
 		}

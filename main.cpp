@@ -81,6 +81,7 @@ QVector mousePosition;
 void LoadExampleScene(int sceneIndex){
 	if(scene!=nullptr){
 		delete scene;
+		scene=nullptr;
 	}
 	switch (sceneIndex) {
 	case 1:
@@ -283,6 +284,7 @@ int main()
 
 			if (event.type == sf::Event::Closed){
 				delete scene;
+				scene=nullptr;
 				window->close();
 			}
 			//Mouse Events
@@ -351,8 +353,9 @@ int main()
 			}
 		}
 
-
+		
 	}
+	
 
 	return 0;
 }

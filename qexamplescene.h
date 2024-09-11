@@ -39,7 +39,11 @@ public:
 	
 	QExampleScene(QVector sceneSize);
 	~QExampleScene(){
-		delete world;
+		if (world!=nullptr){
+			delete world;
+			world=nullptr;
+		}
+		
 	};
 	QWorld * world;
 

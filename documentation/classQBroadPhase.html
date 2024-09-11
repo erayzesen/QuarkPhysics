@@ -17,8 +17,9 @@
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-custom-qp.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="tweeks.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -26,8 +27,10 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo_x2.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Quark Physics
+   &#160;<span id="projectnumber">v1.0</span>
    </div>
    <div id="projectbrief">2D Rigid and Soft Body Physics Engine</div>
   </td>
@@ -87,11 +90,22 @@ $(document).ready(function(){initNavTree('classQBroadPhase.html',''); initResiza
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classQBroadPhase-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">QBroadPhase Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="dynheader">
+Inheritance diagram for QBroadPhase:</div>
+<div class="dyncontent">
+<div class="center"><img src="classQBroadPhase__inherit__graph.png" border="0" usemap="#aQBroadPhase_inherit__map" alt="Inheritance graph"/></div>
+<map name="aQBroadPhase_inherit__map" id="aQBroadPhase_inherit__map">
+<area shape="rect" title=" " alt="" coords="14,5,117,32"/>
+<area shape="rect" href="classQSpatialHashing.html" title=" " alt="" coords="5,80,125,107"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -101,21 +115,33 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5913658b56cbaca815067f780ad13897"><td class="memItemLeft" align="right" valign="top"><a id="a5913658b56cbaca815067f780ad13897"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Clear</b> ()</td></tr>
 <tr class="separator:a5913658b56cbaca815067f780ad13897"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae80fadf800376612fd10da8b19cf8229"><td class="memItemLeft" align="right" valign="top"><a id="ae80fadf800376612fd10da8b19cf8229"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>GetAllPairs</b> (std::unordered_set&lt; std::pair&lt; <a class="el" href="classQBody.html">QBody</a> *, <a class="el" href="classQBody.html">QBody</a> * &gt;, <a class="el" href="structQBody_1_1BodyPairHash.html">QBody::BodyPairHash</a>, <a class="el" href="structQBody_1_1BodyPairEqual.html">QBody::BodyPairEqual</a> &gt; &amp;pairs)</td></tr>
-<tr class="separator:ae80fadf800376612fd10da8b19cf8229"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6ea268d42eb06f9e79b172832c57779d"><td class="memItemLeft" align="right" valign="top"><a id="a6ea268d42eb06f9e79b172832c57779d"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Update</b> ()</td></tr>
-<tr class="separator:a6ea268d42eb06f9e79b172832c57779d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a76548e730bf1dd7e1a446c0a5c39ce83"><td class="memItemLeft" align="right" valign="top"><a id="a76548e730bf1dd7e1a446c0a5c39ce83"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>BodiesCanCollide</b> (<a class="el" href="classQBody.html">QBody</a> *bodyA, <a class="el" href="classQBody.html">QBody</a> *bodyB)</td></tr>
-<tr class="separator:a76548e730bf1dd7e1a446c0a5c39ce83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af92f94d32d444b4afcdd5a2632e854af"><td class="memItemLeft" align="right" valign="top"><a id="af92f94d32d444b4afcdd5a2632e854af"></a>
+virtual std::unordered_set&lt; pair&lt; <a class="el" href="classQBody.html">QBody</a> *, <a class="el" href="classQBody.html">QBody</a> * &gt;, <a class="el" href="structQBody_1_1BodyPairHash.html">QBody::BodyPairHash</a>, <a class="el" href="structQBody_1_1BodyPairEqual.html">QBody::BodyPairEqual</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>GetPairs</b> ()</td></tr>
+<tr class="separator:af92f94d32d444b4afcdd5a2632e854af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58a73cbce6a5ff3ad4c1eb2dd8dd0b4a"><td class="memItemLeft" align="right" valign="top"><a id="a58a73cbce6a5ff3ad4c1eb2dd8dd0b4a"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Insert</b> (<a class="el" href="classQBody.html">QBody</a> *body)</td></tr>
+<tr class="separator:a58a73cbce6a5ff3ad4c1eb2dd8dd0b4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a158993d4e9ed9160d368e5737481abe3"><td class="memItemLeft" align="right" valign="top"><a id="a158993d4e9ed9160d368e5737481abe3"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Remove</b> (<a class="el" href="classQBody.html">QBody</a> *body)</td></tr>
+<tr class="separator:a158993d4e9ed9160d368e5737481abe3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:ab356dc6218b3d9b1b8a2a55cf22d921b"><td class="memItemLeft" align="right" valign="top"><a id="ab356dc6218b3d9b1b8a2a55cf22d921b"></a>
 vector&lt; <a class="el" href="classQBody.html">QBody</a> * &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>bodies</b></td></tr>
 <tr class="separator:ab356dc6218b3d9b1b8a2a55cf22d921b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a76548e730bf1dd7e1a446c0a5c39ce83"><td class="memItemLeft" align="right" valign="top"><a id="a76548e730bf1dd7e1a446c0a5c39ce83"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>BodiesCanCollide</b> (<a class="el" href="classQBody.html">QBody</a> *bodyA, <a class="el" href="classQBody.html">QBody</a> *bodyB)</td></tr>
+<tr class="separator:a76548e730bf1dd7e1a446c0a5c39ce83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a644e94e0f0ffb688d5495cf373052417"><td class="memItemLeft" align="right" valign="top"><a id="a644e94e0f0ffb688d5495cf373052417"></a>
+std::unordered_set&lt; pair&lt; <a class="el" href="classQBody.html">QBody</a> *, <a class="el" href="classQBody.html">QBody</a> * &gt;, <a class="el" href="structQBody_1_1BodyPairHash.html">QBody::BodyPairHash</a>, <a class="el" href="structQBody_1_1BodyPairEqual.html">QBody::BodyPairEqual</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>pairs</b></td></tr>
+<tr class="separator:a644e94e0f0ffb688d5495cf373052417"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>QuarkPhysics/<a class="el" href="qbroadphase_8h_source.html">qbroadphase.h</a></li>

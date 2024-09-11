@@ -39,30 +39,6 @@ ExampleSceneSoftBodies::ExampleSceneSoftBodies(QVector sceneSize) :QExampleScene
 	world->AddBody(floor);
 	
 
-
-
-	//Adding Custom Softbody with different particle radius mesh
-//	QSoftBody *customSoftBody=new QSoftBody();
-//	QMesh *customMesh=new QMesh();
-//	float polyRadius=64.0f;
-//	float angpart=(M_PI*2.0f)/12;
-//	vector<QParticle*> closedPolygon;
-//	for(int i=0;i<12;i++){
-//		float ang=angpart*i;
-//		QVector unit=QVector(cos(ang),sin(ang));
-//		float particleRadius=i==0 ? 0.5f:i;
-//		QParticle *particle=new QParticle(unit*polyRadius,particleRadius);
-//		customMesh->AddParticle( particle );
-//		closedPolygon.push_back(particle);
-//	}
-//	customMesh->AddClosedPolygon(closedPolygon);
-//	for(int i=0;i<12;i++){
-//		customMesh->AddSpring(new QSpring(customMesh->GetParticle(i),customMesh->GetParticle( (i+1)%customMesh->GetParticleCount() )) );
-//	}
-//	customSoftBody->AddMesh(customMesh)->SetPosition(200,100);
-//	customSoftBody->SetVolumePreserving(true);
-//	world->AddBody(customSoftBody);
-
 	//Adding mass-spring model soft body via only particles
 	QSoftBody *pbdBody=new QSoftBody();
 	pbdBody->AddMesh( QMesh::CreateWithRect( QVector(128,128),QVector::Zero(),QVector(6,6),true,false,8.0f ) );
@@ -101,23 +77,6 @@ ExampleSceneSoftBodies::ExampleSceneSoftBodies(QVector sceneSize) :QExampleScene
 	float circleRadius=24.0;
 	QRigidBody *circleBody=AddCircleBody(500.0f,-200.0f, circleRadius);
 	circleBody->SetRestitution(0.9f);
-
-	//It's about self collision tests.
-	/* QSoftBody *wordBody=new QSoftBody();
-	wordBody->SetPosition(QVector(400,200) );
-	wordBody->AddMeshesFromFile("../resources/mesh_files/soft_test.qmesh");
-	wordBody->SetRigidity(0.3f)->SetShapeMatchingEnabled(true)->SetShapeMatchingRate(0.35f);
-	wordBody->SetSelfCollisionsEnabled(true);
-	world->AddBody(wordBody);
-
-	wordBody=new QSoftBody();
-	wordBody->SetPosition(QVector(700,200) );
-	wordBody->AddMeshesFromFile("../resources/mesh_files/word_q.qmesh");
-	wordBody->SetRigidity(0.3f)->SetShapeMatchingEnabled(true)->SetShapeMatchingRate(0.35f);
-	wordBody->SetSelfCollisionsEnabled(true);
-	world->AddBody(wordBody); */
-
-
 
 
 }

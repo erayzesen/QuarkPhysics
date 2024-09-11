@@ -63,15 +63,16 @@ protected:
 
 	vector <QGizmo*> gizmos=vector<QGizmo*>();
 
-	std::unordered_set<pair<QBody*, QBody*>,QBody::BodyPairHash,QBody::BodyPairEqual> broadPhasePairs;
-
 	vector<vector<QBody*> > sleepingIslands=vector<vector<QBody*> >();
-	unordered_set<pair<QBody*, QBody*>, QBody::BodyPairHash,QBody::BodyPairEqual> collisionExceptions;
 
-	
+	unordered_set<pair<QBody*, QBody*>, QBody::BodyPairHash,QBody::BodyPairEqual> collisionExceptions;
 
 	vector<QManifold> manifolds;
 
+	//Broadphase
+	QBroadPhase *broadPhase=nullptr;
+
+	
 
 	//Physics World Properties
 
@@ -92,7 +93,7 @@ protected:
 	int debugCollisionTestCount=0; // any collision method call count
 
 	void ClearGizmos();
-	void ClearBodies(bool deleteAll=false);
+	void ClearBodies();
 
 
 	//Collisions, Dynamic Colliders Islands and Sleeping Feature
@@ -116,7 +117,7 @@ public:
 	
 
 	vector<QBody*> bodies=vector<QBody*>();
-	QBroadPhase *broadPhase=nullptr;
+	
 	/* It's the maximum world size in pixels. It is used in some calculations that require maximum values. */
 	inline static float MAX_WORLD_SIZE=99999.0f;
 
@@ -204,6 +205,18 @@ public:
 		return this;
 	}
 
+	/**Custom solutions inheriting from the QBroadphase class can be defined for the broad phase.
+	 * This allows external broad phase solutions to be plugged in or removed.
+	 * @param externalBroadphase A QBroadphase-typed class representing the external broad phase solution.
+	 */
+	QWorld *SetBroadphase(QBroadPhase *externalBroadphase){
+		broadPhase=externalBroadphase;
+		if (broadPhase!=nullptr){
+			broadPhase->Clear();
+		}
+		return this;
+	}
+
 
 	/** Sets the iteration count per step of physics in the world. 
 	 * Iteration count determines stability level of the simulation.
@@ -230,6 +243,7 @@ public:
 		enabled=value;
 		return this;
 	}
+	
 
 	
 	
@@ -461,16 +475,16 @@ public:
 	~QWorld();
 	/** Removes all joints from the world. 
 	 */
-	QWorld *ClearJoints(bool deleteAll=false);
+	QWorld *ClearJoints();
 	/** Removes all springs from the world.
 	 */
-	QWorld *ClearSprings(bool deleteAll=false);
+	QWorld *ClearSprings();
 	/** It removes all raycasts from the world.
 	 */
-	QWorld *ClearRaycasts(bool deleteAll=false);
+	QWorld *ClearRaycasts();
 	/** It removes all objects from the world. 
 	 */
-	QWorld *ClearWorld(bool deleteAll=false);
+	QWorld *ClearWorld();
 
 	friend class QCollision;
 	friend class QManifold;

@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="600"
+   height="800"
+   viewBox="0 0 600 800"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3.2 (091e20ef0f, 2023-11-25)"
+   sodipodi:docname="concept.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#999999"
+     borderopacity="1"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     inkscape:zoom="1"
+     inkscape:cx="335.5"
+     inkscape:cy="534"
+     inkscape:window-width="1920"
+     inkscape:window-height="1010"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <marker
+       style="overflow:visible"
+       id="RoundedArrow"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Rounded arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.7)"
+         d="m -0.21114562,-4.1055728 6.42229122,3.21114561 a 1,1 90 0 1 0,1.78885438 L -0.21114562,4.1055728 A 1.236068,1.236068 31.717474 0 1 -2,3 v -6 a 1.236068,1.236068 148.28253 0 1 1.78885438,-1.1055728 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         id="path8" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#211a21;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:2.6;stroke-linejoin:round;paint-order:markers fill stroke"
+       id="rect8"
+       width="600"
+       height="800"
+       x="0"
+       y="0"
+       transform="matrix(1.119299,0,0,1.1036444,-43.499347,-28.987198)" />
+    <path
+       style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#957587;stroke-width:2.6;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+       d="M 116.2198,431.22876 V 549.00688 H 229.25598"
+       id="path29"
+       transform="translate(0,21.402605)" />
+    <path
+       style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#957587;stroke-width:2.6;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+       d="m 484.71585,439.22876 v 110.448 h -124.7399"
+       id="path30"
+       sodipodi:nodetypes="ccc"
+       transform="translate(0,21.402605)" />
+    <path
+       style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#8bc849;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+       d="M 224.71997,97.222382 115.75198,95.563667 v 83.116783"
+       id="path22"
+       sodipodi:nodetypes="ccc"
+       transform="translate(0,21.402605)" />
+    <path
+       style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#acb765;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+       d="M 224.71997,97.222382 115.75198,95.563667 v 83.116783"
+       id="path22-1"
+       sodipodi:nodetypes="ccc"
+       transform="matrix(-1,0,0,1,600,21.402605)" />
+    <path
+       style="fill:#ed5530;fill-opacity:1;fill-rule:evenodd;stroke:#56b9bd;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#RoundedArrow);paint-order:markers fill stroke"
+       d="m 300,118.32959 v 147.9968"
+       id="path23"
+       sodipodi:nodetypes="cc"
+       transform="translate(0,21.402605)" />
+    <path
+       style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#ed5530;stroke-width:2.6;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+       d="M 300.13433,573.60315 300,648.98718"
+       id="path31"
+       transform="translate(0,21.402605)" />
+    <path
+       style="fill:#5b7a40;fill-opacity:1;fill-rule:evenodd;stroke:#56b9bd;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+       d="m 300.53731,312.13757 v 77.63037"
+       id="path24"
+       transform="translate(0,21.402605)" />
+    <path
+       style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#56b9bd;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+       d="M 226.01997,289.00688 H 115.75198 v 102.06106"
+       id="path25"
+       transform="translate(0,21.402605)" />
+    <path
+       style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#56b9bd;stroke-width:2.6;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+       d="m 363.43994,290.11998 h 121.06332 v 88.99519"
+       id="path26"
+       sodipodi:nodetypes="ccc"
+       transform="translate(0,21.402605)" />
+    <path
+       style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#957587;stroke-width:2.6;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+       d="m 300.46782,431.22876 v 85.63519"
+       id="path28"
+       transform="translate(0,21.402605)" />
+    <a
+       id="a1"
+       style="display:inline"
+       xlink:href="https://erayzesen.github.io/QuarkPhysics/documentation/classQWorld.html"
+       target="_blank">
+      <g
+         id="g5"
+         transform="matrix(0.78489795,0,0,0.72267514,69.021186,25.114489)"
+         inkscape:label="qworld"
+         onclick="https://erayzesen.github.io/QuarkPhysics/documentation/classQWorld.html">
+        <rect
+           style="fill:#939b80;fill-opacity:1;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke"
+           id="rect5"
+           width="257.664"
+           height="103.20477"
+           x="142.45593"
+           y="78.062378"
+           transform="translate(22.990836,-2.5650884)"
+           ry="23.62158" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:42.6667px;line-height:1.3;font-family:'DM Sans';-inkscape-font-specification:'DM Sans Bold';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#211a21;fill-opacity:1;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke"
+           x="38.385475"
+           y="221.89276"
+           id="text5"
+           transform="translate(256.10664,-81.950409)"><tspan
+             sodipodi:role="line"
+             id="tspan5"
+             x="38.385475"
+             y="221.89276">QWorld</tspan></text>
+      </g>
+    </a>
+    <a
+       id="a2"
+       xlink:href="https://erayzesen.github.io/QuarkPhysics/documentation/classQJoint.html"
+       target="_blank">
+      <g
+         id="g6"
+         transform="matrix(0.62965695,0,0,0.57974094,-69.542691,156.72458)"
+         inkscape:label="qbody"
+         onclick="https://erayzesen.github.io/QuarkPhysics/documentation/classQJoint.html">
+        <title
+           id="title32">QJoint</title>
+        <rect
+           style="fill:#8bc849;fill-opacity:1;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke"
+           id="rect6"
+           width="257.664"
+           height="103.20477"
+           x="142.45593"
+           y="78.062378"
+           transform="translate(22.990836,-2.5650884)"
+           ry="23.62158" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:42.6667px;line-height:1.3;font-family:'DM Sans';-inkscape-font-specification:'DM Sans Bold';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#211a21;fill-opacity:1;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke"
+           x="38.385475"
+           y="221.89276"
+           id="text6"
+           transform="translate(256.10664,-81.950409)"><tspan
+             sodipodi:role="line"
+             id="tspan6"
+             x="38.385479"
+             y="221.89276">QJoint</tspan></text>
+      </g>
+    </a>
+    <a
+       id="a3"
+       xlink:href="https://erayzesen.github.io/QuarkPhysics/documentation/classQBody.html"
+       target="_blank">
+      <g
+         id="g10"
+         transform="matrix(0.62965695,0,0,0.57974094,114.70533,236.72458)"
+         inkscape:label="qjoint"
+         onclick="https://erayzesen.github.io/QuarkPhysics/documentation/classQBody.html">
+        <title
+           id="title33">QBody</title>
+        <rect
+           style="fill:#56b9bd;fill-opacity:1;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke"
+           id="rect10"
+           width="257.664"
+           height="103.20477"
+           x="142.45593"
+           y="78.062378"
+           transform="translate(22.990836,-2.5650884)"
+           ry="23.62158" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:42.6667px;line-height:1.3;font-family:'DM Sans';-inkscape-font-specification:'DM Sans Bold';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#211a21;fill-opacity:1;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke"
+           x="38.385475"
+           y="221.89276"
+           id="text10"
+           transform="translate(256.10664,-81.950409)"><tspan
+             sodipodi:role="line"
+             id="tspan10"
+             x="38.385475"
+             y="221.89276">QBody</tspan></text>
+      </g>
+    </a>
+    <a
+       id="a4"
+       xlink:href="https://erayzesen.github.io/QuarkPhysics/documentation/classQSpring.html"
+       target="_blank">
+      <g
+         id="g11"
+         transform="matrix(0.62965695,0,0,0.57974094,298.95335,156.72458)"
+         inkscape:label="qjoint"
+         onclick="https://erayzesen.github.io/QuarkPhysics/documentation/classQSpring.html">
+        <title
+           id="title34">QSpring</title>
+        <rect
+           style="fill:#acb765;fill-opacity:1;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke"
+           id="rect11"
+           width="257.664"
+           height="103.20477"
+           x="142.45593"
+           y="78.062378"
+           transform="translate(22.990836,-2.5650884)"
+           ry="23.62158" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:42.6667px;line-height:1.3;font-family:'DM Sans';-inkscape-font-specification:'DM Sans Bold';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#211a21;fill-opacity:1;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke"
+           x="38.385475"
+           y="221.89276"
+           id="text11"
+           transform="translate(256.10664,-81.950409)"><tspan
+             sodipodi:role="line"
+             id="tspan11"
+             x="38.385479"
+             y="221.89276">QSpring</tspan></text>
+      </g>
+    </a>
+    <a
+       id="a5"
+       xlink:href="https://erayzesen.github.io/QuarkPhysics/documentation/classQRigidBody.html"
+       target="_blank">
+      <g
+         id="g13"
+         transform="matrix(0.62965695,0,0,0.57974094,-69.542691,356.7246)"
+         inkscape:label="qbody"
+         onclick="https://erayzesen.github.io/QuarkPhysics/documentation/classQRigidBody.html">
+        <title
+           id="title35">QRigidBody</title>
+        <rect
+           style="fill:#56b9bd;fill-opacity:1;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke"
+           id="rect12"
+           width="257.664"
+           height="103.20477"
+           x="142.45593"
+           y="78.062378"
+           transform="translate(22.990836,-2.5650884)"
+           ry="23.62158" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:35.3093px;line-height:1.3;font-family:'DM Sans';-inkscape-font-specification:'DM Sans Bold';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#211a21;fill-opacity:1;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke"
+           x="38.385475"
+           y="221.89276"
+           id="text12"
+           transform="translate(256.10664,-81.950409)"><tspan
+             sodipodi:role="line"
+             id="tspan12"
+             x="38.385475"
+             y="221.89276"
+             style="font-size:35.3093px">QRigidBody</tspan></text>
+      </g>
+    </a>
+    <a
+       id="a6"
+       xlink:href="https://erayzesen.github.io/QuarkPhysics/documentation/classQSoftBody.html"
+       target="_blank">
+      <g
+         id="g14"
+         transform="matrix(0.62965695,0,0,0.57974094,114.70533,356.7246)"
+         inkscape:label="qjoint"
+         onclick="https://erayzesen.github.io/QuarkPhysics/documentation/classQSoftBody.html">
+        <title
+           id="title36">QSoftBody</title>
+        <rect
+           style="fill:#56b9bd;fill-opacity:1;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke"
+           id="rect13"
+           width="257.664"
+           height="103.20477"
+           x="142.45593"
+           y="78.062378"
+           transform="translate(22.990836,-2.5650884)"
+           ry="23.62158" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:35.3093px;line-height:1.3;font-family:'DM Sans';-inkscape-font-specification:'DM Sans Bold';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#211a21;fill-opacity:1;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke"
+           x="38.385475"
+           y="221.89276"
+           id="text13"
+           transform="translate(256.10664,-81.950409)"><tspan
+             sodipodi:role="line"
+             id="tspan13"
+             x="38.385475"
+             y="221.89276"
+             style="font-size:35.3093px">QSoftBody</tspan></text>
+      </g>
+    </a>
+    <g
+       id="g15"
+       transform="matrix(0.62965695,0,0,0.57974094,298.95335,356.7246)"
+       inkscape:label="qjoint">
+      <rect
+         style="opacity:0.435156;fill:#56b9bd;fill-opacity:1;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke"
+         id="rect14"
+         width="257.664"
+         height="103.20477"
+         x="142.45593"
+         y="78.062378"
+         transform="translate(22.990836,-2.5650884)"
+         ry="23.62158" />
+      <text
+         xml:space="preserve"
+         style="font-weight:bold;font-size:35.3093px;line-height:1.3;font-family:'DM Sans';-inkscape-font-specification:'DM Sans Bold';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#211a21;fill-opacity:1;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke"
+         x="38.385475"
+         y="221.89276"
+         id="text14"
+         transform="translate(256.10664,-81.950409)"><tspan
+           sodipodi:role="line"
+           id="tspan14"
+           x="38.385479"
+           y="221.89276"
+           style="font-size:35.3093px">QFluidBody</tspan></text>
+    </g>
+    <a
+       id="a7"
+       xlink:href="https://erayzesen.github.io/QuarkPhysics/documentation/structQMesh.html"
+       target="_blank">
+      <g
+         id="g20"
+         transform="matrix(0.62965695,0,0,0.57974094,114.70533,496.7246)"
+         inkscape:label="qjoint"
+         onclick="https://erayzesen.github.io/QuarkPhysics/documentation/structQMesh.html">
+        <title
+           id="title37">QMesh</title>
+        <rect
+           style="fill:#957587;fill-opacity:1;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke"
+           id="rect20"
+           width="257.664"
+           height="103.20477"
+           x="142.45593"
+           y="78.062378"
+           transform="translate(22.990836,-2.5650884)"
+           ry="23.62158" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:35.3093px;line-height:1.3;font-family:'DM Sans';-inkscape-font-specification:'DM Sans Bold';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#211a21;fill-opacity:1;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke"
+           x="38.385475"
+           y="221.89276"
+           id="text20"
+           transform="translate(256.10664,-81.950409)"><tspan
+             sodipodi:role="line"
+             id="tspan20"
+             x="38.385479"
+             y="221.89276"
+             style="font-size:35.3093px">QMesh</tspan></text>
+      </g>
+    </a>
+    <a
+       id="a8"
+       xlink:href="https://erayzesen.github.io/QuarkPhysics/documentation/classQParticle.html"
+       target="_blank">
+      <g
+         id="g30"
+         transform="matrix(0.62965695,0,0,0.57974094,114.70533,616.7246)"
+         inkscape:label="qjoint"
+         onclick="https://erayzesen.github.io/QuarkPhysics/documentation/classQParticle.html">
+        <title
+           id="title38">QParticle</title>
+        <rect
+           style="fill:#ed5530;fill-opacity:1;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke"
+           id="rect30"
+           width="257.664"
+           height="103.20477"
+           x="142.45593"
+           y="78.062378"
+           transform="translate(22.990836,-2.5650884)"
+           ry="23.62158" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:35.3093px;line-height:1.3;font-family:'DM Sans';-inkscape-font-specification:'DM Sans Bold';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#211a21;fill-opacity:1;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke"
+           x="38.385475"
+           y="221.89276"
+           id="text30"
+           transform="translate(256.10664,-81.950409)"><tspan
+             sodipodi:role="line"
+             id="tspan30"
+             x="38.385471"
+             y="221.89276"
+             style="font-size:35.3093px">QParticle</tspan></text>
+      </g>
+    </a>
+  </g>
+</svg>

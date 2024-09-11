@@ -35,8 +35,8 @@ QExampleScene::QExampleScene(QVector sceneSize)
 {
 	world=new QWorld();
 	//Trying QSpatialHashing broadphase extension
-	QSpatialHashing *broadPhase=new QSpatialHashing(world->bodies,128.0f);
-	world->broadPhase=broadPhase;
+	/* QSpatialHashing *broadPhase=new QSpatialHashing(world->bodies,128.0f);
+	world->SetBroadphase(broadPhase); */
 	this->sceneSize=sceneSize;
 
 
@@ -48,9 +48,6 @@ QRigidBody* QExampleScene::AddRectBody(float posX, float posY, float width, floa
 {
 	QRigidBody *body=new QRigidBody();
 	body->AddMesh(QMesh::CreateWithRect(QVector(width,height),QVector(0.0f,0.0f) ) )->SetPosition(QVector(posX,posY));
-	//body->AddMesh(QMesh::CreateRect(QVector(width,height),QVector(-32.0f,0.0f) ) )->SetPosition(posX,posY);
-	//body->AddMesh(QMesh::CreateCircle(spawnCircleRadius,QVector(32.0f,0.0f) ) )->SetPosition(posX,posY);
-	//float randRot=std::rand()/(RAND_MAX/M_PI);
 	world->AddBody(body);
 	return body;
 }
@@ -59,7 +56,6 @@ QRigidBody* QExampleScene::AddCircleBody(float posX, float posY, float radius)
 {
 	QRigidBody *body=new QRigidBody();
 	body->AddMesh(QMesh::CreateWithCircle(radius,QVector::Zero() ) )->SetPosition(QVector(posX,posY));
-	//body->AddMesh(QMesh::CreateConvexPolygon(spawnPolygonRadius,6,QVector::Zero()) )->SetPosition(posX,posY);
 	world->AddBody(body);
 	return body;
 }

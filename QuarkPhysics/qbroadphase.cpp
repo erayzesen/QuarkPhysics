@@ -36,10 +36,15 @@ void QBroadPhase::Clear()
 {
 }
 
-void QBroadPhase::GetAllPairs(std::unordered_set<std::pair<QBody*, QBody*>,QBody::BodyPairHash,QBody::BodyPairEqual> &pairs)
+std::unordered_set<pair<QBody*, QBody*>,QBody::BodyPairHash,QBody::BodyPairEqual> &QBroadPhase::GetPairs()
+{
+    return pairs;
+}
+
+void QBroadPhase::Insert(QBody *body)
 {
 }
 
-void QBroadPhase::Update()
+void QBroadPhase::Remove(QBody *body)
 {
 }

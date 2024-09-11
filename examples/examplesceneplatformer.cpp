@@ -262,11 +262,4 @@ void ExampleScenePlatformer::OnCointCollisionEnter(QAreaBody *body,QBody *collid
 void ExampleScenePlatformer::OnMouseMoved(QVector mousePosition)
 {
 	QExampleScene::OnMouseMoved(mousePosition);
-
-//	QVector testVector=mousePosition-player->GetPosition();
-
-//	float rad=QVector::AngleBetweenTwoVectors(testVector,QVector::Up());
-//	auto side=QVector::GetVectorSide(testVector,QVector::Left());
-//	string sideArr[5]={"UP","RIGHT","DOWN","LEFT","NONE"};
-//	cout<<"rad:"<<rad/(M_PI/180)<<" - side:"<<sideArr[side]<<endl;
 }

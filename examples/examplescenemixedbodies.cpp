@@ -134,17 +134,6 @@ ExampleSceneMixedBodies::ExampleSceneMixedBodies(QVector sceneSize):QExampleScen
 }
 void ExampleSceneMixedBodies::OnMousePressed(QVector mousePosition)
 {
-//	auto hitBodies=world->GetBodiesHitByPoint(mousePosition,1);
-//	if(hitBodies.size()>0){
-//		world->RemoveBody(hitBodies[0]);
-//	}
 	QExampleScene::OnMousePressed(mousePosition);
-//	auto hitParticles=world->GetParticlesCloseToPoint(mousePosition,8.0f,1,false);
-//	if(hitParticles.size()>0){
-//		cout<<"bulundu"<<endl;
-//		QParticle *particle=hitParticles[0];
-//		QMesh *ownerMesh=particle->GetOwnerMesh();
-//		ownerMesh->RemoveParticle(particle);
-//	}
-	//AddBlobBody(mousePosition.x,mousePosition.y,64.0f,10);
+
 }

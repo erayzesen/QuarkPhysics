@@ -17,8 +17,9 @@
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-custom-qp.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="tweeks.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -26,8 +27,10 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo_x2.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Quark Physics
+   &#160;<span id="projectnumber">v1.0</span>
    </div>
    <div id="projectbrief">2D Rigid and Soft Body Physics Engine</div>
   </td>
@@ -173,8 +176,8 @@ $(document).ready(function(){initNavTree('qmanifold_8h_source.html',''); initRes
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// QMANIFOLD_H</span></div>
 <div class="ttc" id="aclassQBody_html"><div class="ttname"><a href="classQBody.html">QBody</a></div><div class="ttdoc">QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m...</div><div class="ttdef"><b>Definition:</b> qbody.h:42</div></div>
 <div class="ttc" id="aclassQManifold_html"><div class="ttname"><a href="classQManifold.html">QManifold</a></div><div class="ttdoc">QManifold retrieves collision data from collision tests between two QBody objects using QCollision me...</div><div class="ttdef"><b>Definition:</b> qmanifold.h:36</div></div>
-<div class="ttc" id="aclassQManifold_html_a1164dec2abf7fb153aa55ce34f81a250"><div class="ttname"><a href="classQManifold.html#a1164dec2abf7fb153aa55ce34f81a250">QManifold::Solve</a></div><div class="ttdeci">void Solve()</div><div class="ttdef"><b>Definition:</b> qmanifold.cpp:132</div></div>
-<div class="ttc" id="aclassQManifold_html_aa6241e78e19d551d1c4477e5416cb316"><div class="ttname"><a href="classQManifold.html#aa6241e78e19d551d1c4477e5416cb316">QManifold::SolveFrictionAndVelocities</a></div><div class="ttdeci">void SolveFrictionAndVelocities()</div><div class="ttdef"><b>Definition:</b> qmanifold.cpp:298</div></div>
+<div class="ttc" id="aclassQManifold_html_a1164dec2abf7fb153aa55ce34f81a250"><div class="ttname"><a href="classQManifold.html#a1164dec2abf7fb153aa55ce34f81a250">QManifold::Solve</a></div><div class="ttdeci">void Solve()</div><div class="ttdef"><b>Definition:</b> qmanifold.cpp:108</div></div>
+<div class="ttc" id="aclassQManifold_html_aa6241e78e19d551d1c4477e5416cb316"><div class="ttname"><a href="classQManifold.html#aa6241e78e19d551d1c4477e5416cb316">QManifold::SolveFrictionAndVelocities</a></div><div class="ttdeci">void SolveFrictionAndVelocities()</div><div class="ttdef"><b>Definition:</b> qmanifold.cpp:274</div></div>
 <div class="ttc" id="aclassQManifold_html_abe4976b5c4b0716949a5f62ba5ec537d"><div class="ttname"><a href="classQManifold.html#abe4976b5c4b0716949a5f62ba5ec537d">QManifold::contacts</a></div><div class="ttdeci">vector&lt; QCollision::Contact * &gt; contacts</div><div class="ttdef"><b>Definition:</b> qmanifold.h:58</div></div>
 <div class="ttc" id="aclassQManifold_html_ad96fa889c451a053ef9f134af5f903a9"><div class="ttname"><a href="classQManifold.html#ad96fa889c451a053ef9f134af5f903a9">QManifold::QManifold</a></div><div class="ttdeci">QManifold(QBody *bodyA, QBody *bodyB)</div><div class="ttdef"><b>Definition:</b> qmanifold.cpp:39</div></div>
 <div class="ttc" id="aclassQParticle_html"><div class="ttname"><a href="classQParticle.html">QParticle</a></div><div class="ttdoc">QParticle objects form the network structures of QMesh objects defined for all body object types....</div><div class="ttdef"><b>Definition:</b> qparticle.h:36</div></div>

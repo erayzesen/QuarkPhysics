@@ -96,9 +96,9 @@ void QWorld::Update(){
 	
 	if (enableBroadphase){
 		if (broadPhase!=nullptr){
-			broadPhasePairs.clear();
-			broadPhase->Update();
-			broadPhase->GetAllPairs(broadPhasePairs);
+			for (auto body:bodies){
+				broadPhase->Insert(body);
+			}
 			
 		}else{
 			//SweepAndPrune
@@ -127,6 +127,7 @@ void QWorld::Update(){
 			
 			if(broadPhase!=nullptr){
 				//External Broadphase Pairs
+				std::unordered_set<std::pair<QBody*, QBody*>,QBody::BodyPairHash,QBody::BodyPairEqual> &broadPhasePairs=broadPhase->GetPairs();
 				for (auto &pair: broadPhasePairs){
 					QBody *bodyA=pair.first;
 					QBody *bodyB=pair.second;
@@ -444,6 +445,11 @@ QWorld *QWorld::RemoveBodyAt(int index)
 {
 	if(index>=0 && index<bodies.size()){
 		QBody *body=bodies[index];
+
+		//Remove body from defined broadphase
+		if (broadPhase!=nullptr){
+			broadPhase->Remove(body);
+		}
 		//Remove collision exceptions if there is body
 		RemoveMatchingCollisionException(body);
 		//Remove joints if there is body
@@ -453,9 +459,7 @@ QWorld *QWorld::RemoveBodyAt(int index)
 
 		bodies.erase(bodies.begin()+index);
 
-		if (broadPhase!=nullptr){
-			broadPhase->Clear();
-		}
+		
 		
 	}
 
@@ -613,51 +617,53 @@ bool QWorld::CollideWithWorld(QBody *body){
 
 
 
-void QWorld::ClearBodies(bool deleteAll){
-	if (deleteAll)
-		for(int i=0;i<bodies.size();i++){
-			delete bodies[i];
-		}
+void QWorld::ClearBodies(){
+	for(int i=0;i<bodies.size();i++){
+		delete bodies[i];
+		bodies[i]=nullptr;
+	}
 	
 	bodies.clear();
 }
-QWorld* QWorld::ClearJoints(bool deleteAll){
-	if (deleteAll)
-		for(int i=0;i<joints.size();i++){
-			delete joints[i];
-		}
+QWorld* QWorld::ClearJoints(){
+	for(int i=0;i<joints.size();i++){
+		delete joints[i];
+		joints[i]=nullptr;
+	}
 	joints.clear();
 	return this;
 }
 
-QWorld* QWorld::ClearSprings(bool deleteAll)
+QWorld* QWorld::ClearSprings()
 {
-	if (deleteAll)
-		for(int i=0;i<springs.size();i++){
-			delete springs[i];
-		}
+	for(int i=0;i<springs.size();i++){
+		delete springs[i];
+		springs[i]=nullptr;
+	}
 	springs.clear();
 	return this;
 }
 
-QWorld* QWorld::ClearRaycasts(bool deleteAll)
+QWorld* QWorld::ClearRaycasts()
 {
-	if (deleteAll)
-		for(int i=0;i<raycasts.size();i++){
-			delete raycasts[i];
-		}
+	for(int i=0;i<raycasts.size();i++){
+		delete raycasts[i];
+		raycasts[i]=nullptr;
+	}
 	raycasts.clear();
 	return this;
 }
 
-QWorld* QWorld::ClearWorld(bool deleteAll){
-	ClearBodies(deleteAll);
-	ClearJoints(deleteAll);
-	ClearSprings(deleteAll);
-	ClearRaycasts(deleteAll);
+QWorld* QWorld::ClearWorld(){
+	ClearBodies();
+	ClearJoints();
+	ClearSprings();
+	ClearRaycasts();
 	ClearGizmos();
 	if (broadPhase!=nullptr){
+		broadPhase->Clear();
 		delete broadPhase;
+		broadPhase=nullptr;
 	}
 
 	return this;

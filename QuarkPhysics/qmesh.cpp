@@ -44,7 +44,16 @@ QMesh::~QMesh()
 {
 	for(int i=0;i<particles.size();i++){
 		delete particles[i];
+		particles[i]=nullptr;
 	}
+	particles.clear();
+
+	for(int i=0;i<springs.size();i++){
+		delete springs[i];
+		springs[i]=nullptr;
+	}
+	springs.clear();
+
 }
 
 void QMesh::UpdateCollisionBehavior()

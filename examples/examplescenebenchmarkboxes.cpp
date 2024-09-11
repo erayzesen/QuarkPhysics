@@ -31,7 +31,6 @@
 
 ExampleSceneBenchmarkBoxes::ExampleSceneBenchmarkBoxes(QVector sceneSize):QExampleScene(sceneSize)
 {
-	//world->SetEnableSleeping(false);
 	//BOXES EXAMPLE
 	QBody *floor=new QBody();
 	floor->AddMesh(QMesh::CreateWithRect(QVector(960,64),QVector(0.0f,0.0f) ) )->SetPosition(QVector(512.0f,550.0f));

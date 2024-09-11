@@ -44,6 +44,8 @@ class QSpatialHashing : public QBroadPhase {
 private:
     float cellSize=128.0f;
 
+    float cellSizeFactor=1/cellSize;
+
     struct PairHash {
         template <class T1, class T2>
         std::size_t operator()(const std::pair<T1, T2>& p) const {
@@ -89,14 +91,19 @@ private:
 
     std::unordered_map<QBody*,CellAABB> bodyOldCells;
 
+    void RemoveBodyFromCells(QBody *body,CellAABB &cellAABB);
+
 public:
     QSpatialHashing(vector<QBody*>& worldBodies, float sizeOfCells=128.0f);
 
     void Clear();
 
-    void Update();
+    void Insert(QBody* body);
+    void Remove(QBody* body);
 
-    void GetAllPairs(std::unordered_set<std::pair<QBody*, QBody*>,QBody::BodyPairHash,QBody::BodyPairEqual> &pairs);    
+    void SetCellSize(float size);
+
+    std::unordered_set<std::pair<QBody*, QBody*>,QBody::BodyPairHash,QBody::BodyPairEqual> & GetPairs();    
 
     
 };

@@ -14,7 +14,9 @@ var hierarchy =
       [ "QRigidBody", "classQRigidBody.html", null ],
       [ "QSoftBody", "classQSoftBody.html", null ]
     ] ],
-    [ "QBroadPhase", "classQBroadPhase.html", null ],
+    [ "QBroadPhase", "classQBroadPhase.html", [
+      [ "QSpatialHashing", "classQSpatialHashing.html", null ]
+    ] ],
     [ "QCollision", "classQCollision.html", null ],
     [ "QGizmo", "classQGizmo.html", [
       [ "QGizmoCircle", "classQGizmoCircle.html", null ],

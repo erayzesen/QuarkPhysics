@@ -70,6 +70,7 @@ Copy the "QuarkPhysics" named subfolder in the main folder to your project and u
 ## Third Party 
 - [nlohmann's json](https://github.com/nlohmann/json) for the json parsing. (Importing meshes via *.qmesh files)
 - [SFML](https://www.sfml-dev.org/) library for window,input,opengl. 
+- [Doxygen-Awsome](https://jothepro.github.io/doxygen-awesome-css/) for the custom themed documantation.
 
 ## Roadmap
 * 1.0
@@ -78,16 +79,13 @@ Copy the "QuarkPhysics" named subfolder in the main folder to your project and u
   * Bug fixes 
 * 1.1
   * ~~Automatic conversion of concave polygons to convex polygons~~ (added v0.9x)
-  * Breakable spring connections.
-  * UV mapping features to QMesh
+  * Fluid dynamics
 * 1.2
-   * Determinism (with fixed point method)
+   * UV mapping features to QMesh
    * Destructable rigid bodies.
+* 1.3
    * Continuous collision dedection (CCD)
    * Multithreading
-* 1.3
-    * Fluid dynamics
-
 
 
 
