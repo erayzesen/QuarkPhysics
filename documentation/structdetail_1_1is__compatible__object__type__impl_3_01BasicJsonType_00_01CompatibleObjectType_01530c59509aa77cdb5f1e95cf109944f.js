@@ -1,0 +1,4 @@
+var structdetail_1_1is__compatible__object__type__impl_3_01BasicJsonType_00_01CompatibleObjectType_01530c59509aa77cdb5f1e95cf109944f =
+[
+    [ "object_t", "structdetail_1_1is__compatible__object__type__impl_3_01BasicJsonType_00_01CompatibleObjectType_01530c59509aa77cdb5f1e95cf109944f.html#a9aceed5f20cc22350e1e518c452d40db", null ]
+];

@@ -25,7 +25,8 @@
 var NAVTREE =
 [
   [ "Quark Physics", "index.html", [
-    [ "API Documentation", "index.html", null ],
+    [ "Introduction", "index.html", null ],
+    [ "Getting Started", "getting_started.html", null ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
@@ -47,7 +48,7 @@ var NAVTREEINDEX =
 [
 "annotated.html",
 "classQRaycast.html#a088f34d670cf4577c1e80fc895ddfd1a",
-"structQBody_1_1BodyPairHash.html"
+"qraycast_8h_source.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

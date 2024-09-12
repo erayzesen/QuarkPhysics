@@ -1,5 +1,6 @@
 
-/*! \mainpage API Documentation
+/*! 
+\mainpage Introduction
 
 QuarkPhysics is a 2D physics engine designed for games. Its goal is to provide a reasonable approach to simulate rigid bodies, soft bodies, and different physics models together.
 
@@ -36,3 +37,4 @@ Copy the "QuarkPhysics" named subfolder in the main folder to your project and u
 
 ## License
 Licensed under the [MIT](https://github.com/erayzesen/QuarkPhysics/blob/master/LICENSE) license. 
+*/

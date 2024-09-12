@@ -1,0 +1,7 @@
+var structdetail_1_1iterator__input__adapter__factory_3_01IteratorType_00_01enable__if__t_3_01is__it379df2cab17a32e3e44924a3e0b8f300 =
+[
+    [ "adapter_type", "structdetail_1_1iterator__input__adapter__factory_3_01IteratorType_00_01enable__if__t_3_01is__it379df2cab17a32e3e44924a3e0b8f300.html#ab7241691093fde82e63d52a065ea859d", null ],
+    [ "base_adapter_type", "structdetail_1_1iterator__input__adapter__factory_3_01IteratorType_00_01enable__if__t_3_01is__it379df2cab17a32e3e44924a3e0b8f300.html#a366ed8a17446bb25026ccdc8e85fd42a", null ],
+    [ "char_type", "structdetail_1_1iterator__input__adapter__factory_3_01IteratorType_00_01enable__if__t_3_01is__it379df2cab17a32e3e44924a3e0b8f300.html#a024ec881421bb596438e5ee7033d2f61", null ],
+    [ "iterator_type", "structdetail_1_1iterator__input__adapter__factory_3_01IteratorType_00_01enable__if__t_3_01is__it379df2cab17a32e3e44924a3e0b8f300.html#ae840993e679fd93faefa34b273b96d8b", null ]
+];

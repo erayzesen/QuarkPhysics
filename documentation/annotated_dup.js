@@ -1,10 +1,19 @@
 var annotated_dup =
 [
-    [ "Concept Map", "index.html#autotoc_md0", null ],
-    [ "Building Examples", "index.html#autotoc_md1", null ],
-    [ "Using", "index.html#autotoc_md2", null ],
-    [ "Third Party", "index.html#autotoc_md3", null ],
-    [ "License", "index.html#autotoc_md4", null ],
+    [ "Concept Map", "index.html#autotoc_md8", null ],
+    [ "Building Examples", "index.html#autotoc_md9", null ],
+    [ "Using", "index.html#autotoc_md10", null ],
+    [ "Third Party", "index.html#autotoc_md11", null ],
+    [ "License", "index.html#autotoc_md12", null ],
+    [ "Creating a World", "getting_started.html#autotoc_md0", null ],
+    [ "Creating a Rigid Body", "getting_started.html#autotoc_md1", null ],
+    [ "Creating a Soft Body", "getting_started.html#autotoc_md2", [
+      [ "Addinational QMesh features for Soft Bodies", "getting_started.html#autotoc_md3", null ]
+    ] ],
+    [ "Creating a Joint", "getting_started.html#autotoc_md4", null ],
+    [ "Creating a Spring", "getting_started.html#autotoc_md5", null ],
+    [ "Removing Bodies, Joints and Springs from the World", "getting_started.html#autotoc_md6", null ],
+    [ "Summary", "getting_started.html#autotoc_md7", null ],
     [ "QAABB", "classQAABB.html", "classQAABB" ],
     [ "QAreaBody", "classQAreaBody.html", "classQAreaBody" ],
     [ "QBody", "classQBody.html", "classQBody" ],
