@@ -23,9 +23,9 @@ QuarkPhysics is a 2D physics engine designed for games. Its goal is to provide a
 
 ## Features
 * General Features
-  * Primitive shape types (circle, polygon, rectangle...etc) 
-  * Physical properties (mass, area, restitution etc.)
-  * The API is designed specifically for 2D video games. 
+  * Primitive shape types (circle, polygon, rectangle, etc.)
+  * Physical properties (mass, area, restitution, etc.)
+  * The API is designed specifically for 2D video games.
   * Raycasting
   * Collision layer masks for advanced collision filtering
   * SAP for broadphase
@@ -34,13 +34,13 @@ QuarkPhysics is a 2D physics engine designed for games. Its goal is to provide a
   * It uses pixels directly as a unit without any abstractions.
   * Unlimited shape-mesh support for bodies.
   * Simple and consistent API
-  * External .qmesh file support. There is also [QMeshEditor](https://github.com/erayzesen/QMeshEditor) app for create/edit/manage qmesh files. 
+  * External .qmesh file support. There is also [QMeshEditor](https://github.com/erayzesen/QMeshEditor) app for create/edit/manage qmesh files.
    
 * Rigid bodies
-  * Convex polygons support. 
-  * Joints to connect bodies
+  * Convex polygons support.
+  * Joints to connect bodies.
   * Reasonable stability for stacked objects.
-  * Kinematic bodies for creating controllable physics objects. 
+  * Kinematic bodies for creating controllable physics objects.
   * Area bodies for detecting and reporting collisions.
 
 * Soft Bodies
@@ -57,10 +57,11 @@ QuarkPhysics is a 2D physics engine designed for games. Its goal is to provide a
 ## Building Examples
 You need to install [SFML](https://www.sfml-dev.org/) and [CMake](https://cmake.org/) on your system before. 
 
-Download project, enter the main folder and call this;
+Download project, enter the main folder, and call this:
 
         ./build.sh -r
-Another way is that compiling the project directly via gcc if you're on linux call; 
+
+Or you can compile the project directly via gcc if you're on linux by calling this:
 
         ./run_linux_fast.sh -r
 
@@ -70,7 +71,7 @@ Copy the "QuarkPhysics" named subfolder in the main folder to your project and u
 ## Third Party 
 - [nlohmann's json](https://github.com/nlohmann/json) for the json parsing. (Importing meshes via *.qmesh files)
 - [SFML](https://www.sfml-dev.org/) library for window,input,opengl. 
-- [Doxygen-Awsome](https://jothepro.github.io/doxygen-awesome-css/) for the custom themed documantation.
+- [Doxygen-Awsome](https://jothepro.github.io/doxygen-awesome-css/) for the custom themed documentation.
 
 ## Roadmap
 * 1.0
@@ -86,7 +87,3 @@ Copy the "QuarkPhysics" named subfolder in the main folder to your project and u
 * 1.3
    * Continuous collision dedection (CCD)
    * Multithreading
-
-
-
-
