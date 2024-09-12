@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(QuarkPhysics VERSION 0.9)
+project(QuarkPhysics VERSION 1.0)
 
 find_package(SFML 2.5 COMPONENTS graphics window system REQUIRED)
 file(GLOB SOURCE_FILES 
