@@ -42,8 +42,10 @@ QBody::QBody(){
 QBody::~QBody()
 {
 	for(int i=0;i<_meshes.size();i++){
-		delete _meshes[i];
-		_meshes[i]=nullptr;
+		if (_meshes[i]!=nullptr){
+			delete _meshes[i];
+			_meshes[i]=nullptr;
+		}
 	}
 	_meshes.clear();
 }
