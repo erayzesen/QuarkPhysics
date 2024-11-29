@@ -122,7 +122,10 @@ protected:
 
 	void UpdateAABB();
 	void UpdateMeshTransforms();
+	/** Updates properties of the soft body and applies needed physical dynamics. */
 	virtual void Update(){};
+	/** Called after all bodies have completed their Update step to perform post-update operations. */
+	virtual void PostUpdate(){};
 	virtual bool CanGiveCollisionResponseTo(QBody *otherBody);
 
 	public:
@@ -355,6 +358,7 @@ protected:
 			if (withPreviousPosition) {
 				prevPosition=position;
 			}
+			WakeUp();
 
 			UpdateMeshTransforms();
 			UpdateAABB();
@@ -363,10 +367,11 @@ protected:
 
 		/** Adds a vector value the position of the body. 
 		 * @param value A vector value to add. 
+		 * @param withPreviousPosition Determines whether apply the position to the previous position of the body.In this simulation, since velocities are implicit, if the previous position are the same as the newly set position, the positional velocity of the body will also be zeroed.Therefore, if you want to zero out the positional velocity when setting the new position, use this option.
 		 * @return A pointer to the body itself.
 		 */
-		QBody *AddPosition(QVector value){
-			return SetPosition(GetPosition()+value);
+		QBody *AddPosition(QVector value, bool withPreviousPosition=true){
+			return SetPosition(GetPosition()+value,withPreviousPosition);
 		}
 		/** Sets the previous position of the body. 
 		 * @param value A position value to set. 
@@ -392,6 +397,7 @@ protected:
 			rotation=angleRadian;
 			if(withPreviousRotation)
 				prevRotation=angleRadian;
+			WakeUp();
 			UpdateMeshTransforms();
 			return this;
 		}
@@ -406,10 +412,11 @@ protected:
 		
 		/** Adds a value to the rotation of the body. 
 		 * @param angleRadian A value to add, in radians. 
+		 * @param withPreviousRotation Determines whether apply the rotation to the previous rotation of the body.In this simulation, since velocities are implicit, if the previous rotation are the same as the newly set rotation, the angular velocity of the body will also be zeroed.Therefore, if you want to zero out the angular velocity when setting the new rotation, use this option.
 		 * @return A pointer to the body itself.
 		 */
-		QBody *AddRotation(float angleRadian){
-			return SetRotation(GetRotation()+angleRadian);
+		QBody *AddRotation(float angleRadian, bool withPreviousRotation=true){
+			return SetRotation(GetRotation()+angleRadian,withPreviousRotation);
 		}
 		/** Sets the previous rotation of the body. 
 		 * @param angleRadian A rotation value to set, in radians. 

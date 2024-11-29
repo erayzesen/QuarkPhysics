@@ -150,6 +150,13 @@ public:
 		return enableBroadphase;
 	}
 
+	/** Returns the external broad phase object if defined. If not defined, returns nullptr.
+	 */
+
+	QBroadPhase *GetBroadphase(){
+		return broadPhase;
+	}
+
 
 	/** Returns the iteration count per step of physics in the world. 
 	 * The Iteration count determines the stability level of the simulation.
@@ -322,6 +329,11 @@ public:
 	 * @param body A body from the world.
 	 */
 	bool CollideWithWorld(QBody *body);
+
+	/** Applies a collision test between a body and other bodies in the world, returning a list of manifolds if collisions are detected.
+	 * @param body A body from the world.
+	 */
+	vector<QManifold> TestCollisionWithWorld(QBody *body);
 
 	//Joint Operations
 	/** Adds a joint to the world.

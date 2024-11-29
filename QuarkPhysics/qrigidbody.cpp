@@ -158,3 +158,8 @@ void QRigidBody::Update()
 	UpdateMeshTransforms();
 	UpdateAABB();
 }
+
+void QRigidBody::PostUpdate()
+{
+	
+}

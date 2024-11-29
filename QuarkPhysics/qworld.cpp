@@ -74,14 +74,22 @@ void QWorld::Update(){
 		body->Update();
 	}
 
+	for(auto body:bodies){
+		if (body->GetEnabled()==false )
+			continue;
+		body->PostUpdate();
+	}
+	
+
 	//OnPreStep() PreStep Event of bodies
 	for(auto body:bodies){
 		if (body->GetEnabled()==false )
 			continue;
+		body->OnPreStep();
 		if(body->PreStepEventListener!=nullptr){
 			body->PreStepEventListener(body);
 		}
-		body->OnPreStep();
+		
 	}
 
 
@@ -566,6 +574,23 @@ vector<QParticle *> QWorld::GetParticlesCloseToPoint(QVector point, float distan
 
 bool QWorld::CollideWithWorld(QBody *body){
 
+	vector<QManifold> manifoldList=TestCollisionWithWorld(body);
+	if(manifoldList.size()==0)
+		return false;
+
+	std::cout<<manifoldList.size()<<endl;
+	for (auto manifold : manifoldList) {
+		manifold.Solve();
+	}
+	for (auto manifold : manifoldList) {
+		manifold.SolveFrictionAndVelocities();
+	}
+
+	return true;
+}
+
+vector<QManifold> QWorld::TestCollisionWithWorld(QBody *body)
+{
 	sort(bodies.begin(),bodies.end(),SortBodiesHorizontal);
 	bool seperated=false;
 
@@ -601,22 +626,8 @@ bool QWorld::CollideWithWorld(QBody *body){
 			break;
 
 	}
-	if(manifoldList.size()==0)
-		return false;
-
-	std::cout<<manifoldList.size()<<endl;
-	for (auto manifold : manifoldList) {
-		manifold.Solve();
-	}
-	for (auto manifold : manifoldList) {
-		manifold.SolveFrictionAndVelocities();
-	}
-
-	return true;
+    return manifoldList;
 }
-
-
-
 
 void QWorld::ClearBodies(){
 	for(int i=0;i<bodies.size();i++){

@@ -104,6 +104,11 @@ void QSoftBody::Update()
 
 }
 
+void QSoftBody::PostUpdate()
+{
+	
+}
+
 void QSoftBody::PreserveAreas()
 {
 
