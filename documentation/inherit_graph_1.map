@@ -2,5 +2,6 @@
 <area shape="rect" id="node1" href="$classQBody.html" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m..." alt="" coords="5,56,68,83"/>
 <area shape="rect" id="node2" href="$classQAreaBody.html" title="QAreaBody objects are objects that don&#39;t respond to collisions or receive any response from them,..." alt="" coords="117,5,207,32"/>
 <area shape="rect" id="node3" href="$classQRigidBody.html" title="QRigidBody is a type of body that is simulated with the dynamics of Rigid body. A rigid body is a typ..." alt="" coords="116,56,208,83"/>
-<area shape="rect" id="node4" href="$classQSoftBody.html" title="QSoftBody is a body type that defines deformable, soft objects in the physics world...." alt="" coords="119,107,205,133"/>
+<area shape="rect" id="node5" href="$classQSoftBody.html" title="QSoftBody is a body type that defines deformable, soft objects in the physics world...." alt="" coords="119,107,205,133"/>
+<area shape="rect" id="node4" href="$classQPlatformerBody.html" title="QPlatformerBody provides a ready&#45;to&#45;use foundation for character physics in platformer games...." alt="" coords="256,56,379,83"/>
 </map>

@@ -147,7 +147,7 @@ void QRigidBody::Update()
 
 
 	//Verlet Integration
-	if(isKinematic==false){
+	if(isKinematic==false && enableIntegratedVelocities==true){
 		position+=vel-(vel*airFriction);
 		position+=(world->GetGravity()*mass*ts);
 		rotation+=rotVel-(rotVel*airFriction);

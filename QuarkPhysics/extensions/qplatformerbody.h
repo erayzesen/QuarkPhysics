@@ -96,8 +96,13 @@ protected:
     float jumpGravityMultiplier=0.4f;
     float jumpFallGravityMultiplier=1.0f;
     bool jumpReleased=true;
+
+    
+
+    virtual void PostUpdate();
     
     
+public:
 
     struct CollisionTestInfo{
         QBody* body;
@@ -106,14 +111,6 @@ protected:
         QVector normal;
         CollisionTestInfo(QBody *body=nullptr,QVector position=QVector::Zero(),float penetration=0.0f,QVector normal=QVector::Zero() ): body(body), position(position),penetration(penetration),normal(normal) {}
     };
-    
-
-    virtual void PostUpdate();
-    
-    
-public:
-
-    
     
     QPlatformerBody();
 
@@ -335,7 +332,7 @@ public:
      * @brief Gets the maximum number of jumps allowed.
      * @return The maximum jump count.
      */
-    int SetMaxJumpCount();
+    int GetMaxJumpCount();
 
     /**
      * @brief Initiates a jump with the specified force.

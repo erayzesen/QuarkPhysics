@@ -115,8 +115,10 @@ void QSoftBody::Update()
 			}
 			
 			particle->SetPreviousGlobalPosition(particle->GetGlobalPosition() );
-			particle->ApplyForce(vel-(vel*airFriction) );
-			particle->ApplyForce(mass*world->GetGravity()*ts);
+			if(enableIntegratedVelocities==true){
+				particle->ApplyForce(vel-(vel*airFriction) );
+				particle->ApplyForce(mass*world->GetGravity()*ts);
+			}
 			particle->ApplyForce(particle->GetForce());
 			particle->SetForce(QVector::Zero());
 		}

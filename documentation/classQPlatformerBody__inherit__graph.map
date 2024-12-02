@@ -1,0 +1,5 @@
+<map id="QPlatformerBody" name="QPlatformerBody">
+<area shape="rect" id="node1" title="QPlatformerBody provides a ready&#45;to&#45;use foundation for character physics in platformer games...." alt="" coords="5,155,128,181"/>
+<area shape="rect" id="node2" href="$classQRigidBody.html" title="QRigidBody is a type of body that is simulated with the dynamics of Rigid body. A rigid body is a typ..." alt="" coords="21,80,113,107"/>
+<area shape="rect" id="node3" href="$classQBody.html" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m..." alt="" coords="35,5,98,32"/>
+</map>

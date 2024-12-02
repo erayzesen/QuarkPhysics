@@ -30,7 +30,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_x2.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Quark Physics
-   &#160;<span id="projectnumber">v1.0</span>
+   &#160;<span id="projectnumber">1.0</span>
    </div>
    <div id="projectbrief">2D Rigid and Soft Body Physics Engine</div>
   </td>
@@ -162,11 +162,17 @@ $(document).ready(function(){initNavTree('functions_g.html',''); initResizable()
 <li>GetBodyType()
 : <a class="el" href="classQBody.html#ab87ff10ff291bc1bac890c1aaa3f4eb2">QBody</a>
 </li>
+<li>GetBroadphase()
+: <a class="el" href="classQWorld.html#afeb1eed0ad69c9dc35514937d23828d2">QWorld</a>
+</li>
 <li>GetBroadphaseEnabled()
 : <a class="el" href="classQWorld.html#a227d82935e60c65574ed5e20f69fa63e">QWorld</a>
 </li>
 <li>GetCanSleep()
 : <a class="el" href="classQBody.html#aff4dec562be97ff7683c0390679b11e5">QBody</a>
+</li>
+<li>GetCeiling()
+: <a class="el" href="classQPlatformerBody.html#a9a4ba943d4686d987c6c4abf157e96ec">QPlatformerBody</a>
 </li>
 <li>GetCircumference()
 : <a class="el" href="classQBody.html#a6a4b71c064a6ad7951efc748854400ed">QBody</a>
@@ -188,6 +194,12 @@ $(document).ready(function(){initNavTree('functions_g.html',''); initResizable()
 <li>GetContacts()
 : <a class="el" href="classQRaycast.html#a516c87eaff2ea65b595de010c62eaf44">QRaycast</a>
 </li>
+<li>GetControllerHorizontalVelocity()
+: <a class="el" href="classQPlatformerBody.html#a037a2f790d4d44910a08f80a15562f87">QPlatformerBody</a>
+</li>
+<li>GetControllerVerticalVelocity()
+: <a class="el" href="classQPlatformerBody.html#a44157a0f191be80fa1582e8236b381a8">QPlatformerBody</a>
+</li>
 <li>GetEnabled()
 : <a class="el" href="classQBody.html#a839c881cd8d58b85165bcf0ad1a1e511">QBody</a>
 , <a class="el" href="classQJoint.html#a5c4d8209d2d83544a13dd75e530f9833">QJoint</a>
@@ -199,6 +211,15 @@ $(document).ready(function(){initNavTree('functions_g.html',''); initResizable()
 </li>
 <li>GetFixedRotationEnabled()
 : <a class="el" href="classQRigidBody.html#af172107b350cb0cf85fab5ff6268c36e">QRigidBody</a>
+</li>
+<li>GetFloor()
+: <a class="el" href="classQPlatformerBody.html#a63c6d91241965d9ae24408317f49ad7c">QPlatformerBody</a>
+</li>
+<li>GetFloorMaxAngle()
+: <a class="el" href="classQPlatformerBody.html#af41aa86c35cef57fbd3aedafc2dbe128">QPlatformerBody</a>
+</li>
+<li>GetFloorMaxAngleDegree()
+: <a class="el" href="classQPlatformerBody.html#a05b46c3d7035953b24564233bf95e207">QPlatformerBody</a>
 </li>
 <li>GetForce()
 : <a class="el" href="classQParticle.html#a128465d6b25cbb4711dc185b5ab1a672">QParticle</a>
@@ -217,6 +238,12 @@ $(document).ready(function(){initNavTree('functions_g.html',''); initResizable()
 <li>GetGlobalRotation()
 : <a class="el" href="structQMesh.html#a84f42582e970c5327a980a17cdc01669">QMesh</a>
 </li>
+<li>GetGravity()
+: <a class="el" href="classQPlatformerBody.html#acfdd4f57ec8d45d3514d65751efa513f">QPlatformerBody</a>
+</li>
+<li>GetGravityMultiplier()
+: <a class="el" href="classQPlatformerBody.html#a7254fb2613046818411b4ba4928b7a0a">QPlatformerBody</a>
+</li>
 <li>GetGrooveEnabled()
 : <a class="el" href="classQJoint.html#a75099c76fe8c1e0763546b11e2dacff4">QJoint</a>
 </li>
@@ -229,9 +256,30 @@ $(document).ready(function(){initNavTree('functions_g.html',''); initResizable()
 <li>GetInitialPolygonsArea()
 : <a class="el" href="structQMesh.html#ab3a900cffdbf4a4cce1a6dccf2fc8760">QMesh</a>
 </li>
+<li>GetIntegratedVelocitiesEnabled()
+: <a class="el" href="classQBody.html#ab8e58f0c2c0632c68c044e22ea268d83">QBody</a>
+</li>
+<li>GetIsFalling()
+: <a class="el" href="classQPlatformerBody.html#ae720279da035fa1877c0f23c580c1eaa">QPlatformerBody</a>
+</li>
 <li>GetIsInternal()
 : <a class="el" href="classQParticle.html#adb0d1195cc8afcf4946aa841d911f1f5">QParticle</a>
 , <a class="el" href="classQSpring.html#aa110f8bb2f2c0adabd93d8ae9c81e9ce">QSpring</a>
+</li>
+<li>GetIsJumping()
+: <a class="el" href="classQPlatformerBody.html#ad89509e714b441fbca4c6608550fc1ec">QPlatformerBody</a>
+</li>
+<li>GetIsJumpReleased()
+: <a class="el" href="classQPlatformerBody.html#ac63e97661636c7e9104bfab20096d4e6">QPlatformerBody</a>
+</li>
+<li>GetIsOnCeiling()
+: <a class="el" href="classQPlatformerBody.html#af209444fea2ea8550161002df737bc68">QPlatformerBody</a>
+</li>
+<li>GetIsOnFloor()
+: <a class="el" href="classQPlatformerBody.html#a1384cfaf53265d886b14f82bcba710d9">QPlatformerBody</a>
+</li>
+<li>GetIsRising()
+: <a class="el" href="classQPlatformerBody.html#a1ff849e68d9af031163d3fb0ec569764">QPlatformerBody</a>
 </li>
 <li>GetIsSleeping()
 : <a class="el" href="classQBody.html#a827f9a1ed61a60197b66de9573c91225">QBody</a>
@@ -248,6 +296,15 @@ $(document).ready(function(){initNavTree('functions_g.html',''); initResizable()
 <li>GetJointIndex()
 : <a class="el" href="classQWorld.html#ab1ef3edb559afa003b1aa32783e2802e">QWorld</a>
 </li>
+<li>GetJumpDurationFrameCount()
+: <a class="el" href="classQPlatformerBody.html#a479b0b2b481e5756903363c118d0f279">QPlatformerBody</a>
+</li>
+<li>GetJumpFallGravityMultiplier()
+: <a class="el" href="classQPlatformerBody.html#a6bedcca43cd24dd660d19ba0acc32df3">QPlatformerBody</a>
+</li>
+<li>GetJumpGravityMultiplier()
+: <a class="el" href="classQPlatformerBody.html#a136dbd9651ca0114b078f743aaf35cf1">QPlatformerBody</a>
+</li>
 <li>GetKinematicCollisionsEnabled()
 : <a class="el" href="classQRigidBody.html#aafc301a8c1a5b22990fc4cf011f5fc38">QRigidBody</a>
 </li>
@@ -256,6 +313,9 @@ $(document).ready(function(){initNavTree('functions_g.html',''); initResizable()
 </li>
 <li>GetLayersBit()
 : <a class="el" href="classQBody.html#aef48d3ccc2004617513658d5594eb10f">QBody</a>
+</li>
+<li>GetLeftWall()
+: <a class="el" href="classQPlatformerBody.html#a51c7f1e1732c5a24fd0aee29b2c94663">QPlatformerBody</a>
 </li>
 <li>GetLength()
 : <a class="el" href="classQJoint.html#affc3ae356d1d80be2891cab4c5ff5c6e">QJoint</a>
@@ -268,6 +328,9 @@ $(document).ready(function(){initNavTree('functions_g.html',''); initResizable()
 </li>
 <li>GetMatchingParticlePositions()
 : <a class="el" href="structQMesh.html#a633b51c680ac7c7e9e2edad3d93b73f9">QMesh</a>
+</li>
+<li>GetMaxJumpCount()
+: <a class="el" href="classQPlatformerBody.html#ae5feb2de645100d9f8fb0f25140721d6">QPlatformerBody</a>
 </li>
 <li>GetMeshAt()
 : <a class="el" href="classQBody.html#aca74ba58c56a5cf4bf23bab89c43d182">QBody</a>
@@ -289,6 +352,9 @@ $(document).ready(function(){initNavTree('functions_g.html',''); initResizable()
 </li>
 <li>GetMode()
 : <a class="el" href="classQBody.html#ad6ebf482d0356511d630565db2a29645">QBody</a>
+</li>
+<li>GetMovingFloorSnapOffset()
+: <a class="el" href="classQPlatformerBody.html#a2cf781d94675f04bfbb1a6e22060144d">QPlatformerBody</a>
 </li>
 <li>GetOverlapWithCollidableLayersBit()
 : <a class="el" href="classQBody.html#ab83323c7cc3f242c65f24272893601d5">QBody</a>
@@ -328,6 +394,9 @@ $(document).ready(function(){initNavTree('functions_g.html',''); initResizable()
 </li>
 <li>GetPassivationOfInternalSpringsEnabled()
 : <a class="el" href="classQSoftBody.html#ab9531d34633a76bf00c2993db4d247bd">QSoftBody</a>
+</li>
+<li>GetPlatformCollisions()
+: <a class="el" href="classQPlatformerBody.html#af9ca0878c582fd9dce1ef460cd94fa8c">QPlatformerBody</a>
 </li>
 <li>GetPolygonArea()
 : <a class="el" href="structQMesh.html#a6fab89c48747bc328cd154da4a862172">QMesh</a>
@@ -370,6 +439,9 @@ $(document).ready(function(){initNavTree('functions_g.html',''); initResizable()
 </li>
 <li>GetRestitution()
 : <a class="el" href="classQBody.html#abb7f901e0d54d5d0fabeb489a5d33e09">QBody</a>
+</li>
+<li>GetRightWall()
+: <a class="el" href="classQPlatformerBody.html#aff0bbda1d2666e6f0ecb25dcd263fbbb">QPlatformerBody</a>
 </li>
 <li>GetRigidity()
 : <a class="el" href="classQJoint.html#a1984c1656c61c98da367d23658a9abf2">QJoint</a>
@@ -417,6 +489,9 @@ $(document).ready(function(){initNavTree('functions_g.html',''); initResizable()
 <li>GetSleepingRotationTolerance()
 : <a class="el" href="classQWorld.html#aeb10a5be2a77ad8e9048a5475dd960e7">QWorld</a>
 </li>
+<li>GetSpecificPlatformLayers()
+: <a class="el" href="classQPlatformerBody.html#a1b7ebc5d4771e94a88e473869c2853ce">QPlatformerBody</a>
+</li>
 <li>GetSpringAt()
 : <a class="el" href="structQMesh.html#a13e1401e2b9c8c66f56288ea8d6dd181">QMesh</a>
 , <a class="el" href="classQWorld.html#a3b352ea9b2a8e93ce59e79a579a7b7e9">QWorld</a>
@@ -455,6 +530,18 @@ $(document).ready(function(){initNavTree('functions_g.html',''); initResizable()
 </li>
 <li>GetTotalPolygonsInitialArea()
 : <a class="el" href="classQBody.html#a0a22c955808d195fb4acd647943153a3">QBody</a>
+</li>
+<li>GetVelocityLimit()
+: <a class="el" href="classQBody.html#a8b2d23d31bf2d38318fbcbb5eccffc63">QBody</a>
+</li>
+<li>GetWalkAcelerationRate()
+: <a class="el" href="classQPlatformerBody.html#a33c34cd8db69d7a8dae89cd4c34929c4">QPlatformerBody</a>
+</li>
+<li>GetWalkDecelerationRate()
+: <a class="el" href="classQPlatformerBody.html#a534cc97d4c3e4871e49cc8d0d984d8c3">QPlatformerBody</a>
+</li>
+<li>GetWalkSpeed()
+: <a class="el" href="classQPlatformerBody.html#ab07b74cfc1f49868d17f82e08d64dcc1">QPlatformerBody</a>
 </li>
 <li>GetWorld()
 : <a class="el" href="classQBody.html#a62fa19385684452e22a78cb4137c5e67">QBody</a>

@@ -50,6 +50,14 @@ QBody::~QBody()
 	_meshes.clear();
 }
 
+float QBody::GetVelocityLimit() {
+	return velocityLimit;
+}
+
+bool QBody::GetIntegratedVelocitiesEnabled() {
+	return enableIntegratedVelocities;
+}
+
 QBody *QBody::SetVelocityLimit(float value)
 {
 	velocityLimit=value;
@@ -112,8 +120,12 @@ bool QBody::CanCollide(QBody *bodyA, QBody *bodyB,bool checkBodiesAreEnabled)
 
 //GENERAL METHODS
 
+QBody *QBody::SetIntegratedVelocitiesEnabled(bool value) {
+	enableIntegratedVelocities=value;
+	return this;
+}
 
-QBody * QBody::AddMesh(QMesh *mesh){
+QBody *QBody::AddMesh(QMesh *mesh) {
 	_meshes.push_back(mesh);
 	mesh->ownerBody=this;
 	UpdateMeshTransforms();

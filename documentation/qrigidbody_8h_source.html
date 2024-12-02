@@ -30,7 +30,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_x2.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Quark Physics
-   &#160;<span id="projectnumber">v1.0</span>
+   &#160;<span id="projectnumber">1.0</span>
    </div>
    <div id="projectbrief">2D Rigid and Soft Body Physics Engine</div>
   </td>
@@ -127,8 +127,8 @@ $(document).ready(function(){initNavTree('qrigidbody_8h_source.html',''); initRe
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;{</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">bool</span> fixedRotation=<span class="keyword">false</span>;</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="structQVector.html">QVector</a> force=QVector::Zero();</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">float</span> angularForce=0.0f;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">float</span> angularForce=0.0f;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="structQVector.html">QVector</a> force=QVector::Zero();</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="classQRigidBody.html">QRigidBody</a>();</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
@@ -177,12 +177,14 @@ $(document).ready(function(){initNavTree('qrigidbody_8h_source.html',''); initRe
 <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <a class="code" href="classQRigidBody.html">QRigidBody</a> *<a class="code" href="classQRigidBody.html#a0a2841cf69268953127436c140deb26a">AddAngularForce</a>(<span class="keywordtype">float</span> value);</div>
 <div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160; </div>
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160; </div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classQRigidBody.html#a37036d66caa7670f7c9048db8d4c6a12">Update</a>();</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classQRigidBody.html#a37036d66caa7670f7c9048db8d4c6a12">Update</a>();</div>
 <div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160; </div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;};</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classQRigidBody.html#af916003e44b947d0b81bc6ad2cf82ce5">PostUpdate</a>();</div>
 <div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// QRIGIDBODY_H</span></div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160; </div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;};</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160; </div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// QRIGIDBODY_H</span></div>
 <div class="ttc" id="aclassQBody_html"><div class="ttname"><a href="classQBody.html">QBody</a></div><div class="ttdoc">QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m...</div><div class="ttdef"><b>Definition:</b> qbody.h:42</div></div>
 <div class="ttc" id="aclassQRigidBody_html"><div class="ttname"><a href="classQRigidBody.html">QRigidBody</a></div><div class="ttdoc">QRigidBody is a type of body that is simulated with the dynamics of Rigid body. A rigid body is a typ...</div><div class="ttdef"><b>Definition:</b> qrigidbody.h:40</div></div>
 <div class="ttc" id="aclassQRigidBody_html_a0a2841cf69268953127436c140deb26a"><div class="ttname"><a href="classQRigidBody.html#a0a2841cf69268953127436c140deb26a">QRigidBody::AddAngularForce</a></div><div class="ttdeci">QRigidBody * AddAngularForce(float value)</div><div class="ttdef"><b>Definition:</b> qrigidbody.cpp:97</div></div>
@@ -191,7 +193,7 @@ $(document).ready(function(){initNavTree('qrigidbody_8h_source.html',''); initRe
 <div class="ttc" id="aclassQRigidBody_html_a1c5c14c5b08aedcfbce3131993ba93f9"><div class="ttname"><a href="classQRigidBody.html#a1c5c14c5b08aedcfbce3131993ba93f9">QRigidBody::SetKinematicCollisionsEnabled</a></div><div class="ttdeci">QRigidBody * SetKinematicCollisionsEnabled(bool value)</div><div class="ttdef"><b>Definition:</b> qrigidbody.h:84</div></div>
 <div class="ttc" id="aclassQRigidBody_html_a23c08f9e4cc5fc74cb1c1faf062c15ed"><div class="ttname"><a href="classQRigidBody.html#a23c08f9e4cc5fc74cb1c1faf062c15ed">QRigidBody::SetAngularForce</a></div><div class="ttdeci">QRigidBody * SetAngularForce(float value)</div><div class="ttdef"><b>Definition:</b> qrigidbody.cpp:90</div></div>
 <div class="ttc" id="aclassQRigidBody_html_a2d47f8cd4408cc039ab6f67ac8f35ed6"><div class="ttname"><a href="classQRigidBody.html#a2d47f8cd4408cc039ab6f67ac8f35ed6">QRigidBody::SetFixedRotationEnabled</a></div><div class="ttdeci">QRigidBody * SetFixedRotationEnabled(bool value)</div><div class="ttdef"><b>Definition:</b> qrigidbody.h:73</div></div>
-<div class="ttc" id="aclassQRigidBody_html_a37036d66caa7670f7c9048db8d4c6a12"><div class="ttname"><a href="classQRigidBody.html#a37036d66caa7670f7c9048db8d4c6a12">QRigidBody::Update</a></div><div class="ttdeci">void Update()</div><div class="ttdef"><b>Definition:</b> qrigidbody.cpp:102</div></div>
+<div class="ttc" id="aclassQRigidBody_html_a37036d66caa7670f7c9048db8d4c6a12"><div class="ttname"><a href="classQRigidBody.html#a37036d66caa7670f7c9048db8d4c6a12">QRigidBody::Update</a></div><div class="ttdeci">virtual void Update()</div><div class="ttdef"><b>Definition:</b> qrigidbody.cpp:102</div></div>
 <div class="ttc" id="aclassQRigidBody_html_a402ac736c7fa5e3d99de4743126b615b"><div class="ttname"><a href="classQRigidBody.html#a402ac736c7fa5e3d99de4743126b615b">QRigidBody::GetAngularForce</a></div><div class="ttdeci">float GetAngularForce()</div><div class="ttdef"><b>Definition:</b> qrigidbody.h:67</div></div>
 <div class="ttc" id="aclassQRigidBody_html_a5613b4dbd8f51b37a4c3e940f065710a"><div class="ttname"><a href="classQRigidBody.html#a5613b4dbd8f51b37a4c3e940f065710a">QRigidBody::SetPositionAndCollide</a></div><div class="ttdeci">QRigidBody * SetPositionAndCollide(QVector value, bool withPreviousPosition=true)</div><div class="ttdef"><b>Definition:</b> qrigidbody.cpp:41</div></div>
 <div class="ttc" id="aclassQRigidBody_html_a7f58408e14fd3bad7b7c810257d8f4c8"><div class="ttname"><a href="classQRigidBody.html#a7f58408e14fd3bad7b7c810257d8f4c8">QRigidBody::SetKinematicEnabled</a></div><div class="ttdeci">QRigidBody * SetKinematicEnabled(bool value)</div><div class="ttdef"><b>Definition:</b> qrigidbody.h:78</div></div>
@@ -201,6 +203,7 @@ $(document).ready(function(){initNavTree('qrigidbody_8h_source.html',''); initRe
 <div class="ttc" id="aclassQRigidBody_html_ace3249b5b436af711bc898577ab277a5"><div class="ttname"><a href="classQRigidBody.html#ace3249b5b436af711bc898577ab277a5">QRigidBody::SetForce</a></div><div class="ttdeci">QRigidBody * SetForce(QVector value)</div><div class="ttdef"><b>Definition:</b> qrigidbody.cpp:78</div></div>
 <div class="ttc" id="aclassQRigidBody_html_af172107b350cb0cf85fab5ff6268c36e"><div class="ttname"><a href="classQRigidBody.html#af172107b350cb0cf85fab5ff6268c36e">QRigidBody::GetFixedRotationEnabled</a></div><div class="ttdeci">bool GetFixedRotationEnabled()</div><div class="ttdef"><b>Definition:</b> qrigidbody.h:50</div></div>
 <div class="ttc" id="aclassQRigidBody_html_af8702d2bc5ca2a3c943fe5c3677c5108"><div class="ttname"><a href="classQRigidBody.html#af8702d2bc5ca2a3c943fe5c3677c5108">QRigidBody::AddForce</a></div><div class="ttdeci">QRigidBody * AddForce(QVector value)</div><div class="ttdef"><b>Definition:</b> qrigidbody.cpp:85</div></div>
+<div class="ttc" id="aclassQRigidBody_html_af916003e44b947d0b81bc6ad2cf82ce5"><div class="ttname"><a href="classQRigidBody.html#af916003e44b947d0b81bc6ad2cf82ce5">QRigidBody::PostUpdate</a></div><div class="ttdeci">virtual void PostUpdate()</div><div class="ttdef"><b>Definition:</b> qrigidbody.cpp:166</div></div>
 <div class="ttc" id="astructQVector_html"><div class="ttname"><a href="structQVector.html">QVector</a></div><div class="ttdef"><b>Definition:</b> qvector.h:43</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

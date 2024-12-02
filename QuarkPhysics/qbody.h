@@ -97,6 +97,7 @@ protected:
 	BodyTypes bodyType=BodyTypes::RIGID;
 	bool enabled=true;
 	float velocityLimit=0.0f;
+	bool enableIntegratedVelocities=true;
 
 	//Material Properties;
 
@@ -345,6 +346,15 @@ protected:
 		bool GetEnabled(){
 			return enabled;
 		}
+		/**
+		 * Returns the velocity limit of the physics body.  If set to 0, no velocity limit is applied. The default value is 0.
+		 */
+		float GetVelocityLimit();
+
+		/**
+		 * Returns whether the application of gravity and various velocity integrators necessary for the body's movement in the physics world is enabled. It is set to true by default. Typically, it is disabled for specific body objects that require manual control.
+		 */
+		bool GetIntegratedVelocitiesEnabled();
 
 
 
@@ -555,6 +565,11 @@ protected:
 			return this;
 		}
 
+		/**
+		 * Sets whether the application of gravity and various velocity integrators necessary for the body's movement in the physics world is enabled. It is set to true by default. Typically, it is disabled for specific body objects that require manual control.
+		 */
+		QBody *SetIntegratedVelocitiesEnabled(bool value);
+
 
 		//Mesh Methods
 		/** Adds a mesh to the body.
@@ -593,7 +608,10 @@ protected:
 			return this;
 		}
 
-
+		/**
+		 * Limits the velocity of the physics body. If set to 0, no velocity limit is applied. The default value is 0.
+		 * @return A pointer to the body itself.
+		 */
 		QBody *SetVelocityLimit(float value);
 
 

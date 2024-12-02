@@ -18,6 +18,7 @@ var classQSoftBody =
     [ "GetShapeMatchingFixedTransformEnabled", "classQSoftBody.html#ab25812aa09c9b84ceb2c1fc28e4d58df", null ],
     [ "GetShapeMatchingRate", "classQSoftBody.html#a5f4286c68191f099dcf648a75888a278", null ],
     [ "GetTargetPreservationArea", "classQSoftBody.html#a1001a341638027052b470ecaaa0104e3", null ],
+    [ "PostUpdate", "classQSoftBody.html#ae3bf1c49b429ac30f594ff0d6fbe4a52", null ],
     [ "PreserveAreas", "classQSoftBody.html#a520a4e9b32fa163d6004362ad590526e", null ],
     [ "SetAreaPreservingEnabled", "classQSoftBody.html#a4c056243d7c8596acbc9c095b2d716f7", null ],
     [ "SetAreaPreservingRate", "classQSoftBody.html#a2e6b6ad9028119b022d2f5a34ee82e44", null ],

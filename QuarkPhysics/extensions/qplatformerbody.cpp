@@ -36,8 +36,8 @@
 
 QPlatformerBody::QPlatformerBody()
 {
-	
-    SetKinematicEnabled(true);
+    //SetKinematicEnabled(true);
+	SetIntegratedVelocitiesEnabled(false);
     SetKinematicCollisionsEnabled(true);
     SetFixedRotationEnabled(true);
 	SetFriction(0.0);
@@ -150,7 +150,7 @@ QPlatformerBody *QPlatformerBody::SetMaxJumpCount(int value)
     return this;
 }
 
-int QPlatformerBody::SetMaxJumpCount()
+int QPlatformerBody::GetMaxJumpCount()
 {
     return maxJumpCount;
 }
