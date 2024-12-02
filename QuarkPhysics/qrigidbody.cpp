@@ -137,6 +137,10 @@ void QRigidBody::Update()
 		prevPosition.y=position.y;
 	}
 
+	if (velocityLimit>0.0f && vel.Length()>velocityLimit){
+		vel=velocityLimit*vel.Normalized();
+	}
+
 	//Angular Velocity
 	float rotVel=rotation-prevRotation;
 	prevRotation=rotation;

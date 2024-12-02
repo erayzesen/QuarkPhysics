@@ -96,6 +96,7 @@ protected:
 	float bodySpecificTimeScale=1.0f;
 	BodyTypes bodyType=BodyTypes::RIGID;
 	bool enabled=true;
+	float velocityLimit=0.0f;
 
 	//Material Properties;
 
@@ -591,6 +592,9 @@ protected:
 			isSleeping = false;
 			return this;
 		}
+
+
+		QBody *SetVelocityLimit(float value);
 
 
 		friend class QMesh;

@@ -63,6 +63,7 @@ void ExampleSceneBlobs::OnKeyPressed(sf::Keyboard::Key key)
 		pressureBody->AddMesh( QMesh::CreateWithPolygon(64,12,QVector::Zero(),-1 ,true,true) );
 		pressureBody->SetRigidity(0.5f)->SetPosition(mousePos)->SetMass(0.5f);
 		pressureBody->SetAreaPreservingEnabled(true)->SetAreaPreservingRate(0.7);
+		//pressureBody->SetVelocityLimit(20.0);
 		world->AddBody(pressureBody);
 	}
 }

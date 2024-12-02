@@ -72,6 +72,8 @@ class QSoftBody : public QBody
 		}
 	}
 
+	bool IsPolygonCW(vector<QParticle*> polygon);
+
 
 public:
 	QSoftBody();

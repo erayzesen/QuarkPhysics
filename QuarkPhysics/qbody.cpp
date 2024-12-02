@@ -50,12 +50,16 @@ QBody::~QBody()
 	_meshes.clear();
 }
 
+QBody *QBody::SetVelocityLimit(float value)
+{
+	velocityLimit=value;
+    return this;
+}
 
+QVector QBody::ComputeFriction(QBody *bodyA, QBody *bodyB, QVector &normal, float penetration, QVector &relativeVelocity)
+{
 
-
-QVector QBody::ComputeFriction(QBody *bodyA, QBody *bodyB, QVector &normal,float penetration, QVector &relativeVelocity){
-
-	QVector tangent=relativeVelocity-(relativeVelocity.Dot(normal)*normal );
+    QVector tangent=relativeVelocity-(relativeVelocity.Dot(normal)*normal );
 
 	tangent=tangent.Normalized();
 

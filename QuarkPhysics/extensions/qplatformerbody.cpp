@@ -557,6 +557,10 @@ void QPlatformerBody::PostUpdate()
 		isRising=true;
 	}
 
+	if (velocityLimit>0.0f && verticalVelocity.Length()>velocityLimit){
+		verticalVelocity=velocityLimit*verticalVelocity.Normalized();
+	}
+
 	
 	if ( (onFloor==true ) && verticalVelocity.Dot(upDirection)<0 ){
 		verticalVelocity=QVector::Zero();
@@ -582,6 +586,11 @@ void QPlatformerBody::PostUpdate()
 		horizontalVelocity+=((walkSpeed*walkSide*rightDirection)-horizontalVelocity)*walkAccelerationRate;
 	}
 
+	
+	if (velocityLimit>0.0f && horizontalVelocity.Length()>velocityLimit){
+		horizontalVelocity=velocityLimit*horizontalVelocity.Normalized();
+	}
+
 	if (horizontalVelocity!=QVector::Zero() ){
 		//Requested Target Position
 		
@@ -598,6 +607,8 @@ void QPlatformerBody::PostUpdate()
 			}
 			
 		}
+
+		
 		
 		AddPosition(walkVector);
 		
