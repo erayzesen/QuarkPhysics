@@ -30,7 +30,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_x2.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Quark Physics
-   &#160;<span id="projectnumber">v1.0</span>
+   &#160;<span id="projectnumber">1.0</span>
    </div>
    <div id="projectbrief">2D Rigid and Soft Body Physics Engine</div>
   </td>
@@ -130,6 +130,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aeb10a5be2a77ad8e9048a5475dd960e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a227d82935e60c65574ed5e20f69fa63e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQWorld.html#a227d82935e60c65574ed5e20f69fa63e">GetBroadphaseEnabled</a> ()</td></tr>
 <tr class="separator:a227d82935e60c65574ed5e20f69fa63e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afeb1eed0ad69c9dc35514937d23828d2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQBroadPhase.html">QBroadPhase</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQWorld.html#afeb1eed0ad69c9dc35514937d23828d2">GetBroadphase</a> ()</td></tr>
+<tr class="separator:afeb1eed0ad69c9dc35514937d23828d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a608c51223da93f819577d3331ecf96df"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQWorld.html#a608c51223da93f819577d3331ecf96df">GetIterationCount</a> ()</td></tr>
 <tr class="separator:a608c51223da93f819577d3331ecf96df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a57bde0fe82841149d503efe53c234d21"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQWorld.html#a57bde0fe82841149d503efe53c234d21">GetTimeScale</a> ()</td></tr>
@@ -176,6 +178,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a28c07127d50d01006700f3b2290ae229"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a02ebbdc91672617a67e1a77e0ed6a10e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQWorld.html#a02ebbdc91672617a67e1a77e0ed6a10e">CollideWithWorld</a> (<a class="el" href="classQBody.html">QBody</a> *body)</td></tr>
 <tr class="separator:a02ebbdc91672617a67e1a77e0ed6a10e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad12a322fccd9b970d9722eaa20672a61"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="classQManifold.html">QManifold</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQWorld.html#ad12a322fccd9b970d9722eaa20672a61">TestCollisionWithWorld</a> (<a class="el" href="classQBody.html">QBody</a> *body)</td></tr>
+<tr class="separator:ad12a322fccd9b970d9722eaa20672a61"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62394f07462a94a489108ae7f0eb99c1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQWorld.html">QWorld</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQWorld.html#a62394f07462a94a489108ae7f0eb99c1">AddJoint</a> (<a class="el" href="classQJoint.html">QJoint</a> *joint)</td></tr>
 <tr class="separator:a62394f07462a94a489108ae7f0eb99c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af8da8c8a5148dd97440b3df30598d131"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQWorld.html">QWorld</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQWorld.html#af8da8c8a5148dd97440b3df30598d131">RemoveJoint</a> (<a class="el" href="classQJoint.html">QJoint</a> *joint)</td></tr>
@@ -808,6 +812,32 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QBroadPhase</b></td>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="afeb1eed0ad69c9dc35514937d23828d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afeb1eed0ad69c9dc35514937d23828d2">&#9670;&nbsp;</a></span>GetBroadphase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classQBroadPhase.html">QBroadPhase</a>* QWorld::GetBroadphase </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Returns the external broad phase object if defined. If not defined, returns nullptr. </p>
 
 </div>
 </div>
@@ -1992,6 +2022,30 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QBroadPhase</b></td>
 <p>Sets the time scale for the physics simulation. The default value is 1.0. If you give a value lower than 1.0, the simulation will slow down, and if you give a value higher than 1.0, the simulation will speed up. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">value</td><td>A value to set. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad12a322fccd9b970d9722eaa20672a61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad12a322fccd9b970d9722eaa20672a61">&#9670;&nbsp;</a></span>TestCollisionWithWorld()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; <a class="el" href="classQManifold.html">QManifold</a> &gt; QWorld::TestCollisionWithWorld </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classQBody.html">QBody</a> *&#160;</td>
+          <td class="paramname"><em>body</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Applies a collision test between a body and other bodies in the world, returning a list of manifolds if collisions are detected. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">body</td><td>A body from the world. </td></tr>
   </table>
   </dd>
 </dl>

@@ -1,0 +1,9 @@
+<map id="QPlatformerBody" name="QPlatformerBody">
+<area shape="rect" id="node1" title="QPlatformerBody provides a ready&#45;to&#45;use foundation for character physics in platformer games...." alt="" coords="305,413,427,440"/>
+<area shape="rect" id="node2" href="$classQRigidBody.html" title="QRigidBody is a type of body that is simulated with the dynamics of Rigid body. A rigid body is a typ..." alt="" coords="297,324,389,351"/>
+<area shape="rect" id="node3" href="$classQBody.html" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m..." alt="" coords="228,217,291,244"/>
+<area shape="rect" id="node4" href="$classQWorld.html" title="A QWorld object is required to create a physics simulation. The QWorld class manages the entire physi..." alt="" coords="111,96,176,123"/>
+<area shape="rect" id="node5" href="$classQBroadPhase.html" title=" " alt="" coords="5,5,108,32"/>
+<area shape="rect" id="node6" href="$structQVector.html" title=" " alt="" coords="291,5,361,32"/>
+<area shape="rect" id="node7" href="$classQAABB.html" title=" " alt="" coords="323,96,391,123"/>
+</map>

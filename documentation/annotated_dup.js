@@ -29,6 +29,7 @@ var annotated_dup =
     [ "QMesh", "structQMesh.html", "structQMesh" ],
     [ "QObjectPool", "classQObjectPool.html", "classQObjectPool" ],
     [ "QParticle", "classQParticle.html", "classQParticle" ],
+    [ "QPlatformerBody", "classQPlatformerBody.html", "classQPlatformerBody" ],
     [ "QRaycast", "classQRaycast.html", "classQRaycast" ],
     [ "QRigidBody", "classQRigidBody.html", "classQRigidBody" ],
     [ "QSoftBody", "classQSoftBody.html", "classQSoftBody" ],

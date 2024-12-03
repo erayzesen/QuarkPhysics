@@ -33,6 +33,38 @@
 #include "cmath"
 #include <utility>
 
+bool QSoftBody::IsPolygonCW(vector<QParticle *> polygon)
+{
+    int n = polygon.size();
+    if (n < 3) return false; // Poligon geçerli değil
+
+    // Geometrik merkez (ortalama pozisyon)
+    QVector center(0, 0);
+    for (const auto& point : polygon) {
+        center += point->GetGlobalPosition();
+    }
+    center /= n;
+
+    // İşaret kontrolü
+    float totalCross = 0.0f; // Toplam çapraz çarpım
+    for (int i = 0; i < n; ++i) {
+        QVector current = polygon[i]->GetGlobalPosition();
+        QVector next = polygon[(i + 1) % n]->GetGlobalPosition();
+
+        // Kenar vektörü
+        QVector edge = next - current;
+
+        // Kenarın merkezle olan vektörüne göre çapraz çarpımı hesapla
+        QVector toCenter = center - current;
+        float cross = edge.x * toCenter.y - edge.y * toCenter.x;
+
+        totalCross += cross;
+    }
+
+    // Toplam çapraz çarpımın işareti poligonun yönünü belirler
+    return totalCross < 0; // Pozitifse saat yönünün tersi
+}
+
 QSoftBody::QSoftBody()
 {
 	simulationModel=SimulationModels::MASS_SPRING;
@@ -78,9 +110,15 @@ void QSoftBody::Update()
 			if(GetPassivationOfInternalSpringsEnabled() && particle->GetIsInternal())
 				continue;
 			auto vel=particle->GetGlobalPosition()-particle->GetPreviousGlobalPosition();
+			if (velocityLimit>0.0f && vel.Length()>velocityLimit){
+				vel=velocityLimit*vel.Normalized();
+			}
+			
 			particle->SetPreviousGlobalPosition(particle->GetGlobalPosition() );
-			particle->ApplyForce(vel-(vel*airFriction) );
-			particle->ApplyForce(mass*world->GetGravity()*ts);
+			if(enableIntegratedVelocities==true){
+				particle->ApplyForce(vel-(vel*airFriction) );
+				particle->ApplyForce(mass*world->GetGravity()*ts);
+			}
 			particle->ApplyForce(particle->GetForce());
 			particle->SetForce(QVector::Zero());
 		}
@@ -104,6 +142,12 @@ void QSoftBody::Update()
 
 }
 
+void QSoftBody::PostUpdate()
+{
+	
+}
+
+
 void QSoftBody::PreserveAreas()
 {
 
@@ -123,9 +167,17 @@ void QSoftBody::PreserveAreas()
 
 		if(mesh->GetSpringCount()==0)continue;
 		float currentMeshesArea=mesh->GetPolygonsArea();
-		float circumference=GetCircumference();
+
+		if(currentMeshesArea<-targetPreservationArea*5){
+			currentMeshesArea=-targetPreservationArea*5;
+		}
+		if(currentMeshesArea>targetPreservationArea*5){
+			currentMeshesArea=targetPreservationArea*5;
+		}
+		float circumference=max (GetCircumference(),0.001f);
 
 		float deltaArea=(targetPreservationArea*areaPreservingRate)-currentMeshesArea;
+		
 		if(enableAreaStability==false){
 			if(deltaArea<0){
 				deltaArea=0;
@@ -133,18 +185,22 @@ void QSoftBody::PreserveAreas()
 				enableAreaStability=true;
 			}
 		}
-
+		
+		if (deltaArea==0.0f){
+			return;
+		}
 
 		float pressure=(deltaArea/circumference)*areaPreservingRigidity;
 
 		
-		
 		QVector volumeForces[mesh->polygon.size()];
+		QVector centerOfMesh=QMesh::GetAveragePositionAndRotation(mesh->polygon).first;
 		for(int n=0;n<mesh->polygon.size();n++){
 			QParticle *pp=mesh->polygon[ (n-1+mesh->polygon.size())%mesh->polygon.size() ];
 			QParticle *np=mesh->polygon[ (n+1)%mesh->polygon.size() ];
 			QVector vec=np->GetGlobalPosition()-pp->GetGlobalPosition();
-			volumeForces[n]=pressure*(vec.Perpendicular().Normalized())*ts;	
+			QVector normal=vec.Perpendicular().Normalized();
+			volumeForces[n]=pressure*(normal)*ts;
 		}
 
 		for(int n=0;n<mesh->polygon.size();n++){

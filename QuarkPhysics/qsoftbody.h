@@ -72,6 +72,8 @@ class QSoftBody : public QBody
 		}
 	}
 
+	bool IsPolygonCW(vector<QParticle*> polygon);
+
 
 public:
 	QSoftBody();
@@ -295,7 +297,9 @@ public:
 
 	//
 	/** Updates properties of the soft body and applies needed physical dynamics. */
-	void Update();
+	virtual void Update();
+	/** Called after all bodies have completed their Update step to perform post-update operations. */
+	virtual void PostUpdate();
 	/** Applies the preserve area operation to the body. */ 
 	void PreserveAreas();
 	/** Applies the shape matching operation to the body. */ 

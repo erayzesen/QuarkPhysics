@@ -137,13 +137,17 @@ void QRigidBody::Update()
 		prevPosition.y=position.y;
 	}
 
+	if (velocityLimit>0.0f && vel.Length()>velocityLimit){
+		vel=velocityLimit*vel.Normalized();
+	}
+
 	//Angular Velocity
 	float rotVel=rotation-prevRotation;
 	prevRotation=rotation;
 
 
 	//Verlet Integration
-	if(isKinematic==false){
+	if(isKinematic==false && enableIntegratedVelocities==true){
 		position+=vel-(vel*airFriction);
 		position+=(world->GetGravity()*mass*ts);
 		rotation+=rotVel-(rotVel*airFriction);
@@ -157,4 +161,9 @@ void QRigidBody::Update()
 
 	UpdateMeshTransforms();
 	UpdateAABB();
+}
+
+void QRigidBody::PostUpdate()
+{
+	
 }

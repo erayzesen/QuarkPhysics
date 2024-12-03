@@ -96,6 +96,8 @@ protected:
 	float bodySpecificTimeScale=1.0f;
 	BodyTypes bodyType=BodyTypes::RIGID;
 	bool enabled=true;
+	float velocityLimit=0.0f;
+	bool enableIntegratedVelocities=true;
 
 	//Material Properties;
 
@@ -122,7 +124,10 @@ protected:
 
 	void UpdateAABB();
 	void UpdateMeshTransforms();
+	/** Updates properties of the soft body and applies needed physical dynamics. */
 	virtual void Update(){};
+	/** Called after all bodies have completed their Update step to perform post-update operations. */
+	virtual void PostUpdate(){};
 	virtual bool CanGiveCollisionResponseTo(QBody *otherBody);
 
 	public:
@@ -341,6 +346,15 @@ protected:
 		bool GetEnabled(){
 			return enabled;
 		}
+		/**
+		 * Returns the velocity limit of the physics body.  If set to 0, no velocity limit is applied. The default value is 0.
+		 */
+		float GetVelocityLimit();
+
+		/**
+		 * Returns whether the application of gravity and various velocity integrators necessary for the body's movement in the physics world is enabled. It is set to true by default. Typically, it is disabled for specific body objects that require manual control.
+		 */
+		bool GetIntegratedVelocitiesEnabled();
 
 
 
@@ -355,6 +369,7 @@ protected:
 			if (withPreviousPosition) {
 				prevPosition=position;
 			}
+			WakeUp();
 
 			UpdateMeshTransforms();
 			UpdateAABB();
@@ -363,10 +378,11 @@ protected:
 
 		/** Adds a vector value the position of the body. 
 		 * @param value A vector value to add. 
+		 * @param withPreviousPosition Determines whether apply the position to the previous position of the body.In this simulation, since velocities are implicit, if the previous position are the same as the newly set position, the positional velocity of the body will also be zeroed.Therefore, if you want to zero out the positional velocity when setting the new position, use this option.
 		 * @return A pointer to the body itself.
 		 */
-		QBody *AddPosition(QVector value){
-			return SetPosition(GetPosition()+value);
+		QBody *AddPosition(QVector value, bool withPreviousPosition=true){
+			return SetPosition(GetPosition()+value,withPreviousPosition);
 		}
 		/** Sets the previous position of the body. 
 		 * @param value A position value to set. 
@@ -392,6 +408,7 @@ protected:
 			rotation=angleRadian;
 			if(withPreviousRotation)
 				prevRotation=angleRadian;
+			WakeUp();
 			UpdateMeshTransforms();
 			return this;
 		}
@@ -406,10 +423,11 @@ protected:
 		
 		/** Adds a value to the rotation of the body. 
 		 * @param angleRadian A value to add, in radians. 
+		 * @param withPreviousRotation Determines whether apply the rotation to the previous rotation of the body.In this simulation, since velocities are implicit, if the previous rotation are the same as the newly set rotation, the angular velocity of the body will also be zeroed.Therefore, if you want to zero out the angular velocity when setting the new rotation, use this option.
 		 * @return A pointer to the body itself.
 		 */
-		QBody *AddRotation(float angleRadian){
-			return SetRotation(GetRotation()+angleRadian);
+		QBody *AddRotation(float angleRadian, bool withPreviousRotation=true){
+			return SetRotation(GetRotation()+angleRadian,withPreviousRotation);
 		}
 		/** Sets the previous rotation of the body. 
 		 * @param angleRadian A rotation value to set, in radians. 
@@ -547,6 +565,11 @@ protected:
 			return this;
 		}
 
+		/**
+		 * Sets whether the application of gravity and various velocity integrators necessary for the body's movement in the physics world is enabled. It is set to true by default. Typically, it is disabled for specific body objects that require manual control.
+		 */
+		QBody *SetIntegratedVelocitiesEnabled(bool value);
+
 
 		//Mesh Methods
 		/** Adds a mesh to the body.
@@ -584,6 +607,12 @@ protected:
 			isSleeping = false;
 			return this;
 		}
+
+		/**
+		 * Limits the velocity of the physics body. If set to 0, no velocity limit is applied. The default value is 0.
+		 * @return A pointer to the body itself.
+		 */
+		QBody *SetVelocityLimit(float value);
 
 
 		friend class QMesh;

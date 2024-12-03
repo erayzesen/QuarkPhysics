@@ -3,6 +3,7 @@ var hierarchy =
     [ "QBody::BodyPairEqual", "structQBody_1_1BodyPairEqual.html", null ],
     [ "QBody::BodyPairHash", "structQBody_1_1BodyPairHash.html", null ],
     [ "QBody::CollisionInfo", "structQBody_1_1CollisionInfo.html", null ],
+    [ "QPlatformerBody::CollisionTestInfo", "structQPlatformerBody_1_1CollisionTestInfo.html", null ],
     [ "QCollision::Contact", "structQCollision_1_1Contact.html", null ],
     [ "QRaycast::Contact", "structQRaycast_1_1Contact.html", null ],
     [ "QMesh::MeshData", "structQMesh_1_1MeshData.html", null ],
@@ -11,7 +12,9 @@ var hierarchy =
     [ "QAABB", "classQAABB.html", null ],
     [ "QBody", "classQBody.html", [
       [ "QAreaBody", "classQAreaBody.html", null ],
-      [ "QRigidBody", "classQRigidBody.html", null ],
+      [ "QRigidBody", "classQRigidBody.html", [
+        [ "QPlatformerBody", "classQPlatformerBody.html", null ]
+      ] ],
       [ "QSoftBody", "classQSoftBody.html", null ]
     ] ],
     [ "QBroadPhase", "classQBroadPhase.html", [

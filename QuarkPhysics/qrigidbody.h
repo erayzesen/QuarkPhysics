@@ -40,8 +40,8 @@ class QRigidBody : public QBody
 {
 	bool fixedRotation=false;
 protected:
-	QVector force=QVector::Zero();
 	float angularForce=0.0f;
+	QVector force=QVector::Zero();
 public:
 	QRigidBody();
 
@@ -129,7 +129,10 @@ public:
 
 
 	/** Updates properties of the rigid body and applies needed physical dynamics. */
-	void Update();
+	virtual void Update();
+
+	/** Called after all bodies have completed their Update step to perform post-update operations. */
+	virtual void PostUpdate();
 
 
 };

@@ -689,7 +689,7 @@ float QMesh::GetPolygonArea(vector<QParticle *> &polygonPoints,bool withLocalPos
 		area+=(a+b)*h*0.5f;
 	}
 
-	return abs(area);
+	return -area;
 }
 
 bool QMesh::CheckCollisionBehaviors(QMesh *meshA, QMesh *meshB, CollisionBehaviors firstBehavior, CollisionBehaviors secondBehavior){

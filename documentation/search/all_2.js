@@ -14,10 +14,11 @@ var searchData=
   ['collisioneventlistener_37',['CollisionEventListener',['../classQBody.html#ac0b095617f872559ef5c4920f9c48b70',1,'QBody']]],
   ['collisionexiteventlistener_38',['CollisionExitEventListener',['../classQAreaBody.html#a0e4e2d0e3d97ad4a1ab07ef9763fa5bf',1,'QAreaBody']]],
   ['collisioninfo_39',['CollisionInfo',['../structQBody_1_1CollisionInfo.html',1,'QBody']]],
-  ['contact_40',['Contact',['../structQCollision_1_1Contact.html',1,'QCollision::Contact'],['../structQRaycast_1_1Contact.html',1,'QRaycast::Contact']]],
-  ['contacts_41',['contacts',['../classQManifold.html#abe4976b5c4b0716949a5f62ba5ec537d',1,'QManifold']]],
-  ['createwithcircle_42',['CreateWithCircle',['../structQMesh.html#a3f9aeaed089ee82fa425f8c98ed63f02',1,'QMesh']]],
-  ['createwithmeshdata_43',['CreateWithMeshData',['../structQMesh.html#a5dfa8ce766a225b9e788004ac7aed63a',1,'QMesh']]],
-  ['createwithpolygon_44',['CreateWithPolygon',['../structQMesh.html#a75523f7fed5db8b2e3c6aa6e55afac58',1,'QMesh']]],
-  ['createwithrect_45',['CreateWithRect',['../structQMesh.html#a46fdef1c61a493ed8bd1673604152af1',1,'QMesh']]]
+  ['collisiontestinfo_40',['CollisionTestInfo',['../structQPlatformerBody_1_1CollisionTestInfo.html',1,'QPlatformerBody']]],
+  ['contact_41',['Contact',['../structQCollision_1_1Contact.html',1,'QCollision::Contact'],['../structQRaycast_1_1Contact.html',1,'QRaycast::Contact']]],
+  ['contacts_42',['contacts',['../classQManifold.html#abe4976b5c4b0716949a5f62ba5ec537d',1,'QManifold']]],
+  ['createwithcircle_43',['CreateWithCircle',['../structQMesh.html#a3f9aeaed089ee82fa425f8c98ed63f02',1,'QMesh']]],
+  ['createwithmeshdata_44',['CreateWithMeshData',['../structQMesh.html#a5dfa8ce766a225b9e788004ac7aed63a',1,'QMesh']]],
+  ['createwithpolygon_45',['CreateWithPolygon',['../structQMesh.html#a75523f7fed5db8b2e3c6aa6e55afac58',1,'QMesh']]],
+  ['createwithrect_46',['CreateWithRect',['../structQMesh.html#a46fdef1c61a493ed8bd1673604152af1',1,'QMesh']]]
 ];

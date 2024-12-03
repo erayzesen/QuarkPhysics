@@ -29,32 +29,26 @@
 #define EXAMPLESCENEPLATFORMER_H
 #include "../qexamplescene.h"
 #include "../QuarkPhysics/qareabody.h"
+#include "../QuarkPhysics/extensions/qplatformerbody.h"
 
 class ExampleScenePlatformer : public QExampleScene
 {
 
 public:
 	ExampleScenePlatformer(QVector sceneSize);
-	void OnPlayerPreStep(QBody *body);
 	void OnPlayerStep(QBody *body);
-	bool OnPlayerCollision(QBody *body,QBody::CollisionInfo info);
-	void OnPlatformPreStep(QBody *body);
+	void OnPlatformStep(QBody *body);
 	void OnCointCollisionEnter(QAreaBody *body,QBody *collidedBody);
 
 	void OnMouseMoved(QVector mousePosition);
 
 	//Player properties
-	QRigidBody *player;
+	QPlatformerBody *player;
 	QVector velocity;
 	QRigidBody *currentFloor=nullptr;
 	int jumpTickCount=30;
 	int jumpTickDown=0;
 
-	//Side checkers
-	bool isOnFloor=false;
-	bool isOnCeiling=false;
-	bool isOnLeftWall=false;
-	bool isOnRightWall=false;
 
 	//Movable Platform	
 	QRigidBody *mBlock;
