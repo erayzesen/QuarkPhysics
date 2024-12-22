@@ -7,5 +7,6 @@ var structQMesh_1_1MeshData =
     [ "polygon", "structQMesh_1_1MeshData.html#a6149568d77bbf63115c36c389dbdba5f", null ],
     [ "position", "structQMesh_1_1MeshData.html#abb11b10f9dc0ca6bd13d1c5d9a87d33b", null ],
     [ "rotation", "structQMesh_1_1MeshData.html#a6608cb8b590662835a870c60519c26fa", null ],
-    [ "springList", "structQMesh_1_1MeshData.html#a22772cda538a8e6cb76c84a726797f71", null ]
+    [ "springList", "structQMesh_1_1MeshData.html#a22772cda538a8e6cb76c84a726797f71", null ],
+    [ "UVMaps", "structQMesh_1_1MeshData.html#a7056c2bc6d9a0c94cb4ac8557723ed0d", null ]
 ];

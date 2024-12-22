@@ -120,6 +120,8 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a9344124592e33d77bb3f8118d971e488"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6149568d77bbf63115c36c389dbdba5f"><td class="memItemLeft" align="right" valign="top">vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh_1_1MeshData.html#a6149568d77bbf63115c36c389dbdba5f">polygon</a></td></tr>
 <tr class="separator:a6149568d77bbf63115c36c389dbdba5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7056c2bc6d9a0c94cb4ac8557723ed0d"><td class="memItemLeft" align="right" valign="top">vector&lt; vector&lt; int &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh_1_1MeshData.html#a7056c2bc6d9a0c94cb4ac8557723ed0d">UVMaps</a></td></tr>
+<tr class="separator:a7056c2bc6d9a0c94cb4ac8557723ed0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abb11b10f9dc0ca6bd13d1c5d9a87d33b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structQVector.html">QVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh_1_1MeshData.html#abb11b10f9dc0ca6bd13d1c5d9a87d33b">position</a> =QVector::Zero()</td></tr>
 <tr class="separator:abb11b10f9dc0ca6bd13d1c5d9a87d33b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6608cb8b590662835a870c60519c26fa"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh_1_1MeshData.html#a6608cb8b590662835a870c60519c26fa">rotation</a> =0.0f</td></tr>
@@ -248,6 +250,21 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>The collection of integer pairs to define springs. The integer values define the indices of particles in the particlePositions collection. <br  />
  </p>
+
+</div>
+</div>
+<a id="a7056c2bc6d9a0c94cb4ac8557723ed0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7056c2bc6d9a0c94cb4ac8557723ed0d">&#9670;&nbsp;</a></span>UVMaps</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt;vector&lt;int&gt; &gt; QMesh::MeshData::UVMaps</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Contains UV maps. UV polygons can be defined using the index numbers of the particlePositions collection. Each polygon must have at least 3 points. Meshes created with <a class="el" href="structQMesh.html#a46fdef1c61a493ed8bd1673604152af1" title="Creates a mesh with a rectangle shape.">CreateWithRect()</a> or <a class="el" href="structQMesh.html#a75523f7fed5db8b2e3c6aa6e55afac58" title="Creates a mesh with a convex polygon shape.">CreateWithPolygon()</a> generate UV maps by subdividing the mesh into triangles. </p>
 
 </div>
 </div>
