@@ -41,6 +41,7 @@
 #include "qsoftbody.h"
 #include "qraycast.h"
 #include "qjoint.h"
+#include "qmath_utils.h"
 
 
 using namespace std;

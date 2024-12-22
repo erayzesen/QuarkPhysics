@@ -144,6 +144,32 @@ QParticle *QParticle::AddForce(QVector value){
 	return SetForce(GetForce()+value);
 }
 
+QParticle *QParticle::AddAccumulatedForce(QVector value)
+{
+	accumulatedForces.push_back(value);
+    return this;
+}
+
+QParticle *QParticle::ClearAccumulatedForces()
+{
+	accumulatedForces.clear();
+    return this;
+}
+
+QParticle *QParticle::ApplyAccumulatedForces()
+{
+	if(accumulatedForces.size()>0 ){
+		QVector accumulatedForce=QVector::Zero();
+		for(size_t j=0;j<accumulatedForces.size();++j ){
+			accumulatedForce+=accumulatedForces[j];
+		}
+		accumulatedForce/=accumulatedForces.size();
+		ApplyForce(accumulatedForce);
+		accumulatedForces.clear();
+	}
+    return this;
+}
+
 void QParticle::ApplyForceToParticleSegment(QParticle *pA, QParticle *pB,QVector force, QVector fromPosition)
 {
 	QVector segmentVector=pB->globalPosition-pA->globalPosition;

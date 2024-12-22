@@ -121,8 +121,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:afb11a8cfcb927d2db887863e4a483032"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aac9eab3df2377027b02ff68232785f27"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQParticle.html#aac9eab3df2377027b02ff68232785f27">GetRadius</a> ()</td></tr>
 <tr class="separator:aac9eab3df2377027b02ff68232785f27"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb0d1195cc8afcf4946aa841d911f1f5"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQParticle.html#adb0d1195cc8afcf4946aa841d911f1f5">GetIsInternal</a> ()</td></tr>
-<tr class="separator:adb0d1195cc8afcf4946aa841d911f1f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa06cbdad51cae360f434e1152285d043"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQParticle.html#aa06cbdad51cae360f434e1152285d043">GetIsInternal</a> ()</td></tr>
+<tr class="separator:aa06cbdad51cae360f434e1152285d043"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a128465d6b25cbb4711dc185b5ab1a672"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structQVector.html">QVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQParticle.html#a128465d6b25cbb4711dc185b5ab1a672">GetForce</a> ()</td></tr>
 <tr class="separator:a128465d6b25cbb4711dc185b5ab1a672"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac354e3896bc6f79634c882932804ac39"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQParticle.html">QParticle</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQParticle.html#ac354e3896bc6f79634c882932804ac39">SetGlobalPosition</a> (<a class="el" href="structQVector.html">QVector</a> value)</td></tr>
@@ -152,6 +152,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a295fabae1f7d1cdbf6afc6b0f98e7fdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acc4a898aa75cbb7f261a29a5edd3e357"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQParticle.html">QParticle</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQParticle.html#acc4a898aa75cbb7f261a29a5edd3e357">AddForce</a> (<a class="el" href="structQVector.html">QVector</a> value)</td></tr>
 <tr class="separator:acc4a898aa75cbb7f261a29a5edd3e357"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e7e0091e6a739e3271ad549d8afbfa9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQParticle.html">QParticle</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQParticle.html#a2e7e0091e6a739e3271ad549d8afbfa9">AddAccumulatedForce</a> (<a class="el" href="structQVector.html">QVector</a> value)</td></tr>
+<tr class="separator:a2e7e0091e6a739e3271ad549d8afbfa9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa18c18394fc660b8a7c0b6bde452bae5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQParticle.html">QParticle</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQParticle.html#aa18c18394fc660b8a7c0b6bde452bae5">ClearAccumulatedForces</a> ()</td></tr>
+<tr class="separator:aa18c18394fc660b8a7c0b6bde452bae5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a985d07c60533ffafe6465ea840aa29d4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQParticle.html">QParticle</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQParticle.html#a985d07c60533ffafe6465ea840aa29d4">ApplyAccumulatedForces</a> ()</td></tr>
+<tr class="separator:a985d07c60533ffafe6465ea840aa29d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -161,6 +167,31 @@ Static Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classQParticle.html" title="QParticle objects form the network structures of QMesh objects defined for all body object types....">QParticle</a> objects form the network structures of <a class="el" href="structQMesh.html" title="Every QBody object requires meshes. In other traditional physics engines, the term &#39;shape&#39; is used in...">QMesh</a> objects defined for all body object types. They are the smallest building blocks of physics simulation and are manipulated differently in different body object types. For example, in <a class="el" href="classQRigidBody.html" title="QRigidBody is a type of body that is simulated with the dynamics of Rigid body. A rigid body is a typ...">QRigidBody</a> objects, particles are collectively forced into positions obtained through various calculations based on the current body properties. However, in soft body objects, simulation particles are individually manipulated and can move freely, determining the next steps of the simulation through their individual movements. <a class="el" href="structQMesh.html" title="Every QBody object requires meshes. In other traditional physics engines, the term &#39;shape&#39; is used in...">QMesh</a> objects offer a number of methods to manage particles. For more information on restrictions between particles in soft body objects, see the <a class="el" href="classQSpring.html" title="You can apply distance constraints between 2 particles using the QSpring. The physics engine uses QSp...">QSpring</a> object. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a2e7e0091e6a739e3271ad549d8afbfa9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e7e0091e6a739e3271ad549d8afbfa9">&#9670;&nbsp;</a></span>AddAccumulatedForce()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classQParticle.html">QParticle</a> * QParticle::AddAccumulatedForce </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structQVector.html">QVector</a>&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Adds a new force to the accumulated forces. The purpose of the accumulated forces is to apply their arithmetic average using ApplyAccumulatedForce(). Before performing operations with the accumulated forces, they must be cleared using ClearAccumulatedForce(). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>A value to add. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to the particle itself. </dd></dl>
+
+</div>
+</div>
 <a id="acc4a898aa75cbb7f261a29a5edd3e357"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acc4a898aa75cbb7f261a29a5edd3e357">&#9670;&nbsp;</a></span>AddForce()</h2>
 
@@ -262,6 +293,24 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a985d07c60533ffafe6465ea840aa29d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a985d07c60533ffafe6465ea840aa29d4">&#9670;&nbsp;</a></span>ApplyAccumulatedForces()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classQParticle.html">QParticle</a> * QParticle::ApplyAccumulatedForces </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Calculates the arithmetic average of the accumulated forces based on the number of forces, applies it to the particle, and then clears all forces. </p>
+
+</div>
+</div>
 <a id="a8a459294d5653b832e8042fdcc6fa495"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8a459294d5653b832e8042fdcc6fa495">&#9670;&nbsp;</a></span>ApplyForce()</h2>
 
@@ -344,6 +393,24 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="aa18c18394fc660b8a7c0b6bde452bae5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa18c18394fc660b8a7c0b6bde452bae5">&#9670;&nbsp;</a></span>ClearAccumulatedForces()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classQParticle.html">QParticle</a> * QParticle::ClearAccumulatedForces </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Clears the accumulated forces. It should be called before working with accumulated forces. Additionally, the accumulated forces are automatically cleared after the ApplyAccumulatedForce() method is called. </p>
+
+</div>
+</div>
 <a id="a128465d6b25cbb4711dc185b5ab1a672"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a128465d6b25cbb4711dc185b5ab1a672">&#9670;&nbsp;</a></span>GetForce()</h2>
 
@@ -396,8 +463,8 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="adb0d1195cc8afcf4946aa841d911f1f5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adb0d1195cc8afcf4946aa841d911f1f5">&#9670;&nbsp;</a></span>GetIsInternal()</h2>
+<a id="aa06cbdad51cae360f434e1152285d043"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa06cbdad51cae360f434e1152285d043">&#9670;&nbsp;</a></span>GetIsInternal()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -406,7 +473,7 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">float QParticle::GetIsInternal </td>
+          <td class="memname">bool QParticle::GetIsInternal </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>

@@ -1105,8 +1105,16 @@ bool QWorld::SortBodiesVertical(const QBody *bodyA, const QBody *bodyB)
 			
 			 for(int i=0;i<sBody->GetMeshCount();i++){
 				 QMesh * mesh=sBody->GetMeshAt(i);
+				 for(auto particle:mesh->particles){
+					particle->ClearAccumulatedForces();
+				 }
+
 				 for(auto spring:mesh->springs){
 					 spring->Update(sBody->GetRigidity()*ts,sBody->GetPassivationOfInternalSpringsEnabled());
+				 }
+
+				 for(auto particle:mesh->particles){
+					particle->ApplyAccumulatedForces();
 				 }
 			 }
 
@@ -1115,6 +1123,7 @@ bool QWorld::SortBodiesVertical(const QBody *bodyA, const QBody *bodyB)
 		 }
 		 
 	 }
+	 
 	 
 	 for(auto spring:springs){
 		 spring->Update(spring->GetRigidity(),false,true);

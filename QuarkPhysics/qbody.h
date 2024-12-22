@@ -34,6 +34,7 @@
 #include <vector>
 #include "qmesh.h"
 #include <functional>
+#include "qmath_utils.h"
 
 
 class QWorld;

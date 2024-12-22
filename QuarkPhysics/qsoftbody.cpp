@@ -107,20 +107,23 @@ void QSoftBody::Update()
 		QMesh *mesh=_meshes[i];
 		for(int n=0;n<mesh->GetParticleCount();n++){
 			QParticle *particle=mesh->GetParticleAt(n);
-			if(GetPassivationOfInternalSpringsEnabled() && particle->GetIsInternal())
-				continue;
+			/* if(GetPassivationOfInternalSpringsEnabled() && particle->GetIsInternal())
+				continue; */
 			auto vel=particle->GetGlobalPosition()-particle->GetPreviousGlobalPosition();
 			if (velocityLimit>0.0f && vel.Length()>velocityLimit){
 				vel=velocityLimit*vel.Normalized();
 			}
 			
 			particle->SetPreviousGlobalPosition(particle->GetGlobalPosition() );
-			if(enableIntegratedVelocities==true){
+			if(enableIntegratedVelocities==true ){
 				particle->ApplyForce(vel-(vel*airFriction) );
-				particle->ApplyForce(mass*world->GetGravity()*ts);
+				if(!(particle->GetIsInternal()==true && enablePassivationOfInternalSprings==true) ){
+					particle->ApplyForce(mass*world->GetGravity()*ts);
+				}
 			}
 			particle->ApplyForce(particle->GetForce());
 			particle->SetForce(QVector::Zero());
+			
 		}
 	}
 	
@@ -193,14 +196,14 @@ void QSoftBody::PreserveAreas()
 		float pressure=(deltaArea/circumference)*areaPreservingRigidity;
 
 		
-		QVector volumeForces[mesh->polygon.size()];
+		vector<QVector> volumeForces;
 		QVector centerOfMesh=QMesh::GetAveragePositionAndRotation(mesh->polygon).first;
 		for(int n=0;n<mesh->polygon.size();n++){
 			QParticle *pp=mesh->polygon[ (n-1+mesh->polygon.size())%mesh->polygon.size() ];
 			QParticle *np=mesh->polygon[ (n+1)%mesh->polygon.size() ];
 			QVector vec=np->GetGlobalPosition()-pp->GetGlobalPosition();
 			QVector normal=vec.Perpendicular().Normalized();
-			volumeForces[n]=pressure*(normal)*ts;
+			volumeForces.push_back(pressure*(normal)*ts);
 		}
 
 		for(int n=0;n<mesh->polygon.size();n++){

@@ -33,6 +33,7 @@
 #include "qparticle.h"
 #include "json/json.hpp"
 #include "fstream"
+#include "qmath_utils.h"
 
 using json =nlohmann::json;
 
@@ -65,6 +66,7 @@ protected:
 	float circumference=0.0f;
 	QBody *ownerBody=nullptr;
 	CollisionBehaviors collisionBehavior=CollisionBehaviors::CIRCLES;
+	vector<vector<int>> UVMaps=vector<vector<int>>();
 
 	bool collisionBehaviorNeedsUpdate=false;
 
@@ -110,6 +112,14 @@ public:
 		 * The integer values define the indices of particles in the particlePositions collection.  
 		 * */
 		vector<int> polygon;
+
+
+		/** Contains UV maps. UV polygons can be defined using the index numbers of the
+		 *  particlePositions collection. Each polygon must have at least 3 points.
+		 *  Meshes created with CreateWithRect() or CreateWithPolygon() generate
+		 *  UV maps by subdividing the mesh into triangles.
+		 */
+		vector<vector<int>> UVMaps;
 
 		/** The position of the mesh */
 		QVector position=QVector::Zero();
@@ -285,6 +295,19 @@ public:
 	 */
 	QParticle *GetParticleAt(int index);
 
+	/** Returns the index of the specified particle.
+	 * @param particle A particle in the mesh.
+	 * @return If the particle is found, it returns the index value, otherwise it returns -1. 
+	 */
+	int GetParticleIndex(QParticle *particle){
+		for(int i=0;i<particles.size();i++){
+			if(particles[i]==particle){
+				return i;
+			}
+		}
+		return -1;
+	}
+
 
 
 
@@ -430,6 +453,7 @@ public:
 	}
 	/** Returns the index of the specified spring.
 	 * @param spring A spring in the mesh.
+	 * @return If the spring is found, it returns the index value, otherwise it returns -1.
 	 */
 	int GetSpringIndex(QSpring *spring){
 		for(int i=0;i<springs.size();i++)
@@ -438,8 +462,54 @@ public:
 		return -1;
 	}
 
+	
+
+	//UV Operations
+
+	/** Returns the count of the UV maps .
+	 */
+	int GetUVMapCount(){
+		return UVMaps.size();
+	};
+
+	/** Returns the UV map at the specified index.
+	 * @param index The index of the UV map to be get.
+	 */
+	vector<int> GetUVMapAt(int index){
+		return UVMaps[index];
+	};
+
+	/** Adds a UV map to the mesh
+	 * @param map A particle index collection to be added.
+	 * @return QMesh* A pointer to mesh itself.
+	 */
+	QMesh * AddUVMap(vector<int> map);
+
+	/** Removes the springs that contain the specified particle.
+	 * @param index The index of the UV map to be removed.
+	 * @return QMesh* A pointer to mesh itself.
+	 */
+
+	QMesh * RemoveUVMapAt(int index);
+
+	/** Removes all UV maps of the mesh.
+	 * @return QMesh* A pointer to mesh itself.
+	 */
+
+	QMesh * ClearUVMaps();
 
 
+
+
+	/** Removes the UV maps or UV map particle reference that contain the specified particle index.
+	 * @param particleIndex A particle index to be matched.
+	 * @return QMesh* A pointer to mesh itself.
+	 */
+	QMesh * RemoveMatchingUVMaps(int particleIndex);
+
+	
+
+	
 
 
 

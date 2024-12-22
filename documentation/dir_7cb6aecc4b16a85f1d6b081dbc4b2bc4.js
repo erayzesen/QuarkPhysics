@@ -9,6 +9,7 @@ var dir_7cb6aecc4b16a85f1d6b081dbc4b2bc4 =
     [ "qgizmos.h", "qgizmos_8h_source.html", null ],
     [ "qjoint.h", "qjoint_8h_source.html", null ],
     [ "qmanifold.h", "qmanifold_8h_source.html", null ],
+    [ "qmath_utils.h", "qmath__utils_8h_source.html", null ],
     [ "qmesh.h", "qmesh_8h_source.html", null ],
     [ "qobjectpool.h", "qobjectpool_8h_source.html", null ],
     [ "qparticle.h", "qparticle_8h_source.html", null ],
