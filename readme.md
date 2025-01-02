@@ -32,9 +32,10 @@ QuarkPhysics is a 2D physics engine designed for games. Its goal is to provide a
   * Supports sleeping islands to improve CPU performance.
   * Flexible and advanced event system.
   * It uses pixels directly as a unit without any abstractions.
+  * Supports UV mapping with QMesh for rendering operations. 
   * Unlimited shape-mesh support for bodies.
   * Simple and consistent API
-  * External .qmesh file support. There is also [QMeshEditor](https://github.com/erayzesen/QMeshEditor) app for create/edit/manage qmesh files.
+
    
 * Rigid bodies
   * Convex polygons support.
@@ -68,8 +69,8 @@ Or you can compile the project directly via gcc if you're on linux by calling th
 ## Using
 Copy the "QuarkPhysics" named subfolder in the main folder to your project and use it. 
 
-## Integrations in other engines
-* [Godot Engine](https://github.com/erayzesen/godot-quarkphysics)
+## Integrations in Game Engines
+* [Godot Engine](https://github.com/erayzesen/godot-quarkphysics) (GDExtension)
 
 ## Third Party 
 - [nlohmann's json](https://github.com/nlohmann/json) for the json parsing. (Importing meshes via *.qmesh files)
