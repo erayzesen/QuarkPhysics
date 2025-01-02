@@ -562,7 +562,7 @@ protected:
 		 * @return A pointer to the body itself.
 		 */
 		QBody *SetEnabled(bool value){
-			enabled=true;
+			enabled=value;
 			return this;
 		}
 

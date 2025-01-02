@@ -359,8 +359,16 @@ void QMesh::TriangulatePolygon(vector<QParticle *> &polygonParticles, vector<vec
 		indexList.push_back(i);
 	}
 
+	int maxIterationCount=indexList.size()*3;
+	int iterationCount=0;
+
 	
 	while (indexList.size()>3 ){
+		iterationCount+=1;
+		if (iterationCount>maxIterationCount){
+			break;
+		}
+		
 		
 		for (int i=0;i<indexList.size();i++ ){
 			int pi=indexList[ (i-1+indexList.size() )%indexList.size() ]; //previous index
@@ -704,6 +712,17 @@ vector<QMesh::MeshData> QMesh::GetMeshDatasFromJsonData(std::string &jsonBasedDa
 		if (polygonParticleIndexes.size()>0) {
 			meshData.polygon=polygonParticleIndexes;
 		}
+
+		auto UVMapList=mesh["uv_maps"];
+
+		for (auto map:UVMapList){
+			vector<int> nmap;
+			for (size_t i=0;i<map.size();++i ){
+				int p=map[i];
+				nmap.push_back(p);
+			}
+			meshData.UVMaps.push_back(nmap);
+		}
 		
 		
 		meshData.position=QVector(mesh["position"][0],mesh["position"][1] );
@@ -972,7 +991,7 @@ QMesh::MeshData QMesh::GeneratePolygonMeshData(float radius, int sideCount, QVec
 	}
 
 	//Adding construction springs
-	if (polarGrid>1){
+	if (polarGrid>=0){
 		int pc=res.particlePositions.size();
 		int startIndex=pc-sideCount-centerParticleFactor;
 		for(int i=0;i<sideCount;i++){
