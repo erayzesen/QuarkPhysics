@@ -28,6 +28,7 @@
 #ifndef QPARTICLE_H
 #define QPARTICLE_H
 #include "qvector.h"
+#include <vector>
 
 class QMesh;
 /** @brief QParticle objects form the network structures of QMesh objects defined for all body object types. They are the smallest building blocks of physics simulation and are manipulated differently in different body object types. For example, in QRigidBody objects, particles are collectively forced into positions obtained through various calculations based on the current body properties. However, in soft body objects, simulation particles are individually manipulated and can move freely, determining the next steps of the simulation through their individual movements. QMesh objects offer a number of methods to manage particles. For more information on restrictions between particles in soft body objects, see the QSpring object.
@@ -48,11 +49,12 @@ class QParticle
 	bool isInternal=false;
 
 	QVector force=QVector::Zero();
+
+	std::vector<QVector> accumulatedForces;
 public:
 	QParticle();
 	QParticle(float posX,float posY,float radius=0.5f);
 	QParticle(QVector pos,float radius=0.5f);
-
 
 
 
@@ -84,7 +86,7 @@ public:
 		return r;
 	}
 	/** Returns whether the particle is internal. Internal particle definition is used not for the particles that define the collision boundaries of a mesh, but for the grid particles inside these boundaries. This feature is important for simulation types that require different internal particle simulation, such as volume preserved soft bodies.*/
-	float GetIsInternal(){
+	bool GetIsInternal(){
 		return isInternal;
 	}
 	/** Returns the current force value of the particle. */
@@ -157,6 +159,19 @@ public:
 	 */
 	QParticle *AddForce(QVector value);
 
+
+	//Accumulated Forces
+	/** Adds a new force to the accumulated forces. The purpose of the accumulated forces is to apply their arithmetic average using ApplyAccumulatedForce(). Before performing operations with the accumulated forces, they must be cleared using ClearAccumulatedForce().
+	 * @param value A value to add. 
+	 * @return A pointer to the particle itself.
+	 */
+	QParticle *AddAccumulatedForce(QVector value);
+	/** Clears the accumulated forces. It should be called before working with accumulated forces. Additionally, the accumulated forces are automatically cleared after the ApplyAccumulatedForce() method is called. */
+	QParticle *ClearAccumulatedForces();
+	/** Calculates the arithmetic average of the accumulated forces based on the number of forces, applies it to the particle, and then clears all forces. */
+	QParticle *ApplyAccumulatedForces();
+
+
 	//Static Methods
 	/** Applies a specified force to a segment created by two particles at a specific position. 
 	 * @param pA A particle in the world.
@@ -165,6 +180,7 @@ public:
 	 * @param fromPosition The position of the force. 
 	 */
 	static void ApplyForceToParticleSegment(QParticle *pA,QParticle *pB,QVector force,QVector fromPosition);
+	
 };
 
 #endif // QPARTICLE_H

@@ -29,6 +29,7 @@
 #define QVECTOR_H
 #include <cmath>
 #include <ostream>
+#include "qmath_utils.h"
 
 using namespace std;
 

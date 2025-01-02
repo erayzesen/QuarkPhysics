@@ -78,7 +78,7 @@ void QMesh::UpdateCollisionBehavior()
 	}
 }
 
-
+//Particles
 
 QMesh *QMesh::AddParticle(QParticle *particle){
 	particles.push_back(particle);
@@ -97,6 +97,7 @@ QMesh *QMesh::RemoveParticleAt(int index){
 	QParticle *particle=particles[index];
 	RemoveParticleFromPolygon(particle);
 	RemoveMatchingSprings(particle);
+	RemoveMatchingUVMaps(index);
 	particles.erase(particles.begin()+index);
 	if(ownerBody!=nullptr){
 		if (ownerBody->mode==QBody::Modes::STATIC)
@@ -109,14 +110,9 @@ QMesh *QMesh::RemoveParticleAt(int index){
 }
 
 QMesh *QMesh::RemoveParticle(QParticle *particle){
-	int index=-1;
-	for(int i=0;i<particles.size();i++){
-		if(particles[i]==particle){
-			index=i;
-			break;
-		}
-	}
-	RemoveParticleAt(index);
+	int index=GetParticleIndex(particle);
+	if(index!=-1)
+		RemoveParticleAt(index);
 	return this;
 }
 
@@ -127,6 +123,8 @@ int QMesh::GetParticleCount(){
 QParticle *QMesh::GetParticleAt(int index){
 	return particles[index];
 }
+
+//Polygons
 
 QMesh *QMesh::SetPolygon(vector<QParticle *> polygonParticles)
 {
@@ -361,8 +359,16 @@ void QMesh::TriangulatePolygon(vector<QParticle *> &polygonParticles, vector<vec
 		indexList.push_back(i);
 	}
 
+	int maxIterationCount=indexList.size()*3;
+	int iterationCount=0;
+
 	
 	while (indexList.size()>3 ){
+		iterationCount+=1;
+		if (iterationCount>maxIterationCount){
+			break;
+		}
+		
 		
 		for (int i=0;i<indexList.size();i++ ){
 			int pi=indexList[ (i-1+indexList.size() )%indexList.size() ]; //previous index
@@ -505,7 +511,7 @@ void QMesh::DecompositePolygon(vector<QParticle *> &polygonParticles, vector<vec
 
 }
 
-
+//Springs
 
 QMesh *QMesh::AddSpring(QSpring *spring)
 {
@@ -545,8 +551,56 @@ QMesh *QMesh::RemoveMatchingSprings(QParticle *particle)
 	return this;
 }
 
-QMesh *QMesh::CreateWithCircle(float radius, QVector centerPosition){
-	QMesh * res=new QMesh();
+//UV Maps
+
+QMesh *QMesh::AddUVMap(vector<int> map)
+{
+	UVMaps.push_back(map);
+    return this;
+}
+
+QMesh *QMesh::RemoveUVMapAt(int index)
+{
+	UVMaps.erase(UVMaps.begin()+index );
+    return this;
+}
+
+QMesh *QMesh::ClearUVMaps()
+{
+	UVMaps.clear();
+    return this;
+}
+
+QMesh *QMesh::RemoveMatchingUVMaps(int particleIndex)
+{
+	int i=0;
+	while(i<UVMaps.size() ){
+		vector<int> map=UVMaps[i];
+		int matchedIndex=-1;
+		for(int n=0;n<map.size();++n){
+			if( map[n]==particleIndex){
+				matchedIndex=n;
+			}
+		}
+		if(matchedIndex!=-1){
+			if (map.size()>3){
+				UVMaps[i].erase(UVMaps[i].begin()+matchedIndex);
+			}else{
+				RemoveUVMapAt(i);
+				continue;
+			}
+			
+		}
+		i+=1;
+	}
+    return this;
+}
+
+
+
+QMesh *QMesh::CreateWithCircle(float radius, QVector centerPosition)
+{
+    QMesh * res=new QMesh();
 	QParticle *particle=new QParticle(centerPosition.x,centerPosition.y,radius);
 	res->AddParticle(particle);
 
@@ -604,6 +658,9 @@ QMesh *QMesh::CreateWithMeshData(MeshData &data,bool enableSprings, bool enableP
 			res->springs.push_back(spring);
 		}
 	}
+	//Adding UV Maps
+	res->UVMaps=data.UVMaps;
+
 	res->position=data.position;
 	res->rotation=data.rotation;
 	return res;
@@ -654,6 +711,17 @@ vector<QMesh::MeshData> QMesh::GetMeshDatasFromJsonData(std::string &jsonBasedDa
 		vector<int> polygonParticleIndexes=mesh["polygon"];
 		if (polygonParticleIndexes.size()>0) {
 			meshData.polygon=polygonParticleIndexes;
+		}
+
+		auto UVMapList=mesh["uv_maps"];
+
+		for (auto map:UVMapList){
+			vector<int> nmap;
+			for (size_t i=0;i<map.size();++i ){
+				int p=map[i];
+				nmap.push_back(p);
+			}
+			meshData.UVMaps.push_back(nmap);
 		}
 		
 		
@@ -727,6 +795,9 @@ QMesh::MeshData QMesh::GenerateRectangleMeshData(QVector size,QVector centerPosi
 
 		res.internalSpringList.push_back(pair<int,int>(0,2));
 		res.internalSpringList.push_back(pair<int,int>(1,3));
+
+		res.UVMaps.push_back( {0,1,3});
+		res.UVMaps.push_back( {1,2,3});
 	}else{
 		QVector cellSize=size/grid;
 
@@ -819,6 +890,27 @@ QMesh::MeshData QMesh::GenerateRectangleMeshData(QVector size,QVector centerPosi
 			res.polygon.push_back(res.springList[i].first);
 		}
 
+		//Adding uv maps
+		for(int iy=0;iy<(int)grid.y;iy++){
+			for(int ix=0;ix<(int)grid.x;ix++){
+				int currentIndex=iy*(grid.x+1)+ix;
+				vector<int> triA;
+				triA.push_back(currentIndex);
+				triA.push_back(currentIndex+1);
+				triA.push_back(currentIndex+grid.x+1);
+				res.UVMaps.push_back(triA);
+
+				vector<int> triB;
+				triB.push_back(currentIndex+1);
+				triB.push_back(currentIndex+grid.x+2);
+				triB.push_back(currentIndex+1+grid.x);
+				
+				res.UVMaps.push_back(triB);
+
+			}
+
+		}
+
 	}
 
 	return res;
@@ -844,65 +936,124 @@ QMesh::MeshData QMesh::GeneratePolygonMeshData(float radius, int sideCount, QVec
 	}
 	
 
-	if(polarGrid<0)
-		return res;
+	
 
 
-	//Adding construction springs
-	int pc=res.particlePositions.size();
-	for(int i=0;i<pc;i++){
-		int prevParticle=(i-2+pc)%pc;
-		int particle=i;
-		int nextParticle=(i+2)%pc;
-		res.internalSpringList.push_back( pair<int,int>(prevParticle,particle));
-		res.internalSpringList.push_back( pair<int,int>(particle,nextParticle));
+	
 
-	}
-
-	if(polarGrid<=0)
-		return res;
-
-
+	int centerParticleFactor=0;
 
 	//Internal Particle And Spring
-	float radiusPart=radius/polarGrid;
-	for(int i=polarGrid-1;i>0;i--){
-		float curRadius=radiusPart*i;
-		for(int n=0;n<sideCount;n++){
-			float curAng=anglePart*n;
-			QVector curNorm(cos(curAng),sin(curAng) );
-			QVector nPos=centerPosition+curNorm*curRadius;
-			res.particlePositions.push_back(nPos);
-			res.particleRadValues.push_back(particleRadius);
-			res.particleInternalValues.push_back(true);
-
-			if(n!=0)
-				res.internalSpringList.push_back( pair<int,int>(res.particlePositions.size()-2,res.particlePositions.size()-1) );
-		}
-		res.internalSpringList.push_back( pair<int,int>(res.particlePositions.size()-1,res.particlePositions.size()-sideCount) );
-
-
-		//Adding Internal Spring
-		for(int n=res.particlePositions.size()-sideCount;n<res.particlePositions.size();n++){
-			int a=n-sideCount;
-			int b=n==res.particlePositions.size()-1 ? res.particlePositions.size()-sideCount*2:n-(sideCount-1);
-			int c=n==res.particlePositions.size()-1 ? res.particlePositions.size()-sideCount:n+1;
-			int d=n;
-			res.internalSpringList.push_back( pair<int,int>(d,a) );
-			res.internalSpringList.push_back( pair<int,int>(d,b) );
-			res.internalSpringList.push_back( pair<int,int>(c,a) );
-			res.internalSpringList.push_back( pair<int,int>(c,b) );
-		}
-	}
-
-	//Adding a Center Particle
 	if(polarGrid>0){
+		float radiusPart=radius/polarGrid;
+		for(int i=polarGrid-1;i>0;i--){
+			float curRadius=radiusPart*i;
+			for(int n=0;n<sideCount;n++){
+				float curAng=anglePart*n;
+				QVector curNorm(cos(curAng),sin(curAng) );
+				QVector nPos=centerPosition+curNorm*curRadius;
+				res.particlePositions.push_back(nPos);
+				res.particleRadValues.push_back(particleRadius);
+				res.particleInternalValues.push_back(true);
+
+				if(n!=0)
+					res.internalSpringList.push_back( pair<int,int>(res.particlePositions.size()-2,res.particlePositions.size()-1) );
+			}
+			res.internalSpringList.push_back( pair<int,int>(res.particlePositions.size()-1,res.particlePositions.size()-sideCount) );
+
+
+			//Adding Internal Spring
+			for(int n=res.particlePositions.size()-sideCount;n<res.particlePositions.size();n++){
+				int a=n-sideCount;
+				int b=n==res.particlePositions.size()-1 ? res.particlePositions.size()-sideCount*2:n-(sideCount-1);
+				int c=n==res.particlePositions.size()-1 ? res.particlePositions.size()-sideCount:n+1;
+				int d=n;
+				res.internalSpringList.push_back( pair<int,int>(d,a) );
+				res.internalSpringList.push_back( pair<int,int>(d,b) );
+				res.internalSpringList.push_back( pair<int,int>(c,a) );
+				res.internalSpringList.push_back( pair<int,int>(c,b) );
+			}
+		}
+
+		//Adding a Center Particle
+		centerParticleFactor=1;
 		res.particlePositions.push_back(centerPosition );
 		res.particleRadValues.push_back(particleRadius);
 		res.particleInternalValues.push_back(true);
 		for(int i=res.particlePositions.size()-sideCount-1;i<res.particlePositions.size()-1;i++){
 			res.internalSpringList.push_back(pair<int,int>( res.particlePositions.size()-1,i ) );
 		}
+		/* for(int i=0;i<sideCount-1;i++){
+			res.internalSpringList.push_back(pair<int,int>( res.particlePositions.size()-1,i ) );
+		} */
+
+		
+	}
+
+	//Adding construction springs
+	if (polarGrid>=0){
+		int pc=res.particlePositions.size();
+		int startIndex=pc-sideCount-centerParticleFactor;
+		for(int i=0;i<sideCount;i++){
+			int prevParticle=startIndex+(( i-2+sideCount)%sideCount );
+			int particle=startIndex+i;
+			int nextParticle=startIndex+( (i+2)%sideCount );
+			res.internalSpringList.push_back( pair<int,int>(prevParticle,particle));
+			res.internalSpringList.push_back( pair<int,int>(particle,nextParticle));
+
+		}
+	}
+
+	
+
+
+	//Adding UV Maps
+
+	if(polarGrid<=0){
+		vector<int> map;
+		for(size_t i=0;i<res.polygon.size();++i){
+			map.push_back(i);
+		}
+		res.UVMaps.push_back(map);
+	}else if(polarGrid==1){
+		for(size_t i=0;i<res.polygon.size();++i){
+			vector<int> map;
+			map.push_back( i );
+			map.push_back( (i+1)%res.polygon.size() );
+			map.push_back(res.particlePositions.size()-1 );
+			res.UVMaps.push_back(map);
+		}
+	}else{
+		for(size_t i=0;i<res.particlePositions.size()-res.polygon.size()-1;++i){
+			int a=i;
+			int b=(i+1)%res.polygon.size()==0 ? (i+1)-res.polygon.size() : i+1; //next i
+			int c=b+res.polygon.size();
+			int d=i+res.polygon.size();
+			
+			vector<int> triA;
+			triA.push_back( a );
+			triA.push_back( b );
+			triA.push_back( d );
+			res.UVMaps.push_back(triA);
+
+			vector<int> triB;
+			triB.push_back( b );
+			triB.push_back( c );
+			triB.push_back( d );
+			res.UVMaps.push_back(triB);
+		}
+		for(size_t i=res.particlePositions.size()-res.polygon.size()-1;i<res.particlePositions.size()-1;++i){
+			vector<int> map;
+			int a=i;
+			int b=(i+1)%res.polygon.size()==0 ? (i+1)-res.polygon.size() : i+1; //next i
+			int c=res.particlePositions.size()-1;
+
+			map.push_back( a );
+			map.push_back( b );
+			map.push_back( c );
+			res.UVMaps.push_back(map);
+		}
+
 	}
 
 
@@ -945,6 +1096,7 @@ pair<QVector, float> QMesh::GetAveragePositionAndRotation(vector<QParticle *> pa
 vector<QVector> QMesh::GetMatchingParticlePositions(vector<QParticle *> particleCollection, QVector targetPosition, float targetRotation)
 {
     QVector localCenterPosition;
+	QVector globalCenterPosition;
 	for(auto particle:particleCollection){
 		localCenterPosition+=particle->GetPosition();
 	}
@@ -956,7 +1108,7 @@ vector<QVector> QMesh::GetMatchingParticlePositions(vector<QParticle *> particle
 		
 		QVector targetPos=(particle->GetPosition()-localCenterPosition).Rotated(-targetRotation);
 		targetPos+=targetPosition;
-		//world->GetGizmos()->push_back(new QGizmoCircle(targetPos,3.0f) );
+		//particle->GetOwnerMesh()->GetOwnerBody()->GetWorld()->GetGizmos()->push_back(new QGizmoCircle(targetPos,3.0f) );
 		positions.push_back(targetPos);
 	}
 

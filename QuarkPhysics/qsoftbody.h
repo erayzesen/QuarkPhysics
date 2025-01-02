@@ -177,6 +177,8 @@ public:
 	 */
 	QSoftBody *SetShapeMatchingFixedTransformEnabled(bool value){
 		enableShapeMatchingFixedTransform=value;
+		shapeMatchingFixedPosition=GetPosition();
+		shapeMatchingFixedRotation=GetRotation();
 		return this;
 	}
 

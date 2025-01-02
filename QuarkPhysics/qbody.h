@@ -34,6 +34,7 @@
 #include <vector>
 #include "qmesh.h"
 #include <functional>
+#include "qmath_utils.h"
 
 
 class QWorld;
@@ -561,7 +562,7 @@ protected:
 		 * @return A pointer to the body itself.
 		 */
 		QBody *SetEnabled(bool value){
-			enabled=true;
+			enabled=value;
 			return this;
 		}
 

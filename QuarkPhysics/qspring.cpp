@@ -84,8 +84,8 @@ void QSpring::Update(float rigidity,bool internalsException, bool isWorldSpring)
 
 	
 	
-	if(pA->GetOwnerMesh()!=nullptr and pB->GetOwnerMesh()!=nullptr){
-		if(pA->GetOwnerMesh()->GetOwnerBody()!=nullptr and pB->GetOwnerMesh()->GetOwnerBody()!=nullptr){
+	if(pA->GetOwnerMesh()!=nullptr && pB->GetOwnerMesh()!=nullptr){
+		if(pA->GetOwnerMesh()->GetOwnerBody()!=nullptr && pB->GetOwnerMesh()->GetOwnerBody()!=nullptr){
 			if (pA->GetOwnerMesh()->GetOwnerBody()->GetIsSleeping() && pB->GetOwnerMesh()->GetOwnerBody()->GetIsSleeping() ){
 				return;
 			}
@@ -101,17 +101,26 @@ void QSpring::Update(float rigidity,bool internalsException, bool isWorldSpring)
 	QVector forceB=force;
 
 	if(internalsException && isInternal ){
+		force=(pB->GetGlobalPosition()-pA->GetGlobalPosition() )*0.5f;
+		forceA=force;
+		forceB=-force;
 
 		if(pA->GetIsInternal()==true && pB->GetIsInternal()==false){
-			forceA*=sl<length ? 0:0.5f;
+			forceA*=1.0f;
 			forceB*=0;
 		}else if(pA->GetIsInternal()==false && pB->GetIsInternal()==true){
 			forceA*=0.0f;
-			forceB*=sl<length ? 0:0.5f;
+			forceB*=1.0f;
 		}else if(pA->GetIsInternal()==true && pB->GetIsInternal()==true){
-			forceA*=sl<length ? 0:0.25f;
-			forceB*=sl<length ? 0:0.25f;
+			forceA*=0.5f;
+			forceB*=0.5f;
+		}else if(pA->GetIsInternal()==false && pA->GetIsInternal()==false ){
+			return;
 		}
+
+		pA->AddAccumulatedForce(forceA);
+		pB->AddAccumulatedForce(forceB);
+		return;
 	}else{
 		float k=0.5f;
 		if(particleACanGetResponse==false || particleBCanGetResponse==false)
@@ -124,6 +133,7 @@ void QSpring::Update(float rigidity,bool internalsException, bool isWorldSpring)
 		pA->ApplyForce(forceA);
 	if(particleBCanGetResponse)
 		pB->ApplyForce(forceB);
+		
 
 }
 
