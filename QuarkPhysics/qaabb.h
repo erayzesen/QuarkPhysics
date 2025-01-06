@@ -28,7 +28,11 @@
 #ifndef QAABB_H
 #define QAABB_H
 #include "qvector.h"
+#include <vector>
 
+using namespace std;
+
+class QParticle;
 
 class QAABB
 {
@@ -129,6 +133,8 @@ public:
 		return maxPos.x >= otherAABB.minPos.x && minPos.x <= otherAABB.maxPos.x &&
 			maxPos.y >= otherAABB.minPos.y && minPos.y <= otherAABB.maxPos.y;
 	}
+
+	static QAABB GetAABBFromParticles(vector<QParticle*> &particleCollection);
 
 
 

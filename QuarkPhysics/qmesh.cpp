@@ -516,6 +516,10 @@ void QMesh::DecompositePolygon(vector<QParticle *> &polygonParticles, vector<vec
 QMesh *QMesh::AddSpring(QSpring *spring)
 {
 	springs.push_back(spring);
+	if(spring->GetParticleA()!=nullptr || spring->GetParticleB()!=nullptr){
+		spring->GetParticleA()->springConnectedParticles.insert(spring->GetParticleB() );
+		spring->GetParticleB()->springConnectedParticles.insert(spring->GetParticleA() );
+	}
 	collisionBehaviorNeedsUpdate=true;
 	return this;
 }
@@ -531,6 +535,11 @@ QMesh *QMesh::RemoveSpring(QSpring *spring)
 
 QMesh *QMesh::RemoveSpringAt(int index)
 {
+	QSpring *spring=springs[index];
+
+	spring->GetParticleA()->springConnectedParticles.erase(spring->GetParticleB() );
+	spring->GetParticleB()->springConnectedParticles.erase(spring->GetParticleA() );
+	
 	springs.erase(springs.begin()+index);
 	collisionBehaviorNeedsUpdate=true;
 	return this;
@@ -649,13 +658,13 @@ QMesh *QMesh::CreateWithMeshData(MeshData &data,bool enableSprings, bool enableP
 		for(int i=0;i<data.springList.size();i++){
 			pair<int,int > springIndexes=data.springList[i];
 			QSpring *spring=new QSpring( res->particles[springIndexes.first],res->particles[springIndexes.second],false);
-			res->springs.push_back(spring);
+			res->AddSpring(spring);
 		}
 		//Internal springs
 		for(int i=0;i<data.internalSpringList.size();i++){
 			pair<int,int > springIndexes=data.internalSpringList[i];
 			QSpring *spring=new QSpring( res->particles[springIndexes.first],res->particles[springIndexes.second],true);
-			res->springs.push_back(spring);
+			res->AddSpring(spring);
 		}
 	}
 	//Adding UV Maps

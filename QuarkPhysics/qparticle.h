@@ -29,6 +29,7 @@
 #define QPARTICLE_H
 #include "qvector.h"
 #include <vector>
+#include <unordered_set>
 
 class QMesh;
 /** @brief QParticle objects form the network structures of QMesh objects defined for all body object types. They are the smallest building blocks of physics simulation and are manipulated differently in different body object types. For example, in QRigidBody objects, particles are collectively forced into positions obtained through various calculations based on the current body properties. However, in soft body objects, simulation particles are individually manipulated and can move freely, determining the next steps of the simulation through their individual movements. QMesh objects offer a number of methods to manage particles. For more information on restrictions between particles in soft body objects, see the QSpring object.
@@ -51,6 +52,9 @@ class QParticle
 	QVector force=QVector::Zero();
 
 	std::vector<QVector> accumulatedForces;
+
+protected:
+	std::unordered_set<QParticle*> springConnectedParticles;
 public:
 	QParticle();
 	QParticle(float posX,float posY,float radius=0.5f);
@@ -171,6 +175,14 @@ public:
 	/** Calculates the arithmetic average of the accumulated forces based on the number of forces, applies it to the particle, and then clears all forces. */
 	QParticle *ApplyAccumulatedForces();
 
+	//Spring Connected Particles
+	/**
+	 * Checks if the given particle is connected to this particle via a spring. Returns true if a connection exists, otherwise returns false.
+	 * @param particle A particle to check
+	 * @return Returns true if a connection exists, otherwise returns false.
+	 */
+	bool IsConnectedWithSpring(QParticle *particle);
+
 
 	//Static Methods
 	/** Applies a specified force to a segment created by two particles at a specific position. 
@@ -180,6 +192,9 @@ public:
 	 * @param fromPosition The position of the force. 
 	 */
 	static void ApplyForceToParticleSegment(QParticle *pA,QParticle *pB,QVector force,QVector fromPosition);
+
+	friend class QMesh;
+
 	
 };
 

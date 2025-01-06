@@ -59,6 +59,10 @@ void QCollision::PolylineAndPolygon(vector<QParticle*> &polylineParticles, vecto
 	//Get angle bisector list of the polygon
 
 	vector<QVector> bisectorList;
+	bool isSelfCollision=false;
+	if(polylineParticles==polygonParticles){
+		isSelfCollision=true;
+	}
 	float maxRayLength=QWorld::MAX_WORLD_SIZE;
 	for(int i=0;i<polygonParticles.size();i++){
 		int pi=(i-1+polygonParticles.size())%polygonParticles.size(); //previous index
@@ -76,7 +80,7 @@ void QCollision::PolylineAndPolygon(vector<QParticle*> &polylineParticles, vecto
 		
 		int sia=ni; // segment index a
 		QVector bisectorVector=QVector::Zero();
-		if(polylineParticles==polygonParticles){
+		if(isSelfCollision){
 			
 			float rayLength=abs((p->GetGlobalPosition()-pp->GetGlobalPosition() ).Dot(bisectorUnit ) )*0.5f;
 			
@@ -138,14 +142,34 @@ void QCollision::PolylineAndPolygon(vector<QParticle*> &polylineParticles, vecto
 
 		normal=(s2Pos-s1Pos).Normalized().Perpendicular();
 
+		
+		//For self collisions
+		/* QVector s1LocalPos;
+		QVector s2LocalPos;
+		QVector normalLocal; */
+
+		
+
 		//B. Start the loop for all particles of the polygon
 
 		for(int n=0;n<polygonParticles.size();n++){
 			if (bisectorList[n]==QVector::Zero() )
 				continue;
 			QParticle *p=polygonParticles[n];
-			//Check particles for self collisions
-			//if (p==s1 || p==s2) continue;
+			
+
+			QVector bisectorVec=bisectorList[n];
+
+			//The Self Collision Exception
+			if (isSelfCollision){
+				//We don't want to collision between connected particles via spring 
+				if(p->IsConnectedWithSpring(s1) || p->IsConnectedWithSpring(s2) ){
+					continue;
+				}
+
+				
+			}
+			
 
 			QVector pPos=p->GetGlobalPosition(); 
 			if(p->GetRadius()>0.5f){
@@ -154,7 +178,7 @@ void QCollision::PolylineAndPolygon(vector<QParticle*> &polylineParticles, vecto
 			
 
 			//C. Check an intersection between the segment of polyline and the virtual vector
-			QVector intersection=LineIntersectionLine(pPos,pPos+bisectorList[n],s1Pos,s2Pos);
+			QVector intersection=LineIntersectionLine(pPos,pPos+bisectorVec,s1Pos,s2Pos);
 			if( intersection.isNaN() )continue;
 
 

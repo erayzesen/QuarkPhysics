@@ -87,6 +87,7 @@ QParticle *QParticle::SetPosition(QVector value){
 			if (ownerBody->GetBodyType()==QBody::BodyTypes::SOFT){
 				ownerBody->WakeUp();
 			}
+			ownerMesh->subConvexPolygonsNeedsUpdate=true;
 		}
 	}
 	return this;
@@ -168,6 +169,11 @@ QParticle *QParticle::ApplyAccumulatedForces()
 		accumulatedForces.clear();
 	}
     return this;
+}
+
+bool QParticle::IsConnectedWithSpring(QParticle *particle)
+{
+    return springConnectedParticles.find(particle) != springConnectedParticles.end();
 }
 
 void QParticle::ApplyForceToParticleSegment(QParticle *pA, QParticle *pB,QVector force, QVector fromPosition)

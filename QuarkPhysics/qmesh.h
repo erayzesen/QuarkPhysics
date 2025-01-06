@@ -135,6 +135,7 @@ public:
 	friend class QSoftBody;
 	friend class QRaycast;
 	friend class QCollision;
+	friend class QParticle;
 
 	/** Creates a mesh. */
 	QMesh();
@@ -381,23 +382,7 @@ public:
 
 	
 
-
-
-
-
-
-
-	/** Adds a polygon to the mesh
-	 * @param polygon A particle pointers collection of the polygon.
-	 */
-	QMesh *AddClosedPolygon(vector<QParticle*> polygon);
-	/** Removes a polygon from the mesh at the specified index.
-	 * @param index The index of the polygon.
-	 * @return QMesh* A pointer to mesh itself.
-	 */
-	QMesh *RemoveClosedPolygonAt(int index);
-
-	/** Returns the total polygon count in the mesh.
+	/** Returns the total sub polygon count in the mesh.
 	 */
 	int GetSubConvexPolygonCount(){
 		if (subConvexPolygonsNeedsUpdate==true){
@@ -406,8 +391,8 @@ public:
 		}
 		return subConvexPolygons.size();
 	}
-	/** Returns polygon at the specified index
-	 * @param index The index of the polygon to get.
+	/** Returns sub polygon at the specified index
+	 * @param index The index of the sub polygon to get.
 	 */
 	vector<QParticle*> &GetSubConvexPolygonAt(int index){
 		if (subConvexPolygonsNeedsUpdate==true){

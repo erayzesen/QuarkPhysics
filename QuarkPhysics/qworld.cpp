@@ -256,6 +256,7 @@ void QWorld::Update(){
 								//QCollision::CircleAndPolyline(meshA->polygon,meshB->polygon,contacts);
 							}else{
 								QCollision::PolylineAndPolygon(meshA->polygon,meshB->polygon,contacts);
+								
 							}
 							
 							
@@ -928,9 +929,11 @@ vector<QCollision::Contact*> QWorld::GetCollisions(QBody *bodyA, QBody *bodyB){
 			}else if(QMesh::CheckCollisionBehaviors(meshA,meshB,QMesh::POLYLINE, QMesh::POLYGONS )){
 				QMesh *polylineMesh=meshA->collisionBehavior==QMesh::POLYLINE ? meshA:meshB;
 				QMesh *polygonMesh=meshA->collisionBehavior==QMesh::POLYGONS ? meshA:meshB;
-				for(int b=0;b<polygonMesh->GetSubConvexPolygonCount();b++){
-					QCollision::CircleAndPolygon(polylineMesh->polygon,polygonMesh->GetSubConvexPolygonAt(b),contactList);
-					QCollision::PolylineAndPolygon(polylineMesh->polygon,polygonMesh->GetSubConvexPolygonAt(b),contactList);
+				for(size_t b=0;b<polygonMesh->GetSubConvexPolygonCount();b++){
+					vector<QParticle*> polygonSub=polygonMesh->GetSubConvexPolygonAt(b);
+					QCollision::CircleAndPolygon(polylineMesh->polygon,polygonSub,contactList);
+					QCollision::PolylineAndPolygon(polylineMesh->polygon,polygonSub,contactList);
+					
 				}
 			}else if(QMesh::CheckCollisionBehaviors(meshA,meshB,QMesh::POLYLINE, QMesh::POLYLINE )){
 				

@@ -26,4 +26,34 @@
 **************************************************************************************/
 
 #include "qaabb.h"
+#include "qparticle.h"
 
+QAABB QAABB::GetAABBFromParticles(vector<QParticle*> &particleCollection)
+{
+    float minX=9999999.0;
+    float minY=9999999.0;
+    float maxX=-9999999.0;
+    float maxY=-9999999.0;
+
+    for(int n=0;n<particleCollection.size();n++){
+        QParticle *particle=particleCollection[n];
+        float  r=particle->GetRadius()>0.5f ? particle->GetRadius():0;
+        float pMinX=particle->GetGlobalPosition().x-r;
+        float pMinY=particle->GetGlobalPosition().y-r;
+        float pMaxX=particle->GetGlobalPosition().x+r;
+        float pMaxY=particle->GetGlobalPosition().y+r;
+
+        if(pMinX<minX)
+            minX=pMinX;
+        if(pMinY<minY)
+            minY=pMinY;
+        if(pMaxX>maxX)
+            maxX=pMaxX;
+        if(pMaxY>maxY)
+            maxY=pMaxY;
+    }
+    
+
+
+    return QAABB(QVector(minX,minY),QVector(maxX,maxY) );
+}
