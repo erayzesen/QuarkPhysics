@@ -67,6 +67,7 @@ protected:
 	QBody *ownerBody=nullptr;
 	CollisionBehaviors collisionBehavior=CollisionBehaviors::CIRCLES;
 	vector<vector<int>> UVMaps=vector<vector<int>>();
+	bool disablePolygonForCollisions=false;
 
 	bool collisionBehaviorNeedsUpdate=false;
 
@@ -97,6 +98,10 @@ public:
 		vector<float> particleRadValues;
 		/** The collection of boolean values indicating whether a particle is internal. */
 		vector<bool> particleInternalValues;
+		/** The collection of boolean values indicating whether a particle is enabled.  */
+		vector<bool> particleEnabledValues;
+		/** The collection of boolean values indicating whether a particle is lazy.  */
+		vector<bool> particleLazyValues;
 		/** The collection of integer pairs to define springs. 
 		 * The integer values define the indices of particles in the particlePositions collection.  
 		 * */
@@ -238,6 +243,15 @@ public:
 		}
 		return collisionBehavior;
 	}
+	/** Returns whether the polygon is disabled for collisions.
+
+		The polygon defined for the mesh is disabled during collision behavior determination and
+		is not used in collisions. As a result, collisions are handled by the particles.
+		The polygon can optionally be used for rendering purposes and other external
+		purposes in the related simulation.  */
+	bool GetPolygonForCollisionsDisabled(){
+		return disablePolygonForCollisions;
+	}
 
 
 	//General Set Methods
@@ -263,6 +277,20 @@ public:
 	 */
 	QMesh *SetRotation(float value){
 		rotation=value;
+		return this;
+	}
+
+	/** Sets whether the polygon is disabled for collisions.
+	 * The polygon defined for the mesh is disabled during collision behavior determination and
+	 * is not used in collisions. As a result, collisions are handled by the particles.
+	 * The polygon can optionally be used for rendering purposes and other external
+	 * purposes in the related simulation. 
+	 * @param value The boolean value to set.
+	 * @return QMesh* A pointer to mesh itself.
+	 */
+	QMesh *SetPolygonForCollisionsDisabled(bool value){
+		disablePolygonForCollisions=value;
+		collisionBehaviorNeedsUpdate=true;
 		return this;
 	}
 	
@@ -608,13 +636,13 @@ public:
 	static vector<QVector> GetMatchingParticlePositions(vector<QParticle*> particleCollection,QVector targetPosition, float targetRotation);
 
 
+	/**
+	 * By default, objects included in the physics engine are deleted by the destructors of the objects they belong to. When this flag is enabled, it indicates that this object should never be deleted by this engine. It is disabled by default, and it is recommended to keep it disabled. However, it can be used if needed for advanced purposes and integrations.
+	 */
+	bool manualDeletion=false;
+
+
 	
-	
-
-
-
-
-
 };
 
 #endif // QMESH_H

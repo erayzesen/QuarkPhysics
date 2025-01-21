@@ -287,6 +287,25 @@ QPlatformerBody::CollisionTestInfo QPlatformerBody::GetCeiling(float offset)
     return QPlatformerBody::CollisionTestInfo();
 }
 
+QPlatformerBody *QPlatformerBody::ApplyForce(QVector value)
+{
+	if(value==QVector::Zero() )
+		return this;
+	
+	//Converting force to horizontal axis
+	QVector horizontalForce=value.Dot(rightDirection)*rightDirection;
+	//Converting force to vertical axis
+	QVector verticalForce=value.Dot(upDirection)*upDirection;
+
+	horizontalVelocity+=horizontalForce;
+	verticalVelocity+=verticalForce;
+
+	SetPositionAndCollide(GetPosition()+value);
+	WakeUp();
+
+    return this;
+}
+
 float QPlatformerBody::GetWalkDecelerationRate()
 {
     return walkDecelerationRate;
@@ -324,35 +343,27 @@ QVector QPlatformerBody::GetControllerVerticalVelocity()
 QPlatformerBody *QPlatformerBody::Jump(float force,bool unconditional)
 {
 	
-	if (jumpReleased==true){
+	if (jumpMode==JumpModes::RELEASED){
+
+		//Jump Conditions
+		bool cond1=unconditional;
+		bool cond2=onFloor && jumpFrameCountDown>jumpDurationFrameCount;
+		bool cond3=onFloor==false && currentJumpCount+1<maxJumpCount;
+
+		if (cond1 || cond2 || cond3){
+			jumpMode=JumpModes::PRESSED;
+			jumpForce=force;
+			jumpFrameCountDown=0;
+		}
+
+		if(cond2 || cond3 ){
+			currentJumpCount+=1;
+		}
 		
-		if(unconditional){
-			jumpMode=true;
-			prevJumpMode=false;
-			jumpForce=force;
-			jumpFrameCountDown=0;
-		}else if(onFloor && jumpFrameCountDown>jumpDurationFrameCount ){
-			prevJumpMode=false;
-			jumpMode=true;
-			jumpForce=force;
-			jumpFrameCountDown=0;
-			currentJumpCount+=1;
-		}else if( onFloor==false && currentJumpCount+1<maxJumpCount && prevJumpMode==false ){
-			jumpMode=true;
-			prevJumpMode=false;
-			jumpForce=force;
-			jumpFrameCountDown=0;
-			currentJumpCount+=1;
-		}
 
-	}else{
-		if (prevJumpMode==true){
-			jumpMode=true;
-		}
+	}else if (jumpMode==JumpModes::PRESSED){
+		jumpMode=JumpModes::PRESSING;
 	}
-	
-
-	jumpReleased=false;
 	
 	return this;
 
@@ -360,9 +371,7 @@ QPlatformerBody *QPlatformerBody::Jump(float force,bool unconditional)
 
 QPlatformerBody *QPlatformerBody::ReleaseJump()
 {
-    prevJumpMode=false;
-	jumpMode=false;
-	jumpReleased=true;
+	jumpMode=JumpModes::RELEASED;
 	
 	return this;
 }
@@ -377,14 +386,11 @@ bool QPlatformerBody::GetIsRising()
     return isRising;
 }
 
-bool QPlatformerBody::GetIsJumping()
-{
-    return prevJumpMode==true ;
-}
+
 
 bool QPlatformerBody::GetIsJumpReleased()
 {
-    return jumpReleased;
+    return jumpMode==JumpModes::RELEASED;
 }
 
 void QPlatformerBody::PostUpdate()
@@ -397,6 +403,10 @@ void QPlatformerBody::PostUpdate()
 	
 
 	QVector gravityAmount=gravity*gravityMultiplier;
+
+	if (ignoreGravity){
+		gravityAmount=QVector::Zero();
+	}
 
 	//Saving Current Position before Tests
 	QVector tempPosition=GetPosition();
@@ -440,28 +450,21 @@ void QPlatformerBody::PostUpdate()
 
 
 	//ADDING JUMP VELOCITIES
-	
-	if(jumpMode==true){
-		float jumpLength;
-		if(prevJumpMode==false){
-			verticalVelocity=jumpForce*upDirection;
-		}else{
-			if(verticalVelocity.Dot(upDirection)>0 ){
-				gravityAmount*=jumpGravityMultiplier;
-			}
+
+	if (jumpMode==JumpModes::PRESSED){
+		verticalVelocity=jumpForce*upDirection;
+	}else if(jumpMode==JumpModes::PRESSING){
+		if(verticalVelocity.Dot(upDirection)>0 ){
+			gravityAmount*=jumpGravityMultiplier;
 		}
-		
-	}else{
+	}else if(jumpMode==JumpModes::RELEASED){
 		if(verticalVelocity.Dot(upDirection)>0 ){
 			gravityAmount*=jumpFallGravityMultiplier;
-		}
+		}		
 	}
 
 
-	
 
-	prevJumpMode=jumpMode;
-	jumpMode=false;
 	jumpFrameCountDown+=1;
 
 	
@@ -607,11 +610,31 @@ void QPlatformerBody::PostUpdate()
 			}
 			
 		}
-
 		
 		
 		AddPosition(walkVector);
 		
+	}
+
+	//Horizontal Move and Wall Collision Tests
+	CollisionTestInfo rightWallTest=GetRightWall(0.0f);
+	if(rightWallTest.body!=nullptr ){
+		if (horizontalVelocity.Dot(rightDirection)>0 && rightWallTest.body->GetMode()==QBody::STATIC ){
+			horizontalVelocity=QVector::Zero();
+			QVector defaultResponse=(rightWallTest.normal*rightWallTest.penetration);
+			QVector onAxisResponse=defaultResponse.Dot(rightDirection)*rightDirection;
+			SetPosition( GetPosition()+onAxisResponse,true );
+		}
+	}
+
+	CollisionTestInfo leftWallTest=GetLeftWall(0.0f);
+	if(leftWallTest.body!=nullptr ){
+		if (horizontalVelocity.Dot(rightDirection)<0 && leftWallTest.body->GetMode()==QBody::STATIC){
+			horizontalVelocity=QVector::Zero();
+			QVector defaultResponse=(leftWallTest.normal*leftWallTest.penetration);
+			QVector onAxisResponse=defaultResponse.Dot(-rightDirection)*-rightDirection;
+			SetPosition( GetPosition()+onAxisResponse,true );
+		}
 	}
 
 	

@@ -68,6 +68,7 @@ void QSpring::Update(float rigidity,bool internalsException, bool isWorldSpring)
 				}
 			}
 		}
+		
 
 		if(pB->GetOwnerMesh()!=nullptr ){
 			QBody *bB=pB->GetOwnerMesh()->GetOwnerBody();
@@ -78,6 +79,22 @@ void QSpring::Update(float rigidity,bool internalsException, bool isWorldSpring)
 			}
 		}
 
+		if (pB->GetEnabled()==false ){
+			particleBCanGetResponse=false;
+		}
+
+	}
+
+	if (pA->GetEnabled()==false ){
+		particleACanGetResponse=false;
+	}
+
+	if (pB->GetEnabled()==false ){
+		particleBCanGetResponse=false;
+	}
+
+	if (particleACanGetResponse==false && particleBCanGetResponse==false ){
+		return;
 	}
 
 

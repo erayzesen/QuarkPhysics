@@ -39,6 +39,8 @@ class QAreaBody : public QBody{
 	unordered_set<QBody*> bodies;
 	void AddCollidedBody(QBody *body);
 	void CheckBodies();
+	bool gravityFree=false;
+	QVector linearForceToApply=QVector::Zero();
 public:
 	QAreaBody();
 	/** This event listener is triggered when any object enters the collision list of a QAreaBody for the first time.
@@ -59,6 +61,45 @@ public:
 	 * @param collidedBody The collided body.
 	 */
 	std::function<void(QAreaBody *areaBody,QBody* collidedBody)> CollisionExitEventListener;
+
+	/**
+	 * Returns whether the option to exempt objects entering the area from gravity is enabled. If enabled, it will disable both the globally defined gravity and the body-specific gravity applied to physics bodies entering the area.
+	 */
+	bool GetGravityFreeEnabled(){
+		return gravityFree;
+	}
+	/**
+	 * Returns the amount of linear force to be applied to objects entering the area. If a force vector is defined, objects entering the area will be continuously subjected to this force.
+	 */
+	QVector GetLinearForceToApply(){
+		return linearForceToApply;
+	}
+
+	/**
+	 * Sets whether the option to exempt objects entering the area from gravity is enabled. If enabled, it will disable both the globally defined gravity and the body-specific gravity applied to physics bodies entering the area.
+	 * @param value A bool vector to set
+	 * @return A pointer to the body itself.
+	 */
+	QAreaBody* SetGravityFreeEnabled(bool value){
+		gravityFree=value;
+		for (auto body : bodies){
+			body->ignoreGravity=gravityFree;
+		}
+		return this;
+	}
+	/**
+	 * Sets the amount of linear force to be applied to objects entering the area. If a force vector is defined, objects entering the area will be continuously subjected to this force.
+	 * @param value A force vector to set.
+	 * @return A pointer to the body itself.
+	 */
+	QAreaBody* SetLinearForceToApply(QVector value){
+		linearForceToApply=value;
+		return this;
+	}
+
+	
+
+	
 
 
 	friend class QManifold;

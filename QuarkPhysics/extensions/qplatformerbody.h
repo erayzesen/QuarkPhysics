@@ -86,8 +86,12 @@ protected:
     float walkDecelerationRate=0.1f;
 
     //Jump
-    bool prevJumpMode=false;
-    bool jumpMode=false;
+    enum JumpModes{
+        RELEASED,
+        PRESSED,
+        PRESSING,
+    };
+    enum JumpModes jumpMode=JumpModes::RELEASED;
     float jumpForce=5.0f;
     int maxJumpCount=2;
     int currentJumpCount=0;
@@ -95,7 +99,6 @@ protected:
     int jumpFrameCountDown=0;
     float jumpGravityMultiplier=0.4f;
     float jumpFallGravityMultiplier=1.0f;
-    bool jumpReleased=true;
 
     
 
@@ -416,6 +419,11 @@ public:
      * @return A CollisionTestInfo structure with the collision details.
      */
     QPlatformerBody::CollisionTestInfo GetCeiling(float offset);
+
+    /** A force is applied to the platformer body. You can use the method safely before the physics step (e.g. at the OnPreStep event). If you want to use this method after physics step, it can break the simulation.(Collisions and constraints may not be applied properly.) if you want to apply force at the next physic step safely, use SetForce() and AddForce() methods.  
+	 * @param force The force to apply.
+	 */
+    virtual QPlatformerBody * ApplyForce(QVector value) override;
 
     
 

@@ -61,6 +61,8 @@ ExampleScenePlatformer::ExampleScenePlatformer(QVector sceneSize):QExampleScene(
 		customFloorMeshData.polygon.push_back(i);
 		customFloorMeshData.particleInternalValues.push_back(false);
 		customFloorMeshData.particleRadValues.push_back(0.5f);
+		customFloorMeshData.particleLazyValues.push_back(false);
+		customFloorMeshData.particleEnabledValues.push_back(true);
 	}
 	
 	floor->AddMesh(QMesh::CreateWithMeshData(customFloorMeshData,false,true) );

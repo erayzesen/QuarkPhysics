@@ -30,6 +30,17 @@
 #include "qbody.h"
 #include "qvector.h"
 
+void QParticle::ClearOneTimeCollisions()
+{
+	oneTimeCollidedBodies.clear();
+	previousCollidedBodies.clear();
+}
+
+void QParticle::ResetOneTimeCollisions()
+{
+	oneTimeCollidedBodies=previousCollidedBodies;
+	previousCollidedBodies.clear();
+}
 
 QParticle::QParticle()
 {
@@ -123,6 +134,17 @@ QParticle *QParticle::SetIsInternal(bool value)
 	return this;
 }
 
+QParticle *QParticle::SetEnabled(bool value)
+{
+	enabled=value;
+    return this;
+}
+
+QParticle *QParticle::SetIsLazy(bool value)
+{
+	lazy=value;
+    return this;
+}
 
 QParticle *QParticle::ApplyForce(QVector value)
 {

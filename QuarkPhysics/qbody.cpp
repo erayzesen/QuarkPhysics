@@ -43,8 +43,10 @@ QBody::~QBody()
 {
 	for(int i=0;i<_meshes.size();i++){
 		if (_meshes[i]!=nullptr){
-			delete _meshes[i];
-			_meshes[i]=nullptr;
+			if (_meshes[i]->manualDeletion==false){
+				delete _meshes[i];
+				_meshes[i]=nullptr;
+			}
 		}
 	}
 	_meshes.clear();
@@ -57,6 +59,18 @@ float QBody::GetVelocityLimit() {
 bool QBody::GetIntegratedVelocitiesEnabled() {
 	return enableIntegratedVelocities;
 }
+
+bool QBody::GetCustomGravityEnabled()
+{
+    return enableCustomGravity;
+}
+
+QVector QBody::GetCustomGravity()
+{
+    return customGravity;
+}
+
+
 
 QBody *QBody::SetVelocityLimit(float value)
 {
@@ -123,6 +137,18 @@ bool QBody::CanCollide(QBody *bodyA, QBody *bodyB,bool checkBodiesAreEnabled)
 QBody *QBody::SetIntegratedVelocitiesEnabled(bool value) {
 	enableIntegratedVelocities=value;
 	return this;
+}
+
+QBody *QBody::SetCustomGravityEnabled(bool value)
+{
+	enableCustomGravity=value;
+    return this;
+}
+
+QBody *QBody::SetCustomGravity(QVector value)
+{
+	customGravity=value;
+    return this;
 }
 
 QBody *QBody::AddMesh(QMesh *mesh) {
@@ -224,7 +250,17 @@ void QBody::UpdateMeshTransforms(){
 
 }
 
-
+void QBody::Update()
+{
+	for (auto mesh: _meshes){
+		for(size_t i=0;i<mesh->GetParticleCount();++i ){
+			QParticle *particle=mesh->GetParticleAt(i);
+			if (particle->GetIsLazy()==true ){
+				particle->ResetOneTimeCollisions();
+			}
+		}
+	}
+}
 
 bool QBody::CanGiveCollisionResponseTo(QBody *otherBody)
 {

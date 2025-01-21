@@ -292,9 +292,10 @@ public:
 		return enableParticleSpesificMass;
 	}
 
-
-	
-	
+	/** Applies a force immediately to the all particles of the soft body. You can use the method safely before the physics step (e.g. at the OnPreStep event). If you want to use this method after physics step, it can break the simulation.(Collisions and constraints may not be applied properly.) if you want to apply force at the next physic step safely, use SetForce() and AddForce() methods.  
+	 * @param force The force to apply.
+	 */
+	virtual QSoftBody* ApplyForce(QVector force) override;
 
 
 	//
@@ -306,6 +307,7 @@ public:
 	void PreserveAreas();
 	/** Applies the shape matching operation to the body. */ 
 	void ApplyShapeMatching();
+
 	
 
 };

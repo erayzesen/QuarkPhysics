@@ -31,6 +31,7 @@
 #include <vector>
 #include <unordered_set>
 
+class QBody;
 class QMesh;
 /** @brief QParticle objects form the network structures of QMesh objects defined for all body object types. They are the smallest building blocks of physics simulation and are manipulated differently in different body object types. For example, in QRigidBody objects, particles are collectively forced into positions obtained through various calculations based on the current body properties. However, in soft body objects, simulation particles are individually manipulated and can move freely, determining the next steps of the simulation through their individual movements. QMesh objects offer a number of methods to manage particles. For more information on restrictions between particles in soft body objects, see the QSpring object.
  */
@@ -53,8 +54,24 @@ class QParticle
 
 	std::vector<QVector> accumulatedForces;
 
+	bool enabled=true;
+
+	bool lazy=false; 
+
+	void ClearOneTimeCollisions();
+
 protected:
 	std::unordered_set<QParticle*> springConnectedParticles;
+
+	unordered_set<QBody*> oneTimeCollidedBodies; 
+	unordered_set<QBody*> previousCollidedBodies;
+
+	void ResetOneTimeCollisions();
+
+	//For Gravity-Free Feature of QArea Bodies  
+	bool ignoreGravity=false;
+
+	
 public:
 	QParticle();
 	QParticle(float posX,float posY,float radius=0.5f);
@@ -97,14 +114,27 @@ public:
 	QVector GetForce(){
 		return force;
 	}
+	/** Returns whether the particle is enabled. Disabled particles are not exempt from the collision tests that involve the meshes they belong to, but the solutions of their manifolds are not applied. Additionally, in body types where particles can move freely individually (e.g., QSoftBody), force and velocity integrations are not applied.
+	 * @note Disabled particles in QRigidBody objects may appear to move because they are transformed based on the position and rotation of the rigid body.
+	*/
+	bool GetEnabled(){
+		return enabled;
+	}
+	/**
+	 * Returns whether the particle's lazy feature is enabled. This feature allows the particle to react once in a one-sided manner when colliding with an object; after that, it won't react again until it exits and re-enters the collision. This feature is used for particles that lightly interact with surrounding objects when necessary.
+	 */
+
+	bool GetIsLazy(){
+		return lazy;
+	}
 
 	//Set Methods
-	/** Sets the local position of the particle. 
+	/** Sets the global position of the particle. 
 	 * @param value A position value to set. 
 	 * @return A pointer to the particle itself.
 	 */
 	QParticle *SetGlobalPosition(QVector value);
-	/** Sets the global position of the particle. 
+	/** Adds a value to the global position of the particle. 
 	 * @param value A position value to set. 
 	 * @return A pointer to the particle itself.
 	 */
@@ -119,6 +149,10 @@ public:
 	 * @return A pointer to the particle itself.
 	 */
 	QParticle *AddPreviousGlobalPosition(QVector value);
+	/** Sets local position of the particle.
+	 * @param value A value to set.
+	 * @return A pointer to the particle itself.
+	 */
 	QParticle *SetPosition(QVector value);
 	/** Adds a value to the local position of the particle. 
 	 * @param value A value to add. 
@@ -146,6 +180,22 @@ public:
 	 * @return A pointer to the particle itself.
 	 */
 	QParticle *SetIsInternal(bool value);
+
+	/** Sets whether the particle is enabled. Disabled particles are not exempt from the collision tests that involve the meshes they belong to, but the solutions of their manifolds are not applied. Additionally, in body types where particles can move freely individually (e.g., QSoftBody), force and velocity integrations are not applied.
+	 * @note Disabled particles in QRigidBody objects may appear to move because they are transformed based on the position and rotation of the rigid body.
+	 * @param value A value to set. 
+	 * @return A pointer to the particle itself.
+	*/
+
+	QParticle *SetEnabled(bool value);
+
+	/**
+	 * Sets whether the particle's lazy feature is enabled. This feature allows the particle to react once in a one-sided manner when colliding with an object; after that, it won't react again until it exits and re-enters the collision. This feature is used for particles that lightly interact with surrounding objects when necessary.
+	 * @param value A value to set.
+	 * @return A pointer to the particle itself.
+	 */
+
+	QParticle *SetIsLazy(bool value);
 
 	//
 	/** Applies a force immediately to the particle. You can use the method safely before the physics step (e.g. at the OnPreStep event of QBody objects). If you want to use this method after physics step, it can break the simulation.(Collisions and constraints may not be applied properly.) if you want to apply force at the next physic step safely, use SetForce() and AddForce() methods.  
@@ -193,7 +243,16 @@ public:
 	 */
 	static void ApplyForceToParticleSegment(QParticle *pA,QParticle *pB,QVector force,QVector fromPosition);
 
+	/**
+	 * By default, objects included in the physics engine are deleted by the destructors of the objects they belong to. When this flag is enabled, it indicates that this object should never be deleted by this engine. It is disabled by default, and it is recommended to keep it disabled. However, it can be used if needed for advanced purposes and integrations.
+	 */
+	bool manualDeletion=false;
+
+
 	friend class QMesh;
+	friend class QBody;
+	friend class QManifold;
+	friend class QAreaBody;
 
 	
 };

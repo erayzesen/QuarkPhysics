@@ -39,9 +39,9 @@
 class QRigidBody : public QBody
 {
 	bool fixedRotation=false;
+	QVector force=QVector::Zero();
 protected:
 	float angularForce=0.0f;
-	QVector force=QVector::Zero();
 public:
 	QRigidBody();
 
@@ -58,11 +58,11 @@ public:
 	bool GetKinematicCollisionsEnabled(){
 		return allowKinematicCollisions;
 	}
-
 	/** Returns the current force value of the body. */
 	QVector GetForce(){
 		return force;
 	}
+	
 	/** Returns the current angular force value of the body. */
 	float GetAngularForce(){
 		return angularForce;
@@ -99,12 +99,19 @@ public:
 	 * @param r The relative position to apply force.
 	 * @param updateMeshTransforms Determines whether to update the transforms of the meshes. It is recommended to set this option to true in general use. If set to false, it changes the values such as position and rotation of the applied force, but does not update the corresponding mesh properties. This option is provided for optimization advantage for objects that are subjected to a lot of processing and where updating mesh transform until the end of the process is not important. In such cases, you can call the UpdateMeshTransforms() method externally after the process is completed.
 	 */
-	QRigidBody* ApplyForce(QVector force,QVector r,bool updateMeshTransforms=true);
+	virtual QRigidBody* ApplyForce(QVector force,QVector r,bool updateMeshTransforms=true);
+
+	/** A force is applied from the center point of the rigid body. You can use the method safely before the physics step (e.g. at the OnPreStep event). If you want to use this method after physics step, it can break the simulation.(Collisions and constraints may not be applied properly.) if you want to apply force at the next physic step safely, use SetForce() and AddForce() methods.  
+	 * @param force The force to apply.
+	 */
+	virtual QRigidBody* ApplyForce(QVector force) override;
+
 	/** Applies a impulse immediately to the body. Since velocity values are implicit in this physical simulation, impulses are applied to previousPosition and previousRotation properties of the body. 
 	 * @param impulse The impulse to apply.
 	 * @param r The relative position to apply impulse.
 	 */
 	QRigidBody* ApplyImpulse(QVector impulse,QVector r);
+
 	/** Sets the force value of the body. Set forces determine the force to be applied to a body object at the next physics step from the current step. 
 	 * @param value A value to set. 
 	 * @return A pointer to the body itself.
@@ -115,6 +122,7 @@ public:
 	 * @return A pointer to the body itself.
 	 */
 	QRigidBody *AddForce(QVector value);
+	
 
 	/** Sets the angular force of the body. 
 	 * @param value A value to set. 

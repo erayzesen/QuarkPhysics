@@ -49,6 +49,9 @@ QRigidBody *QRigidBody::SetPositionAndCollide(QVector value,bool withPreviousPos
 
 QRigidBody *QRigidBody::ApplyForce(QVector force, QVector r,bool updateMeshTransforms)
 {
+	if(GetMode()==Modes::STATIC || GetEnabled()==false )
+		return this;
+
 	position+=force;
 
 	if(fixedRotation==false){
@@ -59,6 +62,23 @@ QRigidBody *QRigidBody::ApplyForce(QVector force, QVector r,bool updateMeshTrans
 
 
 	return this;
+}
+
+QRigidBody *QRigidBody::SetForce(QVector value)
+{
+    WakeUp();
+    force=value;
+	return this;
+}
+
+QRigidBody *QRigidBody::AddForce(QVector value)
+{
+    return SetForce(GetForce()+value);
+}
+
+QRigidBody *QRigidBody::ApplyForce(QVector force)
+{
+    return ApplyForce(force,QVector::Zero(),true);
 }
 
 QRigidBody *QRigidBody::ApplyImpulse(QVector impulse, QVector r)
@@ -75,17 +95,9 @@ QRigidBody *QRigidBody::ApplyImpulse(QVector impulse, QVector r)
 	return this;
 }
 
-QRigidBody *QRigidBody::SetForce(QVector value)
-{
-	WakeUp();
-    force=value;
-	return this;
-}
 
-QRigidBody *QRigidBody::AddForce(QVector value)
-{
-    return SetForce(GetForce()+value);
-}
+
+
 
 QRigidBody *QRigidBody::SetAngularForce(float value)
 {
@@ -101,6 +113,9 @@ QRigidBody *QRigidBody::AddAngularForce(float value)
 
 void QRigidBody::Update()
 {
+	QBody::Update();
+
+	
     if(mode==QBody::STATIC){
 		return;
 	}
@@ -149,7 +164,16 @@ void QRigidBody::Update()
 	//Verlet Integration
 	if(isKinematic==false && enableIntegratedVelocities==true){
 		position+=vel-(vel*airFriction);
-		position+=(world->GetGravity()*mass*ts);
+		
+		//Gravity Forces
+		if(ignoreGravity==false){
+			if(enableCustomGravity){
+				position+=(customGravity*mass*ts);
+			}else{
+				position+=(world->GetGravity()*mass*ts);
+			}
+		}
+		
 		rotation+=rotVel-(rotVel*airFriction);
 	}
 	//Position Forces

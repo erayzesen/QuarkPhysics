@@ -43,6 +43,7 @@ class QWorld;
 class QBody{
 	float inertia=0.0f;
 	float circumference=0.0f;
+	
 public:
 	/**
 	 * Determines whether the body is dynamic or static. A static body does not react to any force, constraint or collision and does not move.A dynamic body reacts to forces, constraints, collisions, and any other world event.
@@ -99,6 +100,8 @@ protected:
 	bool enabled=true;
 	float velocityLimit=0.0f;
 	bool enableIntegratedVelocities=true;
+	bool enableCustomGravity=false;
+	QVector customGravity=QVector::Zero();
 
 	//Material Properties;
 
@@ -122,11 +125,13 @@ protected:
 	int fixedAngularTick=0;
 	bool canSleep=true;
 
+	
 
+	
 	void UpdateAABB();
 	void UpdateMeshTransforms();
 	/** Updates properties of the soft body and applies needed physical dynamics. */
-	virtual void Update(){};
+	virtual void Update();
 	/** Called after all bodies have completed their Update step to perform post-update operations. */
 	virtual void PostUpdate(){};
 	virtual bool CanGiveCollisionResponseTo(QBody *otherBody);
@@ -213,6 +218,8 @@ protected:
 		QAABB GetAABB()const{
 			return aabb;
 		}
+
+		
 		
 		/** Returns the total initial area of the body. Initial area means the calculated total area with non-transformed meshes of the body. */
 		float GetTotalInitialArea(){
@@ -357,6 +364,18 @@ protected:
 		 */
 		bool GetIntegratedVelocitiesEnabled();
 
+		/**
+		 * Returns whether a specific custom gravity value, defined using the SetCustomGravity() method, will be applied to the body instead of the gravity defined for the physics world.
+		 */
+		bool GetCustomGravityEnabled();
+		
+		/*
+			Returns the gravity vector specifically defined for the body.
+		*/
+		QVector GetCustomGravity();
+
+		
+
 
 
 		//General Set Methods
@@ -385,6 +404,11 @@ protected:
 		QBody *AddPosition(QVector value, bool withPreviousPosition=true){
 			return SetPosition(GetPosition()+value,withPreviousPosition);
 		}
+		/** Applies a force immediately to the body. The way the force is applied may vary depending on the QBody type, and some QBody types may not respond to the applied forces. You can use the method safely before the physics step (e.g. at the OnPreStep event). If you want to use this method after physics step, it can break the simulation.(Collisions and constraints may not be applied properly.) if you want to apply force at the next physic step safely, use SetForce() and AddForce() methods.  
+		 * @param value The force to apply.
+		 * @return A pointer to the body itself.
+		 */
+		virtual  QBody* ApplyForce(QVector value){return this;}; 
 		/** Sets the previous position of the body. 
 		 * @param value A position value to set. 
 		 * @return A pointer to the body itself.
@@ -445,8 +469,7 @@ protected:
 		QBody *AddPreviousRotation(float angleRadian){
 			return SetPreviousRotation(GetPreviousRotation()+angleRadian);
 		}
-		
-		
+
 
 
 		
@@ -568,8 +591,24 @@ protected:
 
 		/**
 		 * Sets whether the application of gravity and various velocity integrators necessary for the body's movement in the physics world is enabled. It is set to true by default. Typically, it is disabled for specific body objects that require manual control.
+		 * @param value A value to set
+		 * @return A pointer to the body itself.
 		 */
 		QBody *SetIntegratedVelocitiesEnabled(bool value);
+
+		/**
+		 * Sets whether a specific custom gravity value, defined using the SetCustomGravity() method, will be applied to the body instead of the gravity defined for the physics world.
+		 * @param value A value to set
+		 * @return A pointer to the body itself.
+		 */
+		QBody *SetCustomGravityEnabled(bool value);
+
+		/**
+		 * Sets whether a specific custom gravity value, defined using the SetCustomGravity() method, will be applied to the body instead of the gravity defined for the physics world.
+		 * @param value A value to set
+		 * @return A pointer to the body itself.
+		 */
+		QBody *SetCustomGravity(QVector value);
 
 
 		//Mesh Methods
@@ -615,6 +654,11 @@ protected:
 		 */
 		QBody *SetVelocityLimit(float value);
 
+		/**
+		 * By default, objects included in the physics engine are deleted by the destructors of the objects they belong to. When this flag is enabled, it indicates that this object should never be deleted by this engine. It is disabled by default, and it is recommended to keep it disabled. However, it can be used if needed for advanced purposes and integrations.
+		 */
+		bool manualDeletion=false;
+
 
 		friend class QMesh;
 		friend class QWorld;
@@ -622,12 +666,16 @@ protected:
 		friend class QParticle;
 		friend class QJoint;
 		friend class QBroadPhase;
+		friend class QAreaBody;
 
 	protected:
 		vector<QMesh*> _meshes=vector<QMesh*>();
 		SimulationModels simulationModel=SimulationModels::RIGID_BODY;
 		static QVector ComputeFriction(QBody *bodyA, QBody *bodyB, QVector &normal, float penetration, QVector &relativeVelocity);
 		static bool CanCollide(QBody *bodyA,QBody *bodyB,bool checkBodiesAreEnabled=true);
+		//For Gravity-Free Feature of QArea Bodies  
+		bool ignoreGravity=false;
+
 
 
 };

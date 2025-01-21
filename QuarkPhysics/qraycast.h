@@ -117,6 +117,11 @@ public:
 	*/
 	QRaycast *SetCollidableLayersBit(int value);
 
+	/**
+	 * By default, objects included in the physics engine are deleted by the destructors of the objects they belong to. When this flag is enabled, it indicates that this object should never be deleted by this engine. It is disabled by default, and it is recommended to keep it disabled. However, it can be used if needed for advanced purposes and integrations.
+	 */
+	bool manualDeletion=false;
+
 
 	friend class QWorld;
 
@@ -139,6 +144,8 @@ private:
 	static void RaycastToPolygon(QBody *body, QMesh *mesh, QVector rayPosition, QVector rayVector, QVector rayUnit,QVector rayNormal, bool enableContainingBodies,vector<QRaycast::Contact> *contacts);
 
 	static bool SortContacts(const QRaycast::Contact contactA,const QRaycast::Contact contactB);
+
+	
 
 };
 

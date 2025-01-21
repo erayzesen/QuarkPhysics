@@ -71,16 +71,33 @@ QSoftBody::QSoftBody()
 	bodyType=QBody::BodyTypes::SOFT;
 }
 
-
-
-
-
+QSoftBody *QSoftBody::ApplyForce(QVector force)
+{
+	if (GetMode()==QBody::Modes::STATIC || GetEnabled()==false ){
+		return this;
+	}
+	
+	for(int i=0;i<_meshes.size();i++){
+		QMesh *mesh=_meshes[i];
+		for(int n=0;n<mesh->GetParticleCount();n++){
+			QParticle *particle=mesh->GetParticleAt(n);
+			if(particle->GetEnabled()==false)
+				continue;
+			particle->ApplyForce(force);
+			
+		}
+	}
+    return this;
+}
 
 void QSoftBody::Update()
 {
+	QBody::Update();
+	
 	if (mode==QBody::STATIC){
 		return;
 	}
+
 
 	//Sleep Feature
 
@@ -107,6 +124,10 @@ void QSoftBody::Update()
 		QMesh *mesh=_meshes[i];
 		for(int n=0;n<mesh->GetParticleCount();n++){
 			QParticle *particle=mesh->GetParticleAt(n);
+			if (particle->GetEnabled()==false ){
+				continue;
+			}
+			
 			/* if(GetPassivationOfInternalSpringsEnabled() && particle->GetIsInternal())
 				continue; */
 			auto vel=particle->GetGlobalPosition()-particle->GetPreviousGlobalPosition();
@@ -117,8 +138,15 @@ void QSoftBody::Update()
 			particle->SetPreviousGlobalPosition(particle->GetGlobalPosition() );
 			if(enableIntegratedVelocities==true ){
 				particle->ApplyForce(vel-(vel*airFriction) );
-				if(!(particle->GetIsInternal()==true && enablePassivationOfInternalSprings==true) ){
-					particle->ApplyForce(mass*world->GetGravity()*ts);
+				//Gravity Forces
+				if (ignoreGravity==false){
+					if(!(particle->GetIsInternal()==true && enablePassivationOfInternalSprings==true) ){
+						if (enableCustomGravity){
+							particle->ApplyForce(mass*customGravity*ts);
+						}else{
+							particle->ApplyForce(mass*world->GetGravity()*ts);
+						}
+					}
 				}
 			}
 			particle->ApplyForce(particle->GetForce());
@@ -128,7 +156,8 @@ void QSoftBody::Update()
 	}
 	
 	for (auto mesh:_meshes){
-		mesh->ApplyAngleConstraintsToPolygon();
+		if(mesh->GetPolygonForCollisionsDisabled()==false)
+			mesh->ApplyAngleConstraintsToPolygon();
 	}
 
 	
@@ -209,6 +238,8 @@ void QSoftBody::PreserveAreas()
 		for(int n=0;n<mesh->polygon.size();n++){
 			QParticle *pp=mesh->polygon[ (n-1+mesh->polygon.size())%mesh->polygon.size() ];
 			QParticle *np=mesh->polygon[ (n+1)%mesh->polygon.size() ];
+			if (pp->GetEnabled()==false || np->GetEnabled()==false )
+				continue;
 			QVector centerPos=(np->GetGlobalPosition()+pp->GetGlobalPosition())*0.5f;
 			QParticle::ApplyForceToParticleSegment(pp,np,volumeForces[n],centerPos);
 			//GetWorld()->GetGizmos()->push_back( new QGizmoLine( centerPos,centerPos+volumeForces[n]*30,true ) );
@@ -268,6 +299,9 @@ void QSoftBody::ApplyShapeMatching()
 		
 		for(int n=0;n<particles.size();n++){
 			QParticle * particle=particles[n];
+
+			if (particle->GetEnabled()==false )
+				continue;
 			
 			QVector targetPos=matchingPositions[n];
 			//world->GetGizmos()->push_back(new QGizmoCircle(targetPos,3.0f) );
