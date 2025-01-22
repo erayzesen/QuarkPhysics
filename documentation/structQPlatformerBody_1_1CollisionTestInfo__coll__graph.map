@@ -1,8 +1,8 @@
 <map id="QPlatformerBody::CollisionTestInfo" name="QPlatformerBody::CollisionTestInfo">
-<area shape="rect" id="node1" title=" " alt="" coords="5,291,185,332"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,305,185,347"/>
 <area shape="rect" id="node2" href="$structQVector.html" title=" " alt="" coords="104,5,175,32"/>
-<area shape="rect" id="node3" href="$classQBody.html" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m..." alt="" coords="153,201,216,228"/>
-<area shape="rect" id="node4" href="$classQWorld.html" title="A QWorld object is required to create a physics simulation. The QWorld class manages the entire physi..." alt="" coords="237,96,303,123"/>
-<area shape="rect" id="node5" href="$classQBroadPhase.html" title=" " alt="" coords="219,5,321,32"/>
-<area shape="rect" id="node6" href="$classQAABB.html" title=" " alt="" coords="327,96,395,123"/>
+<area shape="rect" id="node3" href="$classQBody.html" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m..." alt="" coords="157,216,220,243"/>
+<area shape="rect" id="node4" href="$classQWorld.html" title="A QWorld object is required to create a physics simulation. The QWorld class manages the entire physi..." alt="" coords="253,103,319,130"/>
+<area shape="rect" id="node5" href="$classQBroadPhase.html" title=" " alt="" coords="235,5,337,32"/>
+<area shape="rect" id="node6" href="$classQAABB.html" title=" " alt="" coords="343,103,411,130"/>
 </map>

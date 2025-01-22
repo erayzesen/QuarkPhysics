@@ -1,6 +1,7 @@
 var classQSoftBody =
 [
     [ "QSoftBody", "classQSoftBody.html#a4d76fcf591774ecf058f8608c3e97fd5", null ],
+    [ "ApplyForce", "classQSoftBody.html#a963fdd3359bff32f5686c22c08ab6477", null ],
     [ "ApplyShapeMatching", "classQSoftBody.html#a95f8790c4c838fe39eb27c3f1629ffdf", null ],
     [ "GetAreaPreservingEnabled", "classQSoftBody.html#af9cc251da66b9b9fbf2f3e281c771afa", null ],
     [ "GetAreaPreservingRate", "classQSoftBody.html#ae7e59e0e07d1c774a58ac38dc5278b7d", null ],

@@ -1,8 +1,8 @@
 <map id="QAreaBody" name="QAreaBody">
-<area shape="rect" id="node1" title="QAreaBody objects are objects that don&#39;t respond to collisions or receive any response from them,..." alt="" coords="180,263,269,289"/>
-<area shape="rect" id="node2" href="$classQBody.html" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m..." alt="" coords="193,187,256,213"/>
-<area shape="rect" id="node3" href="$classQWorld.html" title="A QWorld object is required to create a physics simulation. The QWorld class manages the entire physi..." alt="" coords="111,96,176,123"/>
+<area shape="rect" id="node1" title="QAreaBody objects are objects that don&#39;t respond to collisions or receive any response from them,..." alt="" coords="180,277,269,304"/>
+<area shape="rect" id="node2" href="$classQBody.html" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m..." alt="" coords="193,201,256,228"/>
+<area shape="rect" id="node3" href="$classQWorld.html" title="A QWorld object is required to create a physics simulation. The QWorld class manages the entire physi..." alt="" coords="111,103,176,130"/>
 <area shape="rect" id="node4" href="$classQBroadPhase.html" title=" " alt="" coords="5,5,108,32"/>
 <area shape="rect" id="node5" href="$structQVector.html" title=" " alt="" coords="160,5,231,32"/>
-<area shape="rect" id="node6" href="$classQAABB.html" title=" " alt="" coords="323,96,391,123"/>
+<area shape="rect" id="node6" href="$classQAABB.html" title=" " alt="" coords="339,103,407,130"/>
 </map>

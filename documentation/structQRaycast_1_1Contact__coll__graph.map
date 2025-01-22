@@ -1,8 +1,8 @@
 <map id="QRaycast::Contact" name="QRaycast::Contact">
-<area shape="rect" id="node1" title=" " alt="" coords="5,291,140,317"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,305,140,332"/>
 <area shape="rect" id="node2" href="$structQVector.html" title=" " alt="" coords="81,5,152,32"/>
-<area shape="rect" id="node3" href="$classQBody.html" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m..." alt="" coords="131,201,193,228"/>
-<area shape="rect" id="node4" href="$classQWorld.html" title="A QWorld object is required to create a physics simulation. The QWorld class manages the entire physi..." alt="" coords="215,96,280,123"/>
-<area shape="rect" id="node5" href="$classQBroadPhase.html" title=" " alt="" coords="196,5,299,32"/>
-<area shape="rect" id="node6" href="$classQAABB.html" title=" " alt="" coords="304,96,372,123"/>
+<area shape="rect" id="node3" href="$classQBody.html" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m..." alt="" coords="135,216,197,243"/>
+<area shape="rect" id="node4" href="$classQWorld.html" title="A QWorld object is required to create a physics simulation. The QWorld class manages the entire physi..." alt="" coords="231,103,296,130"/>
+<area shape="rect" id="node5" href="$classQBroadPhase.html" title=" " alt="" coords="212,5,315,32"/>
+<area shape="rect" id="node6" href="$classQAABB.html" title=" " alt="" coords="320,103,388,130"/>
 </map>

@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['qjoint_607',['QJoint',['../classQJoint.html#ab856992a2943be744c9f6bfda5309cd1',1,'QJoint::QJoint(QRigidBody *bodyA, QVector anchorWorldPositionA, QVector anchorWorldPositionB, QRigidBody *bodyB=nullptr)'],['../classQJoint.html#aef710385cca87088914651f2110d11be',1,'QJoint::QJoint(QRigidBody *bodyA, QVector commonAnchorWorldPosition, QRigidBody *bodyB=nullptr)']]],
-  ['qmanifold_608',['QManifold',['../classQManifold.html#ad96fa889c451a053ef9f134af5f903a9',1,'QManifold']]],
-  ['qmesh_609',['QMesh',['../structQMesh.html#a2cf5f5a36303ada5c33a9aa910e51b30',1,'QMesh']]],
-  ['qraycast_610',['QRaycast',['../classQRaycast.html#a946f136bdf31c4b43ffd3c5742d40d18',1,'QRaycast']]],
-  ['qspring_611',['QSpring',['../classQSpring.html#a54265e7a37fc708b4bee76e79e218ee4',1,'QSpring::QSpring(QParticle *particleA, QParticle *particleB, bool internal=false)'],['../classQSpring.html#a8f47b75f9a652ba4b40fa14a11f8d0c3',1,'QSpring::QSpring(QParticle *particleA, QParticle *particleB, float length, bool internal=false)']]],
-  ['qworld_612',['QWorld',['../classQWorld.html#aa7c23d1663e97194f6e23f5a4e6e6d1d',1,'QWorld']]]
+  ['pointinpolygon_619',['PointInPolygon',['../classQCollision.html#a321d9e0ba377dfc2ceb60f4356b93872',1,'QCollision::PointInPolygon(QVector &amp;point, vector&lt; QParticle * &gt; &amp;polygon)'],['../classQCollision.html#ad1ac8ffb1ab4885b73ec009fdbaaa51d',1,'QCollision::PointInPolygon(QVector &amp;point, vector&lt; QVector &gt; &amp;polygon)']]],
+  ['pointinpolygon2_620',['PointInPolygon2',['../classQCollision.html#a939fed6bfbfb290de4e5dd92eff75fb0',1,'QCollision']]],
+  ['polygonandpolygon_621',['PolygonAndPolygon',['../classQCollision.html#a4b7aa498f61bf4a2d1e115a59a696246',1,'QCollision']]],
+  ['polylineandpolygon_622',['PolylineAndPolygon',['../classQCollision.html#af2ead2cb1a94fca8aa872935fa338099',1,'QCollision']]],
+  ['postupdate_623',['PostUpdate',['../classQBody.html#aa31359c2bcd87ff042a74f842927bb22',1,'QBody::PostUpdate()'],['../classQRigidBody.html#af916003e44b947d0b81bc6ad2cf82ce5',1,'QRigidBody::PostUpdate()'],['../classQSoftBody.html#ae3bf1c49b429ac30f594ff0d6fbe4a52',1,'QSoftBody::PostUpdate()'],['../classQPlatformerBody.html#a58b52002a34d0a9ac4b5d7a262c820bd',1,'QPlatformerBody::PostUpdate()']]],
+  ['preserveareas_624',['PreserveAreas',['../classQSoftBody.html#a520a4e9b32fa163d6004362ad590526e',1,'QSoftBody']]]
 ];

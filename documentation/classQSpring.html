@@ -89,6 +89,7 @@ $(document).ready(function(){initNavTree('classQSpring.html',''); initResizable(
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="classQSpring-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">QSpring Class Reference</div>  </div>
@@ -132,6 +133,11 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a9167eedee7a9b6080b15a9bb6deb1dc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aed9e4b0fffdef31c67c0db7ee9201b14"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQSpring.html">QSpring</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQSpring.html#aed9e4b0fffdef31c67c0db7ee9201b14">SetEnabled</a> (bool value)</td></tr>
 <tr class="separator:aed9e4b0fffdef31c67c0db7ee9201b14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:ada5dccf3bfd5a63fab0771b652a0798b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQSpring.html#ada5dccf3bfd5a63fab0771b652a0798b">manualDeletion</a> =false</td></tr>
+<tr class="separator:ada5dccf3bfd5a63fab0771b652a0798b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>You can apply distance constraints between 2 particles using the <a class="el" href="classQSpring.html" title="You can apply distance constraints between 2 particles using the QSpring. The physics engine uses QSp...">QSpring</a>. The physics engine uses <a class="el" href="classQSpring.html" title="You can apply distance constraints between 2 particles using the QSpring. The physics engine uses QSp...">QSpring</a> to impose distance constraints between particles in objects already simulated using mass-spring models (e.g. <a class="el" href="classQSoftBody.html" title="QSoftBody is a body type that defines deformable, soft objects in the physics world....">QSoftBody</a> objects). However, if the user wants, they can apply specific distance constraints between any 2 particles using <a class="el" href="classQSpring.html" title="You can apply distance constraints between 2 particles using the QSpring. The physics engine uses QSp...">QSpring</a>. <a class="el" href="classQWorld.html" title="A QWorld object is required to create a physics simulation. The QWorld class manages the entire physi...">QWorld</a> also provides methods to manage <a class="el" href="classQSpring.html" title="You can apply distance constraints between 2 particles using the QSpring. The physics engine uses QSp...">QSpring</a> objects. </p>
@@ -632,6 +638,22 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="ada5dccf3bfd5a63fab0771b652a0798b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada5dccf3bfd5a63fab0771b652a0798b">&#9670;&nbsp;</a></span>manualDeletion</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool QSpring::manualDeletion =false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>By default, objects included in the physics engine are deleted by the destructors of the objects they belong to. When this flag is enabled, it indicates that this object should never be deleted by this engine. It is disabled by default, and it is recommended to keep it disabled. However, it can be used if needed for advanced purposes and integrations. </p>
 
 </div>
 </div>

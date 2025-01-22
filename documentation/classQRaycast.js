@@ -15,5 +15,6 @@ var classQRaycast =
     [ "SetRotation", "classQRaycast.html#a3ae464f916d4e0a5b79f930c1131dc3b", null ],
     [ "UpdateContacts", "classQRaycast.html#a088f34d670cf4577c1e80fc895ddfd1a", null ],
     [ "QWorld", "classQRaycast.html#a8a2b8029ca7a8a69c736991c6de7c3d0", null ],
-    [ "collidableLayersBit", "classQRaycast.html#a5c115213f80653f37575a5bc84576ee3", null ]
+    [ "collidableLayersBit", "classQRaycast.html#a5c115213f80653f37575a5bc84576ee3", null ],
+    [ "manualDeletion", "classQRaycast.html#afa810b523a97da920be19bbc46755288", null ]
 ];

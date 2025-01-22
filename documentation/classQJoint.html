@@ -89,6 +89,7 @@ $(document).ready(function(){initNavTree('classQJoint.html',''); initResizable()
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#friends">Friends</a> &#124;
 <a href="classQJoint-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -153,6 +154,11 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a46c245bbdd0116f178b62e85845d7896"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af6d58a04ab1587e4d27f682c329ea872"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQJoint.html#af6d58a04ab1587e4d27f682c329ea872">Update</a> ()</td></tr>
 <tr class="separator:af6d58a04ab1587e4d27f682c329ea872"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:aff7fa36534bf5167210648e0ec8f75eb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQJoint.html#aff7fa36534bf5167210648e0ec8f75eb">manualDeletion</a> =false</td></tr>
+<tr class="separator:aff7fa36534bf5167210648e0ec8f75eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
@@ -924,6 +930,22 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QWorld</b></td></tr>
 </table>
 </div><div class="memdoc">
 <p>Updates the constraints of the joint. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="aff7fa36534bf5167210648e0ec8f75eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff7fa36534bf5167210648e0ec8f75eb">&#9670;&nbsp;</a></span>manualDeletion</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool QJoint::manualDeletion =false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>By default, objects included in the physics engine are deleted by the destructors of the objects they belong to. When this flag is enabled, it indicates that this object should never be deleted by this engine. It is disabled by default, and it is recommended to keep it disabled. However, it can be used if needed for advanced purposes and integrations. </p>
 
 </div>
 </div>

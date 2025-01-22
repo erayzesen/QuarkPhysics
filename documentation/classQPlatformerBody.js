@@ -1,7 +1,13 @@
 var classQPlatformerBody =
 [
     [ "CollisionTestInfo", "structQPlatformerBody_1_1CollisionTestInfo.html", "structQPlatformerBody_1_1CollisionTestInfo" ],
+    [ "JumpModes", "classQPlatformerBody.html#a05bbe13316a1b9047bcc982f1e3fa08c", [
+      [ "RELEASED", "classQPlatformerBody.html#a05bbe13316a1b9047bcc982f1e3fa08ca55d06519956e5904e6e814016423fa30", null ],
+      [ "PRESSED", "classQPlatformerBody.html#a05bbe13316a1b9047bcc982f1e3fa08cac2d76493d5917c71cd30b7479e094320", null ],
+      [ "PRESSING", "classQPlatformerBody.html#a05bbe13316a1b9047bcc982f1e3fa08ca0a781eef8567abb32f731a451a186eb1", null ]
+    ] ],
     [ "QPlatformerBody", "classQPlatformerBody.html#aa9630999a19ed9cb7b1df9099a476882", null ],
+    [ "ApplyForce", "classQPlatformerBody.html#a95bb9f3052441a96dba69353d31191ed", null ],
     [ "GetCeiling", "classQPlatformerBody.html#a9a4ba943d4686d987c6c4abf157e96ec", null ],
     [ "GetControllerHorizontalVelocity", "classQPlatformerBody.html#a037a2f790d4d44910a08f80a15562f87", null ],
     [ "GetControllerVerticalVelocity", "classQPlatformerBody.html#a44157a0f191be80fa1582e8236b381a8", null ],
@@ -58,8 +64,7 @@ var classQPlatformerBody =
     [ "jumpForce", "classQPlatformerBody.html#aca658c17e1d1cb1564c3436bf12e95ac", null ],
     [ "jumpFrameCountDown", "classQPlatformerBody.html#ac671c92eefb7b53fd959b5b00e88c0e3", null ],
     [ "jumpGravityMultiplier", "classQPlatformerBody.html#a29e8e5eca81709f17df3bdf494efaffc", null ],
-    [ "jumpMode", "classQPlatformerBody.html#ab72bd533015c9d648b126507b115c892", null ],
-    [ "jumpReleased", "classQPlatformerBody.html#a2a2dae9e48f0d5c26f5f84d95ce268d4", null ],
+    [ "jumpMode", "classQPlatformerBody.html#aba0a7acb5ff29d695b22b84be76eb90c", null ],
     [ "lastMovableFloor", "classQPlatformerBody.html#afc49bd332733a5778e7ceebdd0131a5e", null ],
     [ "maxFloorAngle", "classQPlatformerBody.html#a851450a7445ad5173dcefed15be009ae", null ],
     [ "maxJumpCount", "classQPlatformerBody.html#a22db1918473d6159df9c2d2ac8ae81f8", null ],
@@ -67,7 +72,6 @@ var classQPlatformerBody =
     [ "onCeiling", "classQPlatformerBody.html#ae7b24ff8324b88f6e40bb7e1955abde8", null ],
     [ "onFloor", "classQPlatformerBody.html#ac8c94b90d0ebf466e8e30ff6335f6ded", null ],
     [ "platformLayersBit", "classQPlatformerBody.html#ad22e59caad0a0396643988522c0705a7", null ],
-    [ "prevJumpMode", "classQPlatformerBody.html#a198165a8be3d4d4ad2e4dfb736e9f374", null ],
     [ "rightDirection", "classQPlatformerBody.html#aedd8388472ea13c9c59bc61587fdc518", null ],
     [ "upDirection", "classQPlatformerBody.html#a28771fa8eab8360fbeef8cb1d724b4e3", null ],
     [ "velocity", "classQPlatformerBody.html#a81b5f7c90e0dc444b2fd6cdc58dc12db", null ],

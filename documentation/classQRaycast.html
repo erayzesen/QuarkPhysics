@@ -91,6 +91,7 @@ $(document).ready(function(){initNavTree('classQRaycast.html',''); initResizable
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="#friends">Friends</a> &#124;
@@ -141,6 +142,11 @@ Public Member Functions</h2></td></tr>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a98dfdf83e4dee8aeb606d05c48ddd78c"><td class="memItemLeft" align="right" valign="top">static vector&lt; <a class="el" href="structQRaycast_1_1Contact.html">QRaycast::Contact</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQRaycast.html#a98dfdf83e4dee8aeb606d05c48ddd78c">RaycastTo</a> (<a class="el" href="classQWorld.html">QWorld</a> *world, <a class="el" href="structQVector.html">QVector</a> rayPosition, <a class="el" href="structQVector.html">QVector</a> rayVector, int collidableLayers=1, bool enableContainingBodies=false)</td></tr>
 <tr class="separator:a98dfdf83e4dee8aeb606d05c48ddd78c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:afa810b523a97da920be19bbc46755288"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQRaycast.html#afa810b523a97da920be19bbc46755288">manualDeletion</a> =false</td></tr>
+<tr class="separator:afa810b523a97da920be19bbc46755288"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -499,6 +505,22 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QWorld</b></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="afa810b523a97da920be19bbc46755288"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa810b523a97da920be19bbc46755288">&#9670;&nbsp;</a></span>manualDeletion</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool QRaycast::manualDeletion =false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>By default, objects included in the physics engine are deleted by the destructors of the objects they belong to. When this flag is enabled, it indicates that this object should never be deleted by this engine. It is disabled by default, and it is recommended to keep it disabled. However, it can be used if needed for advanced purposes and integrations. </p>
 
 </div>
 </div>

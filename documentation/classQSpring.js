@@ -14,5 +14,6 @@ var classQSpring =
     [ "SetParticleA", "classQSpring.html#ab12539aa0d5e217b2bd1a5b842ab084f", null ],
     [ "SetParticleB", "classQSpring.html#ab6be732d4f6ffca814ec878c19a97301", null ],
     [ "SetRigidity", "classQSpring.html#a9167eedee7a9b6080b15a9bb6deb1dc2", null ],
-    [ "Update", "classQSpring.html#a046221209171732c4c8c94225770c8d9", null ]
+    [ "Update", "classQSpring.html#a046221209171732c4c8c94225770c8d9", null ],
+    [ "manualDeletion", "classQSpring.html#ada5dccf3bfd5a63fab0771b652a0798b", null ]
 ];

@@ -1,8 +1,8 @@
 <map id="QRigidBody" name="QRigidBody">
-<area shape="rect" id="node1" title="QRigidBody is a type of body that is simulated with the dynamics of Rigid body. A rigid body is a typ..." alt="" coords="5,263,97,289"/>
-<area shape="rect" id="node2" href="$classQBody.html" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m..." alt="" coords="111,187,173,213"/>
-<area shape="rect" id="node3" href="$classQWorld.html" title="A QWorld object is required to create a physics simulation. The QWorld class manages the entire physi..." alt="" coords="263,96,328,123"/>
-<area shape="rect" id="node4" href="$classQBroadPhase.html" title=" " alt="" coords="244,5,347,32"/>
-<area shape="rect" id="node5" href="$structQVector.html" title=" " alt="" coords="37,5,108,32"/>
-<area shape="rect" id="node6" href="$classQAABB.html" title=" " alt="" coords="171,96,239,123"/>
+<area shape="rect" id="node1" title="QRigidBody is a type of body that is simulated with the dynamics of Rigid body. A rigid body is a typ..." alt="" coords="179,277,271,304"/>
+<area shape="rect" id="node2" href="$classQBody.html" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m..." alt="" coords="193,201,256,228"/>
+<area shape="rect" id="node3" href="$classQWorld.html" title="A QWorld object is required to create a physics simulation. The QWorld class manages the entire physi..." alt="" coords="111,103,176,130"/>
+<area shape="rect" id="node4" href="$classQBroadPhase.html" title=" " alt="" coords="5,5,108,32"/>
+<area shape="rect" id="node5" href="$structQVector.html" title=" " alt="" coords="160,5,231,32"/>
+<area shape="rect" id="node6" href="$classQAABB.html" title=" " alt="" coords="339,103,407,130"/>
 </map>

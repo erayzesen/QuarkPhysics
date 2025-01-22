@@ -1,26 +1,9 @@
 var searchData=
 [
-  ['raycastto_613',['RaycastTo',['../classQRaycast.html#a98dfdf83e4dee8aeb606d05c48ddd78c',1,'QRaycast']]],
-  ['releasejump_614',['ReleaseJump',['../classQPlatformerBody.html#ac0121523cbce636eb6fb56b148623f10',1,'QPlatformerBody']]],
-  ['removebody_615',['RemoveBody',['../classQWorld.html#a853c2f727898c3219bded310cbe209bc',1,'QWorld']]],
-  ['removebodyat_616',['RemoveBodyAt',['../classQWorld.html#a24ddd06fbd125d8d059c737fa536342f',1,'QWorld']]],
-  ['removeclosedpolygonat_617',['RemoveClosedPolygonAt',['../structQMesh.html#abe3d8e0158a24b6d47141625cb9e38c0',1,'QMesh']]],
-  ['removecollisionexception_618',['RemoveCollisionException',['../classQWorld.html#af3a0bebd12f09e61aecdaedf04e4e599',1,'QWorld']]],
-  ['removejoint_619',['RemoveJoint',['../classQWorld.html#af8da8c8a5148dd97440b3df30598d131',1,'QWorld']]],
-  ['removejointat_620',['RemoveJointAt',['../classQWorld.html#a484204b2856e81cc5f0efc169cb34275',1,'QWorld']]],
-  ['removematchingcollisionexception_621',['RemoveMatchingCollisionException',['../classQWorld.html#a063526cf9791d7d97df1f2746a98bf59',1,'QWorld']]],
-  ['removematchingjoints_622',['RemoveMatchingJoints',['../classQWorld.html#a56e6f9b8e8352bb90b3718ec217d14cd',1,'QWorld']]],
-  ['removematchingsprings_623',['RemoveMatchingSprings',['../structQMesh.html#ab64761454198377e23a8049239207699',1,'QMesh::RemoveMatchingSprings()'],['../classQWorld.html#afa021a36e11bb6a7c74e7ea5ff900954',1,'QWorld::RemoveMatchingSprings(QBody *body)'],['../classQWorld.html#a721c15aba6850fea283430431dfff2cb',1,'QWorld::RemoveMatchingSprings(QParticle *particle)']]],
-  ['removematchinguvmaps_624',['RemoveMatchingUVMaps',['../structQMesh.html#a9221b5fbeeccfbbb4fee284c3a4bd2fa',1,'QMesh']]],
-  ['removemeshat_625',['RemoveMeshAt',['../classQBody.html#a1440d4534c97dc74064f58f2bf19c329',1,'QBody']]],
-  ['removeparticle_626',['RemoveParticle',['../structQMesh.html#ae3beaddf06c2b53e8b85e3b9aca3f93f',1,'QMesh']]],
-  ['removeparticleat_627',['RemoveParticleAt',['../structQMesh.html#ab7575c9631f3c2fff8be40dccc560ec6',1,'QMesh']]],
-  ['removeparticlefrompolygon_628',['RemoveParticleFromPolygon',['../structQMesh.html#ae75d1ee6bfbc00535167c2fbc5c4ab72',1,'QMesh']]],
-  ['removeparticlefrompolygonat_629',['RemoveParticleFromPolygonAt',['../structQMesh.html#a9745b719b8b2d7cd7efd19ab94d9ab2c',1,'QMesh']]],
-  ['removepolygon_630',['RemovePolygon',['../structQMesh.html#a54cded3050ae52419520487f5c59f218',1,'QMesh']]],
-  ['removeraycast_631',['RemoveRaycast',['../classQWorld.html#a63af9e6562bbf2640584d96c0f39a393',1,'QWorld']]],
-  ['removeraycastat_632',['RemoveRaycastAt',['../classQWorld.html#a121fe5c63908830bde21f3d427d70efb',1,'QWorld']]],
-  ['removespring_633',['RemoveSpring',['../structQMesh.html#adac3c5320b74642afec0acbc65a5cd78',1,'QMesh::RemoveSpring()'],['../classQWorld.html#a354771cf068f3e1d09e4d4274eac0d8f',1,'QWorld::RemoveSpring()']]],
-  ['removespringat_634',['RemoveSpringAt',['../structQMesh.html#a1c1885fa237466008a1bfd2997423ed0',1,'QMesh::RemoveSpringAt()'],['../classQWorld.html#abdfcf861432ea017c0c02ce2ac394d4b',1,'QWorld::RemoveSpringAt()']]],
-  ['removeuvmapat_635',['RemoveUVMapAt',['../structQMesh.html#a5902e92355c44d5d13fb8a343f329b10',1,'QMesh']]]
+  ['qjoint_625',['QJoint',['../classQJoint.html#ab856992a2943be744c9f6bfda5309cd1',1,'QJoint::QJoint(QRigidBody *bodyA, QVector anchorWorldPositionA, QVector anchorWorldPositionB, QRigidBody *bodyB=nullptr)'],['../classQJoint.html#aef710385cca87088914651f2110d11be',1,'QJoint::QJoint(QRigidBody *bodyA, QVector commonAnchorWorldPosition, QRigidBody *bodyB=nullptr)']]],
+  ['qmanifold_626',['QManifold',['../classQManifold.html#ad96fa889c451a053ef9f134af5f903a9',1,'QManifold']]],
+  ['qmesh_627',['QMesh',['../structQMesh.html#a2cf5f5a36303ada5c33a9aa910e51b30',1,'QMesh']]],
+  ['qraycast_628',['QRaycast',['../classQRaycast.html#a946f136bdf31c4b43ffd3c5742d40d18',1,'QRaycast']]],
+  ['qspring_629',['QSpring',['../classQSpring.html#a54265e7a37fc708b4bee76e79e218ee4',1,'QSpring::QSpring(QParticle *particleA, QParticle *particleB, bool internal=false)'],['../classQSpring.html#a8f47b75f9a652ba4b40fa14a11f8d0c3',1,'QSpring::QSpring(QParticle *particleA, QParticle *particleB, float length, bool internal=false)']]],
+  ['qworld_630',['QWorld',['../classQWorld.html#aa7c23d1663e97194f6e23f5a4e6e6d1d',1,'QWorld']]]
 ];

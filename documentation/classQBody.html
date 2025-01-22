@@ -102,7 +102,7 @@ $(document).ready(function(){initNavTree('classQBody.html',''); initResizable();
 </div><!--header-->
 <div class="contents">
 
-<p><a class="el" href="classQBody.html" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m...">QBody</a> objects are the base class for all types of bodies. Any class derived from <a class="el" href="classQBody.html" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m...">QBody</a> shares these methods and properties. Additionally, this base type provides flexible and common references for independent operations from qualified and named body types in the entire simulation. Virtual methods are defined for users to create different body types that inherit <a class="el" href="classQBody.html" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m...">QBody</a>. For example, the <a class="el" href="classQBody.html#adeec93b474448ed9b874299049d65413">Update()</a> method is used to apply different dynamics for all body types. <a class="el" href="classQRigidBody.html" title="QRigidBody is a type of body that is simulated with the dynamics of Rigid body. A rigid body is a typ...">QRigidBody</a> instances derived from <a class="el" href="classQBody.html" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m...">QBody</a> have their own <a class="el" href="classQBody.html#adeec93b474448ed9b874299049d65413">Update()</a> solution, while <a class="el" href="classQSoftBody.html" title="QSoftBody is a body type that defines deformable, soft objects in the physics world....">QSoftBody</a> instances have their own <a class="el" href="classQBody.html#adeec93b474448ed9b874299049d65413">Update()</a> solution. With these and similar virtual methods, unique new body types can be created.  
+<p><a class="el" href="classQBody.html" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m...">QBody</a> objects are the base class for all types of bodies. Any class derived from <a class="el" href="classQBody.html" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m...">QBody</a> shares these methods and properties. Additionally, this base type provides flexible and common references for independent operations from qualified and named body types in the entire simulation. Virtual methods are defined for users to create different body types that inherit <a class="el" href="classQBody.html" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m...">QBody</a>. For example, the <a class="el" href="classQBody.html#a692475673574739e767415cb2cab2d76">Update()</a> method is used to apply different dynamics for all body types. <a class="el" href="classQRigidBody.html" title="QRigidBody is a type of body that is simulated with the dynamics of Rigid body. A rigid body is a typ...">QRigidBody</a> instances derived from <a class="el" href="classQBody.html" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m...">QBody</a> have their own <a class="el" href="classQBody.html#a692475673574739e767415cb2cab2d76">Update()</a> solution, while <a class="el" href="classQSoftBody.html" title="QSoftBody is a body type that defines deformable, soft objects in the physics world....">QSoftBody</a> instances have their own <a class="el" href="classQBody.html#a692475673574739e767415cb2cab2d76">Update()</a> solution. With these and similar virtual methods, unique new body types can be created.  
  <a href="classQBody.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="qbody_8h_source.html">qbody.h</a>&gt;</code></p>
@@ -123,11 +123,11 @@ Collaboration diagram for QBody:</div>
 <div class="dyncontent">
 <div class="center"><img src="classQBody__coll__graph.png" border="0" usemap="#aQBody_coll__map" alt="Collaboration graph"/></div>
 <map name="aQBody_coll__map" id="aQBody_coll__map">
-<area shape="rect" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m..." alt="" coords="193,187,256,213"/>
-<area shape="rect" href="classQWorld.html" title="A QWorld object is required to create a physics simulation. The QWorld class manages the entire physi..." alt="" coords="111,96,176,123"/>
+<area shape="rect" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m..." alt="" coords="193,201,256,228"/>
+<area shape="rect" href="classQWorld.html" title="A QWorld object is required to create a physics simulation. The QWorld class manages the entire physi..." alt="" coords="111,103,176,130"/>
 <area shape="rect" href="classQBroadPhase.html" title=" " alt="" coords="5,5,108,32"/>
 <area shape="rect" href="structQVector.html" title=" " alt="" coords="160,5,231,32"/>
-<area shape="rect" href="classQAABB.html" title=" " alt="" coords="323,96,391,123"/>
+<area shape="rect" href="classQAABB.html" title=" " alt="" coords="339,103,407,130"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -229,10 +229,17 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a8b2d23d31bf2d38318fbcbb5eccffc63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8e58f0c2c0632c68c044e22ea268d83"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#ab8e58f0c2c0632c68c044e22ea268d83">GetIntegratedVelocitiesEnabled</a> ()</td></tr>
 <tr class="separator:ab8e58f0c2c0632c68c044e22ea268d83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52acb16f0984b5a7926d45aafc520b87"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#a52acb16f0984b5a7926d45aafc520b87">GetCustomGravityEnabled</a> ()</td></tr>
+<tr class="separator:a52acb16f0984b5a7926d45aafc520b87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24f2fcd672b930514df2708885c68c36"><td class="memItemLeft" align="right" valign="top"><a id="a24f2fcd672b930514df2708885c68c36"></a>
+<a class="el" href="structQVector.html">QVector</a>&#160;</td><td class="memItemRight" valign="bottom"><b>GetCustomGravity</b> ()</td></tr>
+<tr class="separator:a24f2fcd672b930514df2708885c68c36"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6a1c93344bc3bb6dec7af799322dc06"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQBody.html">QBody</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#ae6a1c93344bc3bb6dec7af799322dc06">SetPosition</a> (<a class="el" href="structQVector.html">QVector</a> value, bool withPreviousPosition=true)</td></tr>
 <tr class="separator:ae6a1c93344bc3bb6dec7af799322dc06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50ba61d697cd514983f510fc2e548497"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQBody.html">QBody</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#a50ba61d697cd514983f510fc2e548497">AddPosition</a> (<a class="el" href="structQVector.html">QVector</a> value, bool withPreviousPosition=true)</td></tr>
 <tr class="separator:a50ba61d697cd514983f510fc2e548497"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a487c327aec9e9987863310e95e2380"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classQBody.html">QBody</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#a7a487c327aec9e9987863310e95e2380">ApplyForce</a> (<a class="el" href="structQVector.html">QVector</a> value)</td></tr>
+<tr class="separator:a7a487c327aec9e9987863310e95e2380"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aea4ee499023574667df1937235ce35ed"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQBody.html">QBody</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#aea4ee499023574667df1937235ce35ed">SetPreviousPosition</a> (<a class="el" href="structQVector.html">QVector</a> value)</td></tr>
 <tr class="separator:aea4ee499023574667df1937235ce35ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd47c2fe58846dcd49c7b3cdaf987c0b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQBody.html">QBody</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#abd47c2fe58846dcd49c7b3cdaf987c0b">AddPreviousPosition</a> (<a class="el" href="structQVector.html">QVector</a> value)</td></tr>
@@ -275,6 +282,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ad9d11f1b62c3dbb79b72c76c527aa352"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a134419c1fab50cb1cc9034c9299c4658"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQBody.html">QBody</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#a134419c1fab50cb1cc9034c9299c4658">SetIntegratedVelocitiesEnabled</a> (bool value)</td></tr>
 <tr class="separator:a134419c1fab50cb1cc9034c9299c4658"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4592fb155b7a6a4e7cc0166561b0be60"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQBody.html">QBody</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#a4592fb155b7a6a4e7cc0166561b0be60">SetCustomGravityEnabled</a> (bool value)</td></tr>
+<tr class="separator:a4592fb155b7a6a4e7cc0166561b0be60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f79a5f433884e903ed44ee4563037a1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQBody.html">QBody</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#a7f79a5f433884e903ed44ee4563037a1">SetCustomGravity</a> (<a class="el" href="structQVector.html">QVector</a> value)</td></tr>
+<tr class="separator:a7f79a5f433884e903ed44ee4563037a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a17bfcd06492a9e566eb930e698b4c3c4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQBody.html">QBody</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#a17bfcd06492a9e566eb930e698b4c3c4">AddMesh</a> (<a class="el" href="structQMesh.html">QMesh</a> *mesh)</td></tr>
 <tr class="separator:a17bfcd06492a9e566eb930e698b4c3c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1440d4534c97dc74064f58f2bf19c329"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQBody.html">QBody</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#a1440d4534c97dc74064f58f2bf19c329">RemoveMeshAt</a> (int index)</td></tr>
@@ -300,6 +311,8 @@ Public Attributes</h2></td></tr>
 <tr class="separator:adcaf713fc5a0e5e1e07c0d844b93a562"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac0b095617f872559ef5c4920f9c48b70"><td class="memItemLeft" align="right" valign="top">std::function&lt; bool(<a class="el" href="classQBody.html">QBody</a> *body, <a class="el" href="structQBody_1_1CollisionInfo.html">CollisionInfo</a>)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#ac0b095617f872559ef5c4920f9c48b70">CollisionEventListener</a></td></tr>
 <tr class="separator:ac0b095617f872559ef5c4920f9c48b70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e6b9f1b5b9636156678eb966eb38c78"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#a1e6b9f1b5b9636156678eb966eb38c78">manualDeletion</a> =false</td></tr>
+<tr class="separator:a1e6b9f1b5b9636156678eb966eb38c78"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -309,8 +322,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateAABB</b> ()</td
 <tr class="memitem:a4970eac5e985e14ee9525c50a7eb3246"><td class="memItemLeft" align="right" valign="top"><a id="a4970eac5e985e14ee9525c50a7eb3246"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateMeshTransforms</b> ()</td></tr>
 <tr class="separator:a4970eac5e985e14ee9525c50a7eb3246"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adeec93b474448ed9b874299049d65413"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#adeec93b474448ed9b874299049d65413">Update</a> ()</td></tr>
-<tr class="separator:adeec93b474448ed9b874299049d65413"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a692475673574739e767415cb2cab2d76"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#a692475673574739e767415cb2cab2d76">Update</a> ()</td></tr>
+<tr class="separator:a692475673574739e767415cb2cab2d76"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa31359c2bcd87ff042a74f842927bb22"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#aa31359c2bcd87ff042a74f842927bb22">PostUpdate</a> ()</td></tr>
 <tr class="separator:aa31359c2bcd87ff042a74f842927bb22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6b3b1eff4924e660484f6cd47ce386e6"><td class="memItemLeft" align="right" valign="top"><a id="a6b3b1eff4924e660484f6cd47ce386e6"></a>
@@ -373,6 +386,12 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>velocityLimit</b> =0
 <tr class="memitem:afb5d6d5562f284e55649074dd182b64e"><td class="memItemLeft" align="right" valign="top"><a id="afb5d6d5562f284e55649074dd182b64e"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>enableIntegratedVelocities</b> =true</td></tr>
 <tr class="separator:afb5d6d5562f284e55649074dd182b64e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1018c4647db20c3bb8863be4344e5167"><td class="memItemLeft" align="right" valign="top"><a id="a1018c4647db20c3bb8863be4344e5167"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>enableCustomGravity</b> =false</td></tr>
+<tr class="separator:a1018c4647db20c3bb8863be4344e5167"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4de829f85dea584e5be7ed55fb289688"><td class="memItemLeft" align="right" valign="top"><a id="a4de829f85dea584e5be7ed55fb289688"></a>
+<a class="el" href="structQVector.html">QVector</a>&#160;</td><td class="memItemRight" valign="bottom"><b>customGravity</b> =QVector::Zero()</td></tr>
+<tr class="separator:a4de829f85dea584e5be7ed55fb289688"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa24d597631ad20641860673589b73524"><td class="memItemLeft" align="right" valign="top"><a id="aa24d597631ad20641860673589b73524"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>friction</b> =0.2f</td></tr>
 <tr class="separator:aa24d597631ad20641860673589b73524"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -421,6 +440,9 @@ vector&lt; <a class="el" href="structQMesh.html">QMesh</a> * &gt;&#160;</td><td 
 <tr class="memitem:ad3262b1b56fddf4b535bd2098dd21ef9"><td class="memItemLeft" align="right" valign="top"><a id="ad3262b1b56fddf4b535bd2098dd21ef9"></a>
 <a class="el" href="classQBody.html#a8995ebc965ad51576d0662e44a29d58b">SimulationModels</a>&#160;</td><td class="memItemRight" valign="bottom"><b>simulationModel</b> =SimulationModels::RIGID_BODY</td></tr>
 <tr class="separator:ad3262b1b56fddf4b535bd2098dd21ef9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7faa0c009f8ac9614f44b7ec04df446b"><td class="memItemLeft" align="right" valign="top"><a id="a7faa0c009f8ac9614f44b7ec04df446b"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>ignoreGravity</b> =false</td></tr>
+<tr class="separator:a7faa0c009f8ac9614f44b7ec04df446b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
@@ -442,9 +464,12 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QJoint</b></td></tr>
 <tr class="memitem:a62afcafa97c17537ad4d39543cfd7e84"><td class="memItemLeft" align="right" valign="top"><a id="a62afcafa97c17537ad4d39543cfd7e84"></a>
 class&#160;</td><td class="memItemRight" valign="bottom"><b>QBroadPhase</b></td></tr>
 <tr class="separator:a62afcafa97c17537ad4d39543cfd7e84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa79267b0a372b20176e04bcee3cd9b42"><td class="memItemLeft" align="right" valign="top"><a id="aa79267b0a372b20176e04bcee3cd9b42"></a>
+class&#160;</td><td class="memItemRight" valign="bottom"><b>QAreaBody</b></td></tr>
+<tr class="separator:aa79267b0a372b20176e04bcee3cd9b42"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="classQBody.html" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m...">QBody</a> objects are the base class for all types of bodies. Any class derived from <a class="el" href="classQBody.html" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m...">QBody</a> shares these methods and properties. Additionally, this base type provides flexible and common references for independent operations from qualified and named body types in the entire simulation. Virtual methods are defined for users to create different body types that inherit <a class="el" href="classQBody.html" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m...">QBody</a>. For example, the <a class="el" href="classQBody.html#adeec93b474448ed9b874299049d65413">Update()</a> method is used to apply different dynamics for all body types. <a class="el" href="classQRigidBody.html" title="QRigidBody is a type of body that is simulated with the dynamics of Rigid body. A rigid body is a typ...">QRigidBody</a> instances derived from <a class="el" href="classQBody.html" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m...">QBody</a> have their own <a class="el" href="classQBody.html#adeec93b474448ed9b874299049d65413">Update()</a> solution, while <a class="el" href="classQSoftBody.html" title="QSoftBody is a body type that defines deformable, soft objects in the physics world....">QSoftBody</a> instances have their own <a class="el" href="classQBody.html#adeec93b474448ed9b874299049d65413">Update()</a> solution. With these and similar virtual methods, unique new body types can be created. </p>
+<div class="textblock"><p><a class="el" href="classQBody.html" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m...">QBody</a> objects are the base class for all types of bodies. Any class derived from <a class="el" href="classQBody.html" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m...">QBody</a> shares these methods and properties. Additionally, this base type provides flexible and common references for independent operations from qualified and named body types in the entire simulation. Virtual methods are defined for users to create different body types that inherit <a class="el" href="classQBody.html" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m...">QBody</a>. For example, the <a class="el" href="classQBody.html#a692475673574739e767415cb2cab2d76">Update()</a> method is used to apply different dynamics for all body types. <a class="el" href="classQRigidBody.html" title="QRigidBody is a type of body that is simulated with the dynamics of Rigid body. A rigid body is a typ...">QRigidBody</a> instances derived from <a class="el" href="classQBody.html" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m...">QBody</a> have their own <a class="el" href="classQBody.html#a692475673574739e767415cb2cab2d76">Update()</a> solution, while <a class="el" href="classQSoftBody.html" title="QSoftBody is a body type that defines deformable, soft objects in the physics world....">QSoftBody</a> instances have their own <a class="el" href="classQBody.html#a692475673574739e767415cb2cab2d76">Update()</a> solution. With these and similar virtual methods, unique new body types can be created. </p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="ae468fcc35721b342d171f187dd7cdaf3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae468fcc35721b342d171f187dd7cdaf3">&#9670;&nbsp;</a></span>Modes</h2>
@@ -681,6 +706,42 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QBroadPhase</b></td>
 
 </div>
 </div>
+<a id="a7a487c327aec9e9987863310e95e2380"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a487c327aec9e9987863310e95e2380">&#9670;&nbsp;</a></span>ApplyForce()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classQBody.html">QBody</a>* QBody::ApplyForce </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structQVector.html">QVector</a>&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Applies a force immediately to the body. The way the force is applied may vary depending on the <a class="el" href="classQBody.html" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m...">QBody</a> type, and some <a class="el" href="classQBody.html" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m...">QBody</a> types may not respond to the applied forces. You can use the method safely before the physics step (e.g. at the OnPreStep event). If you want to use this method after physics step, it can break the simulation.(Collisions and constraints may not be applied properly.) if you want to apply force at the next physic step safely, use SetForce() and AddForce() methods. <br  />
+ </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>The force to apply. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to the body itself. </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classQPlatformerBody.html#a95bb9f3052441a96dba69353d31191ed">QPlatformerBody</a>, <a class="el" href="classQSoftBody.html#a963fdd3359bff32f5686c22c08ab6477">QSoftBody</a>, and <a class="el" href="classQRigidBody.html#accb943936be3284e617cc67cfb03c74a">QRigidBody</a>.</p>
+
+</div>
+</div>
 <a id="a4d1a83064e59f896f425e10d87734c8c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4d1a83064e59f896f425e10d87734c8c">&#9670;&nbsp;</a></span>GetAABB()</h2>
 
@@ -886,6 +947,24 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QBroadPhase</b></td>
 </table>
 </div><div class="memdoc">
 <p>Returns the bit mask that represents the collidable layers in which the body object is present. </p>
+
+</div>
+</div>
+<a id="a52acb16f0984b5a7926d45aafc520b87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52acb16f0984b5a7926d45aafc520b87">&#9670;&nbsp;</a></span>GetCustomGravityEnabled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool QBody::GetCustomGravityEnabled </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns whether a specific custom gravity value, defined using the <a class="el" href="classQBody.html#a7f79a5f433884e903ed44ee4563037a1">SetCustomGravity()</a> method, will be applied to the body instead of the gravity defined for the physics world. </p>
 
 </div>
 </div>
@@ -1878,6 +1957,56 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QBroadPhase</b></td>
 
 </div>
 </div>
+<a id="a7f79a5f433884e903ed44ee4563037a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f79a5f433884e903ed44ee4563037a1">&#9670;&nbsp;</a></span>SetCustomGravity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classQBody.html">QBody</a> * QBody::SetCustomGravity </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structQVector.html">QVector</a>&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sets whether a specific custom gravity value, defined using the <a class="el" href="classQBody.html#a7f79a5f433884e903ed44ee4563037a1">SetCustomGravity()</a> method, will be applied to the body instead of the gravity defined for the physics world. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>A value to set </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to the body itself. </dd></dl>
+
+</div>
+</div>
+<a id="a4592fb155b7a6a4e7cc0166561b0be60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4592fb155b7a6a4e7cc0166561b0be60">&#9670;&nbsp;</a></span>SetCustomGravityEnabled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classQBody.html">QBody</a> * QBody::SetCustomGravityEnabled </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sets whether a specific custom gravity value, defined using the <a class="el" href="classQBody.html#a7f79a5f433884e903ed44ee4563037a1">SetCustomGravity()</a> method, will be applied to the body instead of the gravity defined for the physics world. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>A value to set </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to the body itself. </dd></dl>
+
+</div>
+</div>
 <a id="ad9d11f1b62c3dbb79b72c76c527aa352"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad9d11f1b62c3dbb79b72c76c527aa352">&#9670;&nbsp;</a></span>SetEnabled()</h2>
 
@@ -1960,7 +2089,13 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QBroadPhase</b></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Sets whether the application of gravity and various velocity integrators necessary for the body's movement in the physics world is enabled. It is set to true by default. Typically, it is disabled for specific body objects that require manual control. </p>
+<p>Sets whether the application of gravity and various velocity integrators necessary for the body's movement in the physics world is enabled. It is set to true by default. Typically, it is disabled for specific body objects that require manual control. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>A value to set </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to the body itself. </dd></dl>
 
 </div>
 </div>
@@ -2379,8 +2514,8 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QBroadPhase</b></td>
 
 </div>
 </div>
-<a id="adeec93b474448ed9b874299049d65413"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adeec93b474448ed9b874299049d65413">&#9670;&nbsp;</a></span>Update()</h2>
+<a id="a692475673574739e767415cb2cab2d76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a692475673574739e767415cb2cab2d76">&#9670;&nbsp;</a></span>Update()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2389,7 +2524,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QBroadPhase</b></td>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void QBody::Update </td>
+          <td class="memname">void QBody::Update </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -2397,7 +2532,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QBroadPhase</b></td>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -2452,6 +2587,21 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QBroadPhase</b></td>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a1e6b9f1b5b9636156678eb966eb38c78"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e6b9f1b5b9636156678eb966eb38c78">&#9670;&nbsp;</a></span>manualDeletion</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool QBody::manualDeletion =false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>By default, objects included in the physics engine are deleted by the destructors of the objects they belong to. When this flag is enabled, it indicates that this object should never be deleted by this engine. It is disabled by default, and it is recommended to keep it disabled. However, it can be used if needed for advanced purposes and integrations. </p>
 
 </div>
 </div>

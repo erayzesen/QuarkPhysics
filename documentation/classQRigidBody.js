@@ -3,6 +3,7 @@ var classQRigidBody =
     [ "QRigidBody", "classQRigidBody.html#a7e854fac895a2ce065326cb7b5e342b3", null ],
     [ "AddAngularForce", "classQRigidBody.html#a0a2841cf69268953127436c140deb26a", null ],
     [ "AddForce", "classQRigidBody.html#af8702d2bc5ca2a3c943fe5c3677c5108", null ],
+    [ "ApplyForce", "classQRigidBody.html#accb943936be3284e617cc67cfb03c74a", null ],
     [ "ApplyForce", "classQRigidBody.html#acd6c1585fa9ea9b3cc40b035dc158955", null ],
     [ "ApplyImpulse", "classQRigidBody.html#a13e7b634a3b02b6c70e724b215027876", null ],
     [ "GetAngularForce", "classQRigidBody.html#a402ac736c7fa5e3d99de4743126b615b", null ],
@@ -18,6 +19,5 @@ var classQRigidBody =
     [ "SetKinematicEnabled", "classQRigidBody.html#a7f58408e14fd3bad7b7c810257d8f4c8", null ],
     [ "SetPositionAndCollide", "classQRigidBody.html#a5613b4dbd8f51b37a4c3e940f065710a", null ],
     [ "Update", "classQRigidBody.html#a37036d66caa7670f7c9048db8d4c6a12", null ],
-    [ "angularForce", "classQRigidBody.html#ab3b7c2e759bf37d57f44db748775a5e0", null ],
-    [ "force", "classQRigidBody.html#a1b9f2918529b002d97efcd0b46eec25b", null ]
+    [ "angularForce", "classQRigidBody.html#ab3b7c2e759bf37d57f44db748775a5e0", null ]
 ];

@@ -249,18 +249,20 @@ $(document).ready(function(){initNavTree('qjoint_8h_source.html',''); initResiza
 <div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160; </div>
 <div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classQJoint.html#af6d58a04ab1587e4d27f682c329ea872">Update</a>();</div>
 <div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160; </div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classQWorld.html">QWorld</a>;</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160; </div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160; </div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160; </div>
+<div class="line"><a name="l00233"></a><span class="lineno"><a class="line" href="classQJoint.html#aff7fa36534bf5167210648e0ec8f75eb">  233</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classQJoint.html#aff7fa36534bf5167210648e0ec8f75eb">manualDeletion</a>=<span class="keyword">false</span>;</div>
 <div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160; </div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;};</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classQWorld.html">QWorld</a>;</div>
 <div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160; </div>
 <div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160; </div>
 <div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160; </div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// QJOINT_H</span></div>
-<div class="ttc" id="aclassQBody_html_a71623d585eeafe3609d34c6c5136bbc6"><div class="ttname"><a href="classQBody.html#a71623d585eeafe3609d34c6c5136bbc6">QBody::GetRotation</a></div><div class="ttdeci">float GetRotation()</div><div class="ttdef"><b>Definition:</b> qbody.h:201</div></div>
-<div class="ttc" id="aclassQBody_html_aa2b72ad0502e208aac2a5826b188a9b2"><div class="ttname"><a href="classQBody.html#aa2b72ad0502e208aac2a5826b188a9b2">QBody::GetPosition</a></div><div class="ttdeci">QVector GetPosition()</div><div class="ttdef"><b>Definition:</b> qbody.h:193</div></div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160; </div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;};</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160; </div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160; </div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160; </div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// QJOINT_H</span></div>
+<div class="ttc" id="aclassQBody_html_a71623d585eeafe3609d34c6c5136bbc6"><div class="ttname"><a href="classQBody.html#a71623d585eeafe3609d34c6c5136bbc6">QBody::GetRotation</a></div><div class="ttdeci">float GetRotation()</div><div class="ttdef"><b>Definition:</b> qbody.h:206</div></div>
+<div class="ttc" id="aclassQBody_html_aa2b72ad0502e208aac2a5826b188a9b2"><div class="ttname"><a href="classQBody.html#aa2b72ad0502e208aac2a5826b188a9b2">QBody::GetPosition</a></div><div class="ttdeci">QVector GetPosition()</div><div class="ttdef"><b>Definition:</b> qbody.h:198</div></div>
 <div class="ttc" id="aclassQJoint_html"><div class="ttname"><a href="classQJoint.html">QJoint</a></div><div class="ttdoc">QJoint objects serves to apply various distance constraints between rigid bodies. Additionally,...</div><div class="ttdef"><b>Definition:</b> qjoint.h:37</div></div>
 <div class="ttc" id="aclassQJoint_html_a1984c1656c61c98da367d23658a9abf2"><div class="ttname"><a href="classQJoint.html#a1984c1656c61c98da367d23658a9abf2">QJoint::GetRigidity</a></div><div class="ttdeci">float GetRigidity()</div><div class="ttdef"><b>Definition:</b> qjoint.h:112</div></div>
 <div class="ttc" id="aclassQJoint_html_a19f6ad30752f92ae15d37a4422e8538b"><div class="ttname"><a href="classQJoint.html#a19f6ad30752f92ae15d37a4422e8538b">QJoint::SetBalance</a></div><div class="ttdeci">QJoint * SetBalance(float value)</div><div class="ttdef"><b>Definition:</b> qjoint.h:195</div></div>
@@ -286,6 +288,7 @@ $(document).ready(function(){initNavTree('qjoint_8h_source.html',''); initResiza
 <div class="ttc" id="aclassQJoint_html_aef710385cca87088914651f2110d11be"><div class="ttname"><a href="classQJoint.html#aef710385cca87088914651f2110d11be">QJoint::QJoint</a></div><div class="ttdeci">QJoint(QRigidBody *bodyA, QVector commonAnchorWorldPosition, QRigidBody *bodyB=nullptr)</div><div class="ttdef"><b>Definition:</b> qjoint.h:79</div></div>
 <div class="ttc" id="aclassQJoint_html_af6d58a04ab1587e4d27f682c329ea872"><div class="ttname"><a href="classQJoint.html#af6d58a04ab1587e4d27f682c329ea872">QJoint::Update</a></div><div class="ttdeci">virtual void Update()</div><div class="ttdef"><b>Definition:</b> qjoint.cpp:84</div></div>
 <div class="ttc" id="aclassQJoint_html_af9bdeb1b666a55de0fb80bd711c48e2b"><div class="ttname"><a href="classQJoint.html#af9bdeb1b666a55de0fb80bd711c48e2b">QJoint::GetAnchorAPosition</a></div><div class="ttdeci">QVector GetAnchorAPosition()</div><div class="ttdef"><b>Definition:</b> qjoint.h:92</div></div>
+<div class="ttc" id="aclassQJoint_html_aff7fa36534bf5167210648e0ec8f75eb"><div class="ttname"><a href="classQJoint.html#aff7fa36534bf5167210648e0ec8f75eb">QJoint::manualDeletion</a></div><div class="ttdeci">bool manualDeletion</div><div class="ttdef"><b>Definition:</b> qjoint.h:233</div></div>
 <div class="ttc" id="aclassQJoint_html_affc3ae356d1d80be2891cab4c5ff5c6e"><div class="ttname"><a href="classQJoint.html#affc3ae356d1d80be2891cab4c5ff5c6e">QJoint::GetLength</a></div><div class="ttdeci">float GetLength()</div><div class="ttdef"><b>Definition:</b> qjoint.h:116</div></div>
 <div class="ttc" id="aclassQRigidBody_html"><div class="ttname"><a href="classQRigidBody.html">QRigidBody</a></div><div class="ttdoc">QRigidBody is a type of body that is simulated with the dynamics of Rigid body. A rigid body is a typ...</div><div class="ttdef"><b>Definition:</b> qrigidbody.h:40</div></div>
 <div class="ttc" id="aclassQWorld_html"><div class="ttname"><a href="classQWorld.html">QWorld</a></div><div class="ttdoc">A QWorld object is required to create a physics simulation. The QWorld class manages the entire physi...</div><div class="ttdef"><b>Definition:</b> qworld.h:51</div></div>

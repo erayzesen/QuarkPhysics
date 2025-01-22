@@ -26,5 +26,6 @@ var classQJoint =
     [ "SetLength", "classQJoint.html#adf3229bd47776c201a93ac07774d8a6b", null ],
     [ "SetRigidity", "classQJoint.html#ad92916bc92e94771a9f99482acb9aa62", null ],
     [ "Update", "classQJoint.html#af6d58a04ab1587e4d27f682c329ea872", null ],
-    [ "QWorld", "classQJoint.html#a8a2b8029ca7a8a69c736991c6de7c3d0", null ]
+    [ "QWorld", "classQJoint.html#a8a2b8029ca7a8a69c736991c6de7c3d0", null ],
+    [ "manualDeletion", "classQJoint.html#aff7fa36534bf5167210648e0ec8f75eb", null ]
 ];
