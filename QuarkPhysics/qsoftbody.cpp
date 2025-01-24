@@ -166,6 +166,9 @@ void QSoftBody::Update()
 	if(enableAreaPreserving){
 		PreserveAreas();
 	}
+	for(auto mesh :_meshes){
+		mesh->UpdateSubConvexPolygons(false);
+	}
 
 
 

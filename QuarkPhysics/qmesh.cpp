@@ -35,6 +35,8 @@
 #include <string>
 #include "qcollision.h"
 #include "qworld.h"
+#include "polypartition/polypartition.h"
+#include <list>
 
 
 QMesh::QMesh(){
@@ -195,16 +197,35 @@ QParticle *QMesh::GetParticleFromPolygon(int index)
     return polygon[index];
 }
 
-void QMesh::UpdateSubConvexPolygons()
+void QMesh::UpdateSubConvexPolygons( bool majorUpdate)
 {
-	subConvexPolygons.clear();
-	if (CheckIsPolygonConcave(polygon)==true ){
-		DecompositePolygon(polygon,subConvexPolygons);
-		// cout<<"polygon is concave"<<endl;
+	
+	if(subConvexPolygons.size()==0){
+		DecompositePolygon(polygon,subConvexPolygons);	
 	}else{
-		subConvexPolygons.push_back( polygon );
-		// cout<<"polygon is convex"<<endl;
+		if(majorUpdate==true){
+			subConvexPolygons.clear();
+			if(CheckIsPolygonConcave(polygon)==true	){
+				DecompositePolygon(polygon,subConvexPolygons);
+			}else{
+				subConvexPolygons.push_back( polygon );		
+			}
+		}else{
+			bool subPolygonsAreConcave=false;
+			for(auto poly:subConvexPolygons){
+				if(CheckIsPolygonConcave(poly)==true ){
+					subPolygonsAreConcave=true;
+					break;
+				}
+			}
+			if(subPolygonsAreConcave){
+				subConvexPolygons.clear();
+				DecompositePolygon(polygon,subConvexPolygons);	
+			}
+		}
 	}
+	
+	
 	
 }
 
@@ -437,7 +458,7 @@ void QMesh::TriangulatePolygon(vector<QParticle *> &polygonParticles, vector<vec
 
 }
 
-void QMesh::DecompositePolygon(vector<QParticle *> &polygonParticles, vector<vector<QParticle *>> &polygons)
+void QMesh::DecompositePolygon2(vector<QParticle *> &polygonParticles, vector<vector<QParticle *>> &polygons)
 {
 	
 	vector<vector<int>> subPolygons;
@@ -518,6 +539,48 @@ void QMesh::DecompositePolygon(vector<QParticle *> &polygonParticles, vector<vec
 
 	
 
+}
+
+void QMesh::DecompositePolygon(vector<QParticle *> &polygonParticles, vector<vector<QParticle *>> &polygons)
+{
+	vector<QVector> polygon;
+	for (int i=0;i<polygonParticles.size();++i ){
+		polygon.push_back(polygonParticles[i]->GetGlobalPosition() );
+	}
+	
+	list<TPPLPoly> in_poly;
+	list<TPPLPoly> out_poly;
+	
+
+	TPPLPoly inp;
+	inp.Init(polygon.size());
+	for (int i = 0; i < polygon.size(); i++) {
+		TPPLPoint point;
+		point.x=polygon[i].x;
+		point.y=polygon[i].y;
+		inp.GetPoint(i) = point;
+		inp.GetPoint(i).id=i;
+	}
+	inp.SetOrientation(TPPL_ORIENTATION_CCW);
+	in_poly.push_back(inp);
+	TPPLPartition tpart;
+	if (tpart.ConvexPartition_HM(&in_poly, &out_poly) == 0) { // Failed.
+		cout<<"QuarkPhysics Error: Convex decomposing failed!"<<endl;
+		return;
+	}
+
+	for (auto poly:out_poly){
+		vector<QParticle*> qpoly;
+		for(int i=0;i<poly.GetNumPoints();++i){
+			int point_index=poly.GetPoint(i).id;
+			qpoly.push_back(polygonParticles[point_index]);
+			
+		}
+		polygons.push_back(qpoly);
+	}
+	
+
+	
 }
 
 //Springs
