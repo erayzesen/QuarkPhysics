@@ -7,6 +7,7 @@ file(GLOB SOURCE_FILES
 	${PROJECT_SOURCE_DIR}/QuarkPhysics/*.cpp
 	${PROJECT_SOURCE_DIR}/QuarkPhysics/extensions/*.cpp
 	${PROJECT_SOURCE_DIR}/QuarkPhysics/json/*.hpp
+	${PROJECT_SOURCE_DIR}/QuarkPhysics/polypartition/*.cpp
 	${PROJECT_SOURCE_DIR}/examples/*.cpp 
 	${PROJECT_SOURCE_DIR}/*.cpp 
 	${PROJECT_SOURCE_DIR}/resources/*.hpp 
