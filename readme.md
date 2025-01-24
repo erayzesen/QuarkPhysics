@@ -73,6 +73,7 @@ Copy the "QuarkPhysics" named subfolder in the main folder to your project and u
 
 ## Third Party 
 - [nlohmann's json](https://github.com/nlohmann/json) for the json parsing. (Importing meshes via *.qmesh files)
+- [ivanfratric's polypartition](https://github.com/ivanfratric/polypartition) for the convex polygon partition operations
 - [SFML](https://www.sfml-dev.org/) library for window,input,opengl. 
 - [Doxygen-Awsome](https://jothepro.github.io/doxygen-awesome-css/) for the custom themed documentation.
 
