@@ -950,6 +950,7 @@ vector<QCollision::Contact*> QWorld::GetCollisions(QBody *bodyA, QBody *bodyB){
 				
 
 				if(bodyA->simulationModel==QBody::SimulationModels::MASS_SPRING && bodyB->simulationModel==QBody::SimulationModels::MASS_SPRING){
+					
 					QCollision::CircleAndCircle(meshA->polygon,meshB->polygon,bboxB, contactList);
 
 					QCollision::CircleAndPolyline(meshA->polygon,meshB->polygon,bboxB,contactList,true);
