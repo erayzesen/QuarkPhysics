@@ -166,6 +166,7 @@ void QSoftBody::Update()
 	if(enableAreaPreserving){
 		PreserveAreas();
 	}
+	
 
 
 

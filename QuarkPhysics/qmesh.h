@@ -79,13 +79,14 @@ protected:
 	float minAngleConstraintOfPolygon=M_PI*0.3;
 
 	//Polygon Methods
-	void UpdateSubConvexPolygons();
+	void UpdateSubConvexPolygons(bool majorUpdate=true);
 	void ApplyAngleConstraintsToPolygon();
 	bool CheckIsPolygonConcave(vector<QParticle*> polygonParticles);
 	static bool CheckIsReflex(QVector pA,QVector pB, QVector pC);
 	static bool CheckIsReflex(int indexA,int indexB, int indexC, vector<QParticle*> polygonParticles);
 	static void TriangulatePolygon(vector<QParticle*> &polygonParticles,vector<vector<int>> &triangles);
 	static void DecompositePolygon(vector<QParticle*> &polygonParticles,vector<vector<QParticle*>> &polygons);
+	static void DecompositePolygon2(vector<QParticle*> &polygonParticles,vector<vector<QParticle*>> &polygons);
 	bool subConvexPolygonsNeedsUpdate=false;
 
 public:
@@ -640,6 +641,8 @@ public:
 	 * By default, objects included in the physics engine are deleted by the destructors of the objects they belong to. When this flag is enabled, it indicates that this object should never be deleted by this engine. It is disabled by default, and it is recommended to keep it disabled. However, it can be used if needed for advanced purposes and integrations.
 	 */
 	bool manualDeletion=false;
+
+	friend class QSoftBody;
 
 
 	

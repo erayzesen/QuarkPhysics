@@ -235,6 +235,7 @@ void QWorld::Update(){
 			QAABB bodyAABB=body->GetAABB();
 			if(body->simulationModel!=QBody::SimulationModels::RIGID_BODY){
 				QSoftBody *sBody=static_cast<QSoftBody*>(body);
+				
 				if(sBody==nullptr)continue;
 				if(sBody->GetSelfCollisionsEnabled()==false)continue;
 				for(int ma=0;ma<sBody->GetMeshCount();ma++){
@@ -277,6 +278,8 @@ void QWorld::Update(){
 					
 					
 				}
+
+				
 				
 				
 			}
@@ -944,20 +947,20 @@ vector<QCollision::Contact*> QWorld::GetCollisions(QBody *bodyA, QBody *bodyB){
 					vector<QParticle*> polygonSub=polygonMesh->GetSubConvexPolygonAt(b);
 					QCollision::CircleAndPolygon(polylineMesh->polygon,polygonSub,contactList);
 					QCollision::PolylineAndPolygon(polylineMesh->polygon,polygonSub,contactList);
-					
 				}
 			}else if(QMesh::CheckCollisionBehaviors(meshA,meshB,QMesh::POLYLINE, QMesh::POLYLINE )){
 				
-
+				
+				
 				if(bodyA->simulationModel==QBody::SimulationModels::MASS_SPRING && bodyB->simulationModel==QBody::SimulationModels::MASS_SPRING){
 					
 					QCollision::CircleAndCircle(meshA->polygon,meshB->polygon,bboxB, contactList);
-
 					QCollision::CircleAndPolyline(meshA->polygon,meshB->polygon,bboxB,contactList,true);
-					QCollision::CircleAndPolyline(meshB->polygon,meshA->polygon,bboxA, contactList,true);
-					
-					
+					QCollision::CircleAndPolyline(meshB->polygon,meshA->polygon,bboxA, contactList,true);	
+						
 				}
+				
+				
 				
 
 			}else if(QMesh::CheckCollisionBehaviors(meshA,meshB,QMesh::POLYLINE, QMesh::CIRCLES )){
