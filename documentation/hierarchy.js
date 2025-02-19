@@ -10,6 +10,7 @@ var hierarchy =
     [ "QObjectPool< T >::Node", "structQObjectPool_1_1Node.html", null ],
     [ "QCollision::Project", "structQCollision_1_1Project.html", null ],
     [ "QAABB", "classQAABB.html", null ],
+    [ "QAngleConstraint", "classQAngleConstraint.html", null ],
     [ "QBody", "classQBody.html", [
       [ "QAreaBody", "classQAreaBody.html", null ],
       [ "QRigidBody", "classQRigidBody.html", [

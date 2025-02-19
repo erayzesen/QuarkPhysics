@@ -230,6 +230,20 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a60f86350ac445e2216d0a9563b40a1d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9221b5fbeeccfbbb4fee284c3a4bd2fa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structQMesh.html">QMesh</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh.html#a9221b5fbeeccfbbb4fee284c3a4bd2fa">RemoveMatchingUVMaps</a> (int particleIndex)</td></tr>
 <tr class="separator:a9221b5fbeeccfbbb4fee284c3a4bd2fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a606ba316e5d5376ed105aa0a97aa9652"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh.html#a606ba316e5d5376ed105aa0a97aa9652">GetAngleConstraintCount</a> ()</td></tr>
+<tr class="separator:a606ba316e5d5376ed105aa0a97aa9652"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a9964bf6901ea60944814b87be3a179"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQAngleConstraint.html">QAngleConstraint</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh.html#a6a9964bf6901ea60944814b87be3a179">GetAngleConstraintAt</a> (int index)</td></tr>
+<tr class="separator:a6a9964bf6901ea60944814b87be3a179"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71460d6bce4f348c61d75f8e34ab637e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structQMesh.html">QMesh</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh.html#a71460d6bce4f348c61d75f8e34ab637e">AddAngleConstraint</a> (<a class="el" href="classQAngleConstraint.html">QAngleConstraint</a> *angleConstraint)</td></tr>
+<tr class="separator:a71460d6bce4f348c61d75f8e34ab637e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a553b7e269f52e1a0a9de89438d1a1efb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structQMesh.html">QMesh</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh.html#a553b7e269f52e1a0a9de89438d1a1efb">RemoveAngleConstraintAt</a> (int index)</td></tr>
+<tr class="separator:a553b7e269f52e1a0a9de89438d1a1efb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c8fbe11f5054c3429bf8b1ae97462ac"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh.html#a9c8fbe11f5054c3429bf8b1ae97462ac">GetAngleConstraintIndex</a> (<a class="el" href="classQAngleConstraint.html">QAngleConstraint</a> *angleConstraint)</td></tr>
+<tr class="separator:a9c8fbe11f5054c3429bf8b1ae97462ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad61e5eb973f6042b536f07ade164b133"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structQMesh.html">QMesh</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh.html#ad61e5eb973f6042b536f07ade164b133">RemoveAngleConstraint</a> (<a class="el" href="classQAngleConstraint.html">QAngleConstraint</a> *angleConstraint)</td></tr>
+<tr class="separator:ad61e5eb973f6042b536f07ade164b133"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf10dd1757d3705dabbf72b8e290e8b7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structQMesh.html">QMesh</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh.html#adf10dd1757d3705dabbf72b8e290e8b7">RemoveMatchingAngleConstraints</a> (<a class="el" href="classQParticle.html">QParticle</a> *particle)</td></tr>
+<tr class="separator:adf10dd1757d3705dabbf72b8e290e8b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -323,6 +337,9 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>globalRotation</b> =
 <tr class="memitem:ab0dde83c30f75f8c9ff21c94213b168c"><td class="memItemLeft" align="right" valign="top"><a id="ab0dde83c30f75f8c9ff21c94213b168c"></a>
 vector&lt; <a class="el" href="classQSpring.html">QSpring</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>springs</b> =vector&lt;<a class="el" href="classQSpring.html">QSpring</a>*&gt;()</td></tr>
 <tr class="separator:ab0dde83c30f75f8c9ff21c94213b168c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0910a36a247baca63af672078050e0c5"><td class="memItemLeft" align="right" valign="top"><a id="a0910a36a247baca63af672078050e0c5"></a>
+vector&lt; <a class="el" href="classQAngleConstraint.html">QAngleConstraint</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>angleConstraints</b> =vector&lt;<a class="el" href="classQAngleConstraint.html">QAngleConstraint</a>*&gt;()</td></tr>
+<tr class="separator:a0910a36a247baca63af672078050e0c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a64de4b8ba8dd0dabae809de7b4c87a33"><td class="memItemLeft" align="right" valign="top"><a id="a64de4b8ba8dd0dabae809de7b4c87a33"></a>
 vector&lt; <a class="el" href="classQParticle.html">QParticle</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>polygon</b> =vector&lt;<a class="el" href="classQParticle.html">QParticle</a>*&gt;()</td></tr>
 <tr class="separator:a64de4b8ba8dd0dabae809de7b4c87a33"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -403,6 +420,39 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QParticle</b></td></
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a71460d6bce4f348c61d75f8e34ab637e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71460d6bce4f348c61d75f8e34ab637e">&#9670;&nbsp;</a></span>AddAngleConstraint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structQMesh.html">QMesh</a>* QMesh::AddAngleConstraint </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classQAngleConstraint.html">QAngleConstraint</a> *&#160;</td>
+          <td class="paramname"><em>angleConstraint</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Adds an angle constraint to mesh </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">angleConstraint</td><td>An angle constraint to be removed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>QMesh* A pointer to mesh itself. </dd></dl>
+
+</div>
+</div>
 <a id="a434e16cf66107a5e8081b640743d0c8d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a434e16cf66107a5e8081b640743d0c8d">&#9670;&nbsp;</a></span>AddParticle()</h2>
 
@@ -969,6 +1019,98 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QParticle</b></td></
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="structQMesh_1_1MeshData.html">MeshData</a> The data needed to create a mesh. </dd></dl>
+
+</div>
+</div>
+<a id="a6a9964bf6901ea60944814b87be3a179"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a9964bf6901ea60944814b87be3a179">&#9670;&nbsp;</a></span>GetAngleConstraintAt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classQAngleConstraint.html">QAngleConstraint</a>* QMesh::GetAngleConstraintAt </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Returns the angle constraint at the specified index. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>The index of the angle constraint to be get. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>QMesh* A pointer to mesh itself. </dd></dl>
+
+</div>
+</div>
+<a id="a606ba316e5d5376ed105aa0a97aa9652"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a606ba316e5d5376ed105aa0a97aa9652">&#9670;&nbsp;</a></span>GetAngleConstraintCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int QMesh::GetAngleConstraintCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Returns the count of the angle constraints. </p>
+
+</div>
+</div>
+<a id="a9c8fbe11f5054c3429bf8b1ae97462ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c8fbe11f5054c3429bf8b1ae97462ac">&#9670;&nbsp;</a></span>GetAngleConstraintIndex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int QMesh::GetAngleConstraintIndex </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classQAngleConstraint.html">QAngleConstraint</a> *&#160;</td>
+          <td class="paramname"><em>angleConstraint</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Returns the index of the specified angle constraint. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">angleConstraint</td><td>An angle constraint in the mesh. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>If the angle constraint is found, it returns the index value, otherwise it returns -1. </dd></dl>
 
 </div>
 </div>
@@ -1832,6 +1974,105 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QParticle</b></td></
 </table>
 </div><div class="memdoc">
 <p>Returns the count of the UV maps . </p>
+
+</div>
+</div>
+<a id="ad61e5eb973f6042b536f07ade164b133"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad61e5eb973f6042b536f07ade164b133">&#9670;&nbsp;</a></span>RemoveAngleConstraint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structQMesh.html">QMesh</a>* QMesh::RemoveAngleConstraint </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classQAngleConstraint.html">QAngleConstraint</a> *&#160;</td>
+          <td class="paramname"><em>angleConstraint</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Removes an angle constraint to the mesh </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">angleConstraint</td><td>An angle constraint to be removed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>QMesh* A pointer to mesh itself. </dd></dl>
+
+</div>
+</div>
+<a id="a553b7e269f52e1a0a9de89438d1a1efb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a553b7e269f52e1a0a9de89438d1a1efb">&#9670;&nbsp;</a></span>RemoveAngleConstraintAt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structQMesh.html">QMesh</a>* QMesh::RemoveAngleConstraintAt </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Removes an angle constraint to the mesh at the specified index. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>The index of the angle constraint to be removed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>QMesh* A pointer to mesh itself. </dd></dl>
+
+</div>
+</div>
+<a id="adf10dd1757d3705dabbf72b8e290e8b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf10dd1757d3705dabbf72b8e290e8b7">&#9670;&nbsp;</a></span>RemoveMatchingAngleConstraints()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structQMesh.html">QMesh</a>* QMesh::RemoveMatchingAngleConstraints </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classQParticle.html">QParticle</a> *&#160;</td>
+          <td class="paramname"><em>particle</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Removes the angle constraint that contain the specified particle. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">particle</td><td>A particle to be matched. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>QMesh* A pointer to mesh itself. </dd></dl>
 
 </div>
 </div>

@@ -133,6 +133,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a6483c73baf7b4ebbbcda47e9a3b8e87d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a513f35f622de8e0c912c950df292a4b5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQParticle.html#a513f35f622de8e0c912c950df292a4b5">GetIsLazy</a> ()</td></tr>
 <tr class="separator:a513f35f622de8e0c912c950df292a4b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a282316226125c89bf04ee4029749f5b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQAABB.html">QAABB</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQParticle.html#a282316226125c89bf04ee4029749f5b8">GetAABB</a> ()</td></tr>
+<tr class="separator:a282316226125c89bf04ee4029749f5b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac354e3896bc6f79634c882932804ac39"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQParticle.html">QParticle</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQParticle.html#ac354e3896bc6f79634c882932804ac39">SetGlobalPosition</a> (<a class="el" href="structQVector.html">QVector</a> value)</td></tr>
 <tr class="separator:ac354e3896bc6f79634c882932804ac39"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ab37356cb431069bad74303d2f1e659"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQParticle.html">QParticle</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQParticle.html#a0ab37356cb431069bad74303d2f1e659">AddGlobalPosition</a> (<a class="el" href="structQVector.html">QVector</a> value)</td></tr>
@@ -176,6 +178,9 @@ Public Member Functions</h2></td></tr>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a10c6002211da9fb6455928ae2aefe8da"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQParticle.html#a10c6002211da9fb6455928ae2aefe8da">ApplyForceToParticleSegment</a> (<a class="el" href="classQParticle.html">QParticle</a> *pA, <a class="el" href="classQParticle.html">QParticle</a> *pB, <a class="el" href="structQVector.html">QVector</a> force, <a class="el" href="structQVector.html">QVector</a> fromPosition)</td></tr>
 <tr class="separator:a10c6002211da9fb6455928ae2aefe8da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00499fb7f217e59859753cdb243480ae"><td class="memItemLeft" align="right" valign="top"><a id="a00499fb7f217e59859753cdb243480ae"></a>
+static bool&#160;</td><td class="memItemRight" valign="bottom"><b>SortParticlesHorizontal</b> (<a class="el" href="classQParticle.html">QParticle</a> *pA, <a class="el" href="classQParticle.html">QParticle</a> *pB)</td></tr>
+<tr class="separator:a00499fb7f217e59859753cdb243480ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -187,6 +192,9 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a205e8c5daf533cdca6a6f7c7df5cffec"><td class="memItemLeft" align="right" valign="top"><a id="a205e8c5daf533cdca6a6f7c7df5cffec"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>ResetOneTimeCollisions</b> ()</td></tr>
 <tr class="separator:a205e8c5daf533cdca6a6f7c7df5cffec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ddc2ec53e5f96143074874fcb1dc576"><td class="memItemLeft" align="right" valign="top"><a id="a6ddc2ec53e5f96143074874fcb1dc576"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateAABB</b> ()</td></tr>
+<tr class="separator:a6ddc2ec53e5f96143074874fcb1dc576"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -217,6 +225,9 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QManifold</b></td></
 <tr class="memitem:aa79267b0a372b20176e04bcee3cd9b42"><td class="memItemLeft" align="right" valign="top"><a id="aa79267b0a372b20176e04bcee3cd9b42"></a>
 class&#160;</td><td class="memItemRight" valign="bottom"><b>QAreaBody</b></td></tr>
 <tr class="separator:aa79267b0a372b20176e04bcee3cd9b42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3af9182473018cc2543a29c7e0200f20"><td class="memItemLeft" align="right" valign="top"><a id="a3af9182473018cc2543a29c7e0200f20"></a>
+class&#160;</td><td class="memItemRight" valign="bottom"><b>QCollision</b></td></tr>
+<tr class="separator:a3af9182473018cc2543a29c7e0200f20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classQParticle.html" title="QParticle objects form the network structures of QMesh objects defined for all body object types....">QParticle</a> objects form the network structures of <a class="el" href="structQMesh.html" title="Every QBody object requires meshes. In other traditional physics engines, the term &#39;shape&#39; is used in...">QMesh</a> objects defined for all body object types. They are the smallest building blocks of physics simulation and are manipulated differently in different body object types. For example, in <a class="el" href="classQRigidBody.html" title="QRigidBody is a type of body that is simulated with the dynamics of Rigid body. A rigid body is a typ...">QRigidBody</a> objects, particles are collectively forced into positions obtained through various calculations based on the current body properties. However, in soft body objects, simulation particles are individually manipulated and can move freely, determining the next steps of the simulation through their individual movements. <a class="el" href="structQMesh.html" title="Every QBody object requires meshes. In other traditional physics engines, the term &#39;shape&#39; is used in...">QMesh</a> objects offer a number of methods to manage particles. For more information on restrictions between particles in soft body objects, see the <a class="el" href="classQSpring.html" title="You can apply distance constraints between 2 particles using the QSpring. The physics engine uses QSp...">QSpring</a> object. </p>
@@ -462,6 +473,32 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QAreaBody</b></td></
       </table>
 </div><div class="memdoc">
 <p>Clears the accumulated forces. It should be called before working with accumulated forces. Additionally, the accumulated forces are automatically cleared after the ApplyAccumulatedForce() method is called. </p>
+
+</div>
+</div>
+<a id="a282316226125c89bf04ee4029749f5b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a282316226125c89bf04ee4029749f5b8">&#9670;&nbsp;</a></span>GetAABB()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classQAABB.html">QAABB</a> QParticle::GetAABB </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Returns the AABB of the particle. </p>
 
 </div>
 </div>

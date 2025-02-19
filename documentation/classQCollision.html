@@ -129,8 +129,10 @@ static <a class="el" href="classQObjectPool.html">QObjectPool</a>&lt; <a class="
 <tr class="separator:a4b7aa498f61bf4a2d1e115a59a696246"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1277076c55e34aa25f26dbb2ae409964"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQCollision.html#a1277076c55e34aa25f26dbb2ae409964">CircleAndPolygon</a> (vector&lt; <a class="el" href="classQParticle.html">QParticle</a> * &gt; &amp;circleParticles, vector&lt; <a class="el" href="classQParticle.html">QParticle</a> * &gt; &amp;polygonParticles, vector&lt; <a class="el" href="structQCollision_1_1Contact.html">QCollision::Contact</a> * &gt; &amp;contacts)</td></tr>
 <tr class="separator:a1277076c55e34aa25f26dbb2ae409964"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7ff90f6734cbffccbeef3db8b987cf3"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQCollision.html#ad7ff90f6734cbffccbeef3db8b987cf3">CircleAndCircle</a> (vector&lt; <a class="el" href="classQParticle.html">QParticle</a> * &gt; &amp;particlesA, vector&lt; <a class="el" href="classQParticle.html">QParticle</a> * &gt; &amp;particlesB, <a class="el" href="classQAABB.html">QAABB</a> boundingBoxB, vector&lt; <a class="el" href="structQCollision_1_1Contact.html">QCollision::Contact</a> * &gt; &amp;contacts, float specifiedRadius=0.0f)</td></tr>
-<tr class="separator:ad7ff90f6734cbffccbeef3db8b987cf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abaa08bea829737c5efbb500302d389b7"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQCollision.html#abaa08bea829737c5efbb500302d389b7">CircleAndCircle</a> (vector&lt; <a class="el" href="classQParticle.html">QParticle</a> * &gt; &amp;particlesA, vector&lt; <a class="el" href="classQParticle.html">QParticle</a> * &gt; &amp;particlesB, <a class="el" href="classQAABB.html">QAABB</a> boundingBoxB, vector&lt; <a class="el" href="structQCollision_1_1Contact.html">QCollision::Contact</a> * &gt; &amp;contacts, float specifiedRadius=0.0f, bool velocitySensitive=false)</td></tr>
+<tr class="separator:abaa08bea829737c5efbb500302d389b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9791a7d1c76eeff6e9e736b31a99aa40"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQCollision.html#a9791a7d1c76eeff6e9e736b31a99aa40">CircleAndCircleSelf</a> (vector&lt; <a class="el" href="classQParticle.html">QParticle</a> * &gt; &amp;particles, vector&lt; <a class="el" href="structQCollision_1_1Contact.html">QCollision::Contact</a> * &gt; &amp;contacts, float specifiedRadius=0.0f)</td></tr>
+<tr class="separator:a9791a7d1c76eeff6e9e736b31a99aa40"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af2ead2cb1a94fca8aa872935fa338099"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQCollision.html#af2ead2cb1a94fca8aa872935fa338099">PolylineAndPolygon</a> (vector&lt; <a class="el" href="classQParticle.html">QParticle</a> * &gt; &amp;polylineParticles, vector&lt; <a class="el" href="classQParticle.html">QParticle</a> * &gt; &amp;polygonParticles, vector&lt; <a class="el" href="structQCollision_1_1Contact.html">QCollision::Contact</a> * &gt; &amp;contacts)</td></tr>
 <tr class="separator:af2ead2cb1a94fca8aa872935fa338099"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a13554eb3b67f317990d31bea8eb69675"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQCollision.html#a13554eb3b67f317990d31bea8eb69675">CircleAndPolyline</a> (vector&lt; <a class="el" href="classQParticle.html">QParticle</a> * &gt; &amp;circleParticles, vector&lt; <a class="el" href="classQParticle.html">QParticle</a> * &gt; &amp;polylineParticles, <a class="el" href="classQAABB.html">QAABB</a> polylineAABB, vector&lt; <a class="el" href="structQCollision_1_1Contact.html">QCollision::Contact</a> * &gt; &amp;contacts, bool circlesArePolygon=false)</td></tr>
@@ -153,8 +155,8 @@ static <a class="el" href="classQObjectPool.html">QObjectPool</a>&lt; <a class="
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="classQCollision.html" title="The QCollision class performs all collision detection operations. The relevant methods return contact...">QCollision</a> class performs all collision detection operations. The relevant methods return contact data from the collision tests. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="ad7ff90f6734cbffccbeef3db8b987cf3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad7ff90f6734cbffccbeef3db8b987cf3">&#9670;&nbsp;</a></span>CircleAndCircle()</h2>
+<a id="abaa08bea829737c5efbb500302d389b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abaa08bea829737c5efbb500302d389b7">&#9670;&nbsp;</a></span>CircleAndCircle()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -190,7 +192,13 @@ static <a class="el" href="classQObjectPool.html">QObjectPool</a>&lt; <a class="
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>specifiedRadius</em> = <code>0.0f</code>&#160;</td>
+          <td class="paramname"><em>specifiedRadius</em> = <code>0.0f</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>velocitySensitive</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -208,6 +216,55 @@ static <a class="el" href="classQObjectPool.html">QObjectPool</a>&lt; <a class="
   <table class="params">
     <tr><td class="paramname">particlesA</td><td>A collection of particles representing one or more circles, each having a radius. </td></tr>
     <tr><td class="paramname">particlesB</td><td>Another collection of particles representing one or more circles, each having a radius. </td></tr>
+    <tr><td class="paramname">contacts</td><td>A collection where collision contact information will be stored. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9791a7d1c76eeff6e9e736b31a99aa40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9791a7d1c76eeff6e9e736b31a99aa40">&#9670;&nbsp;</a></span>CircleAndCircleSelf()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QCollision::CircleAndCircleSelf </td>
+          <td>(</td>
+          <td class="paramtype">vector&lt; <a class="el" href="classQParticle.html">QParticle</a> * &gt; &amp;&#160;</td>
+          <td class="paramname"><em>particles</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; <a class="el" href="structQCollision_1_1Contact.html">QCollision::Contact</a> * &gt; &amp;&#160;</td>
+          <td class="paramname"><em>contacts</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>specifiedRadius</em> = <code>0.0f</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Checks collisions between circle(s) and circle(s) for the self collisions. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">particlesA</td><td>A collection of particles representing one or more circles, each having a radius. </td></tr>
     <tr><td class="paramname">contacts</td><td>A collection where collision contact information will be stored. </td></tr>
   </table>
   </dd>

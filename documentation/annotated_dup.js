@@ -15,6 +15,7 @@ var annotated_dup =
     [ "Removing Bodies, Joints and Springs from the World", "getting_started.html#autotoc_md6", null ],
     [ "Summary", "getting_started.html#autotoc_md7", null ],
     [ "QAABB", "classQAABB.html", "classQAABB" ],
+    [ "QAngleConstraint", "classQAngleConstraint.html", "classQAngleConstraint" ],
     [ "QAreaBody", "classQAreaBody.html", "classQAreaBody" ],
     [ "QBody", "classQBody.html", "classQBody" ],
     [ "QBroadPhase", "classQBroadPhase.html", "classQBroadPhase" ],

@@ -98,6 +98,7 @@ $(document).ready(function(){initNavTree('functions_g.html',''); initResizable()
 </li>
 <li>GetAABB()
 : <a class="el" href="classQBody.html#a4d1a83064e59f896f425e10d87734c8c">QBody</a>
+, <a class="el" href="classQParticle.html#a282316226125c89bf04ee4029749f5b8">QParticle</a>
 </li>
 <li>GetAirFriction()
 : <a class="el" href="classQBody.html#a28d5630e22de21427ec660dc0d42f3c4">QBody</a>
@@ -113,6 +114,15 @@ $(document).ready(function(){initNavTree('functions_g.html',''); initResizable()
 </li>
 <li>GetAnchorBPosition()
 : <a class="el" href="classQJoint.html#a677e93175ba9235e1d2be2d267d8bae7">QJoint</a>
+</li>
+<li>GetAngleConstraintAt()
+: <a class="el" href="structQMesh.html#a6a9964bf6901ea60944814b87be3a179">QMesh</a>
+</li>
+<li>GetAngleConstraintCount()
+: <a class="el" href="structQMesh.html#a606ba316e5d5376ed105aa0a97aa9652">QMesh</a>
+</li>
+<li>GetAngleConstraintIndex()
+: <a class="el" href="structQMesh.html#a9c8fbe11f5054c3429bf8b1ae97462ac">QMesh</a>
 </li>
 <li>GetAngularForce()
 : <a class="el" href="classQRigidBody.html#a402ac736c7fa5e3d99de4743126b615b">QRigidBody</a>
@@ -204,7 +214,8 @@ $(document).ready(function(){initNavTree('functions_g.html',''); initResizable()
 : <a class="el" href="classQBody.html#a52acb16f0984b5a7926d45aafc520b87">QBody</a>
 </li>
 <li>GetEnabled()
-: <a class="el" href="classQBody.html#a839c881cd8d58b85165bcf0ad1a1e511">QBody</a>
+: <a class="el" href="classQAngleConstraint.html#a74c28cb408f919f2335f0e6f28bd3eef">QAngleConstraint</a>
+, <a class="el" href="classQBody.html#a839c881cd8d58b85165bcf0ad1a1e511">QBody</a>
 , <a class="el" href="classQJoint.html#a5c4d8209d2d83544a13dd75e530f9833">QJoint</a>
 , <a class="el" href="classQParticle.html#a6483c73baf7b4ebbbcda47e9a3b8e87d">QParticle</a>
 , <a class="el" href="classQSpring.html#ae4f3f5ca51c71b5fd9ffb853c4e0c68c">QSpring</a>
@@ -342,6 +353,9 @@ $(document).ready(function(){initNavTree('functions_g.html',''); initResizable()
 <li>GetMatchingParticlePositions()
 : <a class="el" href="structQMesh.html#a633b51c680ac7c7e9e2edad3d93b73f9">QMesh</a>
 </li>
+<li>GetMaxAngle()
+: <a class="el" href="classQAngleConstraint.html#a88e50236665d5f685d4907fddac92ad8">QAngleConstraint</a>
+</li>
 <li>GetMaxJumpCount()
 : <a class="el" href="classQPlatformerBody.html#ae5feb2de645100d9f8fb0f25140721d6">QPlatformerBody</a>
 </li>
@@ -359,6 +373,9 @@ $(document).ready(function(){initNavTree('functions_g.html',''); initResizable()
 </li>
 <li>GetMeshes()
 : <a class="el" href="classQBody.html#ae649803746fedf22ca9abb2f674c5e6d">QBody</a>
+</li>
+<li>GetMinAngle()
+: <a class="el" href="classQAngleConstraint.html#a862e6b932386a1ee738651577b1e4d74">QAngleConstraint</a>
 </li>
 <li>GetMinAngleConstraintOfPolygon()
 : <a class="el" href="structQMesh.html#a86af89146b986c2768c31a17bd0e56b7">QMesh</a>
@@ -382,13 +399,18 @@ $(document).ready(function(){initNavTree('functions_g.html',''); initResizable()
 : <a class="el" href="classQParticle.html#afb11a8cfcb927d2db887863e4a483032">QParticle</a>
 </li>
 <li>GetParticleA()
-: <a class="el" href="classQSpring.html#a28c516a0bb5ca2ddab6e512a2c5e0b68">QSpring</a>
+: <a class="el" href="classQAngleConstraint.html#aa86f9393119fae9c2f9de709a371935e">QAngleConstraint</a>
+, <a class="el" href="classQSpring.html#a28c516a0bb5ca2ddab6e512a2c5e0b68">QSpring</a>
 </li>
 <li>GetParticleAt()
 : <a class="el" href="structQMesh.html#a24c1b65f30f2c38994d872e0ba50b35b">QMesh</a>
 </li>
 <li>GetParticleB()
-: <a class="el" href="classQSpring.html#a940a8c41673a5ca6bb4aefc2b798a2f8">QSpring</a>
+: <a class="el" href="classQAngleConstraint.html#a00d9716085e6225063627f4209492c96">QAngleConstraint</a>
+, <a class="el" href="classQSpring.html#a940a8c41673a5ca6bb4aefc2b798a2f8">QSpring</a>
+</li>
+<li>GetParticleC()
+: <a class="el" href="classQAngleConstraint.html#a0931b58f5b664103c2c4c92ec473f632">QAngleConstraint</a>
 </li>
 <li>GetParticleCount()
 : <a class="el" href="structQMesh.html#ae64b62d34df2cf35e6b86c2fb79e3e1c">QMesh</a>
@@ -463,7 +485,8 @@ $(document).ready(function(){initNavTree('functions_g.html',''); initResizable()
 : <a class="el" href="classQPlatformerBody.html#aff0bbda1d2666e6f0ecb25dcd263fbbb">QPlatformerBody</a>
 </li>
 <li>GetRigidity()
-: <a class="el" href="classQJoint.html#a1984c1656c61c98da367d23658a9abf2">QJoint</a>
+: <a class="el" href="classQAngleConstraint.html#ac648466ba208b178790c96a85047832f">QAngleConstraint</a>
+, <a class="el" href="classQJoint.html#a1984c1656c61c98da367d23658a9abf2">QJoint</a>
 , <a class="el" href="classQSoftBody.html#a862ef9ccbd70862cb714f7868f002134">QSoftBody</a>
 , <a class="el" href="classQSpring.html#ab0a4ffd5660cd943c943a82fcdfaa3b7">QSpring</a>
 </li>
