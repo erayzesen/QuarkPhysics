@@ -30,6 +30,7 @@
 #include "qvector.h"
 #include <vector>
 #include <unordered_set>
+#include "qaabb.h"
 
 class QBody;
 class QMesh;
@@ -58,6 +59,10 @@ class QParticle
 
 	bool lazy=false; 
 
+	QAABB aabb;
+
+	bool aabbNeedsUpdate=true;
+
 	void ClearOneTimeCollisions();
 
 protected:
@@ -68,8 +73,13 @@ protected:
 
 	void ResetOneTimeCollisions();
 
+	void UpdateAABB();
+
 	//For Gravity-Free Feature of QArea Bodies  
 	bool ignoreGravity=false;
+
+	
+	
 
 	
 public:
@@ -126,6 +136,17 @@ public:
 
 	bool GetIsLazy(){
 		return lazy;
+	}
+	/**
+	 * Returns the AABB of the particle.
+	 */
+
+	QAABB GetAABB(){
+		if(aabbNeedsUpdate==true){
+			UpdateAABB();
+			aabbNeedsUpdate=false;
+		}
+		return aabb;
 	}
 
 	//Set Methods
@@ -249,10 +270,19 @@ public:
 	bool manualDeletion=false;
 
 
+	static bool SortParticlesHorizontal(QParticle* pA,QParticle* pB){
+		if(pA->GetAABB().GetMin().x==pB->GetAABB().GetMin().x){
+			return pA->GetAABB().GetMax().y>pB->GetAABB().GetMax().y;
+		}
+		return pA->GetAABB().GetMin().x<pB->GetAABB().GetMin().x;	
+	}
+
+
 	friend class QMesh;
 	friend class QBody;
 	friend class QManifold;
 	friend class QAreaBody;
+	friend class QCollision;
 
 	
 };

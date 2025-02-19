@@ -64,6 +64,16 @@ QMesh::~QMesh()
 	}
 	springs.clear();
 
+	for(int i=0;i<angleConstraints.size();i++){
+		if(angleConstraints[i]!=nullptr){
+			if(angleConstraints[i]->manualDeletion==false){
+				delete angleConstraints[i];
+				angleConstraints[i]=nullptr;
+			}
+		}
+	}
+	angleConstraints.clear();
+
 }
 
 void QMesh::UpdateCollisionBehavior()
@@ -104,6 +114,7 @@ QMesh *QMesh::RemoveParticleAt(int index){
 	RemoveParticleFromPolygon(particle);
 	RemoveMatchingSprings(particle);
 	RemoveMatchingUVMaps(index);
+	RemoveMatchingAngleConstraints(particle);
 	particles.erase(particles.begin()+index);
 	if(ownerBody!=nullptr){
 		if (ownerBody->mode==QBody::Modes::STATIC)

@@ -51,6 +51,8 @@ void QSpring::Update(float rigidity,bool internalsException, bool isWorldSpring)
 {
 	if(enabled==false)
 		return;
+	if (rigidity==0.0f)
+		return;
 
 	if( pA==nullptr || pB==nullptr){
 		return;
@@ -146,10 +148,12 @@ void QSpring::Update(float rigidity,bool internalsException, bool isWorldSpring)
 		forceB*=k*rigidity;
 	}
 
-	if(particleACanGetResponse)
+	if(particleACanGetResponse){
 		pA->ApplyForce(forceA);
-	if(particleBCanGetResponse)
+	}
+	if(particleBCanGetResponse){
 		pB->ApplyForce(forceB);
+	}
 		
 
 }

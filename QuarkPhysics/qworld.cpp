@@ -244,7 +244,11 @@ void QWorld::Update(){
 						QMesh *meshB=sBody->GetMeshAt(mb);
 						vector<QCollision::Contact*> contacts;
 						//Self Particle Collisions
-						QCollision::CircleAndCircle(meshA->particles,meshB->particles,bodyAABB ,contacts,sBody->GetSelfCollisionsSpecifiedRadius());
+						if (meshA==meshB){
+							QCollision::CircleAndCircleSelf(meshA->particles,contacts,sBody->GetSelfCollisionsSpecifiedRadius());
+						}else{
+							QCollision::CircleAndCircle(meshA->particles,meshB->particles,bodyAABB ,contacts,sBody->GetSelfCollisionsSpecifiedRadius());
+						}
 						if(contacts.size()>0){
 							QManifold manifold(sBody,sBody);
 							manifold.contacts=contacts;
@@ -584,7 +588,7 @@ bool QWorld::CollideWithWorld(QBody *body){
 	if(manifoldList.size()==0)
 		return false;
 
-	std::cout<<manifoldList.size()<<endl;
+	//std::cout<<manifoldList.size()<<endl;
 	for (auto manifold : manifoldList) {
 		manifold.Solve();
 	}
@@ -938,7 +942,11 @@ vector<QCollision::Contact*> QWorld::GetCollisions(QBody *bodyA, QBody *bodyB){
 				}
 
 			}else if(QMesh::CheckCollisionBehaviors(meshA,meshB,QMesh::CIRCLES, QMesh::CIRCLES )){
-				QCollision::CircleAndCircle(meshA->particles,meshB->particles,bboxB,contactList);
+				bool velocitySensitive=false;
+				if(bodyA->GetBodyType()==QBody::BodyTypes::RIGID && bodyB->GetBodyType()==QBody::BodyTypes::RIGID){
+					velocitySensitive=true;
+				}
+				QCollision::CircleAndCircle(meshA->particles,meshB->particles,bboxB,contactList,0.0f,velocitySensitive);
 
 			}else if(QMesh::CheckCollisionBehaviors(meshA,meshB,QMesh::POLYLINE, QMesh::POLYGONS )){
 				QMesh *polylineMesh=meshA->collisionBehavior==QMesh::POLYLINE ? meshA:meshB;
@@ -1128,7 +1136,22 @@ bool QWorld::SortBodiesVertical(const QBody *bodyA, const QBody *bodyB)
 				 }
 
 				 for(auto spring:mesh->springs){
-					 spring->Update(sBody->GetRigidity()*ts,sBody->GetPassivationOfInternalSpringsEnabled());
+					 spring->Update(sBody->GetRigidity()*ts,sBody->GetPassivationOfInternalSpringsEnabled(),false);
+				 }
+
+				 for(auto particle:mesh->particles){
+					particle->ApplyAccumulatedForces();
+				 }
+			 }
+
+			 for(int i=0;i<sBody->GetMeshCount();i++){
+				 QMesh * mesh=sBody->GetMeshAt(i);
+				 for(auto particle:mesh->particles){
+					particle->ClearAccumulatedForces();
+				 }
+
+				 for(auto angleConstraint:mesh->angleConstraints){
+					 angleConstraint->Update(angleConstraint->GetRigidity()*ts,false);
 				 }
 
 				 for(auto particle:mesh->particles){

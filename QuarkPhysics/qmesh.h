@@ -31,6 +31,7 @@
 #include "cmath"
 #include "qspring.h"
 #include "qparticle.h"
+#include "qangleconstraint.h"
 #include "json/json.hpp"
 #include "fstream"
 #include "qmath_utils.h"
@@ -61,6 +62,7 @@ protected:
 	float rotation=0.0f;
 	float globalRotation=0.0f;
 	vector<QSpring*> springs=vector<QSpring*>();
+	vector<QAngleConstraint*> angleConstraints=vector<QAngleConstraint*>();
 	vector <QParticle*> polygon=vector<QParticle*>();
 	vector<vector<QParticle*>> subConvexPolygons=vector<vector<QParticle*>>();
 	float circumference=0.0f;
@@ -513,15 +515,87 @@ public:
 	QMesh * ClearUVMaps();
 
 
-
-
 	/** Removes the UV maps or UV map particle reference that contain the specified particle index.
 	 * @param particleIndex A particle index to be matched.
 	 * @return QMesh* A pointer to mesh itself.
 	 */
 	QMesh * RemoveMatchingUVMaps(int particleIndex);
 
+
+
 	
+	//Angle Constraint Operations
+
+	/** Returns the count of the angle constraints. */
+	int GetAngleConstraintCount(){
+		return angleConstraints.size();
+	}
+	/** Returns the angle constraint at the specified index.
+	 * @param index The index of the angle constraint to be get.
+	 * @return QMesh* A pointer to mesh itself.
+	 */
+	QAngleConstraint *GetAngleConstraintAt(int index){
+		return angleConstraints[index];
+	}
+	/** Adds an angle constraint to mesh 
+	 * @param angleConstraint An angle constraint to be removed.
+	 * @return QMesh* A pointer to mesh itself.
+	*/
+	QMesh *AddAngleConstraint( QAngleConstraint * angleConstraint ){
+		angleConstraints.push_back(angleConstraint);
+		return this;
+	}
+
+	/** Removes an angle constraint to the mesh at the specified index.
+	 * @param index The index of the angle constraint to be removed.
+	 * @return QMesh* A pointer to mesh itself.
+	 **/
+
+	QMesh *RemoveAngleConstraintAt( int index ){
+		angleConstraints.erase(angleConstraints.begin()+index );
+		return this;
+	}
+	/** Returns the index of the specified angle constraint.
+	 * @param angleConstraint An angle constraint in the mesh.
+	 * @return If the angle constraint is found, it returns the index value, otherwise it returns -1.
+	 */
+	int GetAngleConstraintIndex(QAngleConstraint *angleConstraint){
+		for(int i=0;i<angleConstraints.size();i++)
+			if(angleConstraints[i]==angleConstraint)
+				return i;
+		return -1;
+	}
+
+	/** Removes an angle constraint to the mesh
+	 * @param angleConstraint An angle constraint to be removed.
+	 * @return QMesh* A pointer to mesh itself.
+	 */
+	QMesh *RemoveAngleConstraint( QAngleConstraint *angleConstraint ){
+		int index=GetAngleConstraintIndex(angleConstraint);
+		if(index!=-1){
+			RemoveAngleConstraintAt(index);
+		}
+		return this;
+	}
+
+	/** Removes the angle constraint that contain the specified particle.
+	 * @param particle A particle to be matched.
+	 * @return QMesh* A pointer to mesh itself.
+	 */
+
+	QMesh *RemoveMatchingAngleConstraints(QParticle *particle){
+		int i=0;
+		while(i<angleConstraints.size()){
+			QAngleConstraint *constraint=angleConstraints[i];
+			if(constraint->GetParticleA()==particle || constraint->GetParticleB()==particle || constraint->GetParticleC()==particle){
+				RemoveAngleConstraintAt(i);
+			}else{
+				++i;
+			}
+		}
+
+		return this;
+	}
 
 	
 

@@ -130,7 +130,7 @@ protected:
 	
 	void UpdateAABB();
 	void UpdateMeshTransforms();
-	/** Updates properties of the soft body and applies needed physical dynamics. */
+	/** Updates properties of the body and applies needed physical dynamics. */
 	virtual void Update();
 	/** Called after all bodies have completed their Update step to perform post-update operations. */
 	virtual void PostUpdate(){};

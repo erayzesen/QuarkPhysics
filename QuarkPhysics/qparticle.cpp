@@ -42,6 +42,19 @@ void QParticle::ResetOneTimeCollisions()
 	previousCollidedBodies.clear();
 }
 
+void QParticle::UpdateAABB()
+{
+	float minX=GetGlobalPosition().x-GetRadius();
+	float maxX=GetGlobalPosition().x+GetRadius();
+
+	float minY=GetGlobalPosition().y-GetRadius();
+	float maxY=GetGlobalPosition().y+GetRadius();
+
+	aabb.SetMinMax(QVector(minX,minY),QVector(maxX,maxY) );
+
+
+}
+
 QParticle::QParticle()
 {
 }
@@ -63,6 +76,7 @@ QParticle::QParticle(QVector pos, float radius)
 }
 QParticle *QParticle::SetGlobalPosition(QVector value){
 	this->globalPosition=value;
+	aabbNeedsUpdate=true;
 	if(ownerMesh==nullptr){
 		this->position=this->globalPosition;
 	}else{
@@ -148,7 +162,7 @@ QParticle *QParticle::SetIsLazy(bool value)
 
 QParticle *QParticle::ApplyForce(QVector value)
 {
-	globalPosition+=value;
+	AddGlobalPosition(value);
 	if(ownerMesh==nullptr){
 		position=globalPosition;
 	}

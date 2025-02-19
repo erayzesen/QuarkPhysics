@@ -168,9 +168,9 @@ void QRigidBody::Update()
 		//Gravity Forces
 		if(ignoreGravity==false){
 			if(enableCustomGravity){
-				position+=(customGravity*mass*ts);
+				position+=(customGravity*ts);
 			}else{
-				position+=(world->GetGravity()*mass*ts);
+				position+=(world->GetGravity()*ts);
 			}
 		}
 		

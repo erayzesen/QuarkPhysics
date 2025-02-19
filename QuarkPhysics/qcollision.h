@@ -139,7 +139,12 @@ public:
 	 * @param particlesB Another collection of particles representing one or more circles, each having a radius.
 	 * @param contacts A collection where collision contact information will be stored.
 	 */
-	static void CircleAndCircle(vector<QParticle*> &particlesA,vector<QParticle*> &particlesB, QAABB boundingBoxB, vector<QCollision::Contact*> &contacts, float specifiedRadius=0.0f);
+	static void CircleAndCircle(vector<QParticle*> &particlesA,vector<QParticle*> &particlesB, QAABB boundingBoxB, vector<QCollision::Contact*> &contacts, float specifiedRadius=0.0f, bool velocitySensitive=false);
+	/** Checks collisions between circle(s) and circle(s) for the self collisions. 
+	 * @param particlesA A collection of particles representing one or more circles, each having a radius.
+	 * @param contacts A collection where collision contact information will be stored.
+	 */
+	static void CircleAndCircleSelf(vector<QParticle*> &particles, vector<QCollision::Contact*> &contacts, float specifiedRadius=0.0f);
 	/** Checks collisions between polyline and polygon. 
 	 * @param polylineParticles A collection of particles that make up a polyline.
 	 * @param polygonParticles Another collection of particles that make up a polygon.
@@ -198,6 +203,8 @@ private:
 	static int FindNearestParticleOfPolygon(QParticle * particle, vector<QParticle*> polygonParticles);
 	static int FindExtremeParticleOfAxis(vector<QParticle*> polygonParticles, QVector axisNormal);
 	static bool PointInPolygonWN(const QVector point, vector<QParticle*> polygonParticles);
+
+	
 
 
 };

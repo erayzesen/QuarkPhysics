@@ -27,7 +27,6 @@
 
 #include "qcollision.h"
 #include <cmath>
-#include <iostream>
 #include "qmesh.h"
 #include "qworld.h"
 #include "qgizmos.h"
@@ -507,7 +506,7 @@ void QCollision::CircleAndPolyline(vector<QParticle *> &circleParticles, vector<
 	
 }
 
-void QCollision::CircleAndCircle(vector<QParticle*> &particlesA,vector<QParticle*> &particlesB,QAABB boundingBoxB,vector<QCollision::Contact*> &contacts,float specifiedRadius){
+void QCollision::CircleAndCircle(vector<QParticle*> &particlesA,vector<QParticle*> &particlesB,QAABB boundingBoxB,vector<QCollision::Contact*> &contacts,float specifiedRadius, bool velocitySensitive){
 
 	/*
 	A. Start the loop for all points of particlesA
@@ -515,6 +514,18 @@ void QCollision::CircleAndCircle(vector<QParticle*> &particlesA,vector<QParticle
 	C. Check the distance between both points
 	D. If the distance is less than radius of these points, apply the collision
 	*/
+
+
+	//Speep & Prune Implement
+	vector<QParticle*> orderedParticlesA(particlesA.size() );
+	copy(particlesA.begin(),particlesA.end(),orderedParticlesA.begin() );
+	sort(orderedParticlesA.begin(),orderedParticlesA.end(),QParticle::SortParticlesHorizontal);
+
+	vector<QParticle*> orderedParticlesB(particlesB.size() );
+	copy(particlesB.begin(),particlesB.end(),orderedParticlesB.begin() );
+	sort(orderedParticlesB.begin(),orderedParticlesB.end(),QParticle::SortParticlesHorizontal);
+
+
 
 	float totalRadius;
 	float totalRadiusPow;
@@ -538,7 +549,91 @@ void QCollision::CircleAndCircle(vector<QParticle*> &particlesA,vector<QParticle
 		bboxSizeA=QVector(specifiedRadius,specifiedRadius);
 	}
 
-	size_t particlesASize=particlesA.size();
+	size_t sizeA=orderedParticlesA.size();
+	size_t sizeB=orderedParticlesB.size();
+	bool sizeGreaterThenOne=false;
+	if(sizeA>1 && sizeB>1){
+		sizeGreaterThenOne=true;
+	}
+
+	
+
+	//A. Start the loop for all points of orderedParticlesA
+
+	for(size_t i=0;i<sizeA;++i ){
+		QParticle *pA=orderedParticlesA[i];
+
+		cout<<"particleA AABB minX:"<<pA->GetAABB().GetMin()<<" minY:"<<pA->GetAABB().GetMax()<<endl;
+
+
+		if(sizeGreaterThenOne){
+			if(pA->GetAABB().isCollidingWith(boundingBoxB)==false ){
+				continue;
+			}
+		}
+		
+		//B. Start the loop for all points of orderedParticlesB
+		for(size_t j=0;j<sizeB;++j ){
+			QParticle *pB=orderedParticlesB[j];
+
+			if(pA->GetAABB().GetMax().x >= pB->GetAABB().GetMin().x){
+				if( pA->GetAABB().GetMin().y <= pB->GetAABB().GetMax().y &&
+					pA->GetAABB().GetMax().y >= pB->GetAABB().GetMin().y) {
+
+						if(specifiedRadius==0.0f){
+							radiusA=pA->GetRadius();
+							radiusB=pB->GetRadius();
+							
+							totalRadius=radiusA+radiusB;
+							totalRadiusPow=totalRadius*totalRadius;
+						}
+
+
+						//C. Check the distance between both points
+
+
+						distVec=pB->GetGlobalPosition()-pA->GetGlobalPosition();
+						positionalPenetrationSq=distVec.LengthSquared();
+
+						
+
+						//D. If the distance is less than radius of these points, create a new collision data
+						if(positionalPenetrationSq<totalRadiusPow){
+							//The penetration is the difference between the existing penetration and the total radius of the objA and the objB.
+							positionalPenetration=sqrt(positionalPenetrationSq);
+							//The normal with previous positions gives us more realistic collision normals in the simulation.
+							if(velocitySensitive){
+								normal=(pB->GetPreviousGlobalPosition()-pA->GetPreviousGlobalPosition()).Normalized();
+							}else{
+								normal=distVec.Normalized();	
+							}
+
+							penetration=totalRadius-positionalPenetration;
+
+							contactPosition=pA->GetGlobalPosition()+radiusA*normal;
+
+							//auto contact=QCollision::GetContactPool();
+							QCollision::Contact *contact=QCollision::GetContactPool().Create().data;
+							contact->Configure(pB,contactPosition,normal,penetration,vector<QParticle*>{pA});
+							contacts.push_back(contact);
+							
+
+						}
+
+				}
+			}else{
+				break;
+			}
+
+
+		}
+	}
+
+
+
+	
+
+	/* size_t particlesASize=particlesA.size();
 	size_t particlesBSize=particlesB.size();
 
 	//A. Start the loop for all points of circleparticlesA
@@ -591,9 +686,12 @@ void QCollision::CircleAndCircle(vector<QParticle*> &particlesA,vector<QParticle
 			if(positionalPenetrationSq<totalRadiusPow){
 				//The penetration is the difference between the existing penetration and the total radius of the objA and the objB.
 				positionalPenetration=sqrt(positionalPenetrationSq);
-				//normal=distVec.Normalized();
 				//The normal with previous positions gives us more realistic collision normals in the simulation.
-				normal=(pB->GetPreviousGlobalPosition()-pA->GetPreviousGlobalPosition()).Normalized();
+				if(velocitySensitive){
+					normal=(pB->GetPreviousGlobalPosition()-pA->GetPreviousGlobalPosition()).Normalized();
+				}else{
+					normal=distVec.Normalized();	
+				}
 
 				penetration=totalRadius-positionalPenetration;
 
@@ -607,15 +705,103 @@ void QCollision::CircleAndCircle(vector<QParticle*> &particlesA,vector<QParticle
 
 			}
 		}
-	}
+	} */
 
 
 }
 
+void QCollision::CircleAndCircleSelf(vector<QParticle *> &particles, vector<QCollision::Contact *> &contacts, float specifiedRadius)
+{
+	if(particles.size()==0 )
+		return;
+
+	if(particles[0]->GetOwnerMesh()==nullptr){
+		return;
+	}
+	if(particles[0]->GetOwnerMesh()->GetOwnerBody()==nullptr){
+		return;
+	}
+
+	QBody *body=particles[0]->GetOwnerMesh()->GetOwnerBody();
+
+
+	float totalRadius;
+	float totalRadiusPow;
+	float radius;
+	
+
+
+	QVector distVec;
+	float positionalPenetrationSq;
+	float positionalPenetration;
+	float penetration;
+	QVector normal;
+	QVector contactPosition;
+
+	if(specifiedRadius!=0.0){
+		radius=specifiedRadius;
+	}else{
+		radius=particles[0]->GetRadius();
+	}
+
+	totalRadius=radius+radius;
+	totalRadiusPow=totalRadius*totalRadius;
+
+	vector<QParticle*> sortedParticles(particles.size());
+	copy(particles.begin(),particles.end(),sortedParticles.begin());
+	sort(sortedParticles.begin(),sortedParticles.end(),QParticle::SortParticlesHorizontal );
+
+	for(size_t i=0;i<sortedParticles.size();++i ){
+		QParticle* pA=sortedParticles[i];
+		for(size_t j=i+1;j<sortedParticles.size();++j){
+			QParticle* pB=sortedParticles[j];
+			if(pA==pB){
+				continue;
+			}	
+			if(pA->GetAABB().GetMax().x >= pB->GetAABB().GetMin().x){
+				if( pA->GetAABB().GetMin().y <= pB->GetAABB().GetMax().y &&
+					pA->GetAABB().GetMax().y >= pB->GetAABB().GetMin().y) {
+					
+					distVec=pB->GetGlobalPosition()-pA->GetGlobalPosition();
+					positionalPenetrationSq=distVec.LengthSquared();
+
+					if(positionalPenetrationSq<totalRadiusPow){
+						//The penetration is the difference between the existing penetration and the total radius of the objA and the objB.
+						positionalPenetration=sqrt(positionalPenetrationSq);
+
+						normal=distVec.Normalized();
+
+						penetration=totalRadius-positionalPenetration;
+
+						contactPosition=pA->GetGlobalPosition()+radius*normal;
+
+						//auto contact=QCollision::GetContactPool();
+						QCollision::Contact *contact=QCollision::GetContactPool().Create().data;
+						contact->Configure(pB,contactPosition,normal,penetration,vector<QParticle*>{pA});
+						
+						//Hot Solving
+						QManifold manifold(body,body);
+						manifold.contacts={contact};
+						manifold.Solve();
+						manifold.SolveFrictionAndVelocities();
+
+						
+						
+
+					}
 
 
 
+				}
 
+			}else{
+				break;
+			}
+
+		}
+	}
+
+}
 
 void QCollision::CircleAndPolygon(vector<QParticle*> &circleParticles,vector<QParticle*> &polygonParticles,vector<QCollision::Contact*> &contacts){
 	//The algorithm is an implement of the Separating Axis Theorem(SAT).

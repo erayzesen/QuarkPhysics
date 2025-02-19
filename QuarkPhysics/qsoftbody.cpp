@@ -142,9 +142,9 @@ void QSoftBody::Update()
 				if (ignoreGravity==false){
 					if(!(particle->GetIsInternal()==true && enablePassivationOfInternalSprings==true) ){
 						if (enableCustomGravity){
-							particle->ApplyForce(mass*customGravity*ts);
+							particle->ApplyForce(customGravity*ts);
 						}else{
-							particle->ApplyForce(mass*world->GetGravity()*ts);
+							particle->ApplyForce(world->GetGravity()*ts);
 						}
 					}
 				}
