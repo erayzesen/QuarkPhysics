@@ -233,7 +233,7 @@ protected:
 		float GetTotalPolygonsInitialArea(){
 			float res=0.0f;
 			for(auto mesh:_meshes){
-				res+=mesh->GetInitialPolygonsArea();
+				res+=mesh->GetPolygonArea(mesh->polygon,true);
 			}
 			return res;
 		}
@@ -249,7 +249,7 @@ protected:
 		float GetTotalPolygonsArea(){
 			float res=0.0f;
 			for(auto mesh:_meshes){
-				res+=mesh->GetPolygonsArea();
+				res+=mesh->GetPolygonArea();
 			}
 			return res;
 		}

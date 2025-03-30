@@ -74,61 +74,73 @@ void QAreaBody::CheckBodies(){
 				
 
 			}else if (body->GetBodyType()==QBody::SOFT ){
-				for(size_t i=0;i<collisionContacts.size();++i ){
-					QCollision::Contact* contact=collisionContacts[i];
-					for(size_t j=0;j<contact->referenceParticles.size();++j ){
-						QParticle * rp=contact->referenceParticles[j];
-						
-						if(rp->GetEnabled()==false || rp->GetIsLazy()==false ){
-							if(gravityFree==true && rp->ignoreGravity==true ){
-								rp->ignoreGravity=false;
+				if(bodyIsOnBlackList){
+					for (size_t i=0;i<body->GetMeshCount();++i){
+						QMesh *mesh=body->GetMeshAt(i);
+						vector<bool> particleCollisionChecklist;
+						for(size_t j=0;j<mesh->GetParticleCount();++j ){
+
+							QParticle *particle=mesh->GetParticleAt(j);
+
+							if(gravityFree){
+								particle->ignoreGravity=false;
 							}
-							continue;
-						}
-						
-			
-						if(rp->GetOwnerMesh()!=nullptr){
-							QBody *meshOwnerBody=rp->GetOwnerMesh()->GetOwnerBody();
-							if(meshOwnerBody!=nullptr && meshOwnerBody==body ){
-								if (linearForceToApply!=QVector::Zero() && body->GetMode()!=QBody::STATIC ){
-									if(bodyIsOnBlackList==false){
-										rp->ApplyForce(linearForceToApply);
-									}
-								}
-								if (gravityFree==true  ){
-									if(bodyIsOnBlackList){
-										rp->ignoreGravity=false;
-									}else{
-										rp->ignoreGravity=true;
-									}
-								}
-							}
+
 						}
 					}
+				}else{
 
-					QParticle *p=contact->particle;
-					if(p->GetOwnerMesh()!=nullptr && p->GetEnabled()==true && p->GetIsLazy()==false){
-						QBody *meshOwnerBody=p->GetOwnerMesh()->GetOwnerBody();
-						if(meshOwnerBody!=nullptr && meshOwnerBody==body && meshOwnerBody->GetMode()!=QBody::Modes::STATIC ){
-							if(bodyIsOnBlackList==false){
-								if(linearForceToApply!=QVector::Zero() ){
-									p->ApplyForce(linearForceToApply);
+					for (size_t i=0;i<body->GetMeshCount();++i){
+						QMesh *mesh=body->GetMeshAt(i);
+						vector<bool> particleCollisionChecklist;
+						for(size_t j=0;j<mesh->GetParticleCount();++j ){
+							QParticle *particle=mesh->GetParticleAt(j);
+							//Checking are particles colliding
+							bool particleIsColliding=false;
+							for(size_t k=0;k<collisionContacts.size();++k ){
+								QCollision::Contact *contact=collisionContacts[k];
+
+								if(contact->particle==particle){
+									particleIsColliding=true;
+									break;
 								}
-							}else{
-
+								
+								for(auto rp:contact->referenceParticles){
+									if(rp==particle){
+										particleIsColliding=true;
+										break;
+									}
+								}
+								if(particleIsColliding==true){
+									break;
+								}
 							}
-							if (gravityFree==true  ){
-								if(bodyIsOnBlackList){
-									p->ignoreGravity=false;
-								}else{
-									p->ignoreGravity=true;
-								}
+							particleCollisionChecklist.push_back(particleIsColliding);
+
+
+						}
+
+						for(size_t m=0;m<particleCollisionChecklist.size();++m){
+							QParticle *particle=mesh->GetParticleAt(m);
+							if(particle->GetEnabled()==false || particle->GetIsLazy()==true  )
+								continue;
+							if(gravityFree){
+								particle->ignoreGravity=particleCollisionChecklist[m];
+							}
+
+							if (linearForceToApply!=QVector::Zero() && body->GetMode()!=QBody::STATIC ){
+								particle->ApplyForce(linearForceToApply);
 							}
 						}
+
+
 					}
-					
-					
 				}
+
+
+				
+
+				
 			}
 		}
 

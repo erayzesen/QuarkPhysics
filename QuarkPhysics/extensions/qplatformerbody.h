@@ -387,10 +387,10 @@ public:
     /**
      * @brief Performs a platform collision test.
      * @param testPosition The position to test for collisions.
-     * @param nearestOnAxis The axis for prioritizing the nearest collision.
+     * @param FilterByMovingDirection If set to true, filters out collisions that respond in the opposite direction of the movement vector calculated between the current position and the given test position.
      * @return A CollisionTestInfo structure with the collision details.
      */
-    QPlatformerBody::CollisionTestInfo GetPlatformCollisions(QVector testPosition,QVector nearestOnAxis=QVector::Zero() );
+    QPlatformerBody::CollisionTestInfo GetPlatformCollisions(QVector testPosition, bool FilterByMovingDirection=false );
 
     /**
      * @brief Checks for a collision with a wall on the right.

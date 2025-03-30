@@ -188,15 +188,16 @@ float QPlatformerBody::GetFloorMaxAngleDegree()
     return maxFloorAngle/(M_PI/180);
 }
 
-QPlatformerBody::CollisionTestInfo QPlatformerBody::GetPlatformCollisions(QVector testPosition, QVector orderNearAxis)
+QPlatformerBody::CollisionTestInfo QPlatformerBody::GetPlatformCollisions(QVector testPosition,bool FilterByMovingDirection)
 {
 	CollisionTestInfo res;
     QVector tempPosition=GetPosition();
 	SetPosition(testPosition);
+	QVector testMovementDirection=(testPosition-tempPosition).Normalized();
 	vector<QManifold> manifolds=world->TestCollisionWithWorld(this);
 	SetPosition(tempPosition);
 	
-	QVector axis=orderNearAxis.Normalized();
+	
 	float minDistance=world->MAX_WORLD_SIZE;
 	for (size_t i=0;i<manifolds.size();++i ){
 		QManifold manifold=manifolds[i];
@@ -211,21 +212,26 @@ QPlatformerBody::CollisionTestInfo QPlatformerBody::GetPlatformCollisions(QVecto
 		}
 		for(size_t j=0;j<manifold.contacts.size();++j ){
 			QCollision::Contact* contact=manifold.contacts[j];
-			float distance=contact->position.Dot(axis);
-			if (distance<minDistance){
+			if( FilterByMovingDirection==true  ){
+				QVector collisionNormal=contact->normal;
+				if(contact->particle->GetOwnerMesh()->GetOwnerBody()!=this ){
+					collisionNormal=-collisionNormal;
+				}
+				if(collisionNormal.Dot(testMovementDirection)>=0 ){
+					continue;
+				}
+			}
+			float distance=contact->position.Dot(testMovementDirection);
+			if (distance<minDistance ){
 				res.body=collidedBody;
 				res.position=contact->position;
 				res.normal=contact->particle->GetOwnerMesh()->GetOwnerBody()==this ? contact->normal:-contact->normal;
 				res.penetration=contact->penetration;
 				minDistance=distance;
-				if(orderNearAxis==QVector::Zero() ){
-					break;
-				}
+				
 			}
 		}
-		if(res.body!=nullptr && orderNearAxis==QVector::Zero()){
-			break;
-		}
+		
 		
 	}
 		
@@ -238,7 +244,7 @@ QPlatformerBody::CollisionTestInfo QPlatformerBody::GetPlatformCollisions(QVecto
 QPlatformerBody::CollisionTestInfo QPlatformerBody::GetRightWall(float offset)
 {
 	QVector offsetVector=rightDirection*offset;
-	auto collisionTest=GetPlatformCollisions(GetPosition()+offsetVector,offsetVector );
+	auto collisionTest=GetPlatformCollisions(GetPosition()+offsetVector,true );
 	
 	if(collisionTest.body!=nullptr ){
 		float normalAngle=QVector::AngleBetweenTwoVectors(collisionTest.normal,upDirection);
@@ -260,7 +266,7 @@ QPlatformerBody::CollisionTestInfo QPlatformerBody::GetFloor(float offset)
 {
     
 	QVector offsetVector=upDirection*offset;
-	auto collisionTest=GetPlatformCollisions(GetPosition()+offsetVector,offsetVector );
+	auto collisionTest=GetPlatformCollisions(GetPosition()+offsetVector,true );
 	
 	if(collisionTest.body!=nullptr ){
 		float normalAngle=QVector::AngleBetweenTwoVectors(collisionTest.normal,upDirection);
@@ -275,7 +281,7 @@ QPlatformerBody::CollisionTestInfo QPlatformerBody::GetFloor(float offset)
 QPlatformerBody::CollisionTestInfo QPlatformerBody::GetCeiling(float offset)
 {
     QVector offsetVector=-upDirection*offset;
-	auto collisionTest=GetPlatformCollisions(GetPosition()+offsetVector,offsetVector );
+	auto collisionTest=GetPlatformCollisions(GetPosition()+offsetVector,true );
 	
 	if(collisionTest.body!=nullptr ){
 		float normalAngle=QVector::AngleBetweenTwoVectors(collisionTest.normal,upDirection);
@@ -599,7 +605,7 @@ void QPlatformerBody::PostUpdate()
 		
 		QVector walkVector=horizontalVelocity;
 
-		auto GetPlatformCollisionsSlopedFloor=GetPlatformCollisions(GetPosition()+dirFloor*5.0f,walkVector);
+		auto GetPlatformCollisionsSlopedFloor=GetPlatformCollisions(GetPosition()+dirFloor*5.0f,true);
 		
 		if (GetPlatformCollisionsSlopedFloor.body!=nullptr){
 			float floorAngle=QVector::AngleBetweenTwoVectors(GetPlatformCollisionsSlopedFloor.normal,upDirection);

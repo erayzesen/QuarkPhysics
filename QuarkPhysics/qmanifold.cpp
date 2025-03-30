@@ -130,7 +130,7 @@ void QManifold::Solve()
 		
 
 		if(betweenRigidbodies){
-			contact->penetration*=0.75f;
+			contact->penetration*=0.9f;
 		}else if(betweenPressuredSoftbodies){
 			contact->penetration*=0.5f;
 		}

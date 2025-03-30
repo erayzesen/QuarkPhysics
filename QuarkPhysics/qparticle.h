@@ -282,6 +282,7 @@ public:
 	friend class QBody;
 	friend class QManifold;
 	friend class QAreaBody;
+	friend class QSoftBody;
 	friend class QCollision;
 
 	

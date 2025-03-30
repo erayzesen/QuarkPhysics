@@ -144,6 +144,10 @@ void QSpring::Update(float rigidity,bool internalsException, bool isWorldSpring)
 		float k=0.5f;
 		if(particleACanGetResponse==false || particleBCanGetResponse==false)
 			k=1.0f;
+		float lengthRate=sl/length;
+		if( lengthRate>4.0f || lengthRate<0.25f ){
+			rigidity=1.0f;
+		}
 		forceA*=k*rigidity;
 		forceB*=k*rigidity;
 	}

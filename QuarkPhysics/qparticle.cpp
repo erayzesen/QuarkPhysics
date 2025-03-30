@@ -84,6 +84,11 @@ QParticle *QParticle::SetGlobalPosition(QVector value){
 		if(ownerBody!=nullptr){
 			ownerBody->inertiaNeedsUpdate=true;
 			ownerBody->circumferenceNeedsUpdate=true;
+			if (ownerBody->GetBodyType()==QBody::BodyTypes::SOFT){
+				//ownerBody->WakeUp();
+				//ownerMesh->subConvexPolygonsNeedsUpdate=true;
+				ownerMesh->polygonBisectorsNeedsUpdate=true;
+			}
 		}
 	}
 	return this;

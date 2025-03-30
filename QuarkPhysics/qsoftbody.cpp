@@ -139,7 +139,7 @@ void QSoftBody::Update()
 			if(enableIntegratedVelocities==true ){
 				particle->ApplyForce(vel-(vel*airFriction) );
 				//Gravity Forces
-				if (ignoreGravity==false){
+				if (particle->ignoreGravity==false ){
 					if(!(particle->GetIsInternal()==true && enablePassivationOfInternalSprings==true) ){
 						if (enableCustomGravity){
 							particle->ApplyForce(customGravity*ts);
@@ -166,6 +166,9 @@ void QSoftBody::Update()
 	if(enableAreaPreserving){
 		PreserveAreas();
 	}
+	/* for(auto mesh:_meshes){
+		mesh->UpdateSubConvexPolygons();
+	} */
 	
 
 
@@ -196,10 +199,15 @@ void QSoftBody::PreserveAreas()
 		}
 	}
 
+	
+
 	for(auto mesh:_meshes){
 
 		if(mesh->GetSpringCount()==0)continue;
-		float currentMeshesArea=mesh->GetPolygonsArea();
+
+		 
+		
+		float currentMeshesArea=mesh->GetPolygonArea(mesh->polygon,false);
 
 		if(currentMeshesArea<-targetPreservationArea*5){
 			currentMeshesArea=-targetPreservationArea*5;
@@ -223,6 +231,8 @@ void QSoftBody::PreserveAreas()
 			return;
 		}
 
+		//For checking normals to the particle to polygon center vector
+
 		float pressure=(deltaArea/circumference)*areaPreservingRigidity;
 
 		
@@ -232,7 +242,17 @@ void QSoftBody::PreserveAreas()
 			QParticle *pp=mesh->polygon[ (n-1+mesh->polygon.size())%mesh->polygon.size() ];
 			QParticle *np=mesh->polygon[ (n+1)%mesh->polygon.size() ];
 			QVector vec=np->GetGlobalPosition()-pp->GetGlobalPosition();
+			
+			
 			QVector normal=vec.Perpendicular().Normalized();
+
+			//Checking Normal
+			/* QVector sideCenter=(pp->GetGlobalPosition()+np->GetGlobalPosition())*0.5f;
+			QVector toCenterUnit=(sideCenter-centerOfMesh).Normalized();
+			if(normal.Dot(toCenterUnit)<0.0f ){
+				normal=QVector::Zero();
+			} */
+			
 			volumeForces.push_back(pressure*(normal)*ts);
 		}
 

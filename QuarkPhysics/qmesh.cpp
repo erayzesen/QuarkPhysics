@@ -123,6 +123,7 @@ QMesh *QMesh::RemoveParticleAt(int index){
 		ownerBody->circumferenceNeedsUpdate=true;
 	}
 	collisionBehaviorNeedsUpdate=true;
+	polygonBisectorsNeedsUpdate=true;
 	return this;
 }
 
@@ -151,6 +152,8 @@ QMesh *QMesh::SetPolygon(vector<QParticle *> polygonParticles)
 
 	collisionBehaviorNeedsUpdate=true;
 
+	polygonBisectorsNeedsUpdate=true;
+
     return this;
 }
 
@@ -164,6 +167,8 @@ QMesh *QMesh::AddParticleToPolygon(QParticle *particle, int position)
 	subConvexPolygonsNeedsUpdate=true;
 
 	collisionBehaviorNeedsUpdate=true;
+
+	polygonBisectorsNeedsUpdate=true;
 
     return this;
 }
@@ -187,6 +192,7 @@ QMesh *QMesh::RemoveParticleFromPolygonAt(int index)
 	polygon.erase(polygon.begin()+index);
 	subConvexPolygonsNeedsUpdate=true;
 	collisionBehaviorNeedsUpdate=true;
+	polygonBisectorsNeedsUpdate=true;
     return this;
 }
 
@@ -195,6 +201,7 @@ QMesh *QMesh::RemovePolygon()
 	polygon.clear();
 	subConvexPolygons.clear();
 	collisionBehaviorNeedsUpdate=true;
+	polygonBisectorsNeedsUpdate=true;
     return this;
 }
 
@@ -237,10 +244,51 @@ void QMesh::UpdateSubConvexPolygons( bool majorUpdate)
 	}
 	
 	
+}
+
+void QMesh::UpdatePolygonBisectors()
+{
+	if(polygonBisectorsNeedsUpdate==true){
+		polygonBisectors=QMesh::GetBisectors(polygon);
+		polygonBisectorsNeedsUpdate=false;
+	}
 	
 }
 
+vector<QVector> QMesh::GetBisectors(vector<QParticle *> polygonParticles)
+{
+	vector<QVector> res;
+	for (size_t i=0;i<polygonParticles.size();i++ ){
+		QParticle *pp=polygonParticles[ (i-1+polygonParticles.size() )%polygonParticles.size() ]; //previous particle
+		QParticle *p=polygonParticles[i]; // particle
+		QParticle *np=polygonParticles[ (i+1 )%polygonParticles.size() ]; //next particle
 
+		QVector bisectorUnit=QVector::GeteBisectorUnitVector(pp->GetGlobalPosition(), p->GetGlobalPosition(), np->GetGlobalPosition(),true);
+
+		float bisectorLen=1.0f;
+		float bestDistance=QWorld::MAX_WORLD_SIZE;
+		for(size_t n=0;n<polygonParticles.size();++n ){
+			QParticle *s1=polygonParticles[n];
+			QParticle *s2=polygonParticles[ (n+1)%polygonParticles.size() ];
+			if(s1==pp || s1==np || s1==p){
+				continue;
+			}
+			QVector bisectorIntersection=QCollision::LineIntersectionLine(p->GetGlobalPosition(),p->GetGlobalPosition()+bisectorUnit*QWorld::MAX_WORLD_SIZE,s1->GetGlobalPosition(),s2->GetGlobalPosition()  );
+			if(bisectorIntersection!=QVector::NaN() ){
+				float len=(p->GetGlobalPosition()-bisectorIntersection).Length();
+				if(len<bestDistance){
+					bisectorLen=len;
+					bestDistance=len;
+				}
+			}
+		}
+
+		res.push_back(bisectorUnit*bisectorLen);
+
+
+	}
+    return res;
+}
 
 void QMesh::ApplyAngleConstraintsToPolygon()
 {
@@ -269,6 +317,7 @@ void QMesh::ApplyAngleConstraintsToPolygon()
 		}
 
 	}
+	isPolygonSelfIntersected=polygonIntersection;
 	if(polygonIntersection==true){
 		//cout<<"there is line intersection in polygon"<<endl;
 		pair<QVector,float> averagePosRot=QMesh::GetAveragePositionAndRotation(polygon);
