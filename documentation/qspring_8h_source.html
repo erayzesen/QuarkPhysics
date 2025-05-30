@@ -17,9 +17,6 @@
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="doxygen-awesome-custom-qp.css" rel="stylesheet" type="text/css"/>
-<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
-<link href="tweeks.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -130,87 +127,123 @@ $(document).ready(function(){initNavTree('qspring_8h_source.html',''); initResiz
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="classQParticle.html">QParticle</a> *pB;</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">float</span> length;</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">bool</span> isInternal=<span class="keyword">false</span>;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">bool</span> enabled=<span class="keyword">true</span>;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <a class="code" href="classQSpring.html#a54265e7a37fc708b4bee76e79e218ee4">QSpring</a>(<a class="code" href="classQParticle.html">QParticle</a> *particleA,<a class="code" href="classQParticle.html">QParticle</a> *particleB,<span class="keywordtype">bool</span> <span class="keyword">internal</span>=<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <a class="code" href="classQSpring.html#a54265e7a37fc708b4bee76e79e218ee4">QSpring</a>(<a class="code" href="classQParticle.html">QParticle</a> *particleA,<a class="code" href="classQParticle.html">QParticle</a> *particleB,<span class="keywordtype">float</span> length,<span class="keywordtype">bool</span> <span class="keyword">internal</span>=<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classQSpring.html#a046221209171732c4c8c94225770c8d9">Update</a>(<span class="keywordtype">float</span> rigidity,<span class="keywordtype">bool</span> internalsException,<span class="keywordtype">bool</span> isWorldSpring=<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="comment">//Get Methods</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="classQSpring.html#a28c516a0bb5ca2ddab6e512a2c5e0b68">   75</a></span>&#160;<span class="comment"></span>    <a class="code" href="classQParticle.html">QParticle</a> *<a class="code" href="classQSpring.html#a28c516a0bb5ca2ddab6e512a2c5e0b68">GetParticleA</a>(){</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keywordflow">return</span> pA;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    }</div>
-<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="classQSpring.html#a940a8c41673a5ca6bb4aefc2b798a2f8">   79</a></span>&#160;    <a class="code" href="classQParticle.html">QParticle</a> *<a class="code" href="classQSpring.html#a940a8c41673a5ca6bb4aefc2b798a2f8">GetParticleB</a>(){</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keywordflow">return</span> pB;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    }</div>
-<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="classQSpring.html#a89d9366236fcbab5da1c4f0fe4d4b039">   83</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classQSpring.html#a89d9366236fcbab5da1c4f0fe4d4b039">GetLength</a>(){</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="keywordflow">return</span> length;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    }</div>
-<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="classQSpring.html#aa110f8bb2f2c0adabd93d8ae9c81e9ce">   87</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classQSpring.html#aa110f8bb2f2c0adabd93d8ae9c81e9ce">GetIsInternal</a>(){</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="keywordflow">return</span> isInternal;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    }</div>
-<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="classQSpring.html#ab0a4ffd5660cd943c943a82fcdfaa3b7">   91</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classQSpring.html#ab0a4ffd5660cd943c943a82fcdfaa3b7">GetRigidity</a>(){</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="keywordflow">return</span> rigidity;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    }</div>
-<div class="line"><a name="l00095"></a><span class="lineno"><a class="line" href="classQSpring.html#ae4f3f5ca51c71b5fd9ffb853c4e0c68c">   95</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classQSpring.html#ae4f3f5ca51c71b5fd9ffb853c4e0c68c">GetEnabled</a>(){</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <span class="keywordflow">return</span> enabled;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    }</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="comment">//Set Methods</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="classQSpring.html#ab12539aa0d5e217b2bd1a5b842ab084f">  104</a></span>&#160;<span class="comment"></span>    <a class="code" href="classQSpring.html">QSpring</a> *<a class="code" href="classQSpring.html#ab12539aa0d5e217b2bd1a5b842ab084f">SetParticleA</a>(<a class="code" href="classQParticle.html">QParticle</a> *particle){</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        pA=particle;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    }</div>
-<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="classQSpring.html#ab6be732d4f6ffca814ec878c19a97301">  112</a></span>&#160;    <a class="code" href="classQSpring.html">QSpring</a> *<a class="code" href="classQSpring.html#ab6be732d4f6ffca814ec878c19a97301">SetParticleB</a>(<a class="code" href="classQParticle.html">QParticle</a> *particle){</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        pB=particle;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    }</div>
-<div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="classQSpring.html#a7c6a7e02c3e94a0c5fb65e2311b4f346">  120</a></span>&#160;    <a class="code" href="classQSpring.html">QSpring</a> *<a class="code" href="classQSpring.html#a7c6a7e02c3e94a0c5fb65e2311b4f346">SetLength</a>(<span class="keywordtype">float</span> length){</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        this-&gt;length=length;</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    }</div>
-<div class="line"><a name="l00128"></a><span class="lineno"><a class="line" href="classQSpring.html#a3ea3dacea5cb5133868ecf796c1043c1">  128</a></span>&#160;    <a class="code" href="classQSpring.html">QSpring</a> *<a class="code" href="classQSpring.html#a3ea3dacea5cb5133868ecf796c1043c1">SetIsInternal</a>(<span class="keywordtype">bool</span> value){</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        isInternal=value;</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    }</div>
-<div class="line"><a name="l00136"></a><span class="lineno"><a class="line" href="classQSpring.html#a9167eedee7a9b6080b15a9bb6deb1dc2">  136</a></span>&#160;    <a class="code" href="classQSpring.html">QSpring</a> *<a class="code" href="classQSpring.html#a9167eedee7a9b6080b15a9bb6deb1dc2">SetRigidity</a>(<span class="keywordtype">float</span> rigidity){</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        this-&gt;rigidity=rigidity;</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    }</div>
-<div class="line"><a name="l00144"></a><span class="lineno"><a class="line" href="classQSpring.html#aed9e4b0fffdef31c67c0db7ee9201b14">  144</a></span>&#160;    <a class="code" href="classQSpring.html">QSpring</a> *<a class="code" href="classQSpring.html#aed9e4b0fffdef31c67c0db7ee9201b14">SetEnabled</a>(<span class="keywordtype">bool</span> value){</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        enabled=value;</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    }</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160; </div>
-<div class="line"><a name="l00152"></a><span class="lineno"><a class="line" href="classQSpring.html#ada5dccf3bfd5a63fab0771b652a0798b">  152</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classQSpring.html#ada5dccf3bfd5a63fab0771b652a0798b">manualDeletion</a>=<span class="keyword">false</span>;</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160; </div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160; </div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160; </div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160; </div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160; </div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;};</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160; </div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// QSPRING_H</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">bool</span> enableDistanceLimit=<span class="keyword">false</span>;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordtype">float</span> minimumDistanceFactor=0.25f;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">float</span> maximumDistanceFactor=4.0f;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">bool</span> enabled=<span class="keyword">true</span>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <a class="code" href="classQSpring.html#a54265e7a37fc708b4bee76e79e218ee4">QSpring</a>(<a class="code" href="classQParticle.html">QParticle</a> *particleA,<a class="code" href="classQParticle.html">QParticle</a> *particleB,<span class="keywordtype">bool</span> <span class="keyword">internal</span>=<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="classQSpring.html#a54265e7a37fc708b4bee76e79e218ee4">QSpring</a>(<a class="code" href="classQParticle.html">QParticle</a> *particleA,<a class="code" href="classQParticle.html">QParticle</a> *particleB,<span class="keywordtype">float</span> length,<span class="keywordtype">bool</span> <span class="keyword">internal</span>=<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classQSpring.html#a046221209171732c4c8c94225770c8d9">Update</a>(<span class="keywordtype">float</span> rigidity,<span class="keywordtype">bool</span> internalsException,<span class="keywordtype">bool</span> isWorldSpring=<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="comment">//Get Methods</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="classQSpring.html#a28c516a0bb5ca2ddab6e512a2c5e0b68">   78</a></span>&#160;<span class="comment"></span>    <a class="code" href="classQParticle.html">QParticle</a> *<a class="code" href="classQSpring.html#a28c516a0bb5ca2ddab6e512a2c5e0b68">GetParticleA</a>(){</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="keywordflow">return</span> pA;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    }</div>
+<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="classQSpring.html#a940a8c41673a5ca6bb4aefc2b798a2f8">   82</a></span>&#160;    <a class="code" href="classQParticle.html">QParticle</a> *<a class="code" href="classQSpring.html#a940a8c41673a5ca6bb4aefc2b798a2f8">GetParticleB</a>(){</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keywordflow">return</span> pB;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    }</div>
+<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="classQSpring.html#a89d9366236fcbab5da1c4f0fe4d4b039">   86</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classQSpring.html#a89d9366236fcbab5da1c4f0fe4d4b039">GetLength</a>(){</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keywordflow">return</span> length;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    }</div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="classQSpring.html#aa110f8bb2f2c0adabd93d8ae9c81e9ce">   90</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classQSpring.html#aa110f8bb2f2c0adabd93d8ae9c81e9ce">GetIsInternal</a>(){</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="keywordflow">return</span> isInternal;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    }</div>
+<div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="classQSpring.html#ab0a4ffd5660cd943c943a82fcdfaa3b7">   94</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classQSpring.html#ab0a4ffd5660cd943c943a82fcdfaa3b7">GetRigidity</a>(){</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="keywordflow">return</span> rigidity;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    }</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
+<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="classQSpring.html#a708b42bd43518541c67dda4600bdca2a">  102</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classQSpring.html#a708b42bd43518541c67dda4600bdca2a">GetDistanceLimitEnabled</a>(){</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <span class="keywordflow">return</span> enableDistanceLimit;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    }</div>
+<div class="line"><a name="l00106"></a><span class="lineno"><a class="line" href="classQSpring.html#a12f19e41993caa64870361e35cee9f06">  106</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classQSpring.html#a12f19e41993caa64870361e35cee9f06">GetMinimumDistanceFactor</a>(){</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <span class="keywordflow">return</span> minimumDistanceFactor;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    }</div>
+<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="classQSpring.html#afe2b53bf6a4e670ee7fd7ca6f7ad9a6a">  110</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classQSpring.html#afe2b53bf6a4e670ee7fd7ca6f7ad9a6a">GetMaximumDistanceFactor</a>(){</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        <span class="keywordflow">return</span> minimumDistanceFactor;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    }</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
+<div class="line"><a name="l00115"></a><span class="lineno"><a class="line" href="classQSpring.html#ae4f3f5ca51c71b5fd9ffb853c4e0c68c">  115</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classQSpring.html#ae4f3f5ca51c71b5fd9ffb853c4e0c68c">GetEnabled</a>(){</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        <span class="keywordflow">return</span> enabled;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    }</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    </div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="comment">//Set Methods</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno"><a class="line" href="classQSpring.html#ab12539aa0d5e217b2bd1a5b842ab084f">  126</a></span>&#160;<span class="comment"></span>    <a class="code" href="classQSpring.html">QSpring</a> *<a class="code" href="classQSpring.html#ab12539aa0d5e217b2bd1a5b842ab084f">SetParticleA</a>(<a class="code" href="classQParticle.html">QParticle</a> *particle){</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        pA=particle;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    }</div>
+<div class="line"><a name="l00134"></a><span class="lineno"><a class="line" href="classQSpring.html#ab6be732d4f6ffca814ec878c19a97301">  134</a></span>&#160;    <a class="code" href="classQSpring.html">QSpring</a> *<a class="code" href="classQSpring.html#ab6be732d4f6ffca814ec878c19a97301">SetParticleB</a>(<a class="code" href="classQParticle.html">QParticle</a> *particle){</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        pB=particle;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    }</div>
+<div class="line"><a name="l00142"></a><span class="lineno"><a class="line" href="classQSpring.html#a7c6a7e02c3e94a0c5fb65e2311b4f346">  142</a></span>&#160;    <a class="code" href="classQSpring.html">QSpring</a> *<a class="code" href="classQSpring.html#a7c6a7e02c3e94a0c5fb65e2311b4f346">SetLength</a>(<span class="keywordtype">float</span> length){</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        this-&gt;length=length;</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    }</div>
+<div class="line"><a name="l00150"></a><span class="lineno"><a class="line" href="classQSpring.html#a3ea3dacea5cb5133868ecf796c1043c1">  150</a></span>&#160;    <a class="code" href="classQSpring.html">QSpring</a> *<a class="code" href="classQSpring.html#a3ea3dacea5cb5133868ecf796c1043c1">SetIsInternal</a>(<span class="keywordtype">bool</span> value){</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        isInternal=value;</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    }</div>
+<div class="line"><a name="l00158"></a><span class="lineno"><a class="line" href="classQSpring.html#a9167eedee7a9b6080b15a9bb6deb1dc2">  158</a></span>&#160;    <a class="code" href="classQSpring.html">QSpring</a> *<a class="code" href="classQSpring.html#a9167eedee7a9b6080b15a9bb6deb1dc2">SetRigidity</a>(<span class="keywordtype">float</span> rigidity){</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        this-&gt;rigidity=rigidity;</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    }</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; </div>
+<div class="line"><a name="l00167"></a><span class="lineno"><a class="line" href="classQSpring.html#a7cd9f3771ca89e658e81d126b561d13f">  167</a></span>&#160;    <a class="code" href="classQSpring.html">QSpring</a> *<a class="code" href="classQSpring.html#a7cd9f3771ca89e658e81d126b561d13f">SetDistanceLimitEnabled</a>(<span class="keywordtype">bool</span> value){</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        enableDistanceLimit=value;</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    }</div>
+<div class="line"><a name="l00172"></a><span class="lineno"><a class="line" href="classQSpring.html#a2510db9810ed5fd64a3f6a8015a47384">  172</a></span>&#160;    <a class="code" href="classQSpring.html">QSpring</a> *<a class="code" href="classQSpring.html#a2510db9810ed5fd64a3f6a8015a47384">SetMinimumDistanceFactor</a>(<span class="keywordtype">float</span> value){</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        minimumDistanceFactor=value;</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    }</div>
+<div class="line"><a name="l00177"></a><span class="lineno"><a class="line" href="classQSpring.html#adc99a65d43c38fb140df95113ab342bc">  177</a></span>&#160;    <a class="code" href="classQSpring.html">QSpring</a> *<a class="code" href="classQSpring.html#adc99a65d43c38fb140df95113ab342bc">SetMaximumDistanceFactor</a>(<span class="keywordtype">float</span> value){</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        maximumDistanceFactor=value;</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    }</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160; </div>
+<div class="line"><a name="l00186"></a><span class="lineno"><a class="line" href="classQSpring.html#aed9e4b0fffdef31c67c0db7ee9201b14">  186</a></span>&#160;    <a class="code" href="classQSpring.html">QSpring</a> *<a class="code" href="classQSpring.html#aed9e4b0fffdef31c67c0db7ee9201b14">SetEnabled</a>(<span class="keywordtype">bool</span> value){</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;        enabled=value;</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    }</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160; </div>
+<div class="line"><a name="l00194"></a><span class="lineno"><a class="line" href="classQSpring.html#ada5dccf3bfd5a63fab0771b652a0798b">  194</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classQSpring.html#ada5dccf3bfd5a63fab0771b652a0798b">manualDeletion</a>=<span class="keyword">false</span>;</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160; </div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160; </div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160; </div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160; </div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160; </div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;};</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160; </div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// QSPRING_H</span></div>
 <div class="ttc" id="aclassQParticle_html"><div class="ttname"><a href="classQParticle.html">QParticle</a></div><div class="ttdoc">QParticle objects form the network structures of QMesh objects defined for all body object types....</div><div class="ttdef"><b>Definition:</b> qparticle.h:40</div></div>
 <div class="ttc" id="aclassQSpring_html"><div class="ttname"><a href="classQSpring.html">QSpring</a></div><div class="ttdoc">You can apply distance constraints between 2 particles using the QSpring. The physics engine uses QSp...</div><div class="ttdef"><b>Definition:</b> qspring.h:39</div></div>
 <div class="ttc" id="aclassQSpring_html_a046221209171732c4c8c94225770c8d9"><div class="ttname"><a href="classQSpring.html#a046221209171732c4c8c94225770c8d9">QSpring::Update</a></div><div class="ttdeci">virtual void Update(float rigidity, bool internalsException, bool isWorldSpring=false)</div><div class="ttdef"><b>Definition:</b> qspring.cpp:50</div></div>
-<div class="ttc" id="aclassQSpring_html_a28c516a0bb5ca2ddab6e512a2c5e0b68"><div class="ttname"><a href="classQSpring.html#a28c516a0bb5ca2ddab6e512a2c5e0b68">QSpring::GetParticleA</a></div><div class="ttdeci">QParticle * GetParticleA()</div><div class="ttdef"><b>Definition:</b> qspring.h:75</div></div>
-<div class="ttc" id="aclassQSpring_html_a3ea3dacea5cb5133868ecf796c1043c1"><div class="ttname"><a href="classQSpring.html#a3ea3dacea5cb5133868ecf796c1043c1">QSpring::SetIsInternal</a></div><div class="ttdeci">QSpring * SetIsInternal(bool value)</div><div class="ttdef"><b>Definition:</b> qspring.h:128</div></div>
+<div class="ttc" id="aclassQSpring_html_a12f19e41993caa64870361e35cee9f06"><div class="ttname"><a href="classQSpring.html#a12f19e41993caa64870361e35cee9f06">QSpring::GetMinimumDistanceFactor</a></div><div class="ttdeci">float GetMinimumDistanceFactor()</div><div class="ttdef"><b>Definition:</b> qspring.h:106</div></div>
+<div class="ttc" id="aclassQSpring_html_a2510db9810ed5fd64a3f6a8015a47384"><div class="ttname"><a href="classQSpring.html#a2510db9810ed5fd64a3f6a8015a47384">QSpring::SetMinimumDistanceFactor</a></div><div class="ttdeci">QSpring * SetMinimumDistanceFactor(float value)</div><div class="ttdef"><b>Definition:</b> qspring.h:172</div></div>
+<div class="ttc" id="aclassQSpring_html_a28c516a0bb5ca2ddab6e512a2c5e0b68"><div class="ttname"><a href="classQSpring.html#a28c516a0bb5ca2ddab6e512a2c5e0b68">QSpring::GetParticleA</a></div><div class="ttdeci">QParticle * GetParticleA()</div><div class="ttdef"><b>Definition:</b> qspring.h:78</div></div>
+<div class="ttc" id="aclassQSpring_html_a3ea3dacea5cb5133868ecf796c1043c1"><div class="ttname"><a href="classQSpring.html#a3ea3dacea5cb5133868ecf796c1043c1">QSpring::SetIsInternal</a></div><div class="ttdeci">QSpring * SetIsInternal(bool value)</div><div class="ttdef"><b>Definition:</b> qspring.h:150</div></div>
 <div class="ttc" id="aclassQSpring_html_a54265e7a37fc708b4bee76e79e218ee4"><div class="ttname"><a href="classQSpring.html#a54265e7a37fc708b4bee76e79e218ee4">QSpring::QSpring</a></div><div class="ttdeci">QSpring(QParticle *particleA, QParticle *particleB, bool internal=false)</div><div class="ttdef"><b>Definition:</b> qspring.cpp:33</div></div>
-<div class="ttc" id="aclassQSpring_html_a7c6a7e02c3e94a0c5fb65e2311b4f346"><div class="ttname"><a href="classQSpring.html#a7c6a7e02c3e94a0c5fb65e2311b4f346">QSpring::SetLength</a></div><div class="ttdeci">QSpring * SetLength(float length)</div><div class="ttdef"><b>Definition:</b> qspring.h:120</div></div>
-<div class="ttc" id="aclassQSpring_html_a89d9366236fcbab5da1c4f0fe4d4b039"><div class="ttname"><a href="classQSpring.html#a89d9366236fcbab5da1c4f0fe4d4b039">QSpring::GetLength</a></div><div class="ttdeci">float GetLength()</div><div class="ttdef"><b>Definition:</b> qspring.h:83</div></div>
-<div class="ttc" id="aclassQSpring_html_a9167eedee7a9b6080b15a9bb6deb1dc2"><div class="ttname"><a href="classQSpring.html#a9167eedee7a9b6080b15a9bb6deb1dc2">QSpring::SetRigidity</a></div><div class="ttdeci">QSpring * SetRigidity(float rigidity)</div><div class="ttdef"><b>Definition:</b> qspring.h:136</div></div>
-<div class="ttc" id="aclassQSpring_html_a940a8c41673a5ca6bb4aefc2b798a2f8"><div class="ttname"><a href="classQSpring.html#a940a8c41673a5ca6bb4aefc2b798a2f8">QSpring::GetParticleB</a></div><div class="ttdeci">QParticle * GetParticleB()</div><div class="ttdef"><b>Definition:</b> qspring.h:79</div></div>
-<div class="ttc" id="aclassQSpring_html_aa110f8bb2f2c0adabd93d8ae9c81e9ce"><div class="ttname"><a href="classQSpring.html#aa110f8bb2f2c0adabd93d8ae9c81e9ce">QSpring::GetIsInternal</a></div><div class="ttdeci">bool GetIsInternal()</div><div class="ttdef"><b>Definition:</b> qspring.h:87</div></div>
-<div class="ttc" id="aclassQSpring_html_ab0a4ffd5660cd943c943a82fcdfaa3b7"><div class="ttname"><a href="classQSpring.html#ab0a4ffd5660cd943c943a82fcdfaa3b7">QSpring::GetRigidity</a></div><div class="ttdeci">float GetRigidity()</div><div class="ttdef"><b>Definition:</b> qspring.h:91</div></div>
-<div class="ttc" id="aclassQSpring_html_ab12539aa0d5e217b2bd1a5b842ab084f"><div class="ttname"><a href="classQSpring.html#ab12539aa0d5e217b2bd1a5b842ab084f">QSpring::SetParticleA</a></div><div class="ttdeci">QSpring * SetParticleA(QParticle *particle)</div><div class="ttdef"><b>Definition:</b> qspring.h:104</div></div>
-<div class="ttc" id="aclassQSpring_html_ab6be732d4f6ffca814ec878c19a97301"><div class="ttname"><a href="classQSpring.html#ab6be732d4f6ffca814ec878c19a97301">QSpring::SetParticleB</a></div><div class="ttdeci">QSpring * SetParticleB(QParticle *particle)</div><div class="ttdef"><b>Definition:</b> qspring.h:112</div></div>
-<div class="ttc" id="aclassQSpring_html_ada5dccf3bfd5a63fab0771b652a0798b"><div class="ttname"><a href="classQSpring.html#ada5dccf3bfd5a63fab0771b652a0798b">QSpring::manualDeletion</a></div><div class="ttdeci">bool manualDeletion</div><div class="ttdef"><b>Definition:</b> qspring.h:152</div></div>
-<div class="ttc" id="aclassQSpring_html_ae4f3f5ca51c71b5fd9ffb853c4e0c68c"><div class="ttname"><a href="classQSpring.html#ae4f3f5ca51c71b5fd9ffb853c4e0c68c">QSpring::GetEnabled</a></div><div class="ttdeci">bool GetEnabled()</div><div class="ttdef"><b>Definition:</b> qspring.h:95</div></div>
-<div class="ttc" id="aclassQSpring_html_aed9e4b0fffdef31c67c0db7ee9201b14"><div class="ttname"><a href="classQSpring.html#aed9e4b0fffdef31c67c0db7ee9201b14">QSpring::SetEnabled</a></div><div class="ttdeci">QSpring * SetEnabled(bool value)</div><div class="ttdef"><b>Definition:</b> qspring.h:144</div></div>
+<div class="ttc" id="aclassQSpring_html_a708b42bd43518541c67dda4600bdca2a"><div class="ttname"><a href="classQSpring.html#a708b42bd43518541c67dda4600bdca2a">QSpring::GetDistanceLimitEnabled</a></div><div class="ttdeci">bool GetDistanceLimitEnabled()</div><div class="ttdef"><b>Definition:</b> qspring.h:102</div></div>
+<div class="ttc" id="aclassQSpring_html_a7c6a7e02c3e94a0c5fb65e2311b4f346"><div class="ttname"><a href="classQSpring.html#a7c6a7e02c3e94a0c5fb65e2311b4f346">QSpring::SetLength</a></div><div class="ttdeci">QSpring * SetLength(float length)</div><div class="ttdef"><b>Definition:</b> qspring.h:142</div></div>
+<div class="ttc" id="aclassQSpring_html_a7cd9f3771ca89e658e81d126b561d13f"><div class="ttname"><a href="classQSpring.html#a7cd9f3771ca89e658e81d126b561d13f">QSpring::SetDistanceLimitEnabled</a></div><div class="ttdeci">QSpring * SetDistanceLimitEnabled(bool value)</div><div class="ttdef"><b>Definition:</b> qspring.h:167</div></div>
+<div class="ttc" id="aclassQSpring_html_a89d9366236fcbab5da1c4f0fe4d4b039"><div class="ttname"><a href="classQSpring.html#a89d9366236fcbab5da1c4f0fe4d4b039">QSpring::GetLength</a></div><div class="ttdeci">float GetLength()</div><div class="ttdef"><b>Definition:</b> qspring.h:86</div></div>
+<div class="ttc" id="aclassQSpring_html_a9167eedee7a9b6080b15a9bb6deb1dc2"><div class="ttname"><a href="classQSpring.html#a9167eedee7a9b6080b15a9bb6deb1dc2">QSpring::SetRigidity</a></div><div class="ttdeci">QSpring * SetRigidity(float rigidity)</div><div class="ttdef"><b>Definition:</b> qspring.h:158</div></div>
+<div class="ttc" id="aclassQSpring_html_a940a8c41673a5ca6bb4aefc2b798a2f8"><div class="ttname"><a href="classQSpring.html#a940a8c41673a5ca6bb4aefc2b798a2f8">QSpring::GetParticleB</a></div><div class="ttdeci">QParticle * GetParticleB()</div><div class="ttdef"><b>Definition:</b> qspring.h:82</div></div>
+<div class="ttc" id="aclassQSpring_html_aa110f8bb2f2c0adabd93d8ae9c81e9ce"><div class="ttname"><a href="classQSpring.html#aa110f8bb2f2c0adabd93d8ae9c81e9ce">QSpring::GetIsInternal</a></div><div class="ttdeci">bool GetIsInternal()</div><div class="ttdef"><b>Definition:</b> qspring.h:90</div></div>
+<div class="ttc" id="aclassQSpring_html_ab0a4ffd5660cd943c943a82fcdfaa3b7"><div class="ttname"><a href="classQSpring.html#ab0a4ffd5660cd943c943a82fcdfaa3b7">QSpring::GetRigidity</a></div><div class="ttdeci">float GetRigidity()</div><div class="ttdef"><b>Definition:</b> qspring.h:94</div></div>
+<div class="ttc" id="aclassQSpring_html_ab12539aa0d5e217b2bd1a5b842ab084f"><div class="ttname"><a href="classQSpring.html#ab12539aa0d5e217b2bd1a5b842ab084f">QSpring::SetParticleA</a></div><div class="ttdeci">QSpring * SetParticleA(QParticle *particle)</div><div class="ttdef"><b>Definition:</b> qspring.h:126</div></div>
+<div class="ttc" id="aclassQSpring_html_ab6be732d4f6ffca814ec878c19a97301"><div class="ttname"><a href="classQSpring.html#ab6be732d4f6ffca814ec878c19a97301">QSpring::SetParticleB</a></div><div class="ttdeci">QSpring * SetParticleB(QParticle *particle)</div><div class="ttdef"><b>Definition:</b> qspring.h:134</div></div>
+<div class="ttc" id="aclassQSpring_html_ada5dccf3bfd5a63fab0771b652a0798b"><div class="ttname"><a href="classQSpring.html#ada5dccf3bfd5a63fab0771b652a0798b">QSpring::manualDeletion</a></div><div class="ttdeci">bool manualDeletion</div><div class="ttdef"><b>Definition:</b> qspring.h:194</div></div>
+<div class="ttc" id="aclassQSpring_html_adc99a65d43c38fb140df95113ab342bc"><div class="ttname"><a href="classQSpring.html#adc99a65d43c38fb140df95113ab342bc">QSpring::SetMaximumDistanceFactor</a></div><div class="ttdeci">QSpring * SetMaximumDistanceFactor(float value)</div><div class="ttdef"><b>Definition:</b> qspring.h:177</div></div>
+<div class="ttc" id="aclassQSpring_html_ae4f3f5ca51c71b5fd9ffb853c4e0c68c"><div class="ttname"><a href="classQSpring.html#ae4f3f5ca51c71b5fd9ffb853c4e0c68c">QSpring::GetEnabled</a></div><div class="ttdeci">bool GetEnabled()</div><div class="ttdef"><b>Definition:</b> qspring.h:115</div></div>
+<div class="ttc" id="aclassQSpring_html_aed9e4b0fffdef31c67c0db7ee9201b14"><div class="ttname"><a href="classQSpring.html#aed9e4b0fffdef31c67c0db7ee9201b14">QSpring::SetEnabled</a></div><div class="ttdeci">QSpring * SetEnabled(bool value)</div><div class="ttdef"><b>Definition:</b> qspring.h:186</div></div>
+<div class="ttc" id="aclassQSpring_html_afe2b53bf6a4e670ee7fd7ca6f7ad9a6a"><div class="ttname"><a href="classQSpring.html#afe2b53bf6a4e670ee7fd7ca6f7ad9a6a">QSpring::GetMaximumDistanceFactor</a></div><div class="ttdeci">float GetMaximumDistanceFactor()</div><div class="ttdef"><b>Definition:</b> qspring.h:110</div></div>
 <div class="ttc" id="astructQMesh_html"><div class="ttname"><a href="structQMesh.html">QMesh</a></div><div class="ttdoc">Every QBody object requires meshes. In other traditional physics engines, the term 'shape' is used in...</div><div class="ttdef"><b>Definition:</b> qmesh.h:49</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

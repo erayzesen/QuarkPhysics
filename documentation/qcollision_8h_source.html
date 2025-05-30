@@ -17,9 +17,6 @@
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="doxygen-awesome-custom-qp.css" rel="stylesheet" type="text/css"/>
-<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
-<link href="tweeks.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -208,40 +205,45 @@ $(document).ready(function(){initNavTree('qcollision_8h_source.html',''); initRe
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="comment">//Collision Methods</span></div>
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="comment"></span>    <span class="keyword">static</span> <span class="keywordtype">void</span> PolygonAndPolygon(vector&lt;QParticle*&gt; &amp;particlesA,vector&lt;QParticle*&gt; &amp;particlesB,vector&lt;QCollision::Contact*&gt; &amp;contacts);</div>
 <div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> CircleAndPolygon(vector&lt;QParticle*&gt; &amp;circleParticles,vector&lt;QParticle*&gt; &amp;polygonParticles,vector&lt;QCollision::Contact*&gt; &amp;contacts);</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> CircleAndCircle(vector&lt;QParticle*&gt; &amp;particlesA,vector&lt;QParticle*&gt; &amp;particlesB, <a class="code" href="classQAABB.html">QAABB</a> boundingBoxB, vector&lt;QCollision::Contact*&gt; &amp;contacts, <span class="keywordtype">float</span> specifiedRadius=0.0f, <span class="keywordtype">bool</span> velocitySensitive=<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> CircleAndCircleSelf(vector&lt;QParticle*&gt; &amp;particles, vector&lt;QCollision::Contact*&gt; &amp;contacts, <span class="keywordtype">float</span> specifiedRadius=0.0f);</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> PolylineAndPolygon(vector&lt;QParticle*&gt; &amp;polylineParticles,vector&lt;QParticle*&gt; &amp;polygonParticles,vector&lt;QCollision::Contact*&gt; &amp;contacts);</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160; </div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> CircleAndPolyline(vector&lt;QParticle*&gt; &amp;circleParticles,vector&lt;QParticle*&gt; &amp;polylineParticles,<a class="code" href="classQAABB.html">QAABB</a> polylineAABB , vector&lt;QCollision::Contact*&gt; &amp;contacts, <span class="keywordtype">bool</span> circlesArePolygon=<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160; </div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    <span class="comment">//Geometry Helper Methods</span></div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="comment"></span>    <span class="keyword">static</span> <a class="code" href="structQVector.html">QVector</a> LineIntersectionLine(<a class="code" href="structQVector.html">QVector</a> d1A,<a class="code" href="structQVector.html">QVector</a> d1B, <a class="code" href="structQVector.html">QVector</a> d2A, <a class="code" href="structQVector.html">QVector</a> d2B);</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> PointInPolygon(<a class="code" href="structQVector.html">QVector</a> &amp;point, vector&lt;QParticle*&gt; &amp;polygon );</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> PointInPolygon(<a class="code" href="structQVector.html">QVector</a> &amp;point, vector&lt;QVector&gt; &amp;polygon );</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> PointInPolygon2(<a class="code" href="structQVector.html">QVector</a> point, vector&lt;QParticle*&gt; &amp;polygon );</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160; </div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    </div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    </div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160; </div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    </div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> CircleAndCircle(vector&lt;QParticle*&gt; &amp;particlesA,vector&lt;QParticle*&gt; &amp;particlesB, <a class="code" href="classQAABB.html">QAABB</a> boundingBoxB, vector&lt;QCollision::Contact*&gt; &amp;contacts, <span class="keywordtype">float</span> specifiedRadius=0.0f, <span class="keywordtype">bool</span> velocitySensitive=<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> CircleAndCircleSelf(vector&lt;QParticle*&gt; &amp;particles, vector&lt;QCollision::Contact*&gt; &amp;contacts, <span class="keywordtype">float</span> specifiedRadius=0.0f);</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> PolylineAndPolygon(vector&lt;QParticle*&gt; &amp;polylineParticles,vector&lt;QParticle*&gt; &amp;polygonParticles,vector&lt;QCollision::Contact*&gt; &amp;contacts);</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160; </div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> PolylineAndPolyline(vector&lt;QParticle*&gt; &amp;testPolylineParticles,vector&lt;QParticle*&gt; &amp;targetPolylineParticles,<a class="code" href="classQAABB.html">QAABB</a> polylineAABB , vector&lt;QCollision::Contact*&gt; &amp;contacts);</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160; </div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> CircleAndPolyline2(vector&lt;QParticle*&gt; &amp;particles,vector&lt;QParticle*&gt; &amp;polygonParticles,<a class="code" href="classQAABB.html">QAABB</a> polylineAABB , vector&lt;QCollision::Contact*&gt; &amp;contacts);</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160; </div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160; </div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    <span class="comment">//Geometry Helper Methods</span></div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="comment"></span>    <span class="keyword">static</span> <a class="code" href="structQVector.html">QVector</a> LineIntersectionLine(<a class="code" href="structQVector.html">QVector</a> d1A,<a class="code" href="structQVector.html">QVector</a> d1B, <a class="code" href="structQVector.html">QVector</a> d2A, <a class="code" href="structQVector.html">QVector</a> d2B);</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> PointInPolygon(<a class="code" href="structQVector.html">QVector</a> &amp;point, vector&lt;QParticle*&gt; &amp;polygon );</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> PointInPolygon(<a class="code" href="structQVector.html">QVector</a> &amp;point, vector&lt;QVector&gt; &amp;polygon );</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> PointInPolygon2(<a class="code" href="structQVector.html">QVector</a> point, vector&lt;QParticle*&gt; &amp;polygon );</div>
 <div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160; </div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    <span class="comment">//Collision Helper Methods</span></div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> ClipContactParticles(<a class="code" href="classQParticle.html">QParticle</a> *referenceParticles[], <a class="code" href="classQParticle.html">QParticle</a> *incidentParticles[], vector&lt;QCollision::Contact*&gt; &amp;contacts );</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;    <span class="keyword">static</span> <a class="code" href="structQCollision_1_1Project.html">Project</a> ProjectToAxis(<a class="code" href="structQVector.html">QVector</a> &amp;normal,vector&lt;QParticle*&gt; &amp;polygon);</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    <span class="keyword">static</span> pair&lt;int,int&gt; FindNearestSideOfPolygon(<span class="keyword">const</span> <a class="code" href="structQVector.html">QVector</a> point, vector&lt;QParticle*&gt; polygonParticles,<span class="keywordtype">bool</span> checkSideRange=<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">int</span> FindNearestParticleOfPolygon(<a class="code" href="classQParticle.html">QParticle</a> * particle, vector&lt;QParticle*&gt; polygonParticles);</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">int</span> FindExtremeParticleOfAxis(vector&lt;QParticle*&gt; polygonParticles, <a class="code" href="structQVector.html">QVector</a> axisNormal);</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> PointInPolygonWN(<span class="keyword">const</span> <a class="code" href="structQVector.html">QVector</a> point, vector&lt;QParticle*&gt; polygonParticles);</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160; </div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    </div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160; </div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160; </div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;};</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    </div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    </div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160; </div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    <span class="comment">//Collision Helper Methods</span></div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> ClipContactParticles(<a class="code" href="classQParticle.html">QParticle</a> *referenceParticles[], <a class="code" href="classQParticle.html">QParticle</a> *incidentParticles[], vector&lt;QCollision::Contact*&gt; &amp;contacts );</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    <span class="keyword">static</span> <a class="code" href="structQCollision_1_1Project.html">Project</a> ProjectToAxis(<a class="code" href="structQVector.html">QVector</a> &amp;normal,vector&lt;QParticle*&gt; &amp;polygon);</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    <span class="keyword">static</span> vector&lt;QVector&gt; ParticlePolygonToPolygon(vector&lt;QParticle*&gt; particlePolygon);</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    <span class="keyword">static</span> pair&lt;int,int&gt; FindNearestSideOfPolygon(<span class="keyword">const</span> <a class="code" href="structQVector.html">QVector</a> point, vector&lt;QParticle*&gt; polygonParticles,<span class="keywordtype">bool</span> checkSideRange=<span class="keyword">false</span>, <span class="keywordtype">bool</span> checkNegativeDistance=<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">int</span> FindNearestParticleOfPolygon(<a class="code" href="classQParticle.html">QParticle</a> * particle, vector&lt;QParticle*&gt; polygonParticles);</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">int</span> FindExtremeParticleOfAxis(vector&lt;QParticle*&gt; polygonParticles, <a class="code" href="structQVector.html">QVector</a> axisNormal);</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> PointInPolygonWN(<span class="keyword">const</span> <a class="code" href="structQVector.html">QVector</a> point, vector&lt;QParticle*&gt; polygonParticles);</div>
 <div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160; </div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160; </div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;    </div>
 <div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160; </div>
 <div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160; </div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// QCOLLISION_H</span></div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;};</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160; </div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160; </div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160; </div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160; </div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// QCOLLISION_H</span></div>
 <div class="ttc" id="aclassQAABB_html"><div class="ttname"><a href="classQAABB.html">QAABB</a></div><div class="ttdef"><b>Definition:</b> qaabb.h:38</div></div>
 <div class="ttc" id="aclassQCollision_html"><div class="ttname"><a href="classQCollision.html">QCollision</a></div><div class="ttdoc">The QCollision class performs all collision detection operations. The relevant methods return contact...</div><div class="ttdef"><b>Definition:</b> qcollision.h:44</div></div>
 <div class="ttc" id="aclassQObjectPool_html"><div class="ttname"><a href="classQObjectPool.html">QObjectPool&lt; QCollision::Contact &gt;</a></div></div>

@@ -17,9 +17,6 @@
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="doxygen-awesome-custom-qp.css" rel="stylesheet" type="text/css"/>
-<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
-<link href="tweeks.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -252,9 +249,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1b7ebc5d4771e94a88e473869c2853ce"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQPlatformerBody.html#a1b7ebc5d4771e94a88e473869c2853ce">GetSpecificPlatformLayers</a> ()</td></tr>
 <tr class="memdesc:a1b7ebc5d4771e94a88e473869c2853ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets specific platform layers bit. This determines which platform layers the platformer physics will apply to, such as sloped surfaces, ceilings, walls, etc. The default value is 0, which disables this functionality.  <a href="classQPlatformerBody.html#a1b7ebc5d4771e94a88e473869c2853ce">More...</a><br /></td></tr>
 <tr class="separator:a1b7ebc5d4771e94a88e473869c2853ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af9ca0878c582fd9dce1ef460cd94fa8c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structQPlatformerBody_1_1CollisionTestInfo.html">QPlatformerBody::CollisionTestInfo</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQPlatformerBody.html#af9ca0878c582fd9dce1ef460cd94fa8c">GetPlatformCollisions</a> (<a class="el" href="structQVector.html">QVector</a> testPosition, <a class="el" href="structQVector.html">QVector</a> nearestOnAxis=QVector::Zero())</td></tr>
-<tr class="memdesc:af9ca0878c582fd9dce1ef460cd94fa8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs a platform collision test.  <a href="classQPlatformerBody.html#af9ca0878c582fd9dce1ef460cd94fa8c">More...</a><br /></td></tr>
-<tr class="separator:af9ca0878c582fd9dce1ef460cd94fa8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ab3a2f9bdc7f63de0db496e5a27eb0a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structQPlatformerBody_1_1CollisionTestInfo.html">QPlatformerBody::CollisionTestInfo</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQPlatformerBody.html#a0ab3a2f9bdc7f63de0db496e5a27eb0a">GetPlatformCollisions</a> (<a class="el" href="structQVector.html">QVector</a> testPosition, bool FilterByMovingDirection=false)</td></tr>
+<tr class="memdesc:a0ab3a2f9bdc7f63de0db496e5a27eb0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs a platform collision test.  <a href="classQPlatformerBody.html#a0ab3a2f9bdc7f63de0db496e5a27eb0a">More...</a><br /></td></tr>
+<tr class="separator:a0ab3a2f9bdc7f63de0db496e5a27eb0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff0bbda1d2666e6f0ecb25dcd263fbbb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structQPlatformerBody_1_1CollisionTestInfo.html">QPlatformerBody::CollisionTestInfo</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQPlatformerBody.html#aff0bbda1d2666e6f0ecb25dcd263fbbb">GetRightWall</a> (float offset)</td></tr>
 <tr class="memdesc:aff0bbda1d2666e6f0ecb25dcd263fbbb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks for a collision with a wall on the right.  <a href="classQPlatformerBody.html#aff0bbda1d2666e6f0ecb25dcd263fbbb">More...</a><br /></td></tr>
 <tr class="separator:aff0bbda1d2666e6f0ecb25dcd263fbbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1151,8 +1148,8 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>CanCollide</b>
 
 </div>
 </div>
-<a id="af9ca0878c582fd9dce1ef460cd94fa8c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af9ca0878c582fd9dce1ef460cd94fa8c">&#9670;&nbsp;</a></span>GetPlatformCollisions()</h2>
+<a id="a0ab3a2f9bdc7f63de0db496e5a27eb0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ab3a2f9bdc7f63de0db496e5a27eb0a">&#9670;&nbsp;</a></span>GetPlatformCollisions()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1166,8 +1163,8 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>CanCollide</b>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structQVector.html">QVector</a>&#160;</td>
-          <td class="paramname"><em>nearestOnAxis</em> = <code>QVector::Zero()</code>&#160;</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>FilterByMovingDirection</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1181,7 +1178,7 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>CanCollide</b>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">testPosition</td><td>The position to test for collisions. </td></tr>
-    <tr><td class="paramname">nearestOnAxis</td><td>The axis for prioritizing the nearest collision. </td></tr>
+    <tr><td class="paramname">FilterByMovingDirection</td><td>If set to true, filters out collisions that respond in the opposite direction of the movement vector calculated between the current position and the given test position. </td></tr>
   </table>
   </dd>
 </dl>

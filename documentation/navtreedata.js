@@ -48,8 +48,8 @@ var NAVTREEINDEX =
 [
 "annotated.html",
 "classQManifold.html#abe4976b5c4b0716949a5f62ba5ec537d",
-"classQWorld.html#a160231b1bf0c74e4d9ebd7f14f536fbd",
-"structQMesh.html#a8a2b8029ca7a8a69c736991c6de7c3d0"
+"classQWorld.html#a017ef85574e4d5d913addf26bd1e8e69",
+"structQMesh.html#a6a9964bf6901ea60944814b87be3a179"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

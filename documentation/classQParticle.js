@@ -40,6 +40,7 @@ var classQParticle =
     [ "QCollision", "classQParticle.html#a3af9182473018cc2543a29c7e0200f20", null ],
     [ "QManifold", "classQParticle.html#a15a9ee92820bf91ec5ef9cc6c8838aef", null ],
     [ "QMesh", "classQParticle.html#ae5d556ade50474060307f6de46c30485", null ],
+    [ "QSoftBody", "classQParticle.html#a72b17d5dd66883780a3c7c53e04fe69c", null ],
     [ "ignoreGravity", "classQParticle.html#a2ec4900c55b5bb5c558618ce11353ae0", null ],
     [ "manualDeletion", "classQParticle.html#a031a937ce85f5ed3bc69456c79cbc03f", null ],
     [ "oneTimeCollidedBodies", "classQParticle.html#a4031808130031ce20a2e78494daf3352", null ],

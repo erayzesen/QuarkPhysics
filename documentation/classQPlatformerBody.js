@@ -28,7 +28,7 @@ var classQPlatformerBody =
     [ "GetLeftWall", "classQPlatformerBody.html#a51c7f1e1732c5a24fd0aee29b2c94663", null ],
     [ "GetMaxJumpCount", "classQPlatformerBody.html#ae5feb2de645100d9f8fb0f25140721d6", null ],
     [ "GetMovingFloorSnapOffset", "classQPlatformerBody.html#a2cf781d94675f04bfbb1a6e22060144d", null ],
-    [ "GetPlatformCollisions", "classQPlatformerBody.html#af9ca0878c582fd9dce1ef460cd94fa8c", null ],
+    [ "GetPlatformCollisions", "classQPlatformerBody.html#a0ab3a2f9bdc7f63de0db496e5a27eb0a", null ],
     [ "GetRightWall", "classQPlatformerBody.html#aff0bbda1d2666e6f0ecb25dcd263fbbb", null ],
     [ "GetSpecificPlatformLayers", "classQPlatformerBody.html#a1b7ebc5d4771e94a88e473869c2853ce", null ],
     [ "GetWalkAcelerationRate", "classQPlatformerBody.html#a33c34cd8db69d7a8dae89cd4c34929c4", null ],

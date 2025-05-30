@@ -17,9 +17,6 @@
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="doxygen-awesome-custom-qp.css" rel="stylesheet" type="text/css"/>
-<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
-<link href="tweeks.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -135,8 +132,11 @@ static <a class="el" href="classQObjectPool.html">QObjectPool</a>&lt; <a class="
 <tr class="separator:a9791a7d1c76eeff6e9e736b31a99aa40"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af2ead2cb1a94fca8aa872935fa338099"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQCollision.html#af2ead2cb1a94fca8aa872935fa338099">PolylineAndPolygon</a> (vector&lt; <a class="el" href="classQParticle.html">QParticle</a> * &gt; &amp;polylineParticles, vector&lt; <a class="el" href="classQParticle.html">QParticle</a> * &gt; &amp;polygonParticles, vector&lt; <a class="el" href="structQCollision_1_1Contact.html">QCollision::Contact</a> * &gt; &amp;contacts)</td></tr>
 <tr class="separator:af2ead2cb1a94fca8aa872935fa338099"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a13554eb3b67f317990d31bea8eb69675"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQCollision.html#a13554eb3b67f317990d31bea8eb69675">CircleAndPolyline</a> (vector&lt; <a class="el" href="classQParticle.html">QParticle</a> * &gt; &amp;circleParticles, vector&lt; <a class="el" href="classQParticle.html">QParticle</a> * &gt; &amp;polylineParticles, <a class="el" href="classQAABB.html">QAABB</a> polylineAABB, vector&lt; <a class="el" href="structQCollision_1_1Contact.html">QCollision::Contact</a> * &gt; &amp;contacts, bool circlesArePolygon=false)</td></tr>
-<tr class="separator:a13554eb3b67f317990d31bea8eb69675"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25cdf1f3be7c6eb61f692b8ef7ddd47e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQCollision.html#a25cdf1f3be7c6eb61f692b8ef7ddd47e">PolylineAndPolyline</a> (vector&lt; <a class="el" href="classQParticle.html">QParticle</a> * &gt; &amp;testPolylineParticles, vector&lt; <a class="el" href="classQParticle.html">QParticle</a> * &gt; &amp;targetPolylineParticles, <a class="el" href="classQAABB.html">QAABB</a> polylineAABB, vector&lt; <a class="el" href="structQCollision_1_1Contact.html">QCollision::Contact</a> * &gt; &amp;contacts)</td></tr>
+<tr class="separator:a25cdf1f3be7c6eb61f692b8ef7ddd47e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d1f34d049ce2736a4b3956c08067500"><td class="memItemLeft" align="right" valign="top"><a id="a9d1f34d049ce2736a4b3956c08067500"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>CircleAndPolyline2</b> (vector&lt; <a class="el" href="classQParticle.html">QParticle</a> * &gt; &amp;particles, vector&lt; <a class="el" href="classQParticle.html">QParticle</a> * &gt; &amp;polygonParticles, <a class="el" href="classQAABB.html">QAABB</a> polylineAABB, vector&lt; <a class="el" href="structQCollision_1_1Contact.html">QCollision::Contact</a> * &gt; &amp;contacts)</td></tr>
+<tr class="separator:a9d1f34d049ce2736a4b3956c08067500"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a41488554995a8cf32cf9b1aa3b59e808"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structQVector.html">QVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQCollision.html#a41488554995a8cf32cf9b1aa3b59e808">LineIntersectionLine</a> (<a class="el" href="structQVector.html">QVector</a> d1A, <a class="el" href="structQVector.html">QVector</a> d1B, <a class="el" href="structQVector.html">QVector</a> d2A, <a class="el" href="structQVector.html">QVector</a> d2B)</td></tr>
 <tr class="separator:a41488554995a8cf32cf9b1aa3b59e808"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a321d9e0ba377dfc2ceb60f4356b93872"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQCollision.html#a321d9e0ba377dfc2ceb60f4356b93872">PointInPolygon</a> (<a class="el" href="structQVector.html">QVector</a> &amp;point, vector&lt; <a class="el" href="classQParticle.html">QParticle</a> * &gt; &amp;polygon)</td></tr>
@@ -313,74 +313,9 @@ static <a class="el" href="classQObjectPool.html">QObjectPool</a>&lt; <a class="
 </div><div class="memdoc">
 <p>Checks collisions between circle(s) and polygon. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">particlesA</td><td>A collection of particles representing one or more circles, each having a radius. </td></tr>
-    <tr><td class="paramname">particlesB</td><td>A collection of particles that make up a polygon. </td></tr>
-    <tr><td class="paramname">contacts</td><td>A collection where collision contact information will be stored. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a13554eb3b67f317990d31bea8eb69675"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a13554eb3b67f317990d31bea8eb69675">&#9670;&nbsp;</a></span>CircleAndPolyline()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void QCollision::CircleAndPolyline </td>
-          <td>(</td>
-          <td class="paramtype">vector&lt; <a class="el" href="classQParticle.html">QParticle</a> * &gt; &amp;&#160;</td>
-          <td class="paramname"><em>circleParticles</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">vector&lt; <a class="el" href="classQParticle.html">QParticle</a> * &gt; &amp;&#160;</td>
-          <td class="paramname"><em>polylineParticles</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classQAABB.html">QAABB</a>&#160;</td>
-          <td class="paramname"><em>polylineAABB</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">vector&lt; <a class="el" href="structQCollision_1_1Contact.html">QCollision::Contact</a> * &gt; &amp;&#160;</td>
-          <td class="paramname"><em>contacts</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>circlesArePolygon</em> = <code>false</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Checks collisions between circles and polyline. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
     <tr><td class="paramname">circleParticles</td><td>A collection of particles representing one or more circles, each having a radius. </td></tr>
-    <tr><td class="paramname">polylineParticles</td><td>A collection of particles that make up a polyline. </td></tr>
-    <tr><td class="paramname">polylineAABB</td><td>AABB of polyline for tests between circle and AABB. </td></tr>
+    <tr><td class="paramname">polygonParticles</td><td>A collection of particles that make up a polygon. </td></tr>
     <tr><td class="paramname">contacts</td><td>A collection where collision contact information will be stored. </td></tr>
-    <tr><td class="paramname">circlesArePolygon</td><td>It defines whether circle particles is the part of a polygon. <br  />
- </td></tr>
   </table>
   </dd>
 </dl>
@@ -677,6 +612,65 @@ static <a class="el" href="classQObjectPool.html">QObjectPool</a>&lt; <a class="
 <dl class="section note"><dt>Note</dt><dd>To check collisions between two polylines, call this method twice with the polylines swapped as arguments. </dd>
 <dd>
 "Polyline" is commonly used to define polygons for softbody objects. In contrast to a solid and filled polygon , you can think of a polyline as a polygon shape formed by a connected and knotted rope. If a polygon-shaped rope is deformed, it may not always remain a polygon, it can overlap and its corners can merge. Collision testing for a polyline is performed based on these assumptions </dd></dl>
+
+</div>
+</div>
+<a id="a25cdf1f3be7c6eb61f692b8ef7ddd47e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25cdf1f3be7c6eb61f692b8ef7ddd47e">&#9670;&nbsp;</a></span>PolylineAndPolyline()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QCollision::PolylineAndPolyline </td>
+          <td>(</td>
+          <td class="paramtype">vector&lt; <a class="el" href="classQParticle.html">QParticle</a> * &gt; &amp;&#160;</td>
+          <td class="paramname"><em>testPolylineParticles</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; <a class="el" href="classQParticle.html">QParticle</a> * &gt; &amp;&#160;</td>
+          <td class="paramname"><em>targetPolylineParticles</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classQAABB.html">QAABB</a>&#160;</td>
+          <td class="paramname"><em>polylineAABB</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; <a class="el" href="structQCollision_1_1Contact.html">QCollision::Contact</a> * &gt; &amp;&#160;</td>
+          <td class="paramname"><em>contacts</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Checks collisions between polyline and polyline. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">circleParticles</td><td>A collection of particles representing one or more circles, each having a radius. </td></tr>
+    <tr><td class="paramname">polylineParticles</td><td>A collection of particles that make up a polyline. </td></tr>
+    <tr><td class="paramname">polylineAABB</td><td>AABB of polyline for tests between circle and AABB. </td></tr>
+    <tr><td class="paramname">contacts</td><td>A collection where collision contact information will be stored. </td></tr>
+    <tr><td class="paramname">circlesArePolygon</td><td>It defines whether circle particles is the part of a polygon. <br  />
+ </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
