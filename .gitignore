@@ -12,3 +12,5 @@ resources/robotoFont.hpp.gch
 .vscode/
 .qtc_clangd/
 QuarkPhysics.creator.user
+*.o
+*.os

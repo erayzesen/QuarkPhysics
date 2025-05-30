@@ -982,9 +982,23 @@ vector<QCollision::Contact*> QWorld::GetCollisions(QBody *bodyA, QBody *bodyB){
 					QCollision::CircleAndPolygon(polylineMesh->polygon,polygonMesh->polygon,contactList);
 					QCollision::CircleAndPolygon(polygonMesh->polygon,polylineMesh->polygon,contactList);
 				}else{
-
-					QCollision::CircleAndPolygon(polylineMesh->polygon,polygonMesh->polygon,contactList);
-					QCollision::PolylineAndPolygon(polylineMesh->polygon,polygonMesh->polygon, contactList);
+					vector<QCollision::Contact*> hotContactList;
+					QManifold hotManifold(bodyA,bodyB);
+					QCollision::CircleAndPolygon(polylineMesh->polygon,polygonMesh->polygon,hotContactList);
+					hotManifold.contacts=hotContactList;
+					hotManifold.Solve();
+					hotManifold.SolveFrictionAndVelocities();
+					
+					QCollision::PolylineAndPolygon(polylineMesh->polygon,polygonMesh->polygon,contactList);
+					
+					/* if(polygonMesh->GetOwnerBody()->GetMode()==QBody::Modes::DYNAMIC ){
+						QCollision::PolylineAndPolygon(polylineMesh->polygon,polygonMesh->polygon,contactList);
+					}else{
+						QAABB polylineAABB=polylineMesh==meshA ? bboxA:bboxB; 
+						QCollision::PolylineAndPolyline(polygonMesh->polygon,polylineMesh->polygon,polylineAABB, contactList);
+					} */
+					
+					
 				}
 				
 
@@ -1010,27 +1024,7 @@ vector<QCollision::Contact*> QWorld::GetCollisions(QBody *bodyA, QBody *bodyB){
 				
 				if(bodyA->simulationModel==QBody::SimulationModels::MASS_SPRING && bodyB->simulationModel==QBody::SimulationModels::MASS_SPRING){
 					
-					/* QCollision::CircleAndCircle(meshA->polygon,meshB->polygon,bboxB, contactList);
-					QCollision::PolylineAndPolyline(meshA->polygon,meshB->polygon,bboxB,contactList);
-					QCollision::PolylineAndPolyline(meshB->polygon,meshA->polygon,bboxA, contactList); */
-
-					float areaRateMeshA=meshA->GetPolygonArea()/ meshA->GetInitialPolygonArea();
-					float areaRateMeshB=meshB->GetPolygonArea()/ meshB->GetInitialPolygonArea();
-
-					float minRate=0.25f;
-
-					/* if(areaRateMeshA<minRate && areaRateMeshB>minRate){
-						QCollision::CircleAndPolygon(meshA->polygon,meshB->polygon,contactList);
-						QCollision::PolylineAndPolygon( meshA->polygon,meshB->polygon, contactList);
-					}else if(areaRateMeshB<minRate && areaRateMeshA>minRate){
-						QCollision::CircleAndPolygon(meshB->polygon,meshA->polygon,contactList);
-						QCollision::PolylineAndPolygon( meshB->polygon,meshA->polygon, contactList);
-					}else{
-						QCollision::CircleAndCircle(meshA->polygon,meshB->polygon,bboxB, contactList);
-						QCollision::PolylineAndPolyline(meshA->polygon,meshB->polygon,bboxB,contactList);
-						QCollision::PolylineAndPolyline(meshB->polygon,meshA->polygon,bboxA, contactList);
-					} */
-
+					
 					QCollision::PolylineAndPolyline(meshA->polygon,meshB->polygon,bboxB,contactList);
 					QCollision::PolylineAndPolyline(meshB->polygon,meshA->polygon,bboxA, contactList);
 
@@ -1042,15 +1036,7 @@ vector<QCollision::Contact*> QWorld::GetCollisions(QBody *bodyA, QBody *bodyB){
 						
 				}
 
-				//SAT Test - Experimental 
-				/* for(size_t a=0;a<meshA->GetSubConvexPolygonCount();a++){
-					vector<QParticle*> polygonA=meshA->GetSubConvexPolygonAt(a);
-					for(size_t b=0;b<meshB->GetSubConvexPolygonCount();b++){
-						vector<QParticle*> polygonB=meshB->GetSubConvexPolygonAt(b);
-						QCollision::PolygonAndPolygon(polygonA,polygonB,contactList);
-
-					}
-				} */
+				
 
 				
 				

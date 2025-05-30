@@ -42,6 +42,9 @@ class QSpring
 	QParticle *pB;
 	float length;
 	bool isInternal=false;
+	bool enableDistanceLimit=false;
+	float minimumDistanceFactor=0.25f;
+	float maximumDistanceFactor=4.0f;
 	bool enabled=true;
 public:
 	/**
@@ -91,10 +94,29 @@ public:
 	float GetRigidity(){
 		return rigidity;
 	}
+
+	/** Returns whether the distance limit is enabled.
+	 *  If enabled, the spring applies full-strength constraints when the distance between particles
+	 *  becomes smaller or larger than the allowed range defined by the minimum and maximum distance factors.
+	 */
+	bool GetDistanceLimitEnabled(){
+		return enableDistanceLimit;
+	}
+	/**  Returns the minimum distance factor to be enforced when the distance limits feature is enabled. */
+	float GetMinimumDistanceFactor(){
+		return minimumDistanceFactor;
+	}
+	/**  Returns the maximum distance factor to be enforced when the distance limits feature is enabled. */
+	float GetMaximumDistanceFactor(){
+		return minimumDistanceFactor;
+	}
+
 	/** Returns whether the spring is enabled. */
 	bool GetEnabled(){
 		return enabled;
 	}
+
+	
 
 	//Set Methods
 	/** Sets particleA of the spring.
@@ -137,6 +159,26 @@ public:
 		this->rigidity=rigidity;
 		return this;
 	}
+
+	/** Sets whether the distance limit is enabled.
+	 *  If enabled, the spring applies full-strength constraints when the distance between particles
+	 *  becomes smaller or larger than the allowed range defined by the minimum and maximum distance factors.
+	 */
+	QSpring *SetDistanceLimitEnabled(bool value){
+		enableDistanceLimit=value;
+		return this;
+	}
+	/**  Sets the minimum distance factor to be enforced when the distance limits feature is enabled. */
+	QSpring *SetMinimumDistanceFactor(float value){
+		minimumDistanceFactor=value;
+		return this;
+	}
+	/**  Sets the maximum distance factor to be enforced when the distance limits feature is enabled. */
+	QSpring *SetMaximumDistanceFactor(float value){
+		maximumDistanceFactor=value;
+		return this;
+	}
+
 	/** Sets whether the spring is enabled. 
 	 * @param value True or false.
 	 * @return A pointer to the spring itself.
