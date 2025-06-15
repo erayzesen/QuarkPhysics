@@ -1,8 +1,0 @@
-<map id="QBroadPhase" name="QBroadPhase">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,108,32"/>
-<area shape="rect" id="node2" href="$classQWorld.html" title="A QWorld object is required to create a physics simulation. The QWorld class manages the entire physi..." alt="" coords="152,103,217,130"/>
-<area shape="rect" id="node5" href="$classQBody.html" title="QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m..." alt="" coords="260,231,323,257"/>
-<area shape="rect" id="node3" href="$structQVector.html" title=" " alt="" coords="224,5,295,32"/>
-<area shape="rect" id="node4" href="$structQBroadPhase_1_1Node.html" title=" " alt="" coords="220,329,363,355"/>
-<area shape="rect" id="node6" href="$classQAABB.html" title=" " alt="" coords="420,103,488,130"/>
-</map>

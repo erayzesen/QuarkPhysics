@@ -1,4 +1,0 @@
-var structdetail_1_1container__input__adapter__factory__impl_1_1container__input__adapter__factory_3983614ac0e8828aa386ca24b1ddc2bd1 =
-[
-    [ "adapter_type", "structdetail_1_1container__input__adapter__factory__impl_1_1container__input__adapter__factory_3983614ac0e8828aa386ca24b1ddc2bd1.html#a207039125e6dcb091170b0b6f8e05cdb", null ]
-];

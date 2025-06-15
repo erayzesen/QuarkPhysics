@@ -1,9 +1,0 @@
-<map id="detail::exception" name="detail::exception">
-<area shape="rect" id="node1" title="general exception of the basic_json class" alt="" coords="157,107,275,133"/>
-<area shape="rect" id="node3" href="$classdetail_1_1invalid__iterator.html" title="exception indicating errors with iterators" alt="" coords="323,5,468,32"/>
-<area shape="rect" id="node4" href="$classdetail_1_1other__error.html" title="exception indicating other library errors" alt="" coords="334,56,457,83"/>
-<area shape="rect" id="node5" href="$classdetail_1_1out__of__range.html" title="exception indicating access out of the defined range" alt="" coords="327,107,463,133"/>
-<area shape="rect" id="node6" href="$classdetail_1_1parse__error.html" title="exception indicating a parse error" alt="" coords="332,157,459,184"/>
-<area shape="rect" id="node7" href="$classdetail_1_1type__error.html" title="exception indicating executing a member function with a wrong type" alt="" coords="336,208,455,235"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,107,109,133"/>
-</map>
