@@ -182,6 +182,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a24c1b65f30f2c38994d872e0ba50b35b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9b299ae5b61e074cde70d2a6b6241957"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh.html#a9b299ae5b61e074cde70d2a6b6241957">GetParticleIndex</a> (<a class="el" href="classQParticle.html">QParticle</a> *particle)</td></tr>
 <tr class="separator:a9b299ae5b61e074cde70d2a6b6241957"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d270c858cafea9314cab5c43f8af8d4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structQVector.html">QVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh.html#a8d270c858cafea9314cab5c43f8af8d4">GetAveragePosition</a> ()</td></tr>
+<tr class="separator:a8d270c858cafea9314cab5c43f8af8d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8a9084c6f187bbd629b3fbf9f5a4def"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh.html#af8a9084c6f187bbd629b3fbf9f5a4def">GetAverageRotation</a> ()</td></tr>
+<tr class="separator:af8a9084c6f187bbd629b3fbf9f5a4def"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa576624345068d6c3448ebb18944c5c3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structQMesh.html">QMesh</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh.html#aa576624345068d6c3448ebb18944c5c3">SetPolygon</a> (vector&lt; <a class="el" href="classQParticle.html">QParticle</a> * &gt; polygonParticles)</td></tr>
 <tr class="separator:aa576624345068d6c3448ebb18944c5c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4f7e3023e5cff96a91adba31068fcc38"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structQMesh.html">QMesh</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQMesh.html#a4f7e3023e5cff96a91adba31068fcc38">AddParticleToPolygon</a> (<a class="el" href="classQParticle.html">QParticle</a> *particle, int position=-1)</td></tr>
@@ -463,7 +467,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QParticle</b></td></
 </div><div class="memdoc">
 <p>Adds an angle constraint to mesh </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">angleConstraint</td><td>An angle constraint to be removed. </td></tr>
+    <tr><td class="paramname">angleConstraint</td><td>An angle constraint to be added. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1158,6 +1162,24 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QParticle</b></td></
 
 </div>
 </div>
+<a id="a8d270c858cafea9314cab5c43f8af8d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d270c858cafea9314cab5c43f8af8d4">&#9670;&nbsp;</a></span>GetAveragePosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structQVector.html">QVector</a> QMesh::GetAveragePosition </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns the averaged position calculated from the global positions of the particles of the mesh. </p>
+
+</div>
+</div>
 <a id="a79d8ee4acd7a80a7af82b91213055631"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a79d8ee4acd7a80a7af82b91213055631">&#9670;&nbsp;</a></span>GetAveragePositionAndRotation()</h2>
 
@@ -1191,6 +1213,24 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QParticle</b></td></
 
 </div>
 </div>
+<a id="af8a9084c6f187bbd629b3fbf9f5a4def"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8a9084c6f187bbd629b3fbf9f5a4def">&#9670;&nbsp;</a></span>GetAverageRotation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float QMesh::GetAverageRotation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns the average rotation angle in radians, computed by comparing the current global positions of the moving particles to their initial positions. </p>
+
+</div>
+</div>
 <a id="adb6925d9717f1a53f9d1f27bbe37ea9f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adb6925d9717f1a53f9d1f27bbe37ea9f">&#9670;&nbsp;</a></span>GetCircumference()</h2>
 
@@ -1213,7 +1253,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QParticle</b></td></
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Returns total circumference of all polygons of the mesh (Calculates with local positions of particles) </p>
+<p>Returns total circumference of the polygon of the mesh (Calculates with local positions of particles) </p>
 
 </div>
 </div>
@@ -2330,7 +2370,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QParticle</b></td></
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Removes the springs that contain the specified particle. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Removes a UV map to the mesh at the specified index. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">index</td><td>The index of the UV map to be removed. </td></tr>
   </table>

@@ -17,10 +17,12 @@ var searchData=
   ['collisionexiteventlistener_43',['CollisionExitEventListener',['../classQAreaBody.html#a0e4e2d0e3d97ad4a1ab07ef9763fa5bf',1,'QAreaBody']]],
   ['collisioninfo_44',['CollisionInfo',['../structQBody_1_1CollisionInfo.html',1,'QBody']]],
   ['collisiontestinfo_45',['CollisionTestInfo',['../structQPlatformerBody_1_1CollisionTestInfo.html',1,'QPlatformerBody']]],
-  ['contact_46',['Contact',['../structQCollision_1_1Contact.html',1,'QCollision::Contact'],['../structQRaycast_1_1Contact.html',1,'QRaycast::Contact']]],
-  ['contacts_47',['contacts',['../classQManifold.html#abe4976b5c4b0716949a5f62ba5ec537d',1,'QManifold']]],
-  ['createwithcircle_48',['CreateWithCircle',['../structQMesh.html#a3f9aeaed089ee82fa425f8c98ed63f02',1,'QMesh']]],
-  ['createwithmeshdata_49',['CreateWithMeshData',['../structQMesh.html#a5dfa8ce766a225b9e788004ac7aed63a',1,'QMesh']]],
-  ['createwithpolygon_50',['CreateWithPolygon',['../structQMesh.html#a75523f7fed5db8b2e3c6aa6e55afac58',1,'QMesh']]],
-  ['createwithrect_51',['CreateWithRect',['../structQMesh.html#a46fdef1c61a493ed8bd1673604152af1',1,'QMesh']]]
+  ['computelinearforce_46',['ComputeLinearForce',['../classQAreaBody.html#a6f7de5a62bb4bf0ccfcfc3648578b5dc',1,'QAreaBody']]],
+  ['computelinearforcelistener_47',['ComputeLinearForceListener',['../classQAreaBody.html#aa49c6a76ae2249d603541e8ac8491d05',1,'QAreaBody']]],
+  ['contact_48',['Contact',['../structQCollision_1_1Contact.html',1,'QCollision::Contact'],['../structQRaycast_1_1Contact.html',1,'QRaycast::Contact']]],
+  ['contacts_49',['contacts',['../classQManifold.html#abe4976b5c4b0716949a5f62ba5ec537d',1,'QManifold']]],
+  ['createwithcircle_50',['CreateWithCircle',['../structQMesh.html#a3f9aeaed089ee82fa425f8c98ed63f02',1,'QMesh']]],
+  ['createwithmeshdata_51',['CreateWithMeshData',['../structQMesh.html#a5dfa8ce766a225b9e788004ac7aed63a',1,'QMesh']]],
+  ['createwithpolygon_52',['CreateWithPolygon',['../structQMesh.html#a75523f7fed5db8b2e3c6aa6e55afac58',1,'QMesh']]],
+  ['createwithrect_53',['CreateWithRect',['../structQMesh.html#a46fdef1c61a493ed8bd1673604152af1',1,'QMesh']]]
 ];

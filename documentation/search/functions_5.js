@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['lineintersectionline_643',['LineIntersectionLine',['../classQCollision.html#a41488554995a8cf32cf9b1aa3b59e808',1,'QCollision']]]
+  ['jump_653',['Jump',['../classQPlatformerBody.html#a6bab2aecc1653992c0f3903e7c18f5aa',1,'QPlatformerBody']]]
 ];

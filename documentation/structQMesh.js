@@ -20,6 +20,8 @@ var structQMesh =
     [ "GetAngleConstraintCount", "structQMesh.html#a606ba316e5d5376ed105aa0a97aa9652", null ],
     [ "GetAngleConstraintIndex", "structQMesh.html#a9c8fbe11f5054c3429bf8b1ae97462ac", null ],
     [ "GetArea", "structQMesh.html#a952f166f1c49a36006981db7ed406b62", null ],
+    [ "GetAveragePosition", "structQMesh.html#a8d270c858cafea9314cab5c43f8af8d4", null ],
+    [ "GetAverageRotation", "structQMesh.html#af8a9084c6f187bbd629b3fbf9f5a4def", null ],
     [ "GetCircumference", "structQMesh.html#adb6925d9717f1a53f9d1f27bbe37ea9f", null ],
     [ "GetCollisionBehavior", "structQMesh.html#afe423292a3655c6d1b0756853fdf9dfc", null ],
     [ "GetGlobalPosition", "structQMesh.html#a10599397b147c11ea6067890cb187b81", null ],

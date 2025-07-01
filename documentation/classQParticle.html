@@ -252,7 +252,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QCollision</b></td><
 </div><div class="memdoc">
 <p>Adds a new force to the accumulated forces. The purpose of the accumulated forces is to apply their arithmetic average using ApplyAccumulatedForce(). Before performing operations with the accumulated forces, they must be cleared using ClearAccumulatedForce(). </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">value</td><td>A value to add. </td></tr>
+    <tr><td class="paramname">value</td><td>A value to be added. </td></tr>
   </table>
   </dd>
 </dl>
@@ -278,7 +278,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QCollision</b></td><
 <p>Adds a value to the force of the particle.Set forces determine the force to be applied to a particle object at the next physics step from the current step. <br  />
  </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">value</td><td>A value to add. </td></tr>
+    <tr><td class="paramname">value</td><td>A value to be added. </td></tr>
   </table>
   </dd>
 </dl>
@@ -328,7 +328,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QCollision</b></td><
 </div><div class="memdoc">
 <p>Adds a value to the local position of the particle. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">value</td><td>A value to add. </td></tr>
+    <tr><td class="paramname">value</td><td>A value to be added. </td></tr>
   </table>
   </dd>
 </dl>
@@ -353,7 +353,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QCollision</b></td><
 </div><div class="memdoc">
 <p>Adds a value to the previous global position of the particle. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">value</td><td>A value to add. </td></tr>
+    <tr><td class="paramname">value</td><td>A value to be added. </td></tr>
   </table>
   </dd>
 </dl>
@@ -527,7 +527,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QCollision</b></td><
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Returns whether the particle is enabled. Disabled particles are not exempt from the collision tests that involve the meshes they belong to, but the solutions of their manifolds are not applied. Additionally, in body types where particles can move freely individually (e.g., <a class="el" href="classQSoftBody.html" title="QSoftBody is a body type that defines deformable, soft objects in the physics world....">QSoftBody</a>), force and velocity integrations are not applied. </p><dl class="section note"><dt>Note</dt><dd>Disabled particles in <a class="el" href="classQRigidBody.html" title="QRigidBody is a type of body that is simulated with the dynamics of Rigid body. A rigid body is a typ...">QRigidBody</a> objects may appear to move because they are transformed based on the position and rotation of the rigid body. </dd></dl>
+<p>Returns whether the particle is enabled. Disabled particles are not exempt from the collision tests that involve the meshes they belong to, but the solutions of their manifolds are not applied. Additionally, in body types where particles can move freely individually (e.g., <a class="el" href="classQSoftBody.html" title="QSoftBody is a body type that defines deformable, soft objects in the physics world....">QSoftBody</a>), force and velocity integrations are not applied. </p><dl class="section note"><dt>Note</dt><dd>Disabled particles in <a class="el" href="classQRigidBody.html" title="QRigidBody is a type of body that is simulated with the dynamics of Rigid body. A rigid body is a typ...">QRigidBody</a> objects may appear to move, because they are transformed based on the rigid body's position and rotation, and their positions are updated directly. </dd></dl>
 
 </div>
 </div>
@@ -1009,7 +1009,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QCollision</b></td><
 </div><div class="memdoc">
 <p>Sets the previous global position of the particle. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">value</td><td>A position value to set. </td></tr>
+    <tr><td class="paramname">value</td><td>A position value to be added. </td></tr>
   </table>
   </dd>
 </dl>

@@ -138,6 +138,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a71a78a7ac4edc3748a748f17b4c2cd7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a019886a8b2a34d45a96d80c571ee978b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQAreaBody.html">QAreaBody</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQAreaBody.html#a019886a8b2a34d45a96d80c571ee978b">SetLinearForceToApply</a> (<a class="el" href="structQVector.html">QVector</a> value)</td></tr>
 <tr class="separator:a019886a8b2a34d45a96d80c571ee978b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc670183b1660b501e9ee15c68cc961f"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="classQBody.html">QBody</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQAreaBody.html#afc670183b1660b501e9ee15c68cc961f">GetBodies</a> () const</td></tr>
+<tr class="separator:afc670183b1660b501e9ee15c68cc961f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f7de5a62bb4bf0ccfcfc3648578b5dc"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structQVector.html">QVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQAreaBody.html#a6f7de5a62bb4bf0ccfcfc3648578b5dc">ComputeLinearForce</a> (<a class="el" href="classQBody.html">QBody</a> *body)</td></tr>
+<tr class="separator:a6f7de5a62bb4bf0ccfcfc3648578b5dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5551a725cf22612237a63cd4591e53d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQAreaBody.html#aa5551a725cf22612237a63cd4591e53d">HasBody</a> (<a class="el" href="classQBody.html">QBody</a> *body)</td></tr>
+<tr class="separator:aa5551a725cf22612237a63cd4591e53d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classQBody"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classQBody')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classQBody.html">QBody</a></td></tr>
 <tr class="memitem:a00f0e011bd36088c6619bf7b11bf2ff5 inherit pub_methods_classQBody"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#a00f0e011bd36088c6619bf7b11bf2ff5">OnPreStep</a> ()</td></tr>
 <tr class="separator:a00f0e011bd36088c6619bf7b11bf2ff5 inherit pub_methods_classQBody"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -289,6 +295,8 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a85a64377b36234e5c2da47cdc4cede96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0e4e2d0e3d97ad4a1ab07ef9763fa5bf"><td class="memItemLeft" align="right" valign="top">std::function&lt; void(<a class="el" href="classQAreaBody.html">QAreaBody</a> *areaBody, <a class="el" href="classQBody.html">QBody</a> *collidedBody)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQAreaBody.html#a0e4e2d0e3d97ad4a1ab07ef9763fa5bf">CollisionExitEventListener</a></td></tr>
 <tr class="separator:a0e4e2d0e3d97ad4a1ab07ef9763fa5bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa49c6a76ae2249d603541e8ac8491d05"><td class="memItemLeft" align="right" valign="top">std::function&lt; <a class="el" href="structQVector.html">QVector</a>(<a class="el" href="classQBody.html">QBody</a> *body)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQAreaBody.html#aa49c6a76ae2249d603541e8ac8491d05">ComputeLinearForceListener</a></td></tr>
+<tr class="separator:aa49c6a76ae2249d603541e8ac8491d05"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_attribs_classQBody"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_classQBody')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="classQBody.html">QBody</a></td></tr>
 <tr class="memitem:a9b43b9c0368b080fc4b83754bd42ae1f inherit pub_attribs_classQBody"><td class="memItemLeft" align="right" valign="top">std::function&lt; void(<a class="el" href="classQBody.html">QBody</a> *body)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQBody.html#a9b43b9c0368b080fc4b83754bd42ae1f">PreStepEventListener</a></td></tr>
 <tr class="separator:a9b43b9c0368b080fc4b83754bd42ae1f inherit pub_attribs_classQBody"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -452,6 +460,59 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>ignoreGravity</b> =fa
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classQAreaBody.html" title="QAreaBody objects are objects that don&#39;t respond to collisions or receive any response from them,...">QAreaBody</a> objects are objects that don't respond to collisions or receive any response from them, but only report collisions. An operation is not applied for them to move during physics steps, they are stationary. Unlike other body types, they have two event listeners named OnCollisionEnter and OnCollisionExit. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a6f7de5a62bb4bf0ccfcfc3648578b5dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f7de5a62bb4bf0ccfcfc3648578b5dc">&#9670;&nbsp;</a></span>ComputeLinearForce()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="structQVector.html">QVector</a> QAreaBody::ComputeLinearForce </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classQBody.html">QBody</a> *&#160;</td>
+          <td class="paramname"><em>body</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>A virtual function that enables the calculation of the <b>linearForceToApply</b> value specifically for each <b>body</b> object. If not overridden, it applies the <b>linearForceToApply</b> value defined for <b><a class="el" href="classQAreaBody.html" title="QAreaBody objects are objects that don&#39;t respond to collisions or receive any response from them,...">QAreaBody</a></b> as a force to all objects. Additionally, if <b>ComputeLinearForceListener</b> is defined and not overridden, it applies the value returned by that listener. </p><dl class="section return"><dt>Returns</dt><dd>Computed linear force value </dd></dl>
+
+</div>
+</div>
+<a id="afc670183b1660b501e9ee15c68cc961f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc670183b1660b501e9ee15c68cc961f">&#9670;&nbsp;</a></span>GetBodies()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt;<a class="el" href="classQBody.html">QBody</a>*&gt; QAreaBody::GetBodies </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Returns a collection of all QBodyNode objects currently within the area. </p><dl class="section return"><dt>Returns</dt><dd>A body collection. </dd></dl>
+
+</div>
+</div>
 <a id="ad0e3ea743108cd4af0f900425b8a2e8e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad0e3ea743108cd4af0f900425b8a2e8e">&#9670;&nbsp;</a></span>GetGravityFreeEnabled()</h2>
 
@@ -501,6 +562,33 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>ignoreGravity</b> =fa
 </table>
 </div><div class="memdoc">
 <p>Returns the amount of linear force to be applied to objects entering the area. If a force vector is defined, objects entering the area will be continuously subjected to this force. </p>
+
+</div>
+</div>
+<a id="aa5551a725cf22612237a63cd4591e53d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5551a725cf22612237a63cd4591e53d">&#9670;&nbsp;</a></span>HasBody()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool QAreaBody::HasBody </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classQBody.html">QBody</a> *&#160;</td>
+          <td class="paramname"><em>body</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Returns whether a given body is currently in contact with this <a class="el" href="classQAreaBody.html" title="QAreaBody objects are objects that don&#39;t respond to collisions or receive any response from them,...">QAreaBody</a>. </p>
 
 </div>
 </div>
@@ -671,6 +759,26 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>ignoreGravity</b> =fa
   <table class="params">
     <tr><td class="paramname">areaBody</td><td>An area body. </td></tr>
     <tr><td class="paramname">collidedBody</td><td>The collided body. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa49c6a76ae2249d603541e8ac8491d05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa49c6a76ae2249d603541e8ac8491d05">&#9670;&nbsp;</a></span>ComputeLinearForceListener</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::function&lt;<a class="el" href="structQVector.html">QVector</a>(<a class="el" href="classQBody.html">QBody</a> *body)&gt; QAreaBody::ComputeLinearForceListener</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Listener responsible for calculating the LinearForce value to be applied specifically to each body object. If this listener function is defined, it will be used as the return value of the <a class="el" href="classQAreaBody.html#a6f7de5a62bb4bf0ccfcfc3648578b5dc">QAreaBody::ComputeLinearForce()</a> virtual function. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">body</td><td>The body object within the area. </td></tr>
   </table>
   </dd>
 </dl>

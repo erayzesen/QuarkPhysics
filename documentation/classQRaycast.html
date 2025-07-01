@@ -226,7 +226,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QWorld</b></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Returns the bit mask that represents the layers in which the body object is present. </p>
+<p>Returns the bitmask of layers the ray can collide with. The bit mask defines the collidable layers a body object is part of. A raycast object will only collide with body objects that are present in the layers specified by this mask. </p>
 
 </div>
 </div>
@@ -262,7 +262,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QWorld</b></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Returns whether a body should be ignored in raycast collisions if the ray position is inside the shape representing the body in the world. If set to true, these objects will be ignored in raycast collisions. </p>
+<p>Returns whether to consider the body containing the ray's position. If set to true and the ray is inside a body's collision shape, the collision point will be the ray's starting point, and the first body hit will be this containing body. </p>
 
 </div>
 </div>
@@ -401,8 +401,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QWorld</b></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Sets the bit mask that represents the collidable layers in which the body object is present.A raycast object can collide with other body objects present in the layers defined by the user. <br  />
- </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Sets the bitmask of layers the ray can collide with. The bit mask defines the collidable layers a body object is part of. A raycast object will only collide with body objects that are present in the layers specified by this mask. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">value</td><td>A bit mask value to set. <br  />
  </td></tr>
@@ -427,7 +426,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QWorld</b></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Sets whether a body should be ignored in raycast collisions if the ray position is inside the shape representing the body in the world. If set to true, these objects will be ignored in raycast collisions. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Sets whether to consider the body containing the ray's position. If set to true and the ray is inside a body's collision shape, the collision point will be the ray's starting point, and the first body hit will be this containing body. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">value</td><td>True or false. </td></tr>
   </table>
