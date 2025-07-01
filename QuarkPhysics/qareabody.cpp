@@ -55,8 +55,11 @@ void QAreaBody::CheckBodies(){
 			blackList.push_back(body);
 			bodyIsOnBlackList=true;
 		}
+		
+		QVector linear_force=ComputeLinearForce(body);
+		if (gravityFree==true || linear_force!=QVector::Zero() ){
 
-		if (gravityFree==true || linearForceToApply!=QVector::Zero() ){
+			
 
 			if(body->GetBodyType()==QBody::BodyTypes::RIGID){
 				if(bodyIsOnBlackList){
@@ -67,8 +70,8 @@ void QAreaBody::CheckBodies(){
 					if (gravityFree==true && body->ignoreGravity==false){
 						body->ignoreGravity=true;
 					}
-					if(linearForceToApply!=QVector::Zero() ){
-						body->ApplyForce(linearForceToApply);
+					if(linear_force!=QVector::Zero() ){
+						body->ApplyForce(linear_force);
 					}
 				}
 				
@@ -128,8 +131,8 @@ void QAreaBody::CheckBodies(){
 								particle->ignoreGravity=particleCollisionChecklist[m];
 							}
 
-							if (linearForceToApply!=QVector::Zero() && body->GetMode()!=QBody::STATIC ){
-								particle->ApplyForce(linearForceToApply);
+							if (linear_force!=QVector::Zero() && body->GetMode()!=QBody::STATIC ){
+								particle->ApplyForce(linear_force);
 							}
 						}
 

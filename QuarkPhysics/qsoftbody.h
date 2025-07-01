@@ -257,7 +257,7 @@ public:
 	bool GetPassivationOfInternalSpringsEnabled(){
 		return enablePassivationOfInternalSprings;
 	}
-	/** Returns whether the shape matcing option is enabled for the body. If set to true, during the simulation process, all particles are forced to stay true to their undeformed positions.*/
+	/** Returns whether the shape matching option is enabled for the body. If set to true, during the simulation process, all particles are forced to stay true to their undeformed positions.*/
 	bool GetShapeMatchingEnabled(){
 		return enableShapeMatching;
 	}
@@ -273,12 +273,12 @@ public:
 		return enableShapeMatchingFixedTransform;
 	}
 
-	/** Sets the position of the target shape during shape matching if the fixed transform feature is active. */
+	/** Returns the position of the target shape during shape matching if the fixed transform feature is active. */
 	QVector GetShapeMatchingFixedPosition(){
 		return shapeMatchingFixedPosition;
 	}
 
-	/** Sets the rotation of the target shape during shape matching if the fixed transform feature is active.  */
+	/** Returns the rotation of the target shape during shape matching if the fixed transform feature is active.  */
 	float GetShapeMatchingFixedRotation(){
 		return shapeMatchingFixedRotation;
 	}

@@ -943,15 +943,46 @@ vector<QCollision::Contact*> QWorld::GetCollisions(QBody *bodyA, QBody *bodyB){
 
 			bodyA->GetWorld()->debugCollisionTestCount+=1;
 			if(QMesh::CheckCollisionBehaviors(meshA,meshB,QMesh::POLYGONS, QMesh::POLYGONS )){
+				
+				vector<vector< QCollision::Contact*>> contactListPerPolygons;
+
 				for(int a=0;a<meshA->GetSubConvexPolygonCount();a++){
+					vector<QCollision::Contact*> testContactList;
 					for(int b=0;b<meshB->GetSubConvexPolygonCount();b++){
-						QCollision::PolygonAndPolygon(meshA->GetSubConvexPolygonAt(a),meshB->GetSubConvexPolygonAt(b),contactList);
+						QCollision::PolygonAndPolygon(meshA->GetSubConvexPolygonAt(a),meshB->GetSubConvexPolygonAt(b),testContactList);
+
 					}
+					if(testContactList.size()>0 )
+						contactListPerPolygons.push_back(testContactList);
+				}
+				if (contactListPerPolygons.size()>0 ){
+					if (contactListPerPolygons.size()==1){
+						contactList=contactListPerPolygons[0];
+					}else if(contactListPerPolygons.size()>1){
+						//Exceptional of the concave polygons
+						float maxPenetration=-MAX_WORLD_SIZE;
+						size_t winnerPolygonContactsIndex=-1;
+						size_t winnerContactIndex=-1;
+						for(int i=0;i<contactListPerPolygons.size();++i ){
+							vector<QCollision::Contact *> polygonContacts=contactListPerPolygons[i];
+							for (int j=0;j<polygonContacts.size();++j ){
+								QCollision::Contact * contact=polygonContacts[j];
+								if(contact->penetration>maxPenetration){
+									maxPenetration=contact->penetration;
+									winnerContactIndex=j;
+									winnerPolygonContactsIndex=i;
+								}
+							}
+							
+						}
+						//cout<<"Contact Index:"<<winnerContactIndex<<endl;
+						contactList.push_back(contactListPerPolygons[winnerPolygonContactsIndex][winnerContactIndex] );
+
+					}
+					
+					
 				}
 
-				
-				
-				
 
 			}else if(QMesh::CheckCollisionBehaviors(meshA,meshB,QMesh::CIRCLES, QMesh::POLYGONS )){
 				QMesh *circleMesh=meshA->collisionBehavior==QMesh::CIRCLES ? meshA:meshB;
@@ -991,32 +1022,8 @@ vector<QCollision::Contact*> QWorld::GetCollisions(QBody *bodyA, QBody *bodyB){
 					
 					QCollision::PolylineAndPolygon(polylineMesh->polygon,polygonMesh->polygon,contactList);
 					
-					/* if(polygonMesh->GetOwnerBody()->GetMode()==QBody::Modes::DYNAMIC ){
-						QCollision::PolylineAndPolygon(polylineMesh->polygon,polygonMesh->polygon,contactList);
-					}else{
-						QAABB polylineAABB=polylineMesh==meshA ? bboxA:bboxB; 
-						QCollision::PolylineAndPolyline(polygonMesh->polygon,polylineMesh->polygon,polylineAABB, contactList);
-					} */
-					
 					
 				}
-				
-
-				/* QCollision::CircleAndPolygon(polylineMesh->polygon,polygonMesh->polygon,contactList);
-				QCollision::CircleAndPolygon(polygonMesh->polygon,polylineMesh->polygon,contactList); */
-				
-				
-				//SAT Test - Experimental
-				/* for(size_t a=0;a<polylineMesh->GetSubConvexPolygonCount();a++){
-					vector<QParticle*> polylineSub=polylineMesh->GetSubConvexPolygonAt(a);
-					for(size_t b=0;b<polygonMesh->GetSubConvexPolygonCount();b++){
-						vector<QParticle*> polygonSub=polygonMesh->GetSubConvexPolygonAt(b);
-						QCollision::PolygonAndPolygon(polylineSub,polygonSub,contactList);
-
-					}
-				} */
-				
-				
 				
 			}else if(QMesh::CheckCollisionBehaviors(meshA,meshB,QMesh::POLYLINE, QMesh::POLYLINE )){
 				
@@ -1028,19 +1035,8 @@ vector<QCollision::Contact*> QWorld::GetCollisions(QBody *bodyA, QBody *bodyB){
 					QCollision::PolylineAndPolyline(meshA->polygon,meshB->polygon,bboxB,contactList);
 					QCollision::PolylineAndPolyline(meshB->polygon,meshA->polygon,bboxA, contactList);
 
-					
-					
-
-					
-					
 						
 				}
-
-				
-
-				
-				
-				
 
 			}else if(QMesh::CheckCollisionBehaviors(meshA,meshB,QMesh::POLYLINE, QMesh::CIRCLES )){
 				QMesh *circleMesh=meshA->collisionBehavior==QMesh::CIRCLES ? meshA:meshB;

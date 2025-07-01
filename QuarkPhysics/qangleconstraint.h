@@ -100,7 +100,7 @@ public:
 	float GetRigidity(){
 		return rigidity;
 	}
-	/** Returns whether the spring is enabled. */
+	/** Returns whether the angle constraint is enabled. */
 	bool GetEnabled(){
 		return enabled;
 	}

@@ -209,7 +209,7 @@ public:
 		return res;
 	}
 
-	/** Returns total circumference of all polygons of the mesh (Calculates with local positions of particles) */
+	/** Returns total circumference of the polygon of the mesh (Calculates with local positions of particles) */
 	float GetCircumference(){
 		float res=0.0f;
 		for(int i=0;i<polygon.size();i++){
@@ -330,6 +330,13 @@ public:
 		}
 		return -1;
 	}
+	/** Returns the averaged position calculated from the global positions of the particles of the mesh.
+	 */
+	QVector GetAveragePosition();
+
+	/** Returns the average rotation angle in radians, computed by comparing the current global positions of the moving particles to their initial positions.
+	 */
+	float GetAverageRotation();
 
 
 
@@ -496,7 +503,7 @@ public:
 	 */
 	QMesh * AddUVMap(vector<int> map);
 
-	/** Removes the springs that contain the specified particle.
+	/** Removes a UV map to the mesh at the specified index.
 	 * @param index The index of the UV map to be removed.
 	 * @return QMesh* A pointer to mesh itself.
 	 */
@@ -533,7 +540,7 @@ public:
 		return angleConstraints[index];
 	}
 	/** Adds an angle constraint to mesh 
-	 * @param angleConstraint An angle constraint to be removed.
+	 * @param angleConstraint An angle constraint to be added.
 	 * @return QMesh* A pointer to mesh itself.
 	*/
 	QMesh *AddAngleConstraint( QAngleConstraint * angleConstraint ){

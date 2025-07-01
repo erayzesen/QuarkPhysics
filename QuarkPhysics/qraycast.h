@@ -89,9 +89,9 @@ public:
 	float GetRotation();
 	/** Returns the ray vector of the raycast. */
 	QVector GetRayVector();
-	/** Returns whether a body should be ignored in raycast collisions if the ray position is inside the shape representing the body in the world. If set to true, these objects will be ignored in raycast collisions. */ 
+	/** Returns whether to consider the body containing the ray's position. If set to true and the ray is inside a body's collision shape, the collision point will be the ray's starting point, and the first body hit will be this containing body. */ 
 	bool GetEnabledContainingBodies();
-	/**Returns the bit mask that represents the layers in which the body object is present. */
+	/** Returns the bitmask of layers the ray can collide with. The bit mask defines the collidable layers a body object is part of. A raycast object will only collide with body objects that are present in the layers specified by this mask. */
 	int GetCollidableLayersBit();
 
 	//Set Methods
@@ -107,12 +107,12 @@ public:
 	 * @param value A ray vector to set. 
 	 */
 	QRaycast *SetRayVector(QVector value);
-	/** Sets whether a body should be ignored in raycast collisions if the ray position is inside the shape representing the body in the world. If set to true, these objects will be ignored in raycast collisions.
+	/** Sets whether to consider the body containing the ray's position. If set to true and the ray is inside a body's collision shape, the collision point will be the ray's starting point, and the first body hit will be this containing body.
 	 * @param value True or false. 
 	 */
 	QRaycast *SetEnabledContainingBodies(bool value);
 
-	/**Sets the bit mask that represents the collidable layers in which the body object is present.A raycast object can collide with other body objects present in the layers defined by the user.  
+	/** Sets the bitmask of layers the ray can collide with. The bit mask defines the collidable layers a body object is part of. A raycast object will only collide with body objects that are present in the layers specified by this mask.
 	 * @param value A bit mask value to set.  
 	*/
 	QRaycast *SetCollidableLayersBit(int value);

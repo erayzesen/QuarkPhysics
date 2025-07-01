@@ -144,6 +144,27 @@ QParticle *QMesh::GetParticleAt(int index){
 
 //Polygons
 
+QVector QMesh::GetAveragePosition()
+{
+    if(particles.size()==1)
+		return particles[0]->GetGlobalPosition();
+	//Finding Actual Position
+	QVector averagePosition=QVector::Zero();
+	
+	for(int i=0;i<particles.size();i++){
+		QParticle *particle=particles[i];
+		averagePosition+=particle->GetGlobalPosition();
+	}  
+	averagePosition/=particles.size();
+
+	return averagePosition;
+}
+
+float QMesh::GetAverageRotation()
+{
+	return GetAveragePositionAndRotation(particles).second;
+}
+
 QMesh *QMesh::SetPolygon(vector<QParticle *> polygonParticles)
 {
 	polygon=polygonParticles;

@@ -125,7 +125,7 @@ public:
 		return force;
 	}
 	/** Returns whether the particle is enabled. Disabled particles are not exempt from the collision tests that involve the meshes they belong to, but the solutions of their manifolds are not applied. Additionally, in body types where particles can move freely individually (e.g., QSoftBody), force and velocity integrations are not applied.
-	 * @note Disabled particles in QRigidBody objects may appear to move because they are transformed based on the position and rotation of the rigid body.
+	 * @note Disabled particles in QRigidBody objects may appear to move, because they are transformed based on the rigid body's position and rotation, and their positions are updated directly.
 	*/
 	bool GetEnabled(){
 		return enabled;
@@ -161,12 +161,12 @@ public:
 	 */
 	QParticle *AddGlobalPosition(QVector value);
 	/** Sets the previous global position of the particle. 
-	 * @param value A position value to set. 
+	 * @param value A position value to be added. 
 	 * @return A pointer to the particle itself.
 	 */
 	QParticle *SetPreviousGlobalPosition(QVector value);
 	/** Adds a value to the previous global position of the particle. 
-	 * @param value A value to add. 
+	 * @param value A value to be added.
 	 * @return A pointer to the particle itself.
 	 */
 	QParticle *AddPreviousGlobalPosition(QVector value);
@@ -176,7 +176,7 @@ public:
 	 */
 	QParticle *SetPosition(QVector value);
 	/** Adds a value to the local position of the particle. 
-	 * @param value A value to add. 
+	 * @param value A value to be added.
 	 * @return A pointer to the particle itself.
 	 */
 	QParticle *AddPosition(QVector value);
@@ -229,7 +229,7 @@ public:
 	 */
 	QParticle *SetForce(QVector value);
 	/** Adds a value to the force of the particle.Set forces determine the force to be applied to a particle object at the next physics step from the current step.  
-	 * @param value A value to add. 
+	 * @param value A value to be added.
 	 * @return A pointer to the particle itself.
 	 */
 	QParticle *AddForce(QVector value);
@@ -237,7 +237,7 @@ public:
 
 	//Accumulated Forces
 	/** Adds a new force to the accumulated forces. The purpose of the accumulated forces is to apply their arithmetic average using ApplyAccumulatedForce(). Before performing operations with the accumulated forces, they must be cleared using ClearAccumulatedForce().
-	 * @param value A value to add. 
+	 * @param value A value to be added.
 	 * @return A pointer to the particle itself.
 	 */
 	QParticle *AddAccumulatedForce(QVector value);
