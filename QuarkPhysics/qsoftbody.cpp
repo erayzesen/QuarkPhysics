@@ -131,23 +131,29 @@ void QSoftBody::Update()
 			/* if(GetPassivationOfInternalSpringsEnabled() && particle->GetIsInternal())
 				continue; */
 			auto vel=particle->GetGlobalPosition()-particle->GetPreviousGlobalPosition();
+			
 			if (velocityLimit>0.0f && vel.Length()>velocityLimit){
 				vel=velocityLimit*vel.Normalized();
 			}
 			
 			particle->SetPreviousGlobalPosition(particle->GetGlobalPosition() );
-			if(enableIntegratedVelocities==true ){
-				particle->ApplyForce(vel-(vel*airFriction) );
+			if(enableIntegratedVelocities==true && ts!=0.0f ){
+				//add air friction
+				vel=vel-(vel*airFriction);
+				particle->ApplyForce(vel );
 				//Gravity Forces
 				if (particle->ignoreGravity==false ){
 					if(!(particle->GetIsInternal()==true && enablePassivationOfInternalSprings==true) ){
 						if (enableCustomGravity){
 							particle->ApplyForce(customGravity*ts);
+
 						}else{
 							particle->ApplyForce(world->GetGravity()*ts);
 						}
 					}
 				}
+				
+				
 			}
 			particle->ApplyForce(particle->GetForce());
 			particle->SetForce(QVector::Zero());
@@ -253,7 +259,7 @@ void QSoftBody::PreserveAreas()
 				normal=QVector::Zero();
 			} */
 			
-			volumeForces.push_back(pressure*(normal)*ts);
+			volumeForces.push_back(pressure*(normal));
 		}
 
 		for(int n=0;n<mesh->polygon.size();n++){
@@ -307,7 +313,7 @@ void QSoftBody::ApplyShapeMatching()
 		float averageRotation;
 		if(enableShapeMatchingFixedTransform){
 			averagePosition=shapeMatchingFixedPosition;
-			averageRotation=shapeMatchingFixedRotation;
+			averageRotation=-shapeMatchingFixedRotation;
 		}else{
 			auto averagePositionAndRotation=QMesh::GetAveragePositionAndRotation(particles);
 			averagePosition=averagePositionAndRotation.first;
@@ -330,7 +336,7 @@ void QSoftBody::ApplyShapeMatching()
 			QVector distanceUnit=distance.Normalized();
 
 			float distanceLen=distance.Length();
-			float forceLinear=min(distanceLen*distanceLen*(0.02f*(1+rigidity))*shapeMatchingRate*ts,distanceLen*ts);
+			float forceLinear=min(distanceLen*distanceLen*(0.02f*(1+rigidity))*shapeMatchingRate,distanceLen);
 			QVector force=forceLinear*distanceUnit;
 			particle->ApplyForce(force);
 		}

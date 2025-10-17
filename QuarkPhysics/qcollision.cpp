@@ -454,7 +454,7 @@ void QCollision::PolylineAndPolyline(vector<QParticle*> &testPolylineParticles,v
 			}
 
 			if(useMiniResponse){			
-				penetration*=0.2f;
+				penetration*=pA->GetOwnerMesh()->GetOwnerBody()->GetWorld()->GetSoftBodyCollisionHysteresis();
 			}
 		
 
@@ -999,28 +999,31 @@ void QCollision::CircleAndPolygon(vector<QParticle*> &circleParticles,vector<QPa
 			}
 		}
 
+
 		//B. Test collisions to vertex/edge of the polygon
 
 		if(voronoiRegion==0){ //vertice region : vertice
-			if(PointInPolygonWN(circleParticle->GetGlobalPosition(),polygonParticles)){
-				float penetration=circleParticle->GetRadius()+nearestParticlePenetration;
-				QVector contactPosition=circleParticle->GetGlobalPosition();
-				QCollision::Contact *contact=QCollision::GetContactPool().Create().data;
-				contact->Configure(circleParticle,contactPosition,-nearestParticleNormal,penetration,vector<QParticle*>{ nearestPolygonParticle } );
-				contacts.push_back(contact);
-
-			}else{
-
-				if(nearestParticlePenetration<circleParticle->GetRadius() ){
-					float penetration=circleParticle->GetRadius()-nearestParticlePenetration;
+			if (nearestPolygonParticle!=nullptr){
+				if(PointInPolygonWN(circleParticle->GetGlobalPosition(),polygonParticles)){
+					float penetration=circleParticle->GetRadius()+nearestParticlePenetration;
 					QVector contactPosition=circleParticle->GetGlobalPosition();
-					if(circleParticle->GetRadius()>0.5f){
-						contactPosition-=circleParticle->GetRadius()*nearestParticleNormal;
-					}
 					QCollision::Contact *contact=QCollision::GetContactPool().Create().data;
-					contact->Configure(circleParticle,contactPosition,nearestParticleNormal,penetration,vector<QParticle*>{ nearestPolygonParticle } );
+					contact->Configure(circleParticle,contactPosition,-nearestParticleNormal,penetration,vector<QParticle*>{ nearestPolygonParticle } );
 					contacts.push_back(contact);
-
+	
+				}else{
+	
+					if(nearestParticlePenetration<circleParticle->GetRadius() ){
+						float penetration=circleParticle->GetRadius()-nearestParticlePenetration;
+						QVector contactPosition=circleParticle->GetGlobalPosition();
+						if(circleParticle->GetRadius()>0.5f){
+							contactPosition-=circleParticle->GetRadius()*nearestParticleNormal;
+						}
+						QCollision::Contact *contact=QCollision::GetContactPool().Create().data;
+						contact->Configure(circleParticle,contactPosition,nearestParticleNormal,penetration,vector<QParticle*>{ nearestPolygonParticle } );
+						contacts.push_back(contact);
+	
+					}
 				}
 			}
 

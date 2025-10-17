@@ -430,7 +430,7 @@ void QPlatformerBody::PostUpdate()
 
 		tempPosition=GetPosition();
 		AddPosition(dirFloor*movingFloorSnapOffset);
-		vector<QCollision::Contact*> contacts= world->GetCollisions(this,lastMovableFloor);
+		vector<QCollision::Contact*> contacts= world->GetCollisions(this,lastMovableFloor,false);
 		SetPosition(tempPosition);
 
 		if(contacts.size()==0 ){

@@ -106,6 +106,7 @@ protected:
 
 	void CreateIslands(QBody &body, vector<QBody*> island);
 	vector<vector<QBody>> GenerateIslands(vector<QBody> bodyList );
+	float softBodyCollisionHysteresis=0.2f;
 
 	//Constraints
 	void UpdateConstraints();
@@ -175,6 +176,11 @@ public:
 	bool GetEnabled(){
 		return enabled;
 	}
+	/**  Returns the global hysteresis factor for soft body vs soft body collisions.This only affects exceptional stress cases (e.g. when bodies are compressed,moving fast, or heavily stacked). Controls how reactive soft bodies become in such conditions. High values prevent overlaps but may cause aggressive separation behavior; low values allow calmer responses but may lead to brief overlap or missed collisions.
+	 *  The value ranges from 0.0 to 1.0. Default is 0.2.  */
+	float GetSoftBodyCollisionHysteresis(){
+		return softBodyCollisionHysteresis;
+	}
 
 	//General Set Methods
 	/** Sets the gravity force of the world.
@@ -240,7 +246,43 @@ public:
 	 * @param value A value to set.
 	 */
 	QWorld *SetTimeScale(float value=1.0f){
-		timeScale=value;
+		if (timeScale!=value){
+			float velocityTimeScaleFactor=0.0f;
+			if(timeScale!=0){
+				if (value<timeScale){
+					velocityTimeScaleFactor=1/timeScale*value;
+				}else{
+					velocityTimeScaleFactor=1.0f;
+				}
+			}
+			
+			
+			for (auto body:bodies){
+				if(body->enableBodySpecificTimeScale==false){
+					//recalculate velocities
+					if (body->bodyType==QBody::BodyTypes::RIGID){
+						QVector vel=body->GetPosition()-body->GetPreviousPosition();
+						vel*=velocityTimeScaleFactor;
+						body->SetPreviousPosition(body->GetPosition()-vel);
+						float rotVel=body->GetRotation()-body->GetPreviousRotation();
+						rotVel*=velocityTimeScaleFactor;
+						body->SetPreviousRotation(body->GetRotation()-rotVel);
+					}else if(body->bodyType!=QBody::BodyTypes::AREA){
+						for(auto mesh :body->_meshes){
+							for (auto particle :mesh->particles){
+								QVector vel=particle->GetGlobalPosition()-particle->GetPreviousGlobalPosition();
+								vel*=velocityTimeScaleFactor;
+								particle->SetPreviousGlobalPosition(particle->GetGlobalPosition()-vel );
+							}
+						}
+					}
+					body->WakeUp();
+						
+					
+				}
+			}
+			timeScale=value;
+		}
 		return this;
 	}
 
@@ -251,9 +293,15 @@ public:
 		enabled=value;
 		return this;
 	}
-	
 
-	
+	/**  Sets the global hysteresis factor for soft body vs soft body collisions.This only affects exceptional stress cases (e.g. when bodies are compressed,moving fast, or heavily stacked). Controls how reactive soft bodies become in such conditions. High values prevent overlaps but may cause aggressive separation behavior; low values allow calmer responses but may lead to brief overlap or missed collisions.
+	 * The value ranges from 0.0 to 1.0. Default is 0.2.  
+	 * @param value A value to set
+	 * */
+	QWorld *SetSoftBodyCollisionHysteresis(float value){
+		softBodyCollisionHysteresis=value;
+		return this;
+	}
 	
 
 	//Methods
@@ -267,23 +315,28 @@ public:
 	 * Performs the collision of the body and returns a contact list as a collision result. 
 	 * @param bodyA A body in the world.
 	 * @param bodyB Another body in the world.
+	 * @param applyHotSolvers Determines whether hot collision solvers are applied during the collision test.  If the purpose is solely to perform the test, this should be set to false.
 	 */
-	static vector<QCollision::Contact*> GetCollisions(QBody *bodyA, QBody *bodyB);
+	static vector<QCollision::Contact*> GetCollisions(QBody *bodyA, QBody *bodyB,bool applyHotSolvers=true);
 
 
-	/**Adds a body to the world
+	/**
+	 * Adds a body to the world
 	 * @param body A body to be added
 	 */
 	QWorld *AddBody(QBody *body);
-	/**Adds a body group to the world
+	/**
+	 * Adds a body group to the world
 	 * @param bodyGroup A collection of bodies to be added
 	 */
 	QWorld *AddBodyGroup(const vector<QBody*> &bodyGroup);
-	/**Removes body from the world.
+	/**
+	 * Removes body from the world.
 	 * @param body A body to be removed.
 	 */
 	QWorld *RemoveBody(QBody *body);
-	 /**Removes the body from the world at the specified index.
+	 /**
+	  * Removes the body from the world at the specified index.
 	  * The index of a body can be obtained using the GetBodyIndex() method.
 	  * @param index The index of the body to remove.
 	  */

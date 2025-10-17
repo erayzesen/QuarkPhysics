@@ -501,63 +501,96 @@ $(document).ready(function(){initNavTree('qbody_8h_source.html',''); initResizab
 <div class="line"><a name="l00573"></a><span class="lineno">  573</span>&#160;        }</div>
 <div class="line"><a name="l00574"></a><span class="lineno">  574</span>&#160; </div>
 <div class="line"><a name="l00579"></a><span class="lineno"><a class="line" href="classQBody.html#a743249d90c2c1b917760abe8c585548d">  579</a></span>&#160;        <a class="code" href="classQBody.html">QBody</a> *<a class="code" href="classQBody.html#a743249d90c2c1b917760abe8c585548d">SetBodySpecificTimeScale</a>(<span class="keywordtype">float</span> value){</div>
-<div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160;            bodySpecificTimeScale=value;</div>
-<div class="line"><a name="l00581"></a><span class="lineno">  581</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00582"></a><span class="lineno">  582</span>&#160;        }</div>
-<div class="line"><a name="l00587"></a><span class="lineno"><a class="line" href="classQBody.html#ad9d11f1b62c3dbb79b72c76c527aa352">  587</a></span>&#160;        <a class="code" href="classQBody.html">QBody</a> *<a class="code" href="classQBody.html#ad9d11f1b62c3dbb79b72c76c527aa352">SetEnabled</a>(<span class="keywordtype">bool</span> value){</div>
-<div class="line"><a name="l00588"></a><span class="lineno">  588</span>&#160;            enabled=value;</div>
-<div class="line"><a name="l00589"></a><span class="lineno">  589</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00590"></a><span class="lineno">  590</span>&#160;        }</div>
-<div class="line"><a name="l00591"></a><span class="lineno">  591</span>&#160; </div>
-<div class="line"><a name="l00597"></a><span class="lineno">  597</span>&#160;        <a class="code" href="classQBody.html">QBody</a> *<a class="code" href="classQBody.html#a134419c1fab50cb1cc9034c9299c4658">SetIntegratedVelocitiesEnabled</a>(<span class="keywordtype">bool</span> value);</div>
-<div class="line"><a name="l00598"></a><span class="lineno">  598</span>&#160; </div>
-<div class="line"><a name="l00604"></a><span class="lineno">  604</span>&#160;        <a class="code" href="classQBody.html">QBody</a> *<a class="code" href="classQBody.html#a4592fb155b7a6a4e7cc0166561b0be60">SetCustomGravityEnabled</a>(<span class="keywordtype">bool</span> value);</div>
-<div class="line"><a name="l00605"></a><span class="lineno">  605</span>&#160; </div>
-<div class="line"><a name="l00611"></a><span class="lineno">  611</span>&#160;        <a class="code" href="classQBody.html">QBody</a> *<a class="code" href="classQBody.html#a7f79a5f433884e903ed44ee4563037a1">SetCustomGravity</a>(<a class="code" href="structQVector.html">QVector</a> value);</div>
-<div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160; </div>
-<div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160; </div>
-<div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160;        <span class="comment">//Mesh Methods</span></div>
-<div class="line"><a name="l00619"></a><span class="lineno">  619</span>&#160;<span class="comment"></span>        <a class="code" href="classQBody.html">QBody</a> * <a class="code" href="classQBody.html#a17bfcd06492a9e566eb930e698b4c3c4">AddMesh</a>(<a class="code" href="structQMesh.html">QMesh</a> *mesh);</div>
-<div class="line"><a name="l00624"></a><span class="lineno">  624</span>&#160;        <a class="code" href="classQBody.html">QBody</a> * <a class="code" href="classQBody.html#a1440d4534c97dc74064f58f2bf19c329">RemoveMeshAt</a>(<span class="keywordtype">int</span> index);</div>
-<div class="line"><a name="l00628"></a><span class="lineno">  628</span>&#160;        <a class="code" href="structQMesh.html">QMesh</a> * <a class="code" href="classQBody.html#aca74ba58c56a5cf4bf23bab89c43d182">GetMeshAt</a>(<span class="keywordtype">int</span> index);</div>
-<div class="line"><a name="l00630"></a><span class="lineno">  630</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classQBody.html#a6df110d5fc50683cca7710cfe24a14e7">GetMeshCount</a>();</div>
-<div class="line"><a name="l00632"></a><span class="lineno">  632</span>&#160;        vector&lt;QMesh*&gt;  *<a class="code" href="classQBody.html#ae649803746fedf22ca9abb2f674c5e6d">GetMeshes</a>();</div>
-<div class="line"><a name="l00633"></a><span class="lineno">  633</span>&#160; </div>
-<div class="line"><a name="l00638"></a><span class="lineno">  638</span>&#160;        <a class="code" href="classQBody.html">QBody</a> * <a class="code" href="classQBody.html#aae9bd0113a637678a3811e67447adf12">AddMeshesFromFile</a>(<span class="keywordtype">string</span> filePath);</div>
-<div class="line"><a name="l00639"></a><span class="lineno">  639</span>&#160; </div>
-<div class="line"><a name="l00640"></a><span class="lineno">  640</span>&#160; </div>
-<div class="line"><a name="l00641"></a><span class="lineno">  641</span>&#160;        <span class="comment">//Methods About the Sleeping Feature</span></div>
-<div class="line"><a name="l00646"></a><span class="lineno"><a class="line" href="classQBody.html#a32068b2a00a00adee2aa5564fa290f6b">  646</a></span>&#160;<span class="comment"></span>        <a class="code" href="classQBody.html">QBody</a>* <a class="code" href="classQBody.html#a32068b2a00a00adee2aa5564fa290f6b">WakeUp</a>() {</div>
-<div class="line"><a name="l00647"></a><span class="lineno">  647</span>&#160;            isSleeping = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00648"></a><span class="lineno">  648</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00649"></a><span class="lineno">  649</span>&#160;        }</div>
-<div class="line"><a name="l00650"></a><span class="lineno">  650</span>&#160; </div>
-<div class="line"><a name="l00655"></a><span class="lineno">  655</span>&#160;        <a class="code" href="classQBody.html">QBody</a> *<a class="code" href="classQBody.html#a0caa03ec713535951779cfe06c1dbd48">SetVelocityLimit</a>(<span class="keywordtype">float</span> value);</div>
-<div class="line"><a name="l00656"></a><span class="lineno">  656</span>&#160; </div>
-<div class="line"><a name="l00660"></a><span class="lineno"><a class="line" href="classQBody.html#a1e6b9f1b5b9636156678eb966eb38c78">  660</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classQBody.html#a1e6b9f1b5b9636156678eb966eb38c78">manualDeletion</a>=<span class="keyword">false</span>;</div>
-<div class="line"><a name="l00661"></a><span class="lineno">  661</span>&#160; </div>
-<div class="line"><a name="l00662"></a><span class="lineno">  662</span>&#160; </div>
-<div class="line"><a name="l00663"></a><span class="lineno">  663</span>&#160;        <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="structQMesh.html">QMesh</a>;</div>
-<div class="line"><a name="l00664"></a><span class="lineno">  664</span>&#160;        <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classQWorld.html">QWorld</a>;</div>
-<div class="line"><a name="l00665"></a><span class="lineno">  665</span>&#160;        <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classQManifold.html">QManifold</a>;</div>
-<div class="line"><a name="l00666"></a><span class="lineno">  666</span>&#160;        <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classQParticle.html">QParticle</a>;</div>
-<div class="line"><a name="l00667"></a><span class="lineno">  667</span>&#160;        <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classQJoint.html">QJoint</a>;</div>
-<div class="line"><a name="l00668"></a><span class="lineno">  668</span>&#160;        <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classQBroadPhase.html">QBroadPhase</a>;</div>
-<div class="line"><a name="l00669"></a><span class="lineno">  669</span>&#160;        <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classQAreaBody.html">QAreaBody</a>;</div>
-<div class="line"><a name="l00670"></a><span class="lineno">  670</span>&#160; </div>
-<div class="line"><a name="l00671"></a><span class="lineno">  671</span>&#160;    <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00672"></a><span class="lineno">  672</span>&#160;        vector&lt;QMesh*&gt; _meshes=vector&lt;QMesh*&gt;();</div>
-<div class="line"><a name="l00673"></a><span class="lineno">  673</span>&#160;        <a class="code" href="classQBody.html#a8995ebc965ad51576d0662e44a29d58b">SimulationModels</a> simulationModel=SimulationModels::RIGID_BODY;</div>
-<div class="line"><a name="l00674"></a><span class="lineno">  674</span>&#160;        <span class="keyword">static</span> <a class="code" href="structQVector.html">QVector</a> ComputeFriction(<a class="code" href="classQBody.html">QBody</a> *bodyA, <a class="code" href="classQBody.html">QBody</a> *bodyB, <a class="code" href="structQVector.html">QVector</a> &amp;normal, <span class="keywordtype">float</span> penetration, <a class="code" href="structQVector.html">QVector</a> &amp;relativeVelocity);</div>
-<div class="line"><a name="l00675"></a><span class="lineno">  675</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">bool</span> CanCollide(<a class="code" href="classQBody.html">QBody</a> *bodyA,<a class="code" href="classQBody.html">QBody</a> *bodyB,<span class="keywordtype">bool</span> checkBodiesAreEnabled=<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00676"></a><span class="lineno">  676</span>&#160;        <span class="comment">//For Gravity-Free Feature of QArea Bodies  </span></div>
-<div class="line"><a name="l00677"></a><span class="lineno">  677</span>&#160;        <span class="keywordtype">bool</span> ignoreGravity=<span class="keyword">false</span>;</div>
-<div class="line"><a name="l00678"></a><span class="lineno">  678</span>&#160; </div>
-<div class="line"><a name="l00679"></a><span class="lineno">  679</span>&#160; </div>
-<div class="line"><a name="l00680"></a><span class="lineno">  680</span>&#160; </div>
-<div class="line"><a name="l00681"></a><span class="lineno">  681</span>&#160;};</div>
-<div class="line"><a name="l00682"></a><span class="lineno">  682</span>&#160; </div>
-<div class="line"><a name="l00683"></a><span class="lineno">  683</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// QBODY_H</span></div>
+<div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160;            <span class="keywordflow">if</span> (bodySpecificTimeScale!=value){</div>
+<div class="line"><a name="l00581"></a><span class="lineno">  581</span>&#160;                <span class="keywordflow">if</span>(enableBodySpecificTimeScale ){</div>
+<div class="line"><a name="l00582"></a><span class="lineno">  582</span>&#160;                    <span class="comment">//recalculate velocities</span></div>
+<div class="line"><a name="l00583"></a><span class="lineno">  583</span>&#160;                    <span class="keywordtype">float</span> velocityTimeScaleFactor=0.0f;</div>
+<div class="line"><a name="l00584"></a><span class="lineno">  584</span>&#160;                    <span class="keywordflow">if</span>(bodySpecificTimeScale!=0){</div>
+<div class="line"><a name="l00585"></a><span class="lineno">  585</span>&#160;                        <span class="keywordflow">if</span> (value&lt;bodySpecificTimeScale){</div>
+<div class="line"><a name="l00586"></a><span class="lineno">  586</span>&#160;                            velocityTimeScaleFactor=(1/bodySpecificTimeScale)*value;</div>
+<div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160;                        }<span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00588"></a><span class="lineno">  588</span>&#160;                            velocityTimeScaleFactor=1.0f;   </div>
+<div class="line"><a name="l00589"></a><span class="lineno">  589</span>&#160;                        }</div>
+<div class="line"><a name="l00590"></a><span class="lineno">  590</span>&#160;                    }</div>
+<div class="line"><a name="l00591"></a><span class="lineno">  591</span>&#160;                    </div>
+<div class="line"><a name="l00592"></a><span class="lineno">  592</span>&#160;                    <span class="keywordflow">if</span> (bodyType==BodyTypes::RIGID){</div>
+<div class="line"><a name="l00593"></a><span class="lineno">  593</span>&#160;                        <a class="code" href="structQVector.html">QVector</a> vel=<a class="code" href="classQBody.html#aa2b72ad0502e208aac2a5826b188a9b2">GetPosition</a>()-<a class="code" href="classQBody.html#a0019f1e035c1ee6cfee97d6a8d6c78e0">GetPreviousPosition</a>();</div>
+<div class="line"><a name="l00594"></a><span class="lineno">  594</span>&#160;                        vel*=velocityTimeScaleFactor;</div>
+<div class="line"><a name="l00595"></a><span class="lineno">  595</span>&#160;                        <a class="code" href="classQBody.html#aea4ee499023574667df1937235ce35ed">SetPreviousPosition</a>(<a class="code" href="classQBody.html#aa2b72ad0502e208aac2a5826b188a9b2">GetPosition</a>()-vel);</div>
+<div class="line"><a name="l00596"></a><span class="lineno">  596</span>&#160;                        <span class="keywordtype">float</span> rotVel=<a class="code" href="classQBody.html#a71623d585eeafe3609d34c6c5136bbc6">GetRotation</a>()-<a class="code" href="classQBody.html#a6999aac0d459ef8607888d9992859014">GetPreviousRotation</a>();</div>
+<div class="line"><a name="l00597"></a><span class="lineno">  597</span>&#160;                        rotVel*=velocityTimeScaleFactor;</div>
+<div class="line"><a name="l00598"></a><span class="lineno">  598</span>&#160;                        <a class="code" href="classQBody.html#aba064b08c6ef4f60b098afc76ae4e414">SetPreviousRotation</a>(<a class="code" href="classQBody.html#a71623d585eeafe3609d34c6c5136bbc6">GetRotation</a>()-rotVel);</div>
+<div class="line"><a name="l00599"></a><span class="lineno">  599</span>&#160;                    }<span class="keywordflow">else</span> <span class="keywordflow">if</span>(bodyType!=BodyTypes::AREA){</div>
+<div class="line"><a name="l00600"></a><span class="lineno">  600</span>&#160;                        <span class="keywordflow">for</span>(<span class="keyword">auto</span> mesh :_meshes){</div>
+<div class="line"><a name="l00601"></a><span class="lineno">  601</span>&#160;                            <span class="keywordflow">for</span> (<span class="keyword">auto</span> particle :mesh-&gt;particles){</div>
+<div class="line"><a name="l00602"></a><span class="lineno">  602</span>&#160;                                <a class="code" href="structQVector.html">QVector</a> vel=particle-&gt;GetGlobalPosition()-particle-&gt;GetPreviousGlobalPosition();</div>
+<div class="line"><a name="l00603"></a><span class="lineno">  603</span>&#160;                                vel*=velocityTimeScaleFactor;</div>
+<div class="line"><a name="l00604"></a><span class="lineno">  604</span>&#160;                                particle-&gt;SetPreviousGlobalPosition(particle-&gt;GetGlobalPosition()-vel );</div>
+<div class="line"><a name="l00605"></a><span class="lineno">  605</span>&#160;                            }</div>
+<div class="line"><a name="l00606"></a><span class="lineno">  606</span>&#160;                        }</div>
+<div class="line"><a name="l00607"></a><span class="lineno">  607</span>&#160;                    }   </div>
+<div class="line"><a name="l00608"></a><span class="lineno">  608</span>&#160;                    </div>
+<div class="line"><a name="l00609"></a><span class="lineno">  609</span>&#160;                }</div>
+<div class="line"><a name="l00610"></a><span class="lineno">  610</span>&#160;                <a class="code" href="classQBody.html#a32068b2a00a00adee2aa5564fa290f6b">WakeUp</a>();</div>
+<div class="line"><a name="l00611"></a><span class="lineno">  611</span>&#160; </div>
+<div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160;                bodySpecificTimeScale=value;</div>
+<div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160;            }</div>
+<div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
+<div class="line"><a name="l00615"></a><span class="lineno">  615</span>&#160;        }</div>
+<div class="line"><a name="l00620"></a><span class="lineno"><a class="line" href="classQBody.html#ad9d11f1b62c3dbb79b72c76c527aa352">  620</a></span>&#160;        <a class="code" href="classQBody.html">QBody</a> *<a class="code" href="classQBody.html#ad9d11f1b62c3dbb79b72c76c527aa352">SetEnabled</a>(<span class="keywordtype">bool</span> value){</div>
+<div class="line"><a name="l00621"></a><span class="lineno">  621</span>&#160;            enabled=value;</div>
+<div class="line"><a name="l00622"></a><span class="lineno">  622</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
+<div class="line"><a name="l00623"></a><span class="lineno">  623</span>&#160;        }</div>
+<div class="line"><a name="l00624"></a><span class="lineno">  624</span>&#160; </div>
+<div class="line"><a name="l00630"></a><span class="lineno">  630</span>&#160;        <a class="code" href="classQBody.html">QBody</a> *<a class="code" href="classQBody.html#a134419c1fab50cb1cc9034c9299c4658">SetIntegratedVelocitiesEnabled</a>(<span class="keywordtype">bool</span> value);</div>
+<div class="line"><a name="l00631"></a><span class="lineno">  631</span>&#160; </div>
+<div class="line"><a name="l00637"></a><span class="lineno">  637</span>&#160;        <a class="code" href="classQBody.html">QBody</a> *<a class="code" href="classQBody.html#a4592fb155b7a6a4e7cc0166561b0be60">SetCustomGravityEnabled</a>(<span class="keywordtype">bool</span> value);</div>
+<div class="line"><a name="l00638"></a><span class="lineno">  638</span>&#160; </div>
+<div class="line"><a name="l00644"></a><span class="lineno">  644</span>&#160;        <a class="code" href="classQBody.html">QBody</a> *<a class="code" href="classQBody.html#a7f79a5f433884e903ed44ee4563037a1">SetCustomGravity</a>(<a class="code" href="structQVector.html">QVector</a> value);</div>
+<div class="line"><a name="l00645"></a><span class="lineno">  645</span>&#160; </div>
+<div class="line"><a name="l00646"></a><span class="lineno">  646</span>&#160; </div>
+<div class="line"><a name="l00647"></a><span class="lineno">  647</span>&#160;        <span class="comment">//Mesh Methods</span></div>
+<div class="line"><a name="l00652"></a><span class="lineno">  652</span>&#160;<span class="comment"></span>        <a class="code" href="classQBody.html">QBody</a> * <a class="code" href="classQBody.html#a17bfcd06492a9e566eb930e698b4c3c4">AddMesh</a>(<a class="code" href="structQMesh.html">QMesh</a> *mesh);</div>
+<div class="line"><a name="l00657"></a><span class="lineno">  657</span>&#160;        <a class="code" href="classQBody.html">QBody</a> * <a class="code" href="classQBody.html#a1440d4534c97dc74064f58f2bf19c329">RemoveMeshAt</a>(<span class="keywordtype">int</span> index);</div>
+<div class="line"><a name="l00661"></a><span class="lineno">  661</span>&#160;        <a class="code" href="structQMesh.html">QMesh</a> * <a class="code" href="classQBody.html#aca74ba58c56a5cf4bf23bab89c43d182">GetMeshAt</a>(<span class="keywordtype">int</span> index);</div>
+<div class="line"><a name="l00663"></a><span class="lineno">  663</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classQBody.html#a6df110d5fc50683cca7710cfe24a14e7">GetMeshCount</a>();</div>
+<div class="line"><a name="l00665"></a><span class="lineno">  665</span>&#160;        vector&lt;QMesh*&gt;  *<a class="code" href="classQBody.html#ae649803746fedf22ca9abb2f674c5e6d">GetMeshes</a>();</div>
+<div class="line"><a name="l00666"></a><span class="lineno">  666</span>&#160; </div>
+<div class="line"><a name="l00671"></a><span class="lineno">  671</span>&#160;        <a class="code" href="classQBody.html">QBody</a> * <a class="code" href="classQBody.html#aae9bd0113a637678a3811e67447adf12">AddMeshesFromFile</a>(<span class="keywordtype">string</span> filePath);</div>
+<div class="line"><a name="l00672"></a><span class="lineno">  672</span>&#160; </div>
+<div class="line"><a name="l00673"></a><span class="lineno">  673</span>&#160; </div>
+<div class="line"><a name="l00674"></a><span class="lineno">  674</span>&#160;        <span class="comment">//Methods About the Sleeping Feature</span></div>
+<div class="line"><a name="l00679"></a><span class="lineno"><a class="line" href="classQBody.html#a32068b2a00a00adee2aa5564fa290f6b">  679</a></span>&#160;<span class="comment"></span>        <a class="code" href="classQBody.html">QBody</a>* <a class="code" href="classQBody.html#a32068b2a00a00adee2aa5564fa290f6b">WakeUp</a>() {</div>
+<div class="line"><a name="l00680"></a><span class="lineno">  680</span>&#160;            isSleeping = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00681"></a><span class="lineno">  681</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
+<div class="line"><a name="l00682"></a><span class="lineno">  682</span>&#160;        }</div>
+<div class="line"><a name="l00683"></a><span class="lineno">  683</span>&#160; </div>
+<div class="line"><a name="l00688"></a><span class="lineno">  688</span>&#160;        <a class="code" href="classQBody.html">QBody</a> *<a class="code" href="classQBody.html#a0caa03ec713535951779cfe06c1dbd48">SetVelocityLimit</a>(<span class="keywordtype">float</span> value);</div>
+<div class="line"><a name="l00689"></a><span class="lineno">  689</span>&#160; </div>
+<div class="line"><a name="l00693"></a><span class="lineno"><a class="line" href="classQBody.html#a1e6b9f1b5b9636156678eb966eb38c78">  693</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classQBody.html#a1e6b9f1b5b9636156678eb966eb38c78">manualDeletion</a>=<span class="keyword">false</span>;</div>
+<div class="line"><a name="l00694"></a><span class="lineno">  694</span>&#160; </div>
+<div class="line"><a name="l00695"></a><span class="lineno">  695</span>&#160; </div>
+<div class="line"><a name="l00696"></a><span class="lineno">  696</span>&#160;        <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="structQMesh.html">QMesh</a>;</div>
+<div class="line"><a name="l00697"></a><span class="lineno">  697</span>&#160;        <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classQWorld.html">QWorld</a>;</div>
+<div class="line"><a name="l00698"></a><span class="lineno">  698</span>&#160;        <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classQManifold.html">QManifold</a>;</div>
+<div class="line"><a name="l00699"></a><span class="lineno">  699</span>&#160;        <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classQParticle.html">QParticle</a>;</div>
+<div class="line"><a name="l00700"></a><span class="lineno">  700</span>&#160;        <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classQJoint.html">QJoint</a>;</div>
+<div class="line"><a name="l00701"></a><span class="lineno">  701</span>&#160;        <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classQBroadPhase.html">QBroadPhase</a>;</div>
+<div class="line"><a name="l00702"></a><span class="lineno">  702</span>&#160;        <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classQAreaBody.html">QAreaBody</a>;</div>
+<div class="line"><a name="l00703"></a><span class="lineno">  703</span>&#160; </div>
+<div class="line"><a name="l00704"></a><span class="lineno">  704</span>&#160;    <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00705"></a><span class="lineno">  705</span>&#160;        vector&lt;QMesh*&gt; _meshes=vector&lt;QMesh*&gt;();</div>
+<div class="line"><a name="l00706"></a><span class="lineno">  706</span>&#160;        <a class="code" href="classQBody.html#a8995ebc965ad51576d0662e44a29d58b">SimulationModels</a> simulationModel=SimulationModels::RIGID_BODY;</div>
+<div class="line"><a name="l00707"></a><span class="lineno">  707</span>&#160;        <span class="keyword">static</span> <a class="code" href="structQVector.html">QVector</a> ComputeFriction(<a class="code" href="classQBody.html">QBody</a> *bodyA, <a class="code" href="classQBody.html">QBody</a> *bodyB, <a class="code" href="structQVector.html">QVector</a> &amp;normal, <span class="keywordtype">float</span> penetration, <a class="code" href="structQVector.html">QVector</a> &amp;relativeVelocity);</div>
+<div class="line"><a name="l00708"></a><span class="lineno">  708</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">bool</span> CanCollide(<a class="code" href="classQBody.html">QBody</a> *bodyA,<a class="code" href="classQBody.html">QBody</a> *bodyB,<span class="keywordtype">bool</span> checkBodiesAreEnabled=<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00709"></a><span class="lineno">  709</span>&#160;        <span class="comment">//For Gravity-Free Feature of QArea Bodies  </span></div>
+<div class="line"><a name="l00710"></a><span class="lineno">  710</span>&#160;        <span class="keywordtype">bool</span> ignoreGravity=<span class="keyword">false</span>;</div>
+<div class="line"><a name="l00711"></a><span class="lineno">  711</span>&#160; </div>
+<div class="line"><a name="l00712"></a><span class="lineno">  712</span>&#160; </div>
+<div class="line"><a name="l00713"></a><span class="lineno">  713</span>&#160; </div>
+<div class="line"><a name="l00714"></a><span class="lineno">  714</span>&#160;};</div>
+<div class="line"><a name="l00715"></a><span class="lineno">  715</span>&#160; </div>
+<div class="line"><a name="l00716"></a><span class="lineno">  716</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// QBODY_H</span></div>
 <div class="ttc" id="aclassQAABB_html"><div class="ttname"><a href="classQAABB.html">QAABB</a></div><div class="ttdef"><b>Definition:</b> qaabb.h:38</div></div>
 <div class="ttc" id="aclassQAreaBody_html"><div class="ttname"><a href="classQAreaBody.html">QAreaBody</a></div><div class="ttdoc">QAreaBody objects are objects that don't respond to collisions or receive any response from them,...</div><div class="ttdef"><b>Definition:</b> qareabody.h:38</div></div>
 <div class="ttc" id="aclassQBody_html"><div class="ttname"><a href="classQBody.html">QBody</a></div><div class="ttdoc">QBody objects are the base class for all types of bodies. Any class derived from QBody shares these m...</div><div class="ttdef"><b>Definition:</b> qbody.h:43</div></div>
@@ -573,10 +606,10 @@ $(document).ready(function(){initNavTree('qbody_8h_source.html',''); initResizab
 <div class="ttc" id="aclassQBody_html_a1440d4534c97dc74064f58f2bf19c329"><div class="ttname"><a href="classQBody.html#a1440d4534c97dc74064f58f2bf19c329">QBody::RemoveMeshAt</a></div><div class="ttdeci">QBody * RemoveMeshAt(int index)</div><div class="ttdef"><b>Definition:</b> qbody.cpp:173</div></div>
 <div class="ttc" id="aclassQBody_html_a1519e34dc23d2cfe9ab9a272db23fb8f"><div class="ttname"><a href="classQBody.html#a1519e34dc23d2cfe9ab9a272db23fb8f">QBody::OnStep</a></div><div class="ttdeci">virtual void OnStep()</div><div class="ttdef"><b>Definition:</b> qbody.h:162</div></div>
 <div class="ttc" id="aclassQBody_html_a17bfcd06492a9e566eb930e698b4c3c4"><div class="ttname"><a href="classQBody.html#a17bfcd06492a9e566eb930e698b4c3c4">QBody::AddMesh</a></div><div class="ttdeci">QBody * AddMesh(QMesh *mesh)</div><div class="ttdef"><b>Definition:</b> qbody.cpp:154</div></div>
-<div class="ttc" id="aclassQBody_html_a1e6b9f1b5b9636156678eb966eb38c78"><div class="ttname"><a href="classQBody.html#a1e6b9f1b5b9636156678eb966eb38c78">QBody::manualDeletion</a></div><div class="ttdeci">bool manualDeletion</div><div class="ttdef"><b>Definition:</b> qbody.h:660</div></div>
+<div class="ttc" id="aclassQBody_html_a1e6b9f1b5b9636156678eb966eb38c78"><div class="ttname"><a href="classQBody.html#a1e6b9f1b5b9636156678eb966eb38c78">QBody::manualDeletion</a></div><div class="ttdeci">bool manualDeletion</div><div class="ttdef"><b>Definition:</b> qbody.h:693</div></div>
 <div class="ttc" id="aclassQBody_html_a28d5630e22de21427ec660dc0d42f3c4"><div class="ttname"><a href="classQBody.html#a28d5630e22de21427ec660dc0d42f3c4">QBody::GetAirFriction</a></div><div class="ttdeci">float GetAirFriction()</div><div class="ttdef"><b>Definition:</b> qbody.h:317</div></div>
 <div class="ttc" id="aclassQBody_html_a2902d2650da94a7038a50b6e32ca4c2c"><div class="ttname"><a href="classQBody.html#a2902d2650da94a7038a50b6e32ca4c2c">QBody::SetCollidableLayersBit</a></div><div class="ttdeci">QBody * SetCollidableLayersBit(int value)</div><div class="ttdef"><b>Definition:</b> qbody.h:488</div></div>
-<div class="ttc" id="aclassQBody_html_a32068b2a00a00adee2aa5564fa290f6b"><div class="ttname"><a href="classQBody.html#a32068b2a00a00adee2aa5564fa290f6b">QBody::WakeUp</a></div><div class="ttdeci">QBody * WakeUp()</div><div class="ttdef"><b>Definition:</b> qbody.h:646</div></div>
+<div class="ttc" id="aclassQBody_html_a32068b2a00a00adee2aa5564fa290f6b"><div class="ttname"><a href="classQBody.html#a32068b2a00a00adee2aa5564fa290f6b">QBody::WakeUp</a></div><div class="ttdeci">QBody * WakeUp()</div><div class="ttdef"><b>Definition:</b> qbody.h:679</div></div>
 <div class="ttc" id="aclassQBody_html_a3254a2e9f22d0dbd3eae008f521099e1"><div class="ttname"><a href="classQBody.html#a3254a2e9f22d0dbd3eae008f521099e1">QBody::OnCollision</a></div><div class="ttdeci">virtual bool OnCollision(CollisionInfo)</div><div class="ttdef"><b>Definition:</b> qbody.h:167</div></div>
 <div class="ttc" id="aclassQBody_html_a36ead8ec563904f39126d4a5cd339127"><div class="ttname"><a href="classQBody.html#a36ead8ec563904f39126d4a5cd339127">QBody::AddRotation</a></div><div class="ttdeci">QBody * AddRotation(float angleRadian, bool withPreviousRotation=true)</div><div class="ttdef"><b>Definition:</b> qbody.h:454</div></div>
 <div class="ttc" id="aclassQBody_html_a3a8a095131e047e554e4e5133a2696f8"><div class="ttname"><a href="classQBody.html#a3a8a095131e047e554e4e5133a2696f8">QBody::GetSimulationModel</a></div><div class="ttdeci">SimulationModels GetSimulationModel()</div><div class="ttdef"><b>Definition:</b> qbody.h:303</div></div>
@@ -627,7 +660,7 @@ $(document).ready(function(){initNavTree('qbody_8h_source.html',''); initResizab
 <div class="ttc" id="aclassQBody_html_ad2a78599bee664d873cb33cb82e50b56"><div class="ttname"><a href="classQBody.html#ad2a78599bee664d873cb33cb82e50b56">QBody::SetSimulationModel</a></div><div class="ttdeci">QBody * SetSimulationModel(SimulationModels model)</div><div class="ttdef"><b>Definition:</b> qbody.h:512</div></div>
 <div class="ttc" id="aclassQBody_html_ad6ebf482d0356511d630565db2a29645"><div class="ttname"><a href="classQBody.html#ad6ebf482d0356511d630565db2a29645">QBody::GetMode</a></div><div class="ttdeci">Modes GetMode()</div><div class="ttdef"><b>Definition:</b> qbody.h:257</div></div>
 <div class="ttc" id="aclassQBody_html_ad8fcad975f32b43d51c4a1685aed9a84"><div class="ttname"><a href="classQBody.html#ad8fcad975f32b43d51c4a1685aed9a84">QBody::GetBodySpesificTimeScale</a></div><div class="ttdeci">float GetBodySpesificTimeScale()</div><div class="ttdef"><b>Definition:</b> qbody.h:349</div></div>
-<div class="ttc" id="aclassQBody_html_ad9d11f1b62c3dbb79b72c76c527aa352"><div class="ttname"><a href="classQBody.html#ad9d11f1b62c3dbb79b72c76c527aa352">QBody::SetEnabled</a></div><div class="ttdeci">QBody * SetEnabled(bool value)</div><div class="ttdef"><b>Definition:</b> qbody.h:587</div></div>
+<div class="ttc" id="aclassQBody_html_ad9d11f1b62c3dbb79b72c76c527aa352"><div class="ttname"><a href="classQBody.html#ad9d11f1b62c3dbb79b72c76c527aa352">QBody::SetEnabled</a></div><div class="ttdeci">QBody * SetEnabled(bool value)</div><div class="ttdef"><b>Definition:</b> qbody.h:620</div></div>
 <div class="ttc" id="aclassQBody_html_adcaf713fc5a0e5e1e07c0d844b93a562"><div class="ttname"><a href="classQBody.html#adcaf713fc5a0e5e1e07c0d844b93a562">QBody::StepEventListener</a></div><div class="ttdeci">std::function&lt; void(QBody *body)&gt; StepEventListener</div><div class="ttdef"><b>Definition:</b> qbody.h:177</div></div>
 <div class="ttc" id="aclassQBody_html_adf83365d0baa7f5f8076ec3fbcf38f13"><div class="ttname"><a href="classQBody.html#adf83365d0baa7f5f8076ec3fbcf38f13">QBody::GetTotalPolygonsArea</a></div><div class="ttdeci">float GetTotalPolygonsArea()</div><div class="ttdef"><b>Definition:</b> qbody.h:249</div></div>
 <div class="ttc" id="aclassQBody_html_ae468fcc35721b342d171f187dd7cdaf3"><div class="ttname"><a href="classQBody.html#ae468fcc35721b342d171f187dd7cdaf3">QBody::Modes</a></div><div class="ttdeci">Modes</div><div class="ttdef"><b>Definition:</b> qbody.h:51</div></div>

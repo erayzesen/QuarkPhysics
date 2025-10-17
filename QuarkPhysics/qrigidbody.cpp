@@ -162,7 +162,7 @@ void QRigidBody::Update()
 
 
 	//Verlet Integration
-	if(isKinematic==false && enableIntegratedVelocities==true){
+	if(isKinematic==false && enableIntegratedVelocities==true && ts!=0.0f){
 		position+=vel-(vel*airFriction);
 		
 		//Gravity Forces

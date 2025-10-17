@@ -577,7 +577,40 @@ protected:
 		 * @return A pointer to the body itself.
 		 */
 		QBody *SetBodySpecificTimeScale(float value){
-			bodySpecificTimeScale=value;
+			if (bodySpecificTimeScale!=value){
+				if(enableBodySpecificTimeScale ){
+					//recalculate velocities
+					float velocityTimeScaleFactor=0.0f;
+					if(bodySpecificTimeScale!=0){
+						if (value<bodySpecificTimeScale){
+							velocityTimeScaleFactor=(1/bodySpecificTimeScale)*value;
+						}else{
+							velocityTimeScaleFactor=1.0f;	
+						}
+					}
+					
+					if (bodyType==BodyTypes::RIGID){
+						QVector vel=GetPosition()-GetPreviousPosition();
+						vel*=velocityTimeScaleFactor;
+						SetPreviousPosition(GetPosition()-vel);
+						float rotVel=GetRotation()-GetPreviousRotation();
+						rotVel*=velocityTimeScaleFactor;
+						SetPreviousRotation(GetRotation()-rotVel);
+					}else if(bodyType!=BodyTypes::AREA){
+						for(auto mesh :_meshes){
+							for (auto particle :mesh->particles){
+								QVector vel=particle->GetGlobalPosition()-particle->GetPreviousGlobalPosition();
+								vel*=velocityTimeScaleFactor;
+								particle->SetPreviousGlobalPosition(particle->GetGlobalPosition()-vel );
+							}
+						}
+					}	
+					
+				}
+				WakeUp();
+
+				bodySpecificTimeScale=value;
+			}
 			return this;
 		}
 		/** Sets whether the body is enabled.  

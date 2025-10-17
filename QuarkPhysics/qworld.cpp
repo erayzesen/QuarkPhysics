@@ -635,7 +635,7 @@ vector<QManifold> QWorld::TestCollisionWithWorld(QBody *body)
 						mesh->UpdatePolygonBisectors();
 					}
 
-					vector<QCollision::Contact*> contacts=GetCollisions(body,otherBody);
+					vector<QCollision::Contact*> contacts=GetCollisions(body,otherBody,false);
 					if(contacts.size()>0){
 						QManifold manifold(body,otherBody);
 						manifold.contacts=contacts;
@@ -924,7 +924,7 @@ bool QWorld::CheckCollisionException(QBody *bodyA, QBody *bodyB)
 
 
 //Collision Constraints and Response Between Bodies
-vector<QCollision::Contact*> QWorld::GetCollisions(QBody *bodyA, QBody *bodyB){
+vector<QCollision::Contact*> QWorld::GetCollisions(QBody *bodyA, QBody *bodyB,bool applyHotSolvers){
 	vector<QCollision::Contact*> contactList;
 
 	vector<QMesh*>* meshesA=bodyA->GetMeshes();
@@ -1014,11 +1014,15 @@ vector<QCollision::Contact*> QWorld::GetCollisions(QBody *bodyA, QBody *bodyB){
 					QCollision::CircleAndPolygon(polygonMesh->polygon,polylineMesh->polygon,contactList);
 				}else{
 					vector<QCollision::Contact*> hotContactList;
-					QManifold hotManifold(bodyA,bodyB);
-					QCollision::CircleAndPolygon(polylineMesh->polygon,polygonMesh->polygon,hotContactList);
-					hotManifold.contacts=hotContactList;
-					hotManifold.Solve();
-					hotManifold.SolveFrictionAndVelocities();
+					if (applyHotSolvers){
+						QManifold hotManifold(bodyA,bodyB);
+						QCollision::CircleAndPolygon(polylineMesh->polygon,polygonMesh->polygon,hotContactList);
+						hotManifold.contacts=hotContactList;
+						hotManifold.Solve();
+						hotManifold.SolveFrictionAndVelocities();
+					}else{
+						QCollision::CircleAndPolygon(polylineMesh->polygon,polygonMesh->polygon,contactList);
+					}
 					
 					QCollision::PolylineAndPolygon(polylineMesh->polygon,polygonMesh->polygon,contactList);
 					
@@ -1181,16 +1185,6 @@ bool QWorld::SortBodiesVertical(const QBody *bodyA, const QBody *bodyB)
 		if(body->isSleeping)
 			continue;
 
-		//Time scale feature
-		float ts=1.0f;
-
-		if(body->enableBodySpecificTimeScale==true){
-			ts=body->bodySpecificTimeScale;
-		}else{
-			ts=GetTimeScale();
-		}
-		
-
 
 		 if(body->GetMode()!=QBody::STATIC && body->GetSimulationModel()!=QBody::SimulationModels::RIGID_BODY){
 			 QSoftBody *sBody=static_cast<QSoftBody*>(body);
@@ -1202,7 +1196,7 @@ bool QWorld::SortBodiesVertical(const QBody *bodyA, const QBody *bodyB)
 				 }
 
 				 for(auto spring:mesh->springs){
-					 spring->Update(sBody->GetRigidity()*ts,sBody->GetPassivationOfInternalSpringsEnabled(),false);
+					 spring->Update( (sBody->GetRigidity()*spring->GetRigidity()),sBody->GetPassivationOfInternalSpringsEnabled(),false);
 				 }
 
 				 for(auto particle:mesh->particles){
@@ -1217,7 +1211,7 @@ bool QWorld::SortBodiesVertical(const QBody *bodyA, const QBody *bodyB)
 				 }
 
 				 for(auto angleConstraint:mesh->angleConstraints){
-					 angleConstraint->Update(angleConstraint->GetRigidity()*ts,false);
+					 angleConstraint->Update(angleConstraint->GetRigidity(),false);
 				 }
 
 				 for(auto particle:mesh->particles){

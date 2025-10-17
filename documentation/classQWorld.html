@@ -138,6 +138,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a57bde0fe82841149d503efe53c234d21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a00720555ef36488eb54efb16f58a6ad2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQWorld.html#a00720555ef36488eb54efb16f58a6ad2">GetEnabled</a> ()</td></tr>
 <tr class="separator:a00720555ef36488eb54efb16f58a6ad2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf42c6e7e7d774c47fc44297dd92f162"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQWorld.html#adf42c6e7e7d774c47fc44297dd92f162">GetSoftBodyCollisionHysteresis</a> ()</td></tr>
+<tr class="separator:adf42c6e7e7d774c47fc44297dd92f162"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac90fe3b422d8cb88605b9a56b0f2f878"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQWorld.html">QWorld</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQWorld.html#ac90fe3b422d8cb88605b9a56b0f2f878">SetGravity</a> (<a class="el" href="structQVector.html">QVector</a> value)</td></tr>
 <tr class="separator:ac90fe3b422d8cb88605b9a56b0f2f878"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab5aabd4071610644359127966fce17f2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQWorld.html">QWorld</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQWorld.html#ab5aabd4071610644359127966fce17f2">SetSleepingEnabled</a> (bool value)</td></tr>
@@ -156,6 +158,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a25fb435d666b9d87f8f85cdbb3606326"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afd2f262f53ec25faadf65fd2de37f37c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQWorld.html">QWorld</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQWorld.html#afd2f262f53ec25faadf65fd2de37f37c">SetEnabled</a> (bool value)</td></tr>
 <tr class="separator:afd2f262f53ec25faadf65fd2de37f37c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7655511d67b07eb24595993c360a77d7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQWorld.html">QWorld</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQWorld.html#a7655511d67b07eb24595993c360a77d7">SetSoftBodyCollisionHysteresis</a> (float value)</td></tr>
+<tr class="separator:a7655511d67b07eb24595993c360a77d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af1a55d7ae18388f9a46547781c89a183"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQWorld.html#af1a55d7ae18388f9a46547781c89a183">Update</a> ()</td></tr>
 <tr class="separator:af1a55d7ae18388f9a46547781c89a183"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaaedfc8a0f251d74fe26cb2f9dcb6a23"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQWorld.html">QWorld</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQWorld.html#aaaedfc8a0f251d74fe26cb2f9dcb6a23">AddBody</a> (<a class="el" href="classQBody.html">QBody</a> *body)</td></tr>
@@ -245,8 +249,8 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a64514ed74f8667d65b8eff4bbf57627e"><td class="memItemLeft" align="right" valign="top">static vector&lt; <a class="el" href="structQCollision_1_1Contact.html">QCollision::Contact</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQWorld.html#a64514ed74f8667d65b8eff4bbf57627e">GetCollisions</a> (<a class="el" href="classQBody.html">QBody</a> *bodyA, <a class="el" href="classQBody.html">QBody</a> *bodyB)</td></tr>
-<tr class="separator:a64514ed74f8667d65b8eff4bbf57627e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a560bf6016dda2dab53b89b83fcf62670"><td class="memItemLeft" align="right" valign="top">static vector&lt; <a class="el" href="structQCollision_1_1Contact.html">QCollision::Contact</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQWorld.html#a560bf6016dda2dab53b89b83fcf62670">GetCollisions</a> (<a class="el" href="classQBody.html">QBody</a> *bodyA, <a class="el" href="classQBody.html">QBody</a> *bodyB, bool applyHotSolvers=true)</td></tr>
+<tr class="separator:a560bf6016dda2dab53b89b83fcf62670"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -352,6 +356,9 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>debugAABBTestCount</b>
 <tr class="memitem:a8d9711098fc60230a6f814120b13a045"><td class="memItemLeft" align="right" valign="top"><a id="a8d9711098fc60230a6f814120b13a045"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>debugCollisionTestCount</b> =0</td></tr>
 <tr class="separator:a8d9711098fc60230a6f814120b13a045"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ed0f69f74e7054aa8f6695b14dc75ab"><td class="memItemLeft" align="right" valign="top"><a id="a1ed0f69f74e7054aa8f6695b14dc75ab"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>softBodyCollisionHysteresis</b> =0.2f</td></tr>
+<tr class="separator:a1ed0f69f74e7054aa8f6695b14dc75ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
@@ -867,8 +874,8 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QBroadPhase</b></td>
 
 </div>
 </div>
-<a id="a64514ed74f8667d65b8eff4bbf57627e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a64514ed74f8667d65b8eff4bbf57627e">&#9670;&nbsp;</a></span>GetCollisions()</h2>
+<a id="a560bf6016dda2dab53b89b83fcf62670"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a560bf6016dda2dab53b89b83fcf62670">&#9670;&nbsp;</a></span>GetCollisions()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -886,7 +893,13 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QBroadPhase</b></td>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="classQBody.html">QBody</a> *&#160;</td>
-          <td class="paramname"><em>bodyB</em>&#160;</td>
+          <td class="paramname"><em>bodyB</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>applyHotSolvers</em> = <code>true</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -904,6 +917,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QBroadPhase</b></td>
   <table class="params">
     <tr><td class="paramname">bodyA</td><td>A body in the world. </td></tr>
     <tr><td class="paramname">bodyB</td><td>Another body in the world. </td></tr>
+    <tr><td class="paramname">applyHotSolvers</td><td>Determines whether hot collision solvers are applied during the collision test. If the purpose is solely to perform the test, this should be set to false. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1300,6 +1314,33 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QBroadPhase</b></td>
 </table>
 </div><div class="memdoc">
 <p>Returns the sleeping rotation tolerance. If the sleeping option is active, objects will go to sleep as long as they do not exceed this rotation change limit within a certain step amount. </p>
+
+</div>
+</div>
+<a id="adf42c6e7e7d774c47fc44297dd92f162"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf42c6e7e7d774c47fc44297dd92f162">&#9670;&nbsp;</a></span>GetSoftBodyCollisionHysteresis()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float QWorld::GetSoftBodyCollisionHysteresis </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Returns the global hysteresis factor for soft body vs soft body collisions.This only affects exceptional stress cases (e.g. when bodies are compressed,moving fast, or heavily stacked). Controls how reactive soft bodies become in such conditions. High values prevent overlaps but may cause aggressive separation behavior; low values allow calmer responses but may lead to brief overlap or missed collisions. The value ranges from 0.0 to 1.0. Default is 0.2. <br  />
+ </p>
 
 </div>
 </div>
@@ -1988,6 +2029,39 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>QBroadPhase</b></td>
 </table>
 </div><div class="memdoc">
 <p>Sets the sleeping rotation tolerance. If the sleeping option is active, objects will go to sleep as long as they do not exceed this rotation change limit within a certain step amount. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>A value to set </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7655511d67b07eb24595993c360a77d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7655511d67b07eb24595993c360a77d7">&#9670;&nbsp;</a></span>SetSoftBodyCollisionHysteresis()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classQWorld.html">QWorld</a>* QWorld::SetSoftBodyCollisionHysteresis </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Sets the global hysteresis factor for soft body vs soft body collisions.This only affects exceptional stress cases (e.g. when bodies are compressed,moving fast, or heavily stacked). Controls how reactive soft bodies become in such conditions. High values prevent overlaps but may cause aggressive separation behavior; low values allow calmer responses but may lead to brief overlap or missed collisions. The value ranges from 0.0 to 1.0. Default is 0.2. <br  />
+ </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">value</td><td>A value to set </td></tr>
   </table>

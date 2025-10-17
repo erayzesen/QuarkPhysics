@@ -41,6 +41,7 @@ var classQWorld =
     [ "GetSleepingEnabled", "classQWorld.html#a8672f0f4802387a56038fdc90bcace86", null ],
     [ "GetSleepingPositionTolerance", "classQWorld.html#a6df2fc91db92b4c46d302d8fe335b087", null ],
     [ "GetSleepingRotationTolerance", "classQWorld.html#aeb10a5be2a77ad8e9048a5475dd960e7", null ],
+    [ "GetSoftBodyCollisionHysteresis", "classQWorld.html#adf42c6e7e7d774c47fc44297dd92f162", null ],
     [ "GetSpringAt", "classQWorld.html#a3b352ea9b2a8e93ce59e79a579a7b7e9", null ],
     [ "GetSpringCount", "classQWorld.html#affd0f4d8829b323e8f60004944fc8bda", null ],
     [ "GetSpringIndex", "classQWorld.html#ab7f364025ef6ef7a2338235dbd8e9188", null ],
@@ -66,6 +67,7 @@ var classQWorld =
     [ "SetSleepingEnabled", "classQWorld.html#ab5aabd4071610644359127966fce17f2", null ],
     [ "SetSleepingPositionTolerance", "classQWorld.html#a234ce17eb8b4157df3bfc18d35d454c7", null ],
     [ "SetSleepingRotationTolerance", "classQWorld.html#a160231b1bf0c74e4d9ebd7f14f536fbd", null ],
+    [ "SetSoftBodyCollisionHysteresis", "classQWorld.html#a7655511d67b07eb24595993c360a77d7", null ],
     [ "SetTimeScale", "classQWorld.html#a25fb435d666b9d87f8f85cdbb3606326", null ],
     [ "TestCollisionWithWorld", "classQWorld.html#ad12a322fccd9b970d9722eaa20672a61", null ],
     [ "Update", "classQWorld.html#af1a55d7ae18388f9a46547781c89a183", null ],
@@ -91,6 +93,7 @@ var classQWorld =
     [ "sleepingIslands", "classQWorld.html#a348586de9250200674d5d6651c51b5bd", null ],
     [ "sleepingPositionTolerance", "classQWorld.html#a34d5c2b1c1e3b45e2d4943ba543f0ab1", null ],
     [ "sleepingRotationTolerance", "classQWorld.html#a500d257a2ad1989bf0622673ff9bec85", null ],
+    [ "softBodyCollisionHysteresis", "classQWorld.html#a1ed0f69f74e7054aa8f6695b14dc75ab", null ],
     [ "springs", "classQWorld.html#a017ef85574e4d5d913addf26bd1e8e69", null ],
     [ "timeScale", "classQWorld.html#a6789303d3c34485eb6f2e7e3443bb83c", null ]
 ];

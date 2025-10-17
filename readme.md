@@ -55,7 +55,7 @@ QuarkPhysics is a 2D physics engine designed for games. Its goal is to provide a
   * Advanced particle methods. 
   
 ## Building Examples
-You need to install [SFML](https://www.sfml-dev.org/) and [CMake](https://cmake.org/) on your system before. 
+You need to install [SFML 2.x](https://www.sfml-dev.org/) and [CMake](https://cmake.org/) on your system before. 
 
 Download project, enter the main folder, and call this:
 
